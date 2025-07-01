@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 전용 글쓰기</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #f7f7f7; }
+        .admin-write-container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 32px; }
+        .admin-write-container h2 { text-align: center; margin-bottom: 24px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+        .form-actions { text-align: center; margin-top: 24px; }
+        .btn-primary { background: #1a4fa0; color: #fff; border: none; padding: 10px 32px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; }
+        .btn-primary:disabled { background: #aaa; }
+        .write-success { color: #1a4fa0; text-align: center; margin-top: 24px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="admin-write-container">
+        <h2>관리자 전용 글쓰기</h2>
+        <form id="admin-write-form">
+            <div class="form-group">
+                <label for="post-title">제목</label>
+                <input type="text" id="post-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="post-category">카테고리</label>
+                <select id="post-category" name="category" required>
+                    <option value="">카테고리 선택</option>
+                    <option value="notice">공지사항</option>
+                    <option value="case-cipher">Case Cipher</option>
+                    <option value="general">일반게시판</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="post-content">내용</label>
+                <textarea id="post-content" name="content" rows="10" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="admin-password">관리자 암호</label>
+                <input type="password" id="admin-password" name="adminPassword" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">글쓰기</button>
+            </div>
+        </form>
+        <div id="write-success" class="write-success" style="display:none;"></div>
+<div id="admin-post-list" style="margin-top: 40px;"></div>
+    </div>
+    <script src="admin-write.js"></script>
+</body>
+</html> 

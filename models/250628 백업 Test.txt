@@ -1,0 +1,302 @@
+const mongoose = require('mongoose');
+
+const questionSchema = new mongoose.Schema({
+    questionNumber: {
+        type: Number,
+        required: true
+    },
+    questionText: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    questionType: {
+        type: String,
+        enum: ['multiple-choice', 'likert-scale', 'text', 'number'],
+        default: 'multiple-choice'
+    },
+    options: [{
+        value: String,
+        text: String,
+        score: Number
+    }],
+    required: {
+        type: Boolean,
+        default: true
+    },
+    category: String,
+    subCategory: String
+});
+
+const testResultSchema = new mongoose.Schema({
+    testId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Test',
+        required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    sessionId: String, // 비로그인 사용자용
+    answers: [{
+        questionNumber: Number,
+        answer: mongoose.Schema.Types.Mixed,
+        answeredAt: {
+            type: Date,
+            default: Date.now
+        }
+    }],
+    scores: {
+        type: Map,
+        of: Number
+    },
+    result: {
+        type: Map,
+        of: mongoose.Schema.Types.Mixed
+    },
+    completedAt: Date,
+    timeSpent: Number, // 초 단위
+    isCompleted: {
+        type: Boolean,
+        default: false
+    },
+    ipAddress: String,
+    userAgent: String
+}, {
+    timestamps: true
+});
+
+const testSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, '검사 제목은 필수입니다.'],
+        trim: true
+    },
+    description: {
+        type: String,
+        required: [true, '검사 설명은 필수입니다.'],
+        trim: true
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: ['personality', 'relationship', 'career', 'mental-health', 'criminal-psychology']
+    },
+    subCategory: String,
+    instructions: {
+        type: String,
+        trim: true
+    },
+    estimatedTime: {
+        type: Number, // 분 단위
+        default: 10
+    },
+    questions: [questionSchema],
+    scoringMethod: {
+        type: String,
+        enum: ['sum', 'average', 'weighted', 'custom'],
+        default: 'sum'
+    },
+    resultInterpretation: {
+        type: Map,
+        of: {
+            range: {
+                min: Number,
+                max: Number
+            },
+            label: String,
+            description: String,
+            recommendations: [String]
+        }
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    isPublic: {
+        type: Boolean,
+        default: true
+    },
+    requiresLogin: {
+        type: Boolean,
+        default: false
+    },
+    maxAttempts: {
+        type: Number,
+        default: 1
+    },
+    cooldownPeriod: {
+        type: Number, // 시간 단위
+        default: 24
+    },
+    meta: {
+        tags: [String],
+        keywords: [String],
+        image: String,
+        difficulty: {
+            type: String,
+            enum: ['easy', 'medium', 'hard'],
+            default: 'medium'
+        }
+    },
+    statistics: {
+        totalAttempts: {
+            type: Number,
+            default: 0
+        },
+        completedAttempts: {
+            type: Number,
+            default: 0
+        },
+        averageScore: {
+            type: Number,
+            default: 0
+        },
+        averageTime: {
+            type: Number,
+            default: 0
+        },
+        lastUpdated: {
+            type: Date,
+            default: Date.now
+        }
+    },
+    gender: String,
+    age: String,
+    marriage: String,
+    relationship: String,
+    education: String,
+    occupation: String,
+    sexori: String,
+    sexcon: String,
+    email: String,
+    answers: [Number],
+    scaleScores: Object,
+    overallResult: Object,
+    specialObservation: Object,
+    createdAt: { type: Date, default: Date.now }
+}, {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+});
+
+// 가상 필드: 완료율
+testSchema.virtual('completionRate').get(function() {
+    if (this.statistics.totalAttempts === 0) return 0;
+    return Math.round((this.statistics.completedAttempts / this.statistics.totalAttempts) * 100);
+});
+
+// 가상 필드: 평균 소요 시간 (분)
+testSchema.virtual('averageTimeMinutes').get(function() {
+    return Math.round(this.statistics.averageTime / 60);
+});
+
+// 통계 업데이트 메서드
+testSchema.methods.updateStatistics = function(result) {
+    this.statistics.totalAttempts += 1;
+    
+    if (result.isCompleted) {
+        this.statistics.completedAttempts += 1;
+        
+        // 평균 점수 업데이트
+        const totalScore = Object.values(result.scores).reduce((sum, score) => sum + score, 0);
+        const scoreCount = Object.keys(result.scores).length;
+        const averageScore = totalScore / scoreCount;
+        
+        this.statistics.averageScore = 
+            (this.statistics.averageScore * (this.statistics.completedAttempts - 1) + averageScore) / 
+            this.statistics.completedAttempts;
+        
+        // 평균 시간 업데이트
+        if (result.timeSpent) {
+            this.statistics.averageTime = 
+                (this.statistics.averageTime * (this.statistics.completedAttempts - 1) + result.timeSpent) / 
+                this.statistics.completedAttempts;
+        }
+    }
+    
+    this.statistics.lastUpdated = new Date();
+    return this.save();
+};
+
+// 점수 계산 메서드
+testSchema.methods.calculateScores = function(answers) {
+    const scores = {};
+    const result = {};
+    
+    // 각 카테고리별 점수 계산
+    const categoryScores = {};
+    
+    answers.forEach(answer => {
+        const question = this.questions.find(q => q.questionNumber === answer.questionNumber);
+        if (!question) return;
+        
+        let score = 0;
+        
+        switch (question.questionType) {
+            case 'multiple-choice':
+                const option = question.options.find(opt => opt.value === answer.answer);
+                score = option ? option.score : 0;
+                break;
+            case 'likert-scale':
+                score = parseInt(answer.answer) || 0;
+                break;
+            case 'number':
+                score = parseFloat(answer.answer) || 0;
+                break;
+            default:
+                score = 0;
+        }
+        
+        if (question.category) {
+            if (!categoryScores[question.category]) {
+                categoryScores[question.category] = { total: 0, count: 0 };
+            }
+            categoryScores[question.category].total += score;
+            categoryScores[question.category].count += 1;
+        }
+    });
+    
+    // 카테고리별 평균 점수 계산
+    Object.keys(categoryScores).forEach(category => {
+        const { total, count } = categoryScores[category];
+        scores[category] = Math.round((total / count) * 100) / 100;
+    });
+    
+    // 결과 해석
+    Object.keys(scores).forEach(category => {
+        const score = scores[category];
+        const interpretation = this.resultInterpretation.get(category);
+        
+        if (interpretation) {
+            Object.keys(interpretation).forEach(rangeKey => {
+                const range = interpretation[rangeKey];
+                if (score >= range.range.min && score <= range.range.max) {
+                    result[category] = {
+                        score: score,
+                        label: range.label,
+                        description: range.description,
+                        recommendations: range.recommendations
+                    };
+                }
+            });
+        }
+    });
+    
+    return { scores, result };
+};
+
+// 인덱스 설정
+testSchema.index({ category: 1, isActive: 1 });
+testSchema.index({ title: 'text', description: 'text' });
+testSchema.index({ isPublic: 1, isActive: 1 });
+testResultSchema.index({ testId: 1, userId: 1 });
+testResultSchema.index({ sessionId: 1 });
+testResultSchema.index({ completedAt: -1 });
+
+module.exports = {
+    Test: mongoose.model('Test', testSchema),
+    TestResult: mongoose.model('TestResult', testResultSchema)
+}; 

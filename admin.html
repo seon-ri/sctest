@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세온연구소 - 관리자 대시보드</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="icon" href="logo.jpg.png" type="image/png">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1HP62Y142X');
+    </script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.8.6/jsrsasign-all-min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 헤더 -->
+        <header class="admin-header">
+            <div class="header-content">
+                <h1>세온연구소 관리자 대시보드</h1>
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                <div class="admin-info">
+                    <span class="admin-name">관리자</span>
+                    <button class="logout-btn">로그아웃</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <main>
+            <!-- 1번째 줄: 요약 카드 (복원) -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="card-icon">👥</div>
+                    <div class="card-info">
+                        <span class="value" id="total-visitors">0</span>
+                        <span class="label">총 방문자</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-info">
+                        <span class="value" id="test-participants">0</span>
+                        <span class="label">검사 응시자</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="card-icon">📧</div>
+                    <div class="card-info">
+                        <span class="value" id="inquiries">0</span>
+                        <span class="label">문의 건수</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="card-icon">📈</div>
+                    <div class="card-info">
+                        <span class="value" id="completion-rate">0%</span>
+                        <span class="label">완료율</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2번째 줄: 차트 -->
+            <div class="card-row">
+                <div class="card">
+                    <h3>방문자 추이 (최근 30일)</h3>
+                    <div class="chart-container">
+                        <canvas id="visitorsTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>유입 경로</h3>
+                    <div class="chart-container">
+                        <canvas id="trafficSourceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3번째 줄: 텍스트 통계 -->
+            <div class="card-row">
+                <div class="card">
+                    <h3>상세 통계</h3>
+                    <div class="card-content">
+                        <h4> 통계</h4>
+                        <div class="stat-row"><span>총 응시자</span><span id="love-test-total">0명</span></div>
+                        <div class="stat-row"><span>오늘 응시자</span><span id="love-test-today">0명</span></div>
+                        <div class="stat-row"><span>평균 완료율</span><span id="love-test-completion">0%</span></div>
+                        <hr>
+                        <h4>인구통계</h4>
+                        <div class="stat-row"><span>남성</span><span id="gender-male">0명 (0%)</span></div>
+                        <div class="stat-row"><span>여성</span><span id="gender-female">0명 (0%)</span></div>
+                        <div class="stat-row"><span id="age-label">연령대 (최다)</span><span id="age-value">0명 (0%)</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>유입 경로 목록</h3>
+                    <div class="card-content" id="traffic-source-list-container">
+                        <!-- JS가 이 곳에 텍스트 목록을 추가합니다 -->
+                    </div>
+                    <div id="traffic-error" class="error-message" style="display: none; padding: 15px;"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.8.6/jsrsasign-all-min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="admin-script.js"></script>
+</body>
+</html> 

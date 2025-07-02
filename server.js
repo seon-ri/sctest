@@ -80,7 +80,7 @@ const userRoutes = require('./routes/users');
 const boardRoutes = require('./routes/board');
 const adminRoutes = require('./routes/admin');
 const statsRoutes = require('./routes/stats');
-const testRouter = require('./routes/test');
+const testRouter = require('./routes/tests');
 
 // API 라우트
 app.use('/api/auth', authRoutes);

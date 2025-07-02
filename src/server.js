@@ -75,12 +75,12 @@ mongoose.connect(process.env.MONGODB_URI, {
 .catch(err => console.error('❌ MongoDB 연결 실패:', err));
 
 // 라우트 임포트
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
-const boardRoutes = require('./routes/board');
-const adminRoutes = require('./routes/admin');
-const statsRoutes = require('./routes/stats');
-const testRouter = require('./routes/test');
+const authRoutes = require('../routes/auth');
+const userRoutes = require('../routes/users');
+const boardRoutes = require('../routes/board');
+const adminRoutes = require('../routes/admin');
+const statsRoutes = require('../routes/stats');
+const testRouter = require('../routes/test');
 
 // API 라우트
 app.use('/api/auth', authRoutes);

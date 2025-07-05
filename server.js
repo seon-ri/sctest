@@ -75,6 +75,10 @@ mongoose.connect('mongodb+srv://seonweb:web1234@cluster0.0lhgygt.mongodb.net/seo
 .then(() => console.log('✅ MongoDB 연결 성공'))
 .catch(err => console.error('❌ MongoDB 연결 실패:', err));
 
+// 모델 로드 추가
+require('./models/User');
+require('./models/Post');
+
 // 빈 라우터들 (일단 동작하게 하기 위해)
 const express_router = require('express').Router();
 

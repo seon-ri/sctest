@@ -2,9 +2,9 @@
   "name": "seon-research-website",
   "version": "1.0.0",
   "description": "세온연구소 공식 웹사이트",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -519,8 +519,7 @@ const renderHomepagePostList = (posts, containerId) => {
     });
 };
 
-// 게시글 상세 모달 내 댓글 작성 버튼 이벤트 리스너 연결 
-// 게시글 상세 모달 표시 함수 (수정됨)
+// 게시글 상세 모달 표시 함수 (올바르게 수정됨)
 const showPostDetailModal = (post) => {
     try {
         console.log('🟢 모달 진입 성공', post);
@@ -576,28 +575,6 @@ const showPostDetailModal = (post) => {
         console.error('❌ 모달 생성 실패:', e);
     }
 };
-        /*
-        // 좋아요 버튼 이벤트 (현재는 사용하지 않음)
-        const likeBtn = modal.querySelector('.like-btn');
-        likeBtn.addEventListener('click', () => {
-            toggleLike(post._id, likeBtn);
-        });
-
-        // 댓글 작성 버튼 이벤트 (사용 안 함)
-        const submitCommentBtn = modal.querySelector('.submit-comment-btn');
-        if (submitCommentBtn) {
-            submitCommentBtn.addEventListener('click', function () {
-                const postId = submitCommentBtn.getAttribute('data-post-id');
-                submitComment(postId);
-            });
-        }
-        */
-
-    } catch (e) {
-        console.error('❌ 모달 생성 실패:', e);
-    }
-};
-
 
 // 페이지네이션 렌더링 (업데이트)
 const renderPagination = () => {

@@ -68,13 +68,13 @@ app.use('/sctest', express.static(path.join(__dirname, 'sctest')));
 
 // 데이터베이스 연결
 // mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000, // 30초로 증가
-    socketTimeoutMS: 45000, // 45초로 증가
-    bufferMaxEntries: 0, // 버퍼링 비활성화
-    maxPoolSize: 10 // 연결 풀 크기
-})
+//    useNewUrlParser: true,
+//    useUnifiedTopology: true,
+//    serverSelectionTimeoutMS: 30000, // 30초로 증가
+//    socketTimeoutMS: 45000, // 45초로 증가
+//    bufferMaxEntries: 0, // 버퍼링 비활성화
+//    maxPoolSize: 10 // 연결 풀 크기
+//})
 
 // 임시 직접 연결
 mongoose.connect('mongodb+srv://seonweb:web1234@cluster0.0lhgygt.mongodb.net/seon_research?retryWrites=true&w=majority&appName=Cluster0', {

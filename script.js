@@ -47,10 +47,12 @@ if (postLink) {
   const postId = postLink.getAttribute('data-id');
   console.log('[HomePost] 정확 클릭 감지:', postId);
   if (postId) {
-    loadPostDetail(postId);
+      e.preventDefault();  // ✅ postId가 있을 때만 기본 이벤트 막기
+      console.log('[HomePost] 정확 클릭 감지:', postId);
+      loadPostDetail(postId);
+    }
+    return; // 이후 이벤트 중단 (중복 실행 방지)
   }
-  return; // ❗ 꼭 return 해서 다른 클릭 로직 막지 않도록 해야 함
-}
         
         // 메뉴바(nav-link) 클릭 이벤트 연결
         if (e.target.classList.contains('nav-link')) {

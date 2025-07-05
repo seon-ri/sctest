@@ -525,7 +525,7 @@ const renderHomepagePostList = (posts, containerId) => {
     `).join('');
     container.innerHTML = postsHTML;
 
-
+};
 
 // 게시글 상세 모달 표시 함수 (올바르게 수정됨)
 const showPostDetailModal = (post) => {

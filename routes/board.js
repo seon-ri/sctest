@@ -161,6 +161,11 @@ router.get('/posts/:postId', async (req, res) => {
     }
 });
 
+
+// posts.find() 대신 더 간단한 쿼리
+const posts = await Post.findOne(); // 하나만 찾기
+
+
 // =================== 관리자 전용 기능 ===================
 
 // ✅ 관리자 전용 - 게시글 작성

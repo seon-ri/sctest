@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세 - 세온연구소</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .post-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .post-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .post-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .post-content {
+            line-height: 1.8;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 30px;
+            min-height: 200px;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #1a3e72;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.8;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 50px;
+            color: #dc3545;
+        }
+        
+        .back-button {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-button">
+            <a href="/" class="btn btn-secondary">← 목록으로 돌아가기</a>
+        </div>
+        
+        <div id="post-container" class="post-detail-container">
+            <div class="loading">게시글을 불러오는 중...</div>
+        </div>
+    </div>
+
+    <script>
+        // URL에서 게시글 ID 추출
+        function getPostIdFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+        
+        // 날짜 포맷 함수
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 1) {
+                return '오늘';
+            } else if (diffDays === 2) {
+                return '어제';
+            } else if (diffDays <= 7) {
+                return `${diffDays - 1}일 전`;
+            } else {
+                return date.toLocaleDateString('ko-KR');
+            }
+        }
+        
+        // 게시글 로드 함수
+        async function loadPost() {
+            const postId = getPostIdFromURL();
+            const container = document.getElementById('post-container');
+            
+            if (!postId) {
+                container.innerHTML = '<div class="error">잘못된 접근입니다.</div>';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/board/posts/${postId}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    const post = result.data.post;
+                    displayPost(post);
+                } else {
+                    container.innerHTML = '<div class="error">게시글을 찾을 수 없습니다.</div>';
+                }
+            } catch (error) {
+                console.error('게시글 로드 에러:', error);
+                container.innerHTML = '<div class="error">게시글을 불러오는 중 오류가 발생했습니다.</div>';
+            }
+        }
+        
+        // 게시글 표시 함수
+        function displayPost(post) {
+            const container = document.getElementById('post-container');
+            
+            // 관리자 권한 체크 (간단하게 로컬스토리지나 쿠키로 확인)
+            const isAdmin = localStorage.getItem('isAdmin') === 'true';
+            
+            container.innerHTML = `
+                <div class="post-header">
+                    <h1 class="post-title">${post.title}</h1>
+                    <div class="post-meta">
+                        <span>작성자: ${post.author ? (post.author.name || post.author.username) : '관리자'}</span>
+                        <span>작성일: ${formatDate(post.createdAt)}</span>
+                        <span>조회수: ${post.viewCount || 0}</span>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    ${post.content}
+                </div>
+                
+                <div class="post-actions">
+                    ${isAdmin ? `<a href="/admin-write.html?edit=${post._id}" class="btn btn-primary">수정하기</a>` : ''}
+                </div>
+            `;
+        }
+        
+        // 페이지 로드 시 게시글 로드
+        document.addEventListener('DOMContentLoaded', loadPost);
+    </script>
+</body>
+</html>

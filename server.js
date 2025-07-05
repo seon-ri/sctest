@@ -70,8 +70,7 @@ mongoose.connection.on('disconnected', () => {
 // MongoDB 연결
 mongoose.connect('mongodb+srv://seonweb:web1234@cluster0.0lhgygt.mongodb.net/seon_research?retryWrites=true&w=majority', {
     serverSelectionTimeoutMS: 30000,
-    socketTimeoutMS: 45000,
-    bufferMaxEntries: 0
+    socketTimeoutMS: 45000, 
 })
 .then(() => console.log('✅ MongoDB 연결 성공'))
 .catch(err => console.error('❌ MongoDB 연결 실패:', err));

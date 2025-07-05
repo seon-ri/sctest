@@ -84,6 +84,8 @@ mongoose.connect('mongodb+srv://seonweb:web1234@cluster0.0lhgygt.mongodb.net/seo
     socketTimeoutMS: 45000,
     bufferMaxEntries: 0
 })
+.then(() => console.log('✅ MongoDB 연결 성공'))
+.catch(err => console.error('❌ MongoDB 연결 실패:', err));
 
 .then(() => console.log('✅ MongoDB 연결 성공'))
 .catch(err => console.error('❌ MongoDB 연결 실패:', err));

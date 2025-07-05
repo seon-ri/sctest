@@ -204,6 +204,11 @@ if (postLink) {
 
     // 초기 로드
     loadHomepagePosts();
+
+if (location.hash === '#board' && sessionStorage.getItem('scrollToBoard')) {
+    showSection('board');
+    sessionStorage.removeItem('scrollToBoard');
+}
     console.log('[DOMContentLoaded] 초기화 완료');
 });
 

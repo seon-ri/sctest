@@ -18,6 +18,12 @@ app.use((req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
+
+console.log('🧭 server.js 시작됨');
+require('dotenv').config();
+console.log('✅ dotenv 로드됨');
+
+
 // 보안 미들웨어
 app.use(helmet({
     contentSecurityPolicy: false,

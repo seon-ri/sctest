@@ -87,9 +87,6 @@ mongoose.connect('mongodb+srv://seonweb:web1234@cluster0.0lhgygt.mongodb.net/seo
 .then(() => console.log('✅ MongoDB 연결 성공'))
 .catch(err => console.error('❌ MongoDB 연결 실패:', err));
 
-.then(() => console.log('✅ MongoDB 연결 성공'))
-.catch(err => console.error('❌ MongoDB 연결 실패:', err));
-
 // 라우트 임포트
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');

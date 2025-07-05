@@ -38,6 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // 통합 이벤트 위임 - 모든 네비게이션 이벤트 처리
     document.addEventListener('click', function(e) {
         console.log('[Event] 클릭된 요소:', e.target.tagName, e.target.className);
+
+       // 홈페이지 게시글 링크 클릭
+// 기존 document.addEventListener('click', function(e) { ... }) 내부에 추가해야 하는 코드
+const postLink = e.target.closest('.home-post-link');
+if (postLink) {
+  e.preventDefault();
+  const postId = postLink.getAttribute('data-id');
+  console.log('[HomePost] 정확 클릭 감지:', postId);
+  if (postId) {
+    loadPostDetail(postId);
+  }
+  return; // ❗ 꼭 return 해서 다른 클릭 로직 막지 않도록 해야 함
+}
         
         // 메뉴바(nav-link) 클릭 이벤트 연결
         if (e.target.classList.contains('nav-link')) {
@@ -87,16 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-       // 홈페이지 게시글 링크 클릭
-const postLink = e.target.closest('.home-post-link');
-if (postLink) {
-    e.preventDefault();
-    const postId = postLink.getAttribute('data-id');
-    console.log('[HomePost] 정확 클릭 감지:', postId);
-    if (postId) {
-        loadPostDetail(postId);
-    }
-}
+
 
         // '처음으로' 클릭
         if (e.target.classList.contains('home-link') || e.target.closest('.home-link')) {

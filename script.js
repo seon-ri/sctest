@@ -86,13 +86,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return;
         }
-        
+
+       // 홈페이지 게시글 링크 클릭
+const postLink = e.target.closest('.home-post-link');
+if (postLink) {
+    e.preventDefault();
+    const postId = postLink.getAttribute('data-id');
+    console.log('[HomePost] 정확 클릭 감지:', postId);
+    if (postId) {
+        loadPostDetail(postId);
+    }
+}
+
         // '처음으로' 클릭
         if (e.target.classList.contains('home-link') || e.target.closest('.home-link')) {
             e.preventDefault();
             console.log('[Home] 처음으로 클릭');
-            showSection('home');
-   loadHomePosts(); // 이 줄 추가
+            showSection('home'); 
             const header = document.getElementById('header');
             if (header) header.style.transform = 'translateY(0)';
             return;
@@ -102,8 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('.logo-link')) {
             e.preventDefault();
             console.log('[Logo] 로고 클릭');
-            showSection('home');
-   loadHomePosts(); // 이 줄 추가
+            showSection('home'); 
             return;
         }
         
@@ -157,10 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const modal = e.target.closest('.modal');
             if (modal) {
                 modal.style.display = 'none';
-            }
+              }
             return;
         }
-        
+ 
         // 홈화면 +버튼 클릭
         if (e.target.classList.contains('home-notice-plus')) {
             e.preventDefault();
@@ -330,14 +339,14 @@ async function loadHomepagePosts() {
         const noticeResponse = await fetch('/api/board/posts?category=notice&limit=5');
         const noticeData = await noticeResponse.json();
         if (noticeData.success) {
-            renderHomepagePostList(noticeData.posts, 'home-notice-list');
+            renderHomepagePostList(noticeData.data.posts, 'home-notice-list');
         }
         
         // Case Cipher 로드
         const caseResponse = await fetch('/api/board/posts?category=case-cipher&limit=5');
         const caseData = await caseResponse.json();
         if (caseData.success) {
-            renderHomepagePostList(caseData.posts, 'home-case-list');
+            renderHomepagePostList(caseData.data.posts, 'home-case-list');
         }
     } catch (error) {
         console.error('홈페이지 게시글 로드 실패:', error);
@@ -437,7 +446,7 @@ const renderNoticePosts = (noticePosts) => {
             const postId = item.getAttribute('data-id');
         if (postId) {
             console.log('🔍 공지사항 상세보기 요청 postId:', postId);
-            loadPostDetail(postId);
+            showPostDetailPage(postId);
         } else {
             console.warn('⚠️ 공지사항 postId 없음');
             }
@@ -489,7 +498,7 @@ const renderPosts = () => {
     container.querySelectorAll('.post-row').forEach(row => {
         row.addEventListener('click', function() {
             const postId = row.getAttribute('data-id');
-            loadPostDetail(postId);
+            showPostDetailPage(postId);
         });
     });
 };
@@ -509,15 +518,8 @@ const renderHomepagePostList = (posts, containerId) => {
         </li>
     `).join('');
     container.innerHTML = postsHTML;
-    // 이벤트 리스너 연결
-    container.querySelectorAll('.home-post-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const postId = link.getAttribute('data-id');
-            loadPostDetail(postId);
-        });
-    });
-};
+
+
 
 // 게시글 상세 모달 표시 함수 (올바르게 수정됨)
 const showPostDetailModal = (post) => {
@@ -649,7 +651,7 @@ function renderBoardCategoryList(posts, containerId) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const postId = link.getAttribute('data-id');
-            loadPostDetail(postId);
+            showPostDetailPage(postId);
         });
     });
 }
@@ -736,7 +738,7 @@ async function handleWritePostSubmit(e) {
 
 
 // 게시글 상세 조회 함수
-function loadPostDetail(postId) {
+function showPostDetailPage(postId) {
     window.location.href = `/post-detail.html?id=${postId}`;
 }
 
@@ -887,43 +889,8 @@ function closeModal(modalElement) {
 }
 // script.js 파일 맨 아래에 추가할 코드
 
-// 홈 화면 공지사항/Case Cipher 로드
-async function loadHomePosts() {
-    try {
-        // 공지사항 5개
-        const noticeRes = await fetch('/api/board/posts?category=notice&limit=5');
-        const noticeData = await noticeRes.json();
-        
-        // Case Cipher 5개  
-        const caseRes = await fetch('/api/board/posts?category=case-cipher&limit=5');
-        const caseData = await caseRes.json();
-        
-        // 공지사항 목록 업데이트
-        const noticeList = document.getElementById('home-notice-list');
-        if (noticeData.success && noticeData.data.posts.length > 0) {
-            noticeList.innerHTML = noticeData.data.posts.map(post => 
-                `<li><a href="#">${post.title}</a></li>`
-            ).join('');
-        } else {
-            noticeList.innerHTML = '<li>등록된 공지사항이 없습니다.</li>';
-        }
-        
-        // Case Cipher 목록 업데이트
-        const caseList = document.getElementById('home-case-list');
-        if (caseData.success && caseData.data.posts.length > 0) {
-            caseList.innerHTML = caseData.data.posts.map(post => 
-                `<li><a href="#">${post.title}</a></li>`
-            ).join('');
-        } else {
-            caseList.innerHTML = '<li>등록된 게시글이 없습니다.</li>';
-        }
-        
-    } catch (error) {
-        console.error('게시글 로드 에러:', error);
-    }
-}
-
-// 페이지 로드 시 실행
-document.addEventListener('DOMContentLoaded', function() {
-    loadHomePosts();
-});
+// loadPostDetail 함수 강제 재정의 (다른 곳에서 덮어쓰는 것 방지)
+window.loadPostDetail = function(postId) {
+    console.log('올바른 loadPostDetail 실행:', postId);
+    window.location.href = `/post-detail.html?id=${postId}`;
+};

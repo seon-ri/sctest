@@ -95,7 +95,7 @@
 <body>
     <div class="container">
         <div class="back-button">
-            <a href="/" class="btn btn-secondary">← 목록으로 돌아가기</a>
+            <a href="/#board" class="btn btn-secondary">← 목록으로 돌아가기</a>
         </div>
         
         <div id="post-container" class="post-detail-container">
@@ -159,7 +159,7 @@
             const container = document.getElementById('post-container');
             
             // 관리자 권한 체크 (간단하게 로컬스토리지나 쿠키로 확인)
-            const isAdmin = localStorage.getItem('isAdmin') === 'true';
+         const isAdmin = false;
             
             container.innerHTML = `
                 <div class="post-header">
@@ -175,9 +175,9 @@
                     ${post.content}
                 </div>
                 
-                <div class="post-actions">
-                    ${isAdmin ? `<a href="/admin-write.html?edit=${post._id}" class="btn btn-primary">수정하기</a>` : ''}
-                </div>
+	     <div class="post-actions">
+	    <!-- 수정 버튼 제거 - 일반 사용자에게는 보이지 않음 -->
+	   </div>
             `;
         }
         

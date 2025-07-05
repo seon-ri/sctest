@@ -70,6 +70,10 @@ app.use('/sctest', express.static(path.join(__dirname, 'sctest')));
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // 30초로 증가
+    socketTimeoutMS: 45000, // 45초로 증가
+    bufferMaxEntries: 0, // 버퍼링 비활성화
+    maxPoolSize: 10 // 연결 풀 크기
 })
 .then(() => console.log('✅ MongoDB 연결 성공'))
 .catch(err => console.error('❌ MongoDB 연결 실패:', err));

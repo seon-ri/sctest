@@ -518,38 +518,35 @@ const renderHomepagePostList = (posts, containerId) => {
         });
     });
 };
+
 // 게시글 상세 모달 내 댓글 작성 버튼 이벤트 리스너 연결 
+// 게시글 상세 모달 표시 함수 (수정됨)
 const showPostDetailModal = (post) => {
     try {
         console.log('🟢 모달 진입 성공', post);
+        console.log('📝 게시글 내용:', post.content); // 내용 확인용 로그
 
         const modal = document.createElement('div');
         modal.className = 'modal post-detail-modal';
         modal.innerHTML = `
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>${post.title}</h2>
+                    <h2>${post.title || '제목 없음'}</h2>
                     <span class="close">&times;</span>
                 </div>
                 <div class="modal-body">
                     <div class="post-meta">
                         <span>작성자: ${post.author ? (post.author.name || post.author.username) : '관리자'}</span>
                         <span>작성일: ${formatDate(post.createdAt)}</span>
-                        <span>조회수: ${post.viewCount}</span>
+                        <span>조회수: ${post.viewCount || 0}</span>
                     </div>
                     <div class="post-content">
-                        ${post.content}
+                        ${post.content || '내용이 없습니다.'}
                     </div>
                     <div class="post-actions">
                         <button class="edit-btn" data-post-id="${post._id}">
                             ✏️ 수정하기
                         </button>
-                        <!-- 좋아요 버튼은 주석 처리 -->
-                        <!--
-                        <button class="like-btn" data-post-id="${post._id}">
-                            ❤️ 좋아요 (${post.likeCount})
-                        </button>
-                        -->
                     </div>
                 </div>
             </div>
@@ -567,14 +564,18 @@ const showPostDetailModal = (post) => {
             }
         });
 
- // 수정 버튼 이벤트만 활성화
-const editBtn = modal.querySelector('.edit-btn');
-editBtn.addEventListener('click', () => {
-    closeModal(modal);  // 기존 모달 닫기
-    openEditPostForm(post);  // 수정 폼 열기
-    console.log('✏️ 수정폼 열기', post);
-});
+        // 수정 버튼 이벤트
+        const editBtn = modal.querySelector('.edit-btn');
+        editBtn.addEventListener('click', () => {
+            closeModal(modal);  // 기존 모달 닫기
+            openEditPostForm(post);  // 수정 폼 열기
+            console.log('✏️ 수정폼 열기', post);
+        });
 
+    } catch (e) {
+        console.error('❌ 모달 생성 실패:', e);
+    }
+};
         /*
         // 좋아요 버튼 이벤트 (현재는 사용하지 않음)
         const likeBtn = modal.querySelector('.like-btn');

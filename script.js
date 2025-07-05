@@ -736,20 +736,8 @@ async function handleWritePostSubmit(e) {
 
 
 // 게시글 상세 조회 함수
-async function loadPostDetail(postId) {
-    try { 
-        const response = await fetch(`/api/board/posts/${postId}`);
-        const result = await response.json();
-        
-        if (result.success) {
-            showPostDetailModal(result.data.post);
-        } else {
-            showMessage('게시글을 불러올 수 없습니다.', 'error');
-        }
-    } catch (error) {
-        console.error('게시글 상세 조회 에러:', error);
-        showMessage('서버 오류가 발생했습니다.', 'error');
-    }
+function loadPostDetail(postId) {
+    window.location.href = `/post-detail.html?id=${postId}`;
 }
 
 // 좋아요 토글 함수

@@ -2343,6 +2343,21 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 }
 
+/* 파일 맨 마지막에 추가, pc 버전*/
+body.pc-version .mobile-menu-toggle,
+body.pc-version .mobile-fixed-menu {
+    display: none !important;
+}
 
+body.pc-version {
+    min-width: 1200px;
+}
+
+.mobile-notice-bar {
+    background: #f0f0f0;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.9rem;
+}
 
 }

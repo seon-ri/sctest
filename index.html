@@ -34,6 +34,12 @@
                 </a>
             </div>
 
+<!-- pc버전  -->
+<body>
+    <div class="mobile-notice-bar">
+        📱 모바일 간편 버전 | <a href="?version=pc">PC 전체 버전 보기</a>
+    </div>
+
             <!-- 메인 네비게이션 -->
             <nav class="main-nav">
                 <ul>
@@ -577,6 +583,19 @@
   </a>
 </div>
 
+<!-- pc버전 -->
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('version') === 'pc') {
+            document.body.classList.add('pc-version');
+            let viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.content = "width=1200, initial-scale=0.5";
+            }
+        }
+    });
+    </script>
 
 
 </body>

@@ -1909,7 +1909,7 @@ footer {
 #services-education .content-card > p {
   font-weight: 400;          /* 일반 굵기 */
   font-size: 1.05rem;
-  line-height: 0.8;          /* 줄간도 다른 섹션과 일치시킴 */
+  line-height: 1.4;          /* 줄간도 다른 섹션과 일치시킴 */
   color: #444;
   margin-bottom: 0.8rem;
 }

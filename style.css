@@ -2115,6 +2115,37 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   .worry-ask {
     font-size: 1rem;
   }
+  .mobile-fixed-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+    z-index: 1000;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+  }
+
+  .mobile-fixed-menu .menu-item {
+    flex: 1;
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .mobile-fixed-menu .menu-item i {
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .mobile-fixed-menu .menu-item:hover {
+    color: var(--primary-color);
+  }
 }
 
 @media (max-width: 480px) {

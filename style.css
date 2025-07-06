@@ -2354,10 +2354,20 @@ body.pc-version {
 }
 
 .mobile-notice-bar {
-    background: #f0f0f0;
     text-align: center;
-    padding: 8px;
-    font-size: 0.9rem;
+    padding: 12px;
+    background: white;
+}
+
+.mobile-notice-bar a {
+    display: inline-block;
+    background: #1a3e72;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
 }

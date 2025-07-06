@@ -963,7 +963,8 @@ footer {
 
 /* 구성원 프로필 너비 조정 */
 .expert-profile {
-    max-width: 700px;
+   padding: 1.5rem 1rem;  /* 좌우 패딩 줄이기 */
+   max-width: 95%;        /* 박스 너비 늘리기 */
     margin: 0 auto;
 }
 
@@ -2341,9 +2342,32 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     font-size: 1.05rem;
     padding-bottom: 0.3rem;
   }
-    .expert-profile h4 { font-size: 1.3rem; }
-    .expert-profile h5 { font-size: 1.1rem; }
-    .expert-profile li { font-size: 0.9rem; }
+    /* 메인 제목들 */
+    .section-header h2 { font-size: 2rem; }  /* 기존보다 줄임 */
+    
+    /* 서브 제목들 */
+    h3 { font-size: 1.2rem; }
+    h4 { font-size: 1.1rem; }
+    h5 { font-size: 1rem; }
+    
+    /* 본문 텍스트 */
+    p, li { font-size: 0.85rem; }
+    
+    /* 메뉴/네비게이션 */
+    .nav-link { font-size: 1rem; }
+    .sub-nav-link { font-size: 1.1rem; }
+    
+    /* 퀵메뉴 */
+    .quick-menu-label { font-size: 1rem; }
+    
+    /* 공지사항 */
+    .home-notice-title { font-size: 1.1rem; }
+    .home-notice-list a { font-size: 1rem; }
+    
+
+    .expert-profile h4 { font-size: 1.2rem; }
+    .expert-profile h5 { font-size: 1rem; }
+    .expert-profile li { font-size: 0.8rem; }
     .credentials { font-size: 0.85rem; }
 }
 

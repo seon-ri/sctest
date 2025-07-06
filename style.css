@@ -2069,6 +2069,8 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     margin: 0 0 1rem 10%;  /* 모바일에서는 더 작은 여백 */
     max-width: 80%;
     text-align: left;
+    color: #102142; /* ✅ 진한 네이비 계열 추천 */
+    text-shadow: none; /* ✅ 모바일에선 그림자 제거 */
   }
 
   .hero-subtitle {

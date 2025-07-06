@@ -357,7 +357,7 @@ body {
     justify-content: center;
     gap: 2rem;
     list-style: none;
-    background: var(--light-gray);
+    background: #e9ecef
     padding: 1rem;
     border-radius: var(--border-radius);
     flex-wrap: wrap;
@@ -434,7 +434,7 @@ body {
 }
 
 .section-header h2 {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 1rem;
@@ -2343,7 +2343,7 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     padding-bottom: 0.3rem;
   }
     /* 메인 제목들 */
-    .section-header h2 { font-size: 2rem; }  /* 기존보다 줄임 */
+    .section-header h2 { font-size: 1.6rem; }  /* 기존보다 줄임 */
     
     /* 서브 제목들 */
     h3 { font-size: 1.2rem; }

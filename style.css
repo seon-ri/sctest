@@ -935,7 +935,7 @@ footer {
 
 .education-programs-section h4 {
     color: var(--primary-color);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 1.5rem;
     text-align: center;
 }
@@ -1652,7 +1652,7 @@ footer {
     position: relative;
     padding-left: 1.8rem;
     margin-bottom: 1rem;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     line-height: 1.6;
 }
 
@@ -1661,7 +1661,7 @@ footer {
     left: 0;
     top: 5px;
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 .contact-box {
   max-width: 700px;
@@ -1676,13 +1676,13 @@ footer {
 .procedure-info h4 i {
     margin-right: 0.7rem;
     color: var(--primary-color);
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     vertical-align: middle;
   text-align: left;
 }
 
 .section-intro i {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #7b2d3c;
   margin-right: 0.5rem;
   vertical-align: middle;
@@ -1702,7 +1702,7 @@ footer {
   border-right: 5px solid #7b2d3c;
 }
 .content-card-new.gray-border li {
-  font-size: 1.15rem;
+  font-size: 0.9rem;
 }
 /* 형사심리자문 서비스 카드 가로 정렬 */
 .horizontal-service-cards {
@@ -1738,14 +1738,14 @@ footer {
 }
 
 .service-card .card-icon {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--primary-color);
 }
 
 .service-card h5 {
     flex-grow: 1;
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--primary-color);
 }
 
@@ -1755,7 +1755,7 @@ footer {
 }
 
 .expand-indicator {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: bold;
     transition: transform 0.3s ease;
 }
@@ -1798,7 +1798,7 @@ footer {
 }
 
 .content-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #333;
     margin-top: 8px;
     margin-bottom: 10px;
@@ -1814,14 +1814,14 @@ footer {
 }
 
 .content-card-new h2 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
 }
 
 .content-card-new h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #34495e;
     margin-top: 30px;
     margin-bottom: 15px;
@@ -1830,7 +1830,7 @@ footer {
 }
 
 .content-card-new h4 {
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: #2980b9;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -1838,7 +1838,7 @@ footer {
 
 .content-card-new p {
     line-height: 1.9;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #444;
     margin-bottom: 15px;
 }
@@ -1908,14 +1908,14 @@ footer {
 
 #services-education .content-card > p {
   font-weight: 400;          /* 일반 굵기 */
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   line-height: 1.4;          /* 줄간도 다른 섹션과 일치시킴 */
   color: #444;
   margin-bottom: 0.8rem;
 }
 #services-education .section-intro {
   font-weight: 500;
-  font-size: 1.08rem;
+  font-size: 0.9rem;
   line-height: 1.7;
   margin-bottom: 2rem;
   color: #333;

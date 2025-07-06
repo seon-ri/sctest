@@ -366,7 +366,7 @@ body {
 .sub-nav-link {
     color: var(--text-secondary);
     text-decoration: none;
-    padding: 0.8rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius);
     font-weight: 500;
     transition: var(--transition);
@@ -443,6 +443,18 @@ body {
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
+}
+
+.section-header h3,
+.sub-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.content-card ul li {
+  font-size: 1.05rem; /* ✅ 본문보다 소제목이 확실히 커야 함 */
 }
 
 /* 홈 섹션 (Hero) */

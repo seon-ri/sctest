@@ -453,10 +453,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.content-card ul li {
-  font-size: 1.05rem; /* ✅ 본문보다 소제목이 확실히 커야 함 */
-}
-
 /* 홈 섹션 (Hero) */
 #home.active {
     display: block !important;

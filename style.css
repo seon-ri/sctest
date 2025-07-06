@@ -776,6 +776,7 @@ footer {
     margin-top: 1.2rem;
     padding-top: 0.7rem;
     opacity: 0.9;
+    padding-bottom: 80px; 
   max-width: 600px;        /* ✅ 줄 길이 제한 */
   margin-left: auto;       /* ✅ 가운데 정렬 */
   margin-right: auto;
@@ -1836,8 +1837,8 @@ footer {
 }
 
 .content-card-new p {
-    line-height: 1.4;
-  font-size: 1rem;
+    line-height: 1.9;
+    font-size: 1rem;
     color: #444;
     margin-bottom: 15px;
 }

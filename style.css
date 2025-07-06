@@ -357,7 +357,7 @@ body {
     justify-content: center;
     gap: 2rem;
     list-style: none;
-    background: #e9ecef
+    background: #e0e0e0
     padding: 1rem;
     border-radius: var(--border-radius);
     flex-wrap: wrap;

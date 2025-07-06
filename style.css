@@ -2341,6 +2341,10 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     font-size: 1.05rem;
     padding-bottom: 0.3rem;
   }
+    .expert-profile h4 { font-size: 1.3rem; }
+    .expert-profile h5 { font-size: 1.1rem; }
+    .expert-profile li { font-size: 0.9rem; }
+    .credentials { font-size: 0.85rem; }
 }
 
 /* 파일 맨 마지막에 추가, pc 버전*/

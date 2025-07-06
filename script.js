@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof initLazyLoading === 'function') initLazyLoading();
     if (typeof initRippleEffect === 'function') initRippleEffect();
 
+
+
     // 통합 이벤트 위임 - 모든 네비게이션 이벤트 처리
     document.addEventListener('click', function(e) {
         console.log('[Event] 클릭된 요소:', e.target.tagName, e.target.className);

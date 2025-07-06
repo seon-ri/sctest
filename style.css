@@ -1954,7 +1954,10 @@ footer {
 .quick-menu-label {
     font-weight: 500;
     font-size: 1rem;
+    white-space: nowrap;
 }
+
+
 .worry-box {
     position: absolute;      /* ← 반드시 absolute! */
     top: 0rem;
@@ -2075,6 +2078,21 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     white-space: normal;
     text-align: left;
     padding: 0.8rem 1rem;
+  }
+
+  .quick-menu-label {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .quick-menu-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 2rem;
+  }
+
+  .quick-menu-grid {
+    gap: 1rem;
   }
 
   .worry-box {

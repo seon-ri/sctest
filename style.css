@@ -80,21 +80,6 @@
     margin-bottom: 3rem;
 }
 
-.contact-section-vertical .contact-info h3 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-/* 오시는 길 세로 배치 */
-.location-section h3 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
 .location-cards-vertical {
     display: flex;
     flex-direction: column;
@@ -357,7 +342,7 @@ body {
     justify-content: center;
     gap: 2rem;
     list-style: none;
-    background: #e0e0e0
+    background: #e0e0e0;
     padding: 1rem;
     border-radius: var(--border-radius);
     flex-wrap: wrap;

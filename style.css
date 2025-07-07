@@ -769,7 +769,7 @@ footer {
 
 .footer-notice-text {
     margin-bottom: 0.5rem;
-    font-size: 1.12rem;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 
@@ -1968,7 +1968,7 @@ footer {
     top: 0rem;
     bottom: 0rem;
     right: 80px;            
-    width: 480px;
+    width: 420px;
     max-width: 35%;       
     background: #fff;
     border-radius: 0px;  
@@ -2004,7 +2004,7 @@ footer {
   line-height: 2;
   text-align: left;
   display: inline-block;
-    background: #e9ecef;      /* 좀 진한 배경 */
+    background: #f8f9fa;      /* 좀 진한 배경 */
     padding: 1rem;           /* 여백 */
     border-radius: 8px;      /* 둥근 모서리 */
     margin-bottom: 1rem;     /* 아래 간격 */

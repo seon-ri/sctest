@@ -1882,9 +1882,7 @@ footer {
 .career-section {
     margin-top: 2.5rem;
 }
-.achievement-list {
-    margin-top: 1.2rem;
-}
+
 .affiliations {
     margin-top: 1.2rem;
 }
@@ -2351,7 +2349,7 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     
 
     .expert-profile h4 { font-size: 1.2rem; }
-    .expert-profile h5 { font-size: 1rem; }
+    .expert-profile h5 { font-size: 1.1rem; }
     .expert-profile li { font-size: 0.8rem; }
     .credentials { font-size: 0.85rem; }
 }

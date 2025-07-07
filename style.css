@@ -477,7 +477,7 @@ body {
 }
 
 .hero-title {
-    font-size: 3.3rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.4;
@@ -493,7 +493,7 @@ background: rgba(28,60,107,0.75) !important;
 backdrop-filter: blur(3px) !important;
   color: #fff !important;
 text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
     margin: 0 0 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
     white-space: nowrap;     /* 줄바꿈 방지 */
@@ -2004,6 +2004,10 @@ footer {
   line-height: 2;
   text-align: left;
   display: inline-block;
+    background: #f8f9fa;      /* 연한 배경 */
+    padding: 1rem;           /* 여백 */
+    border-radius: 8px;      /* 둥근 모서리 */
+    margin-bottom: 1rem;     /* 아래 간격 */
 }
 .worry-ask {
   margin-top: 21px;

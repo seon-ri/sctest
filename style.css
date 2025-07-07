@@ -1965,11 +1965,11 @@ footer {
 
 .worry-box {
     position: absolute;      /* ← 반드시 absolute! */
-    top: 2rem;
+    top: 0rem;
     bottom: 0rem;
     right: 80px;            
     width: 480px;
-    max-width: 480px;       
+    max-width: 35%;       
     background: #fff;
     border-radius: 0px;  
     padding: 2rem 2.5rem;

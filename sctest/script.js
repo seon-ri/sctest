@@ -770,7 +770,7 @@ function generateDetailedReport(results, userInfo) {
         '위험': '#e53e3e'
     };
 
-    let reportHTML = \`
+    let reportHTML = `
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.4; font-size: 14px; color: #333; max-width: 700px; margin: 0 auto;">
 
   <!-- 기본 정보 -->
@@ -792,39 +792,44 @@ function generateDetailedReport(results, userInfo) {
         <strong style="color: #1a3e72;">권장사항:</strong> \${overallResult.recommendation}
       </div>
     </div>
-  </div>\`;
+  </div>`;
+
+
+
+
+
 
   if (specialObservation.hasObservation) {
-    reportHTML += \`
+    reportHTML += `
   <div style="background: #fff5f5; padding: 4px 6px; border-radius: 12px; margin-bottom: 3px; border: 2px solid #e53e3e;">
-    <h2 style="color: #e53e3e; font-size: 18px;">🚨 특별 관찰 영역</h2>\`;
+    <h2 style="color: #e53e3e; font-size: 18px;">🚨 특별 관찰 영역</h2>`;
 
     if (specialObservation.combinations.length > 0) {
-      reportHTML += \`
-      <h3 style="color: #1a3e72;">🔍 조합 패턴들</h3>\`;
+      reportHTML += `
+      <h3 style="color: #1a3e72;">🔍 조합 패턴들</h3>`;
       specialObservation.combinations.forEach(combo => {
-        reportHTML += \`
+        reportHTML += `
       <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #e53e3e; margin-bottom: 4px;">
         <strong>\${combo.name}</strong><br>→ \${getDetailedCombinationText(combo.code)}
-      </div>\`;
+      </div>`;
       });
     }
 
     if (specialObservation.riskyItems.length > 0) {
-      reportHTML += \`
-      <h3 style="color: #1a3e72;">⚠️ 주의 필요한 문항</h3>\`;
+      reportHTML += `
+      <h3 style="color: #1a3e72;">⚠️ 주의 필요한 문항</h3>`;
       specialObservation.riskyItems.forEach(item => {
-        reportHTML += \`
+        reportHTML += `
       <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #dd6b20; margin-bottom: 4px;">
         ● \${item.item}번 문항 (응답: \${item.response}점)<br>→ \${getRiskyItemText(item.item)}
-      </div>\`;
+      </div>`;
       });
     }
 
-    reportHTML += \`</div>\`;
+    reportHTML += `</div>`;
   }
 
-  reportHTML += \`
+  reportHTML += `
   <div style="background: #fff; padding: 6px 8px; border-radius: 12px; margin-bottom: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
     <h2 style="color: #1a3e72; font-size: 18px;">📈 척도별 상세 분석</h2>
 
@@ -835,7 +840,7 @@ function generateDetailedReport(results, userInfo) {
       <span style="color:#dd6b20; font-weight:bold;">■ 집중 관리 (3.0–3.9)</span>　
       <span style="color:#d69e2e; font-weight:bold;">■ 주의 필요 (2.0–2.9)</span>　
       <span style="color:#38a169; font-weight:bold;">■ 안정 (1.0–1.9)</span>
-    </div>\`;
+    </div>`;
 
   Object.keys(scaleScores).forEach(scale => {
     if (scale === 'desirability') return;
@@ -849,7 +854,7 @@ function generateDetailedReport(results, userInfo) {
     else if (score.average > 3.5) scoreColor = '#dd6b20';
     else if (score.average > 2.5) scoreColor = '#d69e2e';
 
-    reportHTML += \`
+    reportHTML += `
     <div style="background: #f8f9fa; padding: 6px 8px; border-radius: 8px; border-left: 4px solid \${scoreColor}; margin-bottom: 4px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
         <h3 style="color: #1a3e72; margin: 0; font-size: 16px;">\${scaleName}</h3>
@@ -860,10 +865,10 @@ function generateDetailedReport(results, userInfo) {
       <div style="background: white; padding: 6px 8px; border-radius: 6px; font-size: 13px;">
         \${detailedInterpretation}
       </div>
-    </div>\`;
+    </div>`;
   });
 
-  reportHTML += \`
+  reportHTML += `
   </div>
 
   <div style="font-size: 12px; color: #888; text-align: center; margin-top: 20px;">
@@ -871,7 +876,7 @@ function generateDetailedReport(results, userInfo) {
     상담이 필요하신 경우 아래 연락처를 이용해주세요.<br>
     전화: 0507-1463-8122 | 이메일: seonresearch@gmail.com | 홈페이지: www.seon-r.com
   </div>
-</div>\`;
+</div>`;
 
   return reportHTML;
 }

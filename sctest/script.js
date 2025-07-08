@@ -410,7 +410,7 @@ async function saveTestResult() {
     try {
         console.log('서버로 전송할 데이터:', payload);
         
-        const response = await fetch('/api/test', {
+        const response = await fetch('https://sctest-4q9l.onrender.com/api/test', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1019,7 +1019,7 @@ async function sendEmail() {
         const overallResult = calculateOverallResult(results.scaleScores);
 
         // ✅ 실제 이메일 전송 요청
-        const response = await fetch('/api/send-email', {
+        const response = await fetch('https://sctest-4q9l.onrender.com/api/send-email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

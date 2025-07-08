@@ -437,5 +437,27 @@ router.get('/:testId/stats', auth, async (req, res) => {
         });
     }
 });
+// 검사 결과 수동 저장 (for 성인식 검사)
+router.post('/', async (req, res) => {
+  try {
+    const data = req.body;
+    console.log('검사 결과 수신:', data);
+
+    const TestResult = require('../models/Test').TestResult; // 모델 로딩
+    const saved = await TestResult.create(data);
+
+    res.status(200).json({
+      success: true,
+      message: '검사 결과가 성공적으로 저장되었습니다.',
+      data: { resultId: saved._id }
+    });
+  } catch (err) {
+    console.error('검사 결과 저장 실패:', err);
+    res.status(500).json({
+      success: false,
+      message: '검사 결과 저장 중 오류가 발생했습니다.'
+    });
+  }
+});
 
 module.exports = router; 

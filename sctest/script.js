@@ -876,7 +876,6 @@ function generateDetailedReport(results, userInfo) {
   return reportHTML;
 }
 
-
 // 이메일 부분 수정 250708 chat 
 async function sendEmail() {
     const email = document.getElementById('email-input').value.trim();

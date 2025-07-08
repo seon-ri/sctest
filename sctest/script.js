@@ -864,8 +864,7 @@ const scaleInterpretationMap = {
       "핵심": "당신의 무책임이 타인의 삶을 파괴합니다.",
       "실천": "가해자 교정 프로그램 즉시 등록",
     }
-  } 
-};
+  };
 
 // 3. 해석 호출 함수
 function getDetailedScaleInterpretation(scale, score) {

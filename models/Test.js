@@ -164,5 +164,23 @@ testSchema.index({ riskLevel: 1 });
 testSchema.index({ completedAt: -1 });
 testSchema.index({ 'combinations.hasCombination': 1 });
 testSchema.index({ 'riskyItems.hasRiskyResponse': 1 });
+const Test = mongoose.model('Test', testSchema);
 
+// ✅ TestResult 모델 새로 정의
+const TestResultSchema = new mongoose.Schema({
+  answers: [Number],
+  gender: String,
+  age: String,
+  mari: String,
+  rel: String,
+  edu: String,
+  occu: String,
+  email: String,
+  timestamp: Date,
+  scaleScores: Object
+});
+
+const TestResult = mongoose.model('TestResult', TestResultSchema);
+
+// ✅ 둘 다 export
 module.exports = mongoose.model('Test', testSchema);

@@ -756,153 +756,126 @@ function getDetailedScaleInterpretation(scale, average) {
 }
 
 // 상세 리포트 생성 함수
-// script.js의 generateDetailedReport 함수를 HTML 버전으로 개선
+// script.js의 generateDetailedReport 함수를 HTML 버전으로 개선, 250708
 
 function generateDetailedReport(results, userInfo) {
     const scaleScores = results.scaleScores;
     const overallResult = calculateOverallResult(scaleScores);
     const specialObservation = calculateSpecialObservation(scaleScores);
-    
-    let reportHTML = `
-<div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.4; font-size: 14px; color: #333;">
 
-
-        <!-- 기본 정보 -->
-         <div style="background: #f8f9fa; padding: 4px 6px; border-radius: 8px; margin-bottom: 2px; border-left: 4px solid #3182ce;">
-            <h2 style="color: #1a3e72; margin: 0 0 4px 0; font-size: 20px;">👤 기본 정보</h2>
-
-	<div style="line-height: 1.4;">
-                <div><strong>성별:</strong> ${userInfo.gender} | <strong>연령:</strong> ${userInfo.age} | <strong>결혼:</strong> ${userInfo.mari}</div>
-                <div><strong>연애:</strong> ${userInfo.rel} | <strong>학력:</strong> ${userInfo.edu} | <strong>직업:</strong> ${userInfo.occu}</div>
-            </div>`;
-    
-    if (userInfo.sexori) {
-        reportHTML += `<div style="margin-top: 5px;"><strong>성적 지향성:</strong> ${userInfo.sexori}</div>`;
-    }
-    if (userInfo.sexcon) {
-        reportHTML += `<div style="margin-top: 2px;"><strong>성 상담 경험:</strong> ${userInfo.sexcon}</div>`;
-    }
-    
-    reportHTML += `</div>`;
-
-    // 종합 평가
     const levelColors = {
         '안정': '#38a169',
-        '주의': '#d69e2e', 
+        '주의': '#d69e2e',
         '경고': '#dd6b20',
         '위험': '#e53e3e'
     };
-    
-    const levelEmojis = {
-        '안정': '✅',
-        '주의': '⚠️',
-        '경고': '🔶', 
-        '위험': '🚨'
-    };
 
-  // 1. 종합 평가 부분 수정 (백틱 닫기 추가)
-    reportHTML += `
-        <!-- 종합 평가 -->
-	<div style="background: white; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-left: 4px solid ${levelColors[overallResult.level]};">
-            <h2 style="color: #1a3e72; margin: 0 0 2px 0; font-size: 22px; display: flex; align-items: center; gap: 10px;">
-                📋 종합 평가
-            </h2>
-            <div style="background: ${levelColors[overallResult.level]}10; padding: 4px 6px; border-radius: 6px; border: 1px solid ${levelColors[overallResult.level]};">
-                <div style="font-size: 24px; font-weight: bold; color: ${levelColors[overallResult.level]}; margin-bottom: 3px; display: flex; align-items: center; gap: 8px;">
-                    ${levelEmojis[overallResult.level]} ${overallResult.level}
-                </div>
-                <p style="margin: 0 0 2px 0; font-size: 13.5px; line-height: 1.4;">${overallResult.description}</p>
-                <div style="background: white; padding: 6px 8px; border-radius: 6px; border-left: 3px solid ${levelColors[overallResult.level]};">
-                    <strong style="color: #1a3e72;">권장사항:</strong> ${overallResult.recommendation}
-                </div>
-            </div>
-        </div>`;
+    let reportHTML = \`
+<div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.4; font-size: 14px; color: #333; max-width: 700px; margin: 0 auto;">
 
-    // 2. 특별 관찰 영역 부분 완전 교체
-    if (specialObservation.hasObservation) {
-        reportHTML += `
-        <div style="background: #fff5f5; padding: 4px 6px; border-radius: 12px; margin-bottom: 3px; border: 2px solid #e53e3e;">
-            <h2 style="color: #e53e3e; margin: 0 0 2px 0; font-size: 22px; display: flex; align-items: center; gap: 10px;">
-                🚨 특별 관찰 영역
-            </h2>`;
-        
-        if (specialObservation.combinations.length > 0) {
-            reportHTML += `
-            <div style="margin-bottom: 3px;">
-                <h3 style="color:  #1a3e72; margin: 0 0 2px 0; font-size: 18px;">🔍 조합 패턴들</h3>`;
-            
-            specialObservation.combinations.forEach(combo => {
-                reportHTML += `
-                <div style="background: white; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; border-left: 4px solid #e53e3e;">
-                    <div style="font-weight: bold; color: #e53e3e; margin-bottom: 3px;">• ${combo.name}</div>
-                    <div style="color: #333; font-size: 14px;">→ ${getDetailedCombinationText(combo.code)}</div>
-                </div>`;
-            });
-            
-            reportHTML += `</div>`;
-        }
-        
-        if (specialObservation.riskyItems.length > 0) {
-            reportHTML += `
-            <div style="margin-bottom: 3px;">
-                <h3 style="color:  #1a3e72; margin: 0 0 4px 0; font-size: 18px;">⚠️ 주의 필요한 문항</h3>`;
-            
-            specialObservation.riskyItems.forEach(item => {
-                reportHTML += `
-                <div style="background: white; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; border-left: 4px solid #dd6b20;">
-                    <div style="font-weight: bold; color: #dd6b20; margin-bottom: 3px;">• ${item.item}번 문항 (응답: ${item.response}점)</div>
-                    <div style="color: #333; font-size: 14px;">→ ${getRiskyItemText(item.item)}</div>
-                </div>`;
-            });
-            
-            reportHTML += `</div>`;
-        }
-        
-        reportHTML += `</div>`;
+  <!-- 기본 정보 -->
+  <div style="background: #f8f9fa; padding: 4px 6px; border-radius: 8px; margin-bottom: 2px; border-left: 4px solid #3182ce;">
+    <h2 style="color: #1a3e72; font-size: 18px;">👤 기본 정보</h2>
+    <div><strong>성별:</strong> \${userInfo.gender} | <strong>연령:</strong> \${userInfo.age} | <strong>결혼:</strong> \${userInfo.mari}</div>
+    <div><strong>연애:</strong> \${userInfo.rel} | <strong>학력:</strong> \${userInfo.edu} | <strong>직업:</strong> \${userInfo.occu}</div>
+  </div>
+
+  <!-- 종합 평가 -->
+  <div style="background: #fff; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; border-left: 4px solid \${levelColors[overallResult.level]}; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+    <h2 style="color: #1a3e72; font-size: 18px;">📋 종합 평가</h2>
+    <div style="background: \${levelColors[overallResult.level]}10; padding: 4px 6px; border-radius: 6px; border: 1px solid \${levelColors[overallResult.level]};">
+      <div style="font-size: 18px; font-weight: bold; color: \${levelColors[overallResult.level]}; margin-bottom: 3px;">
+        \${overallResult.level}
+      </div>
+      <p style="margin: 0 0 2px 0; font-size: 13.5px;">\${overallResult.description}</p>
+      <div style="background: white; padding: 6px 8px; border-radius: 6px; border-left: 3px solid \${levelColors[overallResult.level]};">
+        <strong style="color: #1a3e72;">권장사항:</strong> \${overallResult.recommendation}
+      </div>
+    </div>
+  </div>\`;
+
+  if (specialObservation.hasObservation) {
+    reportHTML += \`
+  <div style="background: #fff5f5; padding: 4px 6px; border-radius: 12px; margin-bottom: 3px; border: 2px solid #e53e3e;">
+    <h2 style="color: #e53e3e; font-size: 18px;">🚨 특별 관찰 영역</h2>\`;
+
+    if (specialObservation.combinations.length > 0) {
+      reportHTML += \`
+      <h3 style="color: #1a3e72;">🔍 조합 패턴들</h3>\`;
+      specialObservation.combinations.forEach(combo => {
+        reportHTML += \`
+      <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #e53e3e; margin-bottom: 4px;">
+        <strong>\${combo.name}</strong><br>→ \${getDetailedCombinationText(combo.code)}
+      </div>\`;
+      });
     }
 
-    // 3. 척도별 상세 분석 부분 수정
-    reportHTML += `
-        <div style="background: white; padding: 6px 8px; border-radius: 12px; margin-bottom: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h2 style="color: #1a3e72; margin: 0 0 2px 0; font-size: 22px; display: flex; align-items: center; gap: 10px;">
-                📈 척도별 상세 분석
-            </h2>`;
+    if (specialObservation.riskyItems.length > 0) {
+      reportHTML += \`
+      <h3 style="color: #1a3e72;">⚠️ 주의 필요한 문항</h3>\`;
+      specialObservation.riskyItems.forEach(item => {
+        reportHTML += \`
+      <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #dd6b20; margin-bottom: 4px;">
+        ● \${item.item}번 문항 (응답: \${item.response}점)<br>→ \${getRiskyItemText(item.item)}
+      </div>\`;
+      });
+    }
 
-    Object.keys(scaleScores).forEach(scale => {
-        if (scale === 'desirability') return; // 사회적 바람직성 제외
-        
-        const scaleName = scaleNames[scale];
-        const score = scaleScores[scale];
-        const detailedInterpretation = getDetailedScaleInterpretation(scale, score.average);
-        
-        // 점수에 따른 색상 결정
-        let scoreColor = '#38a169'; // 안정
-        if (score.average > 4.4) scoreColor = '#e53e3e'; // 위험
-        else if (score.average > 3.5) scoreColor = '#dd6b20'; // 경고  
-        else if (score.average > 2.5) scoreColor = '#d69e2e'; // 주의
-        
-        reportHTML += `
-<div style="background: #f8f9fa; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; border-left: 4px solid ${scoreColor};">
-  
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-    <h3 style="color: #1a3e72; margin: 0; font-size: 17px;">${scaleName}</h3>
-    <div style="background: ${scoreColor}; color: white; padding: 4px 10px; border-radius: 8px; font-weight: bold; font-size: 13px; line-height: 1;">
-      ${score.average.toFixed(1)}점
-    </div>
+    reportHTML += \`</div>\`;
+  }
+
+  reportHTML += \`
+  <div style="background: #fff; padding: 6px 8px; border-radius: 12px; margin-bottom: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <h2 style="color: #1a3e72; font-size: 18px;">📈 척도별 상세 분석</h2>
+
+    <!-- 범례 -->
+    <div style="margin: 10px 0 10px 0; font-size: 13px;">
+      <strong>점수 해석 기준:</strong><br>
+      <span style="color:#e53e3e; font-weight:bold;">■ 즉시 개입 (4.0–5.0)</span>　
+      <span style="color:#dd6b20; font-weight:bold;">■ 집중 관리 (3.0–3.9)</span>　
+      <span style="color:#d69e2e; font-weight:bold;">■ 주의 필요 (2.0–2.9)</span>　
+      <span style="color:#38a169; font-weight:bold;">■ 안정 (1.0–1.9)</span>
+    </div>\`;
+
+  Object.keys(scaleScores).forEach(scale => {
+    if (scale === 'desirability') return;
+
+    const scaleName = scaleNames[scale];
+    const score = scaleScores[scale];
+    const detailedInterpretation = getDetailedScaleInterpretation(scale, score.average);
+
+    let scoreColor = '#38a169';
+    if (score.average > 4.4) scoreColor = '#e53e3e';
+    else if (score.average > 3.5) scoreColor = '#dd6b20';
+    else if (score.average > 2.5) scoreColor = '#d69e2e';
+
+    reportHTML += \`
+    <div style="background: #f8f9fa; padding: 6px 8px; border-radius: 8px; border-left: 4px solid \${scoreColor}; margin-bottom: 4px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+        <h3 style="color: #1a3e72; margin: 0; font-size: 16px;">\${scaleName}</h3>
+        <div style="background: \${scoreColor}; color: white; padding: 4px 10px; border-radius: 8px; font-weight: bold; font-size: 13px;">
+          \${score.average.toFixed(1)}점
+        </div>
+      </div>
+      <div style="background: white; padding: 6px 8px; border-radius: 6px; font-size: 13px;">
+        \${detailedInterpretation}
+      </div>
+    </div>\`;
+  });
+
+  reportHTML += \`
   </div>
 
-  <div style="background: white; padding: 6px 8px; border-radius: 6px; line-height: 1.4; font-size: 13px;">
-    ${detailedInterpretation}
+  <div style="font-size: 12px; color: #888; text-align: center; margin-top: 20px;">
+    파일럿 테스트에 참여해주셔서 감사합니다.<br>
+    상담이 필요하신 경우 아래 연락처를 이용해주세요.<br>
+    전화: 0507-1463-8122 | 이메일: seonresearch@gmail.com | 홈페이지: www.seon-r.com
   </div>
+</div>\`;
 
-</div>`;
-
-    });
-
-    reportHTML += `</div>`;
-    
-    return reportHTML;
+  return reportHTML;
 }
+
 
 // 이메일 부분 수정 250708 chat 
 async function sendEmail() {

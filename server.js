@@ -120,31 +120,7 @@ app.post('/api/send-email', async (req, res) => {
             from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_USER}>`,
             to: email,
             subject: `[세온연구소] 나의 성, 문제 없을까? 상세 결과 리포트 - ${resultLevel}`,
-            text: reportContent,
-            html: `
-                <div style="font-family: 'Noto Sans KR', sans-serif; max-width: 700px; margin: 0 auto; padding: 12px 16px; line-height: 1.5;">
-                  <div style="text-align: center; margin-bottom: 20px; padding: 12px; background: linear-gradient(135deg, #1a3e72 0%, #4a7ab5 100%); color: white; border-radius: 8px;">
-                        <h1 style="margin: 0; font-size: 24px;">나의 성, 문제 없을까?</h1>
-                        <p style="margin: 6px 0 0 0; font-size: 18px;">상세 결과 리포트</p>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
-                        <pre style="white-space: pre-wrap; font-family: 'Noto Sans KR', sans-serif; font-size: 13px; line-height: 1.5; margin: 0;">${reportContent}</pre>
-                    </div>
-                    
-                    <div style="text-align: center; padding: 10px; background: #fff5f5; border: 1px solid #e53e3e; border-radius: 8px; margin-top: 14px;">
-                        <h3 style="color: #e53e3e; margin-bottom: 10px; font-size: 16px;">⚠️ 중요 안내</h3>
-                        <p style="margin: 4px 0; color: #333; font-size: 13px;">이 결과는 자기이해를 위한 참고자료이며, 의학적 진단을 위한 도구가 아닙니다.</p>
-                        <p style="margin: 4px 0; color: #333; font-size: 13px;">검사 결과에 대한 문의 또는 상담이 필요하신 경우, <br>세온연구소의 전문 상담 및 교육 프로그램을 통해 도움을 받으실 수 있습니다.</p>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 20px; padding: 20px; color: #6c757d; font-size: 11px;">
-                        <p>세온연구소 | 검사 리포트</p>
-                        <p>본 리포트는 개인 참고용으로만 사용하시기 바랍니다.</p>
-                        <p>발송일: ${new Date().toLocaleDateString('ko-KR')}</p>
-                    </div>
-                </div>
-            `
+            html: reportContent  
         };
         
         const info = await transporter.sendMail(mailOptions);

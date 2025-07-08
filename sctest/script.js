@@ -888,20 +888,20 @@ function generateDetailedReport(results, userInfo) {
   <!-- 기본 정보 -->
   <div style="background: #f8f9fa; padding: 4px 6px; border-radius: 8px; margin-bottom: 2px; border-left: 4px solid #3182ce;">
     <h2 style="color: #1a3e72; font-size: 18px;">👤 기본 정보</h2>
-    <div><strong>성별:</strong> \${userInfo.gender} | <strong>연령:</strong> \${userInfo.age} | <strong>결혼:</strong> \${userInfo.mari}</div>
-    <div><strong>연애:</strong> \${userInfo.rel} | <strong>학력:</strong> \${userInfo.edu} | <strong>직업:</strong> \${userInfo.occu}</div>
+    <div><strong>성별:</strong> ${userInfo.gender} | <strong>연령:</strong> ${userInfo.age} | <strong>결혼:</strong> ${userInfo.mari}</div>
+    <div><strong>연애:</strong> ${userInfo.rel} | <strong>학력:</strong> ${userInfo.edu} | <strong>직업:</strong> ${userInfo.occu}</div>
   </div>
 
   <!-- 종합 평가 -->
-  <div style="background: #fff; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; border-left: 4px solid \${levelColors[overallResult.level]}; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+  <div style="background: #fff; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; border-left: 4px solid ${levelColors[overallResult.level]}; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
     <h2 style="color: #1a3e72; font-size: 18px;">📋 종합 평가</h2>
-    <div style="background: \${levelColors[overallResult.level]}10; padding: 4px 6px; border-radius: 6px; border: 1px solid \${levelColors[overallResult.level]};">
-      <div style="font-size: 18px; font-weight: bold; color: \${levelColors[overallResult.level]}; margin-bottom: 3px;">
-        \${overallResult.level}
+    <div style="background: ${levelColors[overallResult.level]}10; padding: 4px 6px; border-radius: 6px; border: 1px solid ${levelColors[overallResult.level]};">
+      <div style="font-size: 18px; font-weight: bold; color: ${levelColors[overallResult.level]}; margin-bottom: 3px;">
+        ${overallResult.level}
       </div>
-      <p style="margin: 0 0 2px 0; font-size: 13.5px;">\${overallResult.description}</p>
-      <div style="background: white; padding: 6px 8px; border-radius: 6px; border-left: 3px solid \${levelColors[overallResult.level]};">
-        <strong style="color: #1a3e72;">권장사항:</strong> \${overallResult.recommendation}
+      <p style="margin: 0 0 2px 0; font-size: 13.5px;">${overallResult.description}</p>
+      <div style="background: white; padding: 6px 8px; border-radius: 6px; border-left: 3px solid ${levelColors[overallResult.level]};">
+        <strong style="color: #1a3e72;">권장사항:</strong> ${overallResult.recommendation}
       </div>
     </div>
   </div>`;
@@ -922,7 +922,7 @@ function generateDetailedReport(results, userInfo) {
       specialObservation.combinations.forEach(combo => {
         reportHTML += `
       <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #e53e3e; margin-bottom: 4px;">
-        <strong>\${combo.name}</strong><br>→ \${getDetailedCombinationText(combo.code)}
+        <strong>${combo.name}</strong><br>→ ${getDetailedCombinationText(combo.code)}
       </div>`;
       });
     }
@@ -933,7 +933,7 @@ function generateDetailedReport(results, userInfo) {
       specialObservation.riskyItems.forEach(item => {
         reportHTML += `
       <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #dd6b20; margin-bottom: 4px;">
-        ● \${item.item}번 문항 (응답: \${item.response}점)<br>→ \${getRiskyItemText(item.item)}
+        ● ${item.item}번 문항 (응답: ${item.response}점)<br>→ ${getRiskyItemText(item.item)}
       </div>`;
       });
     }
@@ -967,15 +967,15 @@ function generateDetailedReport(results, userInfo) {
     else if (score.average > 2.5) scoreColor = '#d69e2e';
 
     reportHTML += `
-    <div style="background: #f8f9fa; padding: 6px 8px; border-radius: 8px; border-left: 4px solid \${scoreColor}; margin-bottom: 4px;">
+    <div style="background: #f8f9fa; padding: 6px 8px; border-radius: 8px; border-left: 4px solid ${scoreColor}; margin-bottom: 4px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-        <h3 style="color: #1a3e72; margin: 0; font-size: 16px;">\${scaleName}</h3>
-        <div style="background: \${scoreColor}; color: white; padding: 4px 10px; border-radius: 8px; font-weight: bold; font-size: 13px;">
-          \${score.average.toFixed(1)}점
+        <h3 style="color: #1a3e72; margin: 0; font-size: 16px;">${scaleName}</h3>
+        <div style="background: ${scoreColor}; color: white; padding: 4px 10px; border-radius: 8px; font-weight: bold; font-size: 13px;">
+          ${score.average.toFixed(1)}점
         </div>
       </div>
       <div style="background: white; padding: 6px 8px; border-radius: 6px; font-size: 13px;">
-        \${detailedInterpretation}
+        ${detailedInterpretation}
       </div>
     </div>`;
   });

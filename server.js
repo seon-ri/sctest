@@ -88,7 +88,7 @@ app.use('/api/users', express_router);
 app.use('/api/board', require('./routes/board'));
 app.use('/api/admin', express_router);
 app.use('/api/stats', express_router);
-app.use('/api/test', express_router);
+app.use('/api/test', require('./routes/tests'));
 
 // 메인 페이지 라우트
 app.get('/', (req, res) => {

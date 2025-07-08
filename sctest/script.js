@@ -904,43 +904,35 @@ function generateDetailedReport(results, userInfo) {
     return reportHTML;
 }
 
-
-// script.js의 기존 sendEmail 함수를 이것으로 교체
+// 이메일 부분 수정 250708 chat 
 async function sendEmail() {
     const email = document.getElementById('email-input').value.trim();
-    
     if (!email) {
         alert('이메일 주소를 입력해주세요.');
         return;
     }
-    
+
     // 이메일 유효성 검사
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert('올바른 이메일 주소를 입력해주세요.');
         return;
     }
-    
+
     try {
-        // 발송 버튼 비활성화
         const sendBtn = document.getElementById('send-email-btn');
         const originalText = sendBtn.textContent;
         sendBtn.disabled = true;
         sendBtn.textContent = '발송 중...';
-        
-        // 결과 데이터 준비
+
         const results = window.testResults;
-        const overallResult = calculateOverallResult(results.scaleScores);
-        
-        // 상세 리포트 생성 (검사틀3 기준)
         const detailedReport = generateDetailedReport(results, userInfo);
-        
-        // 서버로 이메일 발송 요청
+        const overallResult = calculateOverallResult(results.scaleScores);
+
+        // ✅ 실제 이메일 전송 요청
         const response = await fetch('/api/send-email', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 email: email,
                 reportContent: detailedReport,
@@ -948,27 +940,24 @@ async function sendEmail() {
                 resultLevel: overallResult.level
             })
         });
-        
+
         const data = await response.json();
-        
+
         if (data.success) {
-            console.log('이메일 발송 성공:', data);
             alert('상세 결과가 이메일로 발송되었습니다!\n\n※ 스팸함도 확인해주세요.');
         } else {
             throw new Error(data.detail || '이메일 발송 실패');
         }
-        
-        // 버튼 복원
+
         sendBtn.disabled = false;
         sendBtn.textContent = originalText;
-        
+
     } catch (error) {
         console.error('이메일 발송 실패:', error);
         alert('이메일 발송에 실패했습니다.\n잠시 후 다시 시도해주세요.');
-        
-        // 버튼 복원
         const sendBtn = document.getElementById('send-email-btn');
         sendBtn.disabled = false;
         sendBtn.textContent = '상세 결과 받기';
     }
 }
+

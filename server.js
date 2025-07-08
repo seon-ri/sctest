@@ -9,7 +9,7 @@ const rateLimit = require('express-rate-limit');
 const path = require('path'); 
 
 const app = express();
-
+app.use(express.json());
 app.use((req, res, next) => {
     res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline';");
     next();
@@ -24,7 +24,7 @@ app.use(helmet({
 
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://yourdomain.com'] 
+        ? ['https://www.seon-r.com'] 
         : ['http://localhost:3000', 'http://127.0.0.1:3000'],
     credentials: true
 }));

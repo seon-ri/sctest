@@ -183,4 +183,4 @@ const TestResultSchema = new mongoose.Schema({
 const TestResult = mongoose.model('TestResult', TestResultSchema);
 
 // ✅ 둘 다 export
-module.exports = mongoose.model('Test', testSchema);
+module.exports = { Test, TestResult };

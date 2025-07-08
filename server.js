@@ -108,7 +108,7 @@ app.post('/api/send-email', async (req, res) => {
         console.log('EMAIL_USER:', process.env.EMAIL_USER);
         console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? '설정됨' : '없음');
 
-        const transporter = nodemailer.createTransporter({
+        const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.EMAIL_USER,

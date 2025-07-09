@@ -898,11 +898,11 @@ function generateEnhancedReport(results, userInfo) {
   <p style="margin: 5px 0 0 0; font-size: 14px; color: #ffffff; text-align: center;">자가진단 검사 결과 보고서</p>
 </div>
 
-<p style="font-size:13px; color:#555; text-align:right; margin-bottom:24px;">
+<p style="font-size:13px; color:#555; text-align:right; margin-top:40px; margin-bottom:24px;">
   이름: ${userInfo.name || '홍길동'}님 │ 검사일: ${new Date().toLocaleDateString('ko-KR')}
 </p>
 
-  <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:12px; font-size:18px;">1. 종합 평가</h2>
+  <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">1. 종합 평가</h2>
   <div style="border-left: 6px solid ${overallResult.color}; background:${overallResult.color}20; padding:16px; margin-top:12px; border-radius:4px;">
     <p><strong>결과:</strong> ${overallResult.level}</p>
     <p><strong>해석:</strong> ${overallResult.description}</p>
@@ -912,7 +912,7 @@ function generateEnhancedReport(results, userInfo) {
 
   if (specialObservation.hasObservation) {
     report += `
-<h2 style="color:#1a3e72; margin-top:40px; margin-bottom:12px; font-size:18px;">2. 특별 관찰 영역</h2>
+<h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">2. 특별 관찰 영역</h2>
 <div style="border:1px solid #f6ad55; padding:16px; border-radius:6px;">
 
   <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-bottom:8px;"><strong>조합 패턴</strong></p>
@@ -923,7 +923,7 @@ function generateEnhancedReport(results, userInfo) {
   `).join('')}
 
   ${specialObservation.riskyItems.length > 0 ? `
-    <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-bottom:8px;"><strong>주의 문항</strong></p>
+    <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:10px; margin-bottom:8px;"><strong>주의 문항</strong></p>
     ${specialObservation.riskyItems.map(item => `
 <p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
   • <strong>${item.item}번:</strong> ${getRiskyItemText(item.item)}
@@ -936,7 +936,7 @@ function generateEnhancedReport(results, userInfo) {
   }
 
   report += `
-  <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:12px; font-size:18px;">3. 척도별 점수 요약</h2>
+  <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">3. 척도별 점수 요약</h2>
   <div style="margin-bottom:12px; font-size:13px;">
     <strong>범례:</strong> 
     <span style="color:#e53e3e">■ 심각</span> 

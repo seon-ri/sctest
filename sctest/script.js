@@ -940,7 +940,7 @@ function generateEnhancedReport(results, userInfo) {
             <div style="height:12px; background:${color}; width:${percent(score.average)}%; border-radius:4px;"></div>
           </div>
         </td>
-        <td style="padding:8px; text-align:right;">${scoreVal}점 / ${getScoreLevelText(getScoreLevelKey(score.average)}</td>
+       <td style="padding:8px; text-align:right;">${scoreVal}점 / ${getScoreLevelText(getScoreLevelKey(score.average))}</td>
       </tr>`;
   });
 

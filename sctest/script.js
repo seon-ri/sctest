@@ -886,7 +886,7 @@ function generateEnhancedReport(results, userInfo) {
   const percent = (v) => Math.min(100, Math.max(0, Math.round((v / 5) * 100)));
 
   let report = `
-  <div style="font-family:'Noto Sans KR',sans-serif;max-width:800px;margin:auto;color:#333;font-size:14px;line-height:1.6;">
+  <div style="font-family:'Noto Sans KR',sans-serif;max-width:800px;margin:auto;color:#333;font-size:15px;line-height:1.85;">
   
     <h1 style="text-align:center; font-size:24px; color:#1a3e72; margin-top:30px; margin-bottom:30px;">나의 성, 문제없을까?</h1>
     <p><strong>이름:</strong> 홍길동님</p>

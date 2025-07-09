@@ -988,7 +988,7 @@ report += `</table>`;
   report += `
     <div style="text-align:center; margin-top:30px;">
       <p style="margin-bottom:16px;">검사 결과를 저장하시려면 아래 버튼을 눌러주세요.</p>
-      <button onclick="window.print()" style="background:#1a3e72; color:white; border:none; padding:12px 28px; font-size:14px; border-radius:6px; cursor:pointer;">PDF로 저장하기</button>
+      <button onclick="downloadPDF()" style="background:#1a3e72; color:white; border:none; padding:12px 28px; font-size:14px; border-radius:6px; cursor:pointer;">PDF로 저장하기</button>
     </div>
   `;
 
@@ -1007,7 +1007,18 @@ report += `</table>`;
 }
 
 
-
+// ✅ script.js 안
+function downloadPDF() {
+  const element = document.getElementById('result-screen');  // 인쇄할 부분 id
+  const opt = {
+    margin: 0.5,
+    filename: '나의성검사_결과.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save();
+}
 
 
 // 이메일 부분 수정 250708 chat 

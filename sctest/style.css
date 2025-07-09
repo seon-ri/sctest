@@ -728,7 +728,7 @@ body {
 .question-card {
   width: 100%;
   max-width: 600px;
-  min-width: 600px;
+  min-width: unset;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -739,7 +739,7 @@ body {
 .option-card {
   width: 100%;
   max-width: none;          /* ← 이걸 꼭 제거하거나 none으로 둬야 꽉 찹니다 */
-  padding: 20px;
+  padding: 16px;
   box-sizing: border-box;
 }
     .option-text {

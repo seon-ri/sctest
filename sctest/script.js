@@ -909,21 +909,21 @@ function generateEnhancedReport(results, userInfo) {
   if (specialObservation.hasObservation) {
     report += `
 <h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">2. 특별 관찰 영역</h2>
-<div style="border:1px solid #ddd; padding:16px; border-radius:6px;">
+<div style="border:1px solid #f6ad55; padding:16px; border-radius:6px;">
 
-  <p style="margin-bottom:6px;"><strong>조합 패턴</strong></p>
+  <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-bottom:8px;"><strong>조합 패턴</strong></p>
   ${specialObservation.combinations.map(combo => `
-    <p style="margin:4px 0;">• ${combo.name}<br>
-      <span style="margin-left:1.8em;">${getDetailedCombinationText(combo.code)}</span>
+    <p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
+      • <strong>${combo.name}:</strong> ${getDetailedCombinationText(combo.code)}
     </p>
   `).join('')}
 
   ${specialObservation.riskyItems.length > 0 ? `
-    <p style="margin:12px 0 6px;"><strong>주의 문항</strong></p>
+    <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-bottom:8px;"><strong>주의 문항</strong></p>
     ${specialObservation.riskyItems.map(item => `
-      <p style="margin:4px 0;">• ${item.item}번<br>
-        <span style="margin-left:1.8em;">${getRiskyItemText(item.item)}</span>
-      </p>
+<p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
+  • <strong>${item.item}번:</strong> ${getRiskyItemText(item.item)}
+</p>
     `).join('')}
   ` : ''}
 

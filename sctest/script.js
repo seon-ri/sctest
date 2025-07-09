@@ -462,20 +462,23 @@ function showResults() {
     const results = window.testResults;
     if (!results) return;
 
-    document.getElementById('result-screen').innerHTML = generateEnhancedReport(results, userInfo);
-
     // 종합 평가
     const overallResult = calculateOverallResult(results.scaleScores);
-    displayOverallResult(overallResult);
+        // 🧹 기존 결과 관련 함수 호출 제거
+    // displayOverallResult(overallResult);
     
     // 척도별 결과
-    displayScaleResults(results.scaleScores);
+       // displayScaleResults(results.scaleScores);
     
     // 특별 관찰 영역
     const specialObservation = calculateSpecialObservation(results.scaleScores);
-    if (specialObservation.hasObservation) {
-        displaySpecialObservation(specialObservation);
-    }
+       // if (specialObservation.hasObservation) {
+      // displaySpecialObservation(specialObservation);
+     //   }
+      // ✅ 새 리포트 화면 생성
+    document.getElementById('result-screen').innerHTML = generateEnhancedReport(results, userInfo);
+
+    showScreen(resultScreen);
 }
 
 // 종합 결과 계산

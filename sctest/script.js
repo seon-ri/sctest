@@ -662,7 +662,7 @@ function displaySpecialObservation(observation) {
         content += '<h3> 🔍 조합 패턴들</h3>';
         content += '<p>다음과 같은 패턴이 발견되어 특별한 관찰이 필요합니다:</p>';
         observation.combinations.forEach(combo => {
-            content += `<p>• <strong>${combo.name}</strong></p>`;
+            content += `<p style="margin-left: 1.5em;">• ${combo.name}</p>`;
         });
     }
     
@@ -670,7 +670,7 @@ function displaySpecialObservation(observation) {
         content += '<h4> ⚠️ 주의 필요한 문항</h4>';
         content += '<p>다음 문항들에서 높은 점수가 나타났습니다:</p>';
         observation.riskyItems.forEach(item => {
-            content += `<p>• ${item.item}번 문항 (응답: ${item.response}점)</p>`;
+            content += `<p style="margin-left: 1.5em;">• ${item.item}번 문항 (응답: ${item.response}점)</p>`;
         });
     }
  
@@ -886,7 +886,7 @@ function generateEnhancedReport(results, userInfo) {
   let report = `
   <div style="font-family:'Noto Sans KR',sans-serif;max-width:800px;margin:auto;color:#333;font-size:14px;line-height:1.6;">
   
-    <h1 style="text-align:center; font-size:24px; color:#1a3e72; margin-top:30px; margin-bottom:10px;">나의 성, 문제없을까?</h1>
+    <h1 style="text-align:center; font-size:24px; color:#1a3e72; margin-top:30px; margin-bottom:30px;">나의 성, 문제없을까?</h1>
     <p><strong>이름:</strong> 홍길동님</p>
     <p><strong>검사일:</strong> ${new Date().toLocaleDateString('ko-KR')}</p>
 

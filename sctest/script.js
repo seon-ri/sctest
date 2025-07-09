@@ -927,6 +927,7 @@ function generateEnhancedReport(results, userInfo) {
   Object.entries(scaleScores).forEach(([scale, score]) => {
     if (scale === 'desirability') return;
     const scoreVal = score.average.toFixed(1);
+    const level = getLevelByScore(score.average);
     let color = '#38a169';
     if (score.average >= 4.0) color = '#e53e3e';
     else if (score.average >= 3.0) color = '#dd6b20';
@@ -940,7 +941,7 @@ function generateEnhancedReport(results, userInfo) {
             <div style="height:12px; background:${color}; width:${percent(score.average)}%; border-radius:4px;"></div>
           </div>
         </td>
-       <td style="padding:8px; text-align:right;">${scoreVal}점 / ${getScoreLevelText(getScoreLevelKey(score.average))}</td>
+       <td style="padding:8px; text-align:right;">${scoreVal}점 / ${level}</td>
       </tr>`;
   });
 

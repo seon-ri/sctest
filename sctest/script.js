@@ -893,8 +893,10 @@ function generateEnhancedReport(results, userInfo) {
   let report = `
 <div style="font-family:'Noto Sans KR',sans-serif; max-width:800px; margin:auto; padding:24px; border:1px solid #ccc; border-radius:8px; background:#fff; color:#333; line-height:1.75;">
 
-  <h1 style="text-align:center; font-size:24px; color:#1a3e72; margin-bottom:8px;">나의 성, 문제 없을까?</h1>
-  <p style="text-align:center; color:#555; margin-bottom:32px;">자가진단 검사 결과 보고서</p>
+<div style="background-color:#1a3e72; padding:20px; border-radius:6px;">
+  <h1 style="margin: 0; font-size: 24px; color: #ffffff; text-align: center;">나의 성, 문제 없을까?</h1>
+  <p style="margin: 5px 0 0 0; font-size: 14px; color: #ffffff; text-align: center;">자가진단 검사 결과 보고서</p>
+</div>
 
   <h2 style="color:#1a3e72; margin-top:32px; font-size:18px;">1. 종합 평가</h2>
   <div style="border-left: 6px solid ${overallResult.color}; background:${overallResult.color}20; padding:16px; margin-top:12px; border-radius:4px;">
@@ -906,23 +908,27 @@ function generateEnhancedReport(results, userInfo) {
 
   if (specialObservation.hasObservation) {
     report += `
-    <h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">2. 특별 관찰 영역</h2>
-    <div style="background:#fff9e6; border-left: 5px solid #f6ad55; padding:16px; border-radius:6px;">
-    `;
+<h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">2. 특별 관찰 영역</h2>
+<div style="border:1px solid #ddd; padding:16px; border-radius:6px;">
 
-    specialObservation.combinations.forEach(combo => {
-      report += `<p><strong>조합:</strong> ${combo.name} – ${getDetailedCombinationText(combo.code)}</p>`;
-    });
+  <p style="margin-bottom:6px;"><strong>조합 패턴</strong></p>
+  ${specialObservation.combinations.map(combo => `
+    <p style="margin:4px 0;">• ${combo.name}<br>
+      <span style="margin-left:1.8em;">${getDetailedCombinationText(combo.code)}</span>
+    </p>
+  `).join('')}
 
-    if (specialObservation.riskyItems.length > 0) {
-      report += `<p><strong>주의 문항:</strong><br>`;
-      specialObservation.riskyItems.forEach(item => {
-        report += `• ${item.item}번 – ${getRiskyItemText(item.item)}<br>`;
-      });
-      report += `</p>`;
-    }
+  ${specialObservation.riskyItems.length > 0 ? `
+    <p style="margin:12px 0 6px;"><strong>주의 문항</strong></p>
+    ${specialObservation.riskyItems.map(item => `
+      <p style="margin:4px 0;">• ${item.item}번<br>
+        <span style="margin-left:1.8em;">${getRiskyItemText(item.item)}</span>
+      </p>
+    `).join('')}
+  ` : ''}
 
-    report += `</div>`;
+</div>
+`;
   }
 
   report += `
@@ -935,7 +941,7 @@ function generateEnhancedReport(results, userInfo) {
     <span style="color:#38a169">■ 낮음</span>
   </div>
 
-  <table style="width:100%; border-collapse:collapse; font-size:14px;">
+  <table style="width:100%; table-layout: fixed; border-collapse:collapse; font-size:14px;">
     <tr style="background:#f0f4f8;">
       <th align="left" style="padding:8px;">척도</th>
       <th style="padding:8px;">그래프</th>
@@ -985,10 +991,11 @@ function generateEnhancedReport(results, userInfo) {
     <div style="margin-top:40px; font-size:13px; color:#666; text-align:center; border-top:1px solid #ddd; padding-top:16px;">
       본 결과는 자기이해를 위한 참고용 자료이며, 의학적 진단을 위한 도구는 아닙니다.<br>
       현재는 파일럿 연구 중이며, 상세 상담이 필요한 경우 아래 연락처로 문의해주세요.<br>
-      이메일: seonresearch@gmail.com │ 전화: 0507-1463-8122 │ seon-r.com
-    </div>
+      이메일: seonresearch@gmail.com │ 전화: 0507-1463-8122 │
+      <a href="https://www.seon-r.com" target="_blank" style="color:#1a3e72; font-weight:bold;">www.seon-r.com</a>
+  </div>
 </div>
-  `;
+`;
 
   return report;
 }

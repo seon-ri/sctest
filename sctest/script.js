@@ -461,7 +461,9 @@ function calculateResults() {
 function showResults() {
     const results = window.testResults;
     if (!results) return;
-    
+
+    document.getElementById('result-screen').innerHTML = generateEnhancedReport(results, userInfo);
+
     // 종합 평가
     const overallResult = calculateOverallResult(results.scaleScores);
     displayOverallResult(overallResult);

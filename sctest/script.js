@@ -926,7 +926,8 @@ function generateEnhancedReport(results, userInfo) {
     <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:10px; margin-bottom:8px;"><strong>주의 문항</strong></p>
     ${specialObservation.riskyItems.map(item => `
 <p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
-  • <strong>${item.item}번:</strong> ${getRiskyItemText(item.item)}
+  • <strong>${item.item}번:</strong> ${questions[item.item - 1]}<br>
+  <span style="margin-left:1.8em;">→ ${getRiskyItemText(item.item)}</span>
 </p>
     `).join('')}
   ` : ''}

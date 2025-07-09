@@ -866,138 +866,133 @@ function getDetailedScaleInterpretation(scale, score) {
 
 
 
-// 상세 리포트 생성 함수
-// script.js의 generateDetailedReport 함수를 HTML 버전으로 개선, 250708
-
-
+// 상세 리포트 생성 함수 250709 
 function generateEnhancedReport(results, userInfo) {
   const scaleScores = results.scaleScores;
   const overallResult = calculateOverallResult(scaleScores);
   const specialObservation = calculateSpecialObservation(scaleScores);
 
-  const levelColors = {
-    '안정': '#38a169',
-    '주의': '#d69e2e',
-    '경고': '#dd6b20',
-    '위험': '#e53e3e'
+  const scoreMap = {
+    'distort': '성인식 왜곡',
+    'atypical': '성적 관심 특이성',
+    'immersion': '성적 상상의 몰입도',
+    'impulse': '성충동 조절 어려움',
+    'fantasy': '환상-현실 경계 모호성',
+    'irresponsibility': '성적 책임감 부족'
   };
 
-  const percent = (v) => Math.min(100, Math.max(0, Math.round((v / 5) * 100)));
+  const levelColors = {
+    '심각': '#e53e3e',
+    '높음': '#dd6b20',
+    '중간': '#d69e2e',
+    '낮음': '#38a169'
+  };
+
+  const percent = v => Math.min(100, Math.max(0, Math.round((v / 5) * 100)));
 
   let report = `
-  <div style="font-family:'Noto Sans KR',sans-serif;max-width:800px;margin:auto;color:#333;font-size:15px;line-height:1.85;">
-  
-    <h1 style="text-align:center; font-size:24px; color:#1a3e72; margin-top:30px; margin-bottom:30px;">나의 성, 문제없을까?</h1>
-    <p><strong>이름:</strong> 홍길동님</p>
-    <p><strong>검사일:</strong> ${new Date().toLocaleDateString('ko-KR')}</p>
+<div style="font-family:'Noto Sans KR',sans-serif; max-width:800px; margin:auto; padding:24px; border:1px solid #ccc; border-radius:8px; background:#fff; color:#333; line-height:1.75;">
 
-    <h2 style="color:#1a3e72; margin-top:40px;">1. 종합 평가</h2>
-    <div style="border:1px solid ${levelColors[overallResult.level]}; background-color:${levelColors[overallResult.level]}20; padding:16px; border-radius:8px;">
-      <p><strong>홍길동님,</strong> ${overallResult.description}</p>
-      <p><strong>결과:</strong> ${overallResult.level}</p>
-      <p><strong>권장사항:</strong> ${overallResult.recommendation}</p>
-    </div>
-  `;
+  <h1 style="text-align:center; font-size:24px; color:#1a3e72; margin-bottom:8px;">나의 성, 문제 없을까?</h1>
+  <p style="text-align:center; color:#555; margin-bottom:32px;">자가진단 검사 결과 보고서</p>
 
-  // 2. 특별 관찰 영역
+  <h2 style="color:#1a3e72; margin-top:32px; font-size:18px;">1. 종합 평가</h2>
+  <div style="border-left: 6px solid ${overallResult.color}; background:${overallResult.color}20; padding:16px; margin-top:12px; border-radius:4px;">
+    <p><strong>결과:</strong> ${overallResult.level}</p>
+    <p><strong>해석:</strong> ${overallResult.description}</p>
+    <p><strong>권장사항:</strong> ${overallResult.recommendation}</p>
+  </div>
+`;
+
   if (specialObservation.hasObservation) {
     report += `
-      <h2 style="color:#1a3e72; margin-top:40px;">2. 특별 관찰 영역</h2>`;
+    <h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">2. 특별 관찰 영역</h2>
+    <div style="background:#fff9e6; border-left: 5px solid #f6ad55; padding:16px; border-radius:6px;">
+    `;
 
-    if (specialObservation.combinations.length > 0) {
-      report += `<h3 style="margin-top:10px;">🔍 조합 패턴</h3>`;
-      specialObservation.combinations.forEach(combo => {
-        report += `<p><strong>• ${combo.name}</strong> – ${getDetailedCombinationText(combo.code)}</p>`;
-      });
-    }
+    specialObservation.combinations.forEach(combo => {
+      report += `<p><strong>조합:</strong> ${combo.name} – ${getDetailedCombinationText(combo.code)}</p>`;
+    });
 
     if (specialObservation.riskyItems.length > 0) {
-      report += `<h3 style="margin-top:12px;">⚠️ 주의 문항</h3>`;
+      report += `<p><strong>주의 문항:</strong><br>`;
       specialObservation.riskyItems.forEach(item => {
-        report += `<p>• ${item.item}번 문항 (${item.response}점): ${getRiskyItemText(item.item)}</p>`;
+        report += `• ${item.item}번 – ${getRiskyItemText(item.item)}<br>`;
       });
+      report += `</p>`;
     }
+
+    report += `</div>`;
   }
 
-// 3. 척도별 점수 요약
-report += `
-  <h2 style="color:#1a3e72; margin-top:40px;">3. 척도별 점수 요약</h2>
-
-  <!-- 해석 기준 범례 먼저 -->
-  <div style="margin:10px 0 16px 0; font-size:13px;">
-    <strong>점수 해석 기준:</strong><br>
-    <span style="color:#e53e3e; font-weight:bold;">■ 심각 (4.0–5.0)</span>　
-    <span style="color:#dd6b20; font-weight:bold;">■ 높음 (3.0–3.9)</span>　
-    <span style="color:#d69e2e; font-weight:bold;">■ 중간 (2.0–2.9)</span>　
-    <span style="color:#38a169; font-weight:bold;">■ 낮음 (1.0–1.9)</span>
+  report += `
+  <h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">3. 척도별 점수 요약</h2>
+  <div style="margin-bottom:12px; font-size:13px;">
+    <strong>범례:</strong> 
+    <span style="color:#e53e3e">■ 심각</span> 
+    <span style="color:#dd6b20">■ 높음</span> 
+    <span style="color:#d69e2e">■ 중간</span> 
+    <span style="color:#38a169">■ 낮음</span>
   </div>
 
-  <!-- 점수 테이블 시작 -->
-  <table style="width:100%; border-collapse:collapse; font-size:13px;">
-    <tr>
-      <th style="text-align:left; padding:8px; background:#f0f4f8;">척도</th>
-      <th style="width:60%; background:#f0f4f8;"></th>
-      <th style="text-align:right; padding:8px; background:#f0f4f8;">점수/해석</th>
+  <table style="width:100%; border-collapse:collapse; font-size:14px;">
+    <tr style="background:#f0f4f8;">
+      <th align="left" style="padding:8px;">척도</th>
+      <th style="padding:8px;">그래프</th>
+      <th align="right" style="padding:8px;">점수</th>
     </tr>
 `;
 
-Object.entries(scaleScores).forEach(([scale, score]) => {
-  if (scale === 'desirability') return;
+  Object.entries(scaleScores).forEach(([scale, score]) => {
+    if (scale === 'desirability') return;
+    const avg = score.average;
+    const level = getLevelByScore(avg);
+    const color = levelColors[level] || '#ccc';
 
-  const scoreVal = score.average.toFixed(1);
-  const level = getLevelByScore(score.average);
-
-  let color = '#38a169';
-  if (score.average >= 4.0) color = '#e53e3e';
-  else if (score.average >= 3.0) color = '#dd6b20';
-  else if (score.average >= 2.0) color = '#d69e2e';
-
-  report += `
+    report += `
     <tr>
-      <td style="padding:8px;">${scaleNames[scale]}</td>
-      <td>
-        <div style="background:#e9ecef; height:12px; border-radius:4px;">
-          <div style="height:12px; background:${color}; width:${percent(score.average)}%; border-radius:4px;"></div>
+      <td style="padding:6px 8px;">${scoreMap[scale]}</td>
+      <td style="padding:6px 8px;">
+        <div style="background:#eee; height:12px; border-radius:4px;">
+          <div style="height:12px; background:${color}; width:${percent(avg)}%; border-radius:4px;"></div>
         </div>
       </td>
-      <td style="padding:8px; text-align:right;">${scoreVal}점 / ${level}</td>
+      <td style="padding:6px 8px; text-align:right;">${avg.toFixed(1)}점 / ${level}</td>
     </tr>`;
-});
+  });
 
-// 테이블 닫기
-report += `</table>`;
+  report += `</table>`;
 
-  // 4. 척도별 상세 해석
   report += `
-    <h2 style="color:#1a3e72; margin-top:40px;">4. 척도별 상세 해석</h2>
+    <h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">4. 척도별 상세 해석</h2>
   `;
 
   Object.entries(scaleScores).forEach(([scale, score]) => {
     if (scale === 'desirability') return;
-    const label = scaleNames[scale];
-    const interpretation = getDetailedScaleInterpretation(scale, score.average);
+    const avg = score.average;
+    const label = scoreMap[scale];
+    const interpretation = getDetailedScaleInterpretation(scale, avg);
 
     report += `
-      <div style="margin-bottom:24px;">
-        <h3 style="color:#1a3e72;">${label} (${score.average.toFixed(1)}점)</h3>
-        <div style="margin-left:15px;">${interpretation}</div>
-      </div>
+    <div style="margin-bottom:24px;">
+      <h3 style="margin:12px 0 6px; color:#1a3e72;">${label} (${avg.toFixed(1)}점)</h3>
+      <div style="border-left: 4px solid #ccc; padding-left:12px;">${interpretation}</div>
+    </div>
     `;
   });
 
-  // 6. 하단 안내
   report += `
-    <div style="margin-top:40px; font-size:13px; color:#666; text-align:center;">
-      파일럿 테스트에 참여해주셔서 감사합니다.<br><br>
-      상담이 필요하시다면 전화상담을 통해 안내를 받으실 수 있습니다.<br>
-      전화: 0507-1463-8122<br>
-      이메일: seonresearch@gmail.com<br>
-      홈페이지: <a href="https://www.seon-r.com" target="_blank">www.seon-r.com</a>
+    <div style="margin-top:40px; font-size:13px; color:#666; text-align:center; border-top:1px solid #ddd; padding-top:16px;">
+      본 결과는 자기이해를 위한 참고용 자료이며, 의학적 진단을 위한 도구는 아닙니다.<br>
+      현재는 파일럿 연구 중이며, 상세 상담이 필요한 경우 아래 연락처로 문의해주세요.<br>
+      이메일: seonresearch@gmail.com │ 전화: 0507-1463-8122 │ seon-r.com
     </div>
-  </div>`;
+</div>
+  `;
 
   return report;
 }
+
 
 
 // 이메일 부분 수정 250708 chat 

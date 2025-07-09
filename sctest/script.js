@@ -662,7 +662,7 @@ function displaySpecialObservation(observation) {
         content += '<h3> 🔍 조합 패턴들</h3>';
         content += '<p>다음과 같은 패턴이 발견되어 특별한 관찰이 필요합니다:</p>';
         observation.combinations.forEach(combo => {
-            content += `<p style="margin-left: 1.5em;">• ${combo.name}</p>`;
+            content += `<p style="margin-left: 1.6em;">• ${combo.name}</p>`;
         });
     }
     

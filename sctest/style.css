@@ -734,6 +734,7 @@ body {
 }
     .question-text {
         font-size: 1.2rem;
+         margin-bottom: 16px; 
     }
     
 .option-card {
@@ -787,6 +788,7 @@ body {
 /* 문항 텍스트 영역 고정 및 반응형 */
 .question-text {
     min-height: 48px;
+     margin-bottom: 16px; 
     font-size: 1.15rem;
     line-height: 1.6;
     word-break: keep-all;
@@ -799,6 +801,7 @@ body {
 @media (max-width: 600px) {
     .question-text {
         font-size: 1rem;
+         margin-bottom: 16px; 
         min-height: 38px;
         padding: 0 6px;
             line-height: 1.5;

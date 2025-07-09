@@ -898,7 +898,7 @@ function generateEnhancedReport(results, userInfo) {
   <p style="margin: 5px 0 0 0; font-size: 14px; color: #ffffff; text-align: center;">자가진단 검사 결과 보고서</p>
 </div>
 
-<p style="font-size:13px; color:#555; text-align:right; margin-top:40px; margin-bottom:24px;">
+<p style="font-size:13px; color:#555; text-align:right; margin-top:15px; margin-bottom:24px;">
   이름: ${userInfo.name || '홍길동'}님 │ 검사일: ${new Date().toLocaleDateString('ko-KR')}
 </p>
 
@@ -923,7 +923,7 @@ function generateEnhancedReport(results, userInfo) {
   `).join('')}
 
   ${specialObservation.riskyItems.length > 0 ? `
-    <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:10px; margin-bottom:8px;"><strong>주의 문항</strong></p>
+    <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:13px; margin-bottom:8px;"><strong>주의 문항</strong></p>
     ${specialObservation.riskyItems.map(item => `
 <p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
   • <strong>${item.item}번:</strong> ${questions[item.item - 1]}<br>

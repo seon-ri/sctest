@@ -853,7 +853,7 @@ const scaleInterpretationMap = {
 
 // 3. 해석 호출 함수
 function getDetailedScaleInterpretation(scale, score) {
-  const level = getScoreLevelKey(score);
+  const level = getLevelByScore(score);
   const data = scaleInterpretationMap[scale]?.[level];
   if (!data) return "해석 정보가 없습니다.";
   return `

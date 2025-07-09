@@ -985,14 +985,6 @@ report += `</table>`;
     `;
   });
 
-  // 5. PDF 저장 버튼
-  report += `
-    <div style="text-align:center; margin-top:30px;">
-      <p style="margin-bottom:16px;">검사 결과를 저장하시려면 아래 버튼을 눌러주세요.</p>
-      <button onclick="downloadPDF()" style="background:#1a3e72; color:white; border:none; padding:12px 28px; font-size:14px; border-radius:6px; cursor:pointer;">PDF로 저장하기</button>
-    </div>
-  `;
-
   // 6. 하단 안내
   report += `
     <div style="margin-top:40px; font-size:13px; color:#666; text-align:center;">
@@ -1005,24 +997,6 @@ report += `</table>`;
   </div>`;
 
   return report;
-}
-
-
-function downloadPDF() {
-  const results = window.testResults;
-  const html = generateEnhancedReport(results, userInfo); // 이메일용 리포트 HTML 생성
-  const container = document.createElement('div'); // 임시 div 생성
-  container.innerHTML = html;
-
-  const opt = {
-    margin: 0.5,
-    filename: '나의 성, 문제없을까? _결과.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-  };
-
-  html2pdf().set(opt).from(container).save();
 }
 
 

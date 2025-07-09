@@ -886,11 +886,11 @@ function generateEnhancedReport(results, userInfo) {
   let report = `
   <div style="font-family:'Noto Sans KR',sans-serif;max-width:800px;margin:auto;color:#333;font-size:14px;line-height:1.6;">
   
-    <h1 style="color:#1a3e72;">나의 성인식 검사 결과 보고서</h1>
+    <h1 style="text-align:center; font-size:24px; color:#1a3e72; margin-top:30px; margin-bottom:10px;">나의 성, 문제없을까?</h1>
     <p><strong>이름:</strong> 홍길동님</p>
     <p><strong>검사일:</strong> ${new Date().toLocaleDateString('ko-KR')}</p>
 
-    <h2 style="color:#1a3e72;">1. 종합 평가</h2>
+    <h2 style="color:#1a3e72; margin-top:40px;">1. 종합 평가</h2>
     <div style="border:1px solid ${levelColors[overallResult.level]}; background-color:${levelColors[overallResult.level]}20; padding:16px; border-radius:8px;">
       <p><strong>홍길동님,</strong> ${overallResult.description}</p>
       <p><strong>결과:</strong> ${overallResult.level}</p>
@@ -901,7 +901,7 @@ function generateEnhancedReport(results, userInfo) {
   // 2. 특별 관찰 영역
   if (specialObservation.hasObservation) {
     report += `
-      <h2 style="color:#e53e3e; margin-top:40px;">2. 특별 관찰 영역</h2>`;
+      <h2 style="color:#1a3e72; margin-top:40px;">2. 특별 관찰 영역</h2>`;
 
     if (specialObservation.combinations.length > 0) {
       report += `<h3 style="margin-top:10px;">🔍 조합 패턴</h3>`;
@@ -918,43 +918,53 @@ function generateEnhancedReport(results, userInfo) {
     }
   }
 
-  // 3. 척도별 점수 요약
+// 3. 척도별 점수 요약
+report += `
+  <h2 style="color:#1a3e72; margin-top:40px;">3. 척도별 점수 요약</h2>
+
+  <!-- 해석 기준 범례 먼저 -->
+  <div style="margin:10px 0 16px 0; font-size:13px;">
+    <strong>점수 해석 기준:</strong><br>
+    <span style="color:#e53e3e; font-weight:bold;">■ 심각 (4.0–5.0)</span>　
+    <span style="color:#dd6b20; font-weight:bold;">■ 높음 (3.0–3.9)</span>　
+    <span style="color:#d69e2e; font-weight:bold;">■ 중간 (2.0–2.9)</span>　
+    <span style="color:#38a169; font-weight:bold;">■ 낮음 (1.0–1.9)</span>
+  </div>
+
+  <!-- 점수 테이블 시작 -->
+  <table style="width:100%; border-collapse:collapse; font-size:13px;">
+    <tr>
+      <th style="text-align:left; padding:8px; background:#f0f4f8;">척도</th>
+      <th style="width:60%; background:#f0f4f8;"></th>
+      <th style="text-align:right; padding:8px; background:#f0f4f8;">점수/해석</th>
+    </tr>
+`;
+
+Object.entries(scaleScores).forEach(([scale, score]) => {
+  if (scale === 'desirability') return;
+
+  const scoreVal = score.average.toFixed(1);
+  const level = getLevelByScore(score.average);
+
+  let color = '#38a169';
+  if (score.average >= 4.0) color = '#e53e3e';
+  else if (score.average >= 3.0) color = '#dd6b20';
+  else if (score.average >= 2.0) color = '#d69e2e';
+
   report += `
-    <h2 style="color:#1a3e72; margin-top:40px;">3. 척도별 점수 요약</h2>
-    <table style="width:100%; border-collapse:collapse; font-size:13px;">
-      <tr><th style="text-align:left; padding:8px; background:#f0f4f8;">척도</th><th style="width:60%; background:#f0f4f8;"></th><th style="text-align:right; padding:8px; background:#f0f4f8;">점수/해석</th></tr>`;
+    <tr>
+      <td style="padding:8px;">${scaleNames[scale]}</td>
+      <td>
+        <div style="background:#e9ecef; height:12px; border-radius:4px;">
+          <div style="height:12px; background:${color}; width:${percent(score.average)}%; border-radius:4px;"></div>
+        </div>
+      </td>
+      <td style="padding:8px; text-align:right;">${scoreVal}점 / ${level}</td>
+    </tr>`;
+});
 
-  Object.entries(scaleScores).forEach(([scale, score]) => {
-    if (scale === 'desirability') return;
-    const scoreVal = score.average.toFixed(1);
-    const level = getLevelByScore(score.average);
-    let color = '#38a169';
-    if (score.average >= 4.0) color = '#e53e3e';
-    else if (score.average >= 3.0) color = '#dd6b20';
-    else if (score.average >= 2.0) color = '#d69e2e';
-
-    report += `
-      <tr>
-        <td style="padding:8px;">${scaleNames[scale]}</td>
-        <td>
-          <div style="background:#e9ecef; height:12px; border-radius:4px;">
-            <div style="height:12px; background:${color}; width:${percent(score.average)}%; border-radius:4px;"></div>
-          </div>
-        </td>
-       <td style="padding:8px; text-align:right;">${scoreVal}점 / ${level}</td>
-      </tr>`;
-  });
-
-  report += `</table>
-
-    <div style="margin-top:10px; font-size:13px;">
-      <strong>점수 해석 기준:</strong><br>
-      <span style="color:#e53e3e; font-weight:bold;">■ 즉시 개입 (4.0–5.0)</span>　
-      <span style="color:#dd6b20; font-weight:bold;">■ 집중 관리 (3.0–3.9)</span>　
-      <span style="color:#d69e2e; font-weight:bold;">■ 주의 필요 (2.0–2.9)</span>　
-      <span style="color:#38a169; font-weight:bold;">■ 안정 (1.0–1.9)</span>
-    </div>
-  `;
+// 테이블 닫기
+report += `</table>`;
 
   // 4. 척도별 상세 해석
   report += `
@@ -977,7 +987,7 @@ function generateEnhancedReport(results, userInfo) {
   // 5. PDF 저장 버튼
   report += `
     <div style="text-align:center; margin-top:30px;">
-      <p>검사 결과를 저장하시려면 아래 버튼을 눌러주세요.</p>
+      <p style="margin-bottom:16px;">검사 결과를 저장하시려면 아래 버튼을 눌러주세요.</p>
       <button onclick="window.print()" style="background:#1a3e72; color:white; border:none; padding:12px 28px; font-size:14px; border-radius:6px; cursor:pointer;">PDF로 저장하기</button>
     </div>
   `;

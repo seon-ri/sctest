@@ -623,7 +623,7 @@ function getScaleText(scale, level) {
         }
     };
     
-    return texts[scale]?.[getLevelByScore(score)] || '해석을 제공할 수 없습니다.';
+    return texts[scale]?.[level] || '해석을 제공할 수 없습니다.';
 }
 
 // 특별 관찰 영역 계산

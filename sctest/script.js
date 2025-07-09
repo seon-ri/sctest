@@ -464,21 +464,17 @@ function showResults() {
 
     // 종합 평가
     const overallResult = calculateOverallResult(results.scaleScores);
-        // 🧹 기존 결과 관련 함수 호출 제거
-    // displayOverallResult(overallResult);
+    displayOverallResult(overallResult);
     
     // 척도별 결과
-       // displayScaleResults(results.scaleScores);
+     displayScaleResults(results.scaleScores);
     
     // 특별 관찰 영역
     const specialObservation = calculateSpecialObservation(results.scaleScores);
-       // if (specialObservation.hasObservation) {
-      // displaySpecialObservation(specialObservation);
-     //   }
-      // ✅ 새 리포트 화면 생성
-    document.getElementById('result-screen').innerHTML = generateEnhancedReport(results, userInfo);
-
-    showScreen(resultScreen);
+    if (specialObservation.hasObservation) {
+    displaySpecialObservation(specialObservation);
+      }
+      showScreen(resultScreen);
 }
 
 // 종합 결과 계산
@@ -1012,17 +1008,21 @@ report += `</table>`;
 }
 
 
-// ✅ script.js 안
 function downloadPDF() {
-  const element = document.getElementById('result-screen');  // 인쇄할 부분 id
+  const results = window.testResults;
+  const html = generateEnhancedReport(results, userInfo); // 이메일용 리포트 HTML 생성
+  const container = document.createElement('div'); // 임시 div 생성
+  container.innerHTML = html;
+
   const opt = {
     margin: 0.5,
-    filename: '나의성검사_결과.pdf',
+    filename: '나의 성, 문제없을까? _결과.pdf',
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
   };
-  html2pdf().set(opt).from(element).save();
+
+  html2pdf().set(opt).from(container).save();
 }
 
 

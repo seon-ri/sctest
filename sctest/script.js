@@ -538,6 +538,20 @@ function displayOverallResult(result) {
 }
 
 // 척도별 결과 표시
+function getLevelByScore(score) {
+  if (score >= 4.0) return "심각";
+  if (score >= 3.0) return "높음";
+  if (score >= 2.0) return "중간";
+  return "낮음";
+}
+function getColorByLevel(level) {
+  return {
+    '심각': '#e53e3e',
+    '높음': '#dd6b20',
+    '중간': '#d69e2e',
+    '낮음': '#38a169'
+  }[level] || '#999';
+}
 function displayScaleResults(scaleScores) {
     const scalesContainer = document.querySelector('.scales-container');
     scalesContainer.innerHTML = '';
@@ -547,14 +561,17 @@ function displayScaleResults(scaleScores) {
         
         const score = scaleScores[scale];
         const scaleName = scaleNames[scale];
-        const interpretation = getScaleInterpretation(scale, score.average);
+        
+        const level = getLevelByScore(score.average);
+        const color = getColorByLevel(level);
+        const interpretation = getScaleText(scale, level); 
         
         const scaleItem = document.createElement('div');
         scaleItem.className = 'scale-item';
         scaleItem.innerHTML = `
             <div class="scale-header">
                 <div class="scale-name">${scaleName}</div>
-                <div class="scale-score">${score.average.toFixed(1)}점</div>
+                <div class="scale-score">${score.average.toFixed(1)}점 / ${level}</div>
             </div>
             <div class="scale-description">${interpretation}</div>
         `;
@@ -563,61 +580,50 @@ function displayScaleResults(scaleScores) {
     });
 }
 
-// 척도별 해석
-function getScaleInterpretation(scale, average) {
-    if (average <= 2.5) {
-        return getScaleText(scale, 'good');
-    } else if (average <= 3.5) {
-        return getScaleText(scale, 'caution');
-    } else if (average <= 4.4) {
-        return getScaleText(scale, 'warning');
-    } else {
-        return getScaleText(scale, 'danger');
-    }
-}
+ 
 
 // 척도별 텍스트 (간단한 버전)
 function getScaleText(scale, level) {
     const texts = {
         'immersion': {
-            'good': '성적 상상과 일상생활의 균형을 잘 유지하고 있습니다.',
-            'caution': '성적 환상에 빠지는 시간이 늘어나고 있습니다. 일상 활동에 더 집중해보세요.',
-            'warning': '성적 상상이 일상을 방해할 정도로 과도합니다. 현실 활동을 늘려야 합니다.',
-            'danger': '성적 환상에 지나치게 몰입하여 일상생활에 심각한 지장이 있습니다.'
+            '낮음': '성적 상상과 일상생활의 균형을 잘 유지하고 있습니다.',
+            '중간': '성적 환상에 빠지는 시간이 늘어나고 있습니다. 일상 활동에 더 집중해보세요.',
+            '높음': '성적 상상이 일상을 방해할 정도로 과도합니다. 현실 활동을 늘려야 합니다.',
+            '심각': '성적 환상에 지나치게 몰입하여 일상생활에 심각한 지장이 있습니다.'
         },
         'distort': {
-            'good': '성적 상황에서 상대방의 의사를 잘 파악하고 존중합니다.',
-            'caution': '때때로 상대방의 신호를 자의적으로 해석하는 경향이 있습니다.',
-            'warning': '상대방의 동의와 거부의 신호를 자주 오해합니다.',
-            'danger': '성적 상황에 대한 인식이 매우 왜곡되어 있습니다.'
+            '낮음': '성적 상황에서 상대방의 의사를 잘 파악하고 존중합니다.',
+            '중간': '때때로 상대방의 신호를 자의적으로 해석하는 경향이 있습니다.',
+            '높음': '상대방의 동의와 거부의 신호를 자주 오해합니다.',
+            '심각': '성적 상황에 대한 인식이 매우 왜곡되어 있습니다.'
         },
         'atypical': {
-            'good': '일반적인 범위의 성적 관심을 가지고 있습니다.',
-            'caution': '특정한 조건이나 상황을 선호하는 경향이 있습니다.',
-            'warning': '매우 특수한 조건에만 관심을 가집니다.',
-            'danger': '극도로 제한적이고 특이한 성적 관심으로 인해 어려움이 예상됩니다.'
+            '낮음': '일반적인 범위의 성적 관심을 가지고 있습니다.',
+            '중간': '특정한 조건이나 상황을 선호하는 경향이 있습니다.',
+            '높음': '매우 특수한 조건에만 관심을 가집니다.',
+            '심각': '극도로 제한적이고 특이한 성적 관심으로 인해 어려움이 예상됩니다.'
         },
         'impulse': {
-            'good': '성충동을 적절히 인식하고 조절할 수 있습니다.',
-            'caution': '때때로 충동 조절에 어려움을 겪습니다.',
-            'warning': '성충동 조절에 어려움을 자주 겪고 있습니다.',
-            'danger': '충동 조절이 매우 어려운 상태이며, 부적절한 행동으로 이어질 우려가 있습니다.'
+            '낮음': '성충동을 적절히 인식하고 조절할 수 있습니다.',
+            '중간': '때때로 충동 조절에 어려움을 겪습니다.',
+            '높음': '성충동 조절에 어려움을 자주 겪고 있습니다.',
+            '심각': '충동 조절이 매우 어려운 상태이며, 부적절한 행동으로 이어질 우려가 있습니다.'
         },
         'fantasy': {
-            'good': '환상과 현실을 명확히 구분하고 있습니다.',
-            'caution': '가끔 환상과 현실의 경계가 분명하지 않습니다.',
-            'warning': '환상과 현실의 경계가 모호해지는 경우가 많습니다.',
-            'danger': '환상과 현실을 자주 혼동하며, 정확한 현실 인식을 위한 전문적 개입이 권장됩니다.'
+            '낮음': '환상과 현실을 명확히 구분하고 있습니다.',
+            '중간': '가끔 환상과 현실의 경계가 분명하지 않습니다.',
+            '높음': '환상과 현실의 경계가 모호해지는 경우가 많습니다.',
+            '심각': '환상과 현실을 자주 혼동하며, 정확한 현실 인식을 위한 전문적 개입이 권장됩니다.'
         },
         'irresponsibility': {
-            'good': '성적 행동에 대한 책임감과 윤리 의식을 갖추고 있습니다.',
-            'caution': '때때로 책임을 회피하려는 경향이 있습니다.',
-            'warning': '성적 행동의 결과를 고려하지 않습니다.',
-            'danger': '성적 책임감이 매우 부족하여 자신과 타인에게 해를 끼칠 수 있습니다.'
+            '낮음': '성적 행동에 대한 책임감과 윤리 의식을 갖추고 있습니다.',
+            '중간': '때때로 책임을 회피하려는 경향이 있습니다.',
+            '높음': '성적 행동의 결과를 고려하지 않습니다.',
+            '심각': '성적 책임감이 매우 부족하여 자신과 타인에게 해를 끼칠 수 있습니다.'
         }
     };
     
-    return texts[scale]?.[level] || '해석을 제공할 수 없습니다.';
+    return texts[scale]?.[getLevelByScore(score)] || '해석을 제공할 수 없습니다.';
 }
 
 // 특별 관찰 영역 계산
@@ -708,143 +714,136 @@ function getRiskyItemText(itemNumber) {
 }
 
 
-// 1. 점수 → 수준 결정 함수
-function getScoreLevelKey(score) {
-  if (score >= 4.5) return "critical";
-  if (score >= 3.6) return "high";
-  if (score >= 2.6) return "mid";
-  return "low";
-}
 
 // 2. 척도별 해석 맵 (요약 샘플 — 전체는 실제 JSON에서 확장 가능)
 const scaleInterpretationMap = {
   "distort": {
-    "low": {
+    "낮음": {
       "상태": "현실적인 성 인식을 보이고 있으며, 왜곡된 성 개념이 거의 드러나지 않습니다.",
       "핵심": "왜곡된 성 개념에 빠지지 않고 안정적인 성 개념을 유지하고 있습니다.",
       "실천": "현재의 성에 대한 인식을 지속적으로 유지하고, 다양한 건강한 성교육 콘텐츠를 접해보세요."
     },
-    "mid": {
+    "중간": {
       "상태": "성에 대한 일부 편견이나 비현실적인 요소가 드러나고 있습니다.",
       "핵심": "왜곡된 믿음이 특정 상황에서 영향을 줄 수 있습니다.",
       "실천": "성 관련 정보에 대해 비판적으로 사고하는 연습을 하며, 현실과 판타지를 구분하는 훈련이 필요합니다."
     },
-    "high": {
+    "높음": {
       "상태": "현실과 동떨어진 왜곡된 성 개념이 자주 드러나고 있습니다.",
       "핵심": "왜곡된 성 개념이 실제 관계에 영향을 줄 수 있습니다.",
       "실천": "왜곡된 믿음의 출처를 점검하고, 전문가 상담이나 교육 프로그램을 고려해보세요."
     },
-    "critical": {
+    "심각": {
       "상태": "심각하게 왜곡된 성 개념이 반복적으로 드러나며 현실 판단에 문제가 있을 수 있습니다.",
       "핵심": "성에 대한 인식이 극단적으로 비현실적이며 위험 행동으로 이어질 가능성이 높습니다.",
       "실천": "전문적인 개입이 필요하며, 성 인식 재구조화 훈련 및 지속적인 모니터링이 요구됩니다."
     }
   },
   "immersion": {
-    "low": {
+    "낮음": {
       "상태": "성적 상상과 일상생활의 균형을 잘 유지하고 있습니다. 건강한 수준의 환상을 가지며 현실 활동에 지장이 없습니다.",
       "핵심": "상상은 삶을 풍요롭게 하는 양념입니다.",
       "실천": "현재의 건강한 균형 유지하기"
     },
-    "mid": {
+    "중간": {
       "상태": "성적 환상에 빠지는 시간이 늘어나고 있습니다. 일상 활동에 더 집중해보세요.",
       "핵심": "현실의 즐거움을 놓치고 있지 않나요?",
       "실천": "하루 중 환상 시간을 1시간 이내로 제한하기"
     },
-    "high": {
+    "높음": {
       "상태": "성적 상상이 일상을 방해할 정도로 과도합니다. 현실 활동을 늘려야 합니다.",
       "핵심": "상상이 일상을 방해하기 시작했습니다.",
       "실천": "친구나 가족과의 약속 주 3회 이상 잡기"
     },
-    "critical": {
+    "심각": {
       "상태": "성적 환상에 지나치게 몰입하여 일상생활에 심각한 지장이 있습니다. 정상적인 직장이나 학업, 관계가 불가능합니다.",
       "핵심": "현실이 사라지고 환상만 남았습니다.",
       "실천": "정신건강 전문가 즉시 상담 예약 (이번 주 내)"
     }
   },
   "atypical": {
-    "low": {
+    "낮음": {
       "상태": "일반적인 범위의 성적 관심을 가지고 있습니다. 다양한 상황에서 친밀감과 즐거움을 느낄 수 있습니다.",
       "핵심": "건강하고 유연한 성적 관심을 갖고 있습니다.",
       "실천": "파트너와 새로운 경험 탐색하기"
     },
-    "mid": {
+    "중간": {
       "상태": "특정한 조건이나 상황을 선호하는 경향이 있습니다. 일반적인 친밀감에서 만족을 느끼기 어려울 수 있습니다.",
       "핵심": "특별함에 갇히면 평범한 행복을 놓칩니다.",
       "실천": "일반적인 스킨십과 친밀감 연습하기"
     },
-    "high": {
+    "높음": {
       "상태": "매우 특수한 조건에만 관심을 가집니다. 일반적인 성적 상황에서는 만족하기 어려우며, 관계 형성에 어려움이 있습니다.",
       "핵심": "성적 관심의 폭을 넓힐 필요가 있습니다.",
       "실천": "감각 집중 훈련 프로그램 참여"
     },
-    "critical": {
+    "심각": {
       "상태": "극도로 제한적이고 특이한 성적 관심으로 인해 어려움이 예상됩니다.",
       "핵심": "전문적 도움 없이는 개선이 어렵습니다.",
       "실천": "성 문제 전문 치료기관 즉시 방문"
     }
   },
   "impulse": {
-    "low": {
+    "낮음": {
       "상태": "성충동을 적절히 인식하고 조절할 수 있습니다. 충동이 일어나도 상황에 맞게 대처하며, 계획적인 행동을 합니다.",
       "핵심": "충동을 느끼되 선택은 내가 합니다.",
       "실천": "건강한 충동 해소 방법 유지하기"
     },
-    "mid": {
+    "중간": {
       "상태": "때때로 충동 조절에 어려움을 겪습니다. 대처 방법을 익히면 도움이 됩니다.",
       "핵심": "충동과 행동 사이 잠시 멈춤이 필요합니다.",
       "실천": "충동이 올라올 때 10초 카운트하기"
     },
-    "high": {
+    "높음": {
       "상태": "성충동 조절에 어려움을 자주 겪고 있습니다. 스스로 관리 방법을 익히거나 도움을 받으면 개선될 수 있습니다.",
       "핵심": "충동이 당신을 지배하고 있습니다.",
       "실천": "위험 상황에서 즉시 자리 떠나기"
     },
-    "critical": {
+    "심각": {
       "상태": "충동 조절이 매우 어려운 상태이며, 부적절한 행동으로 이어질 우려가 있습니다.",
       "핵심": "혼자서는 해결할 수 없습니다.",
       "실천": "성 문제 전문기관에서 조기 상담, 고위험 장소 방문 금지"
     }
   },
   "fantasy": {
-    "low": {
+    "낮음": {
       "상태": "환상과 현실을 명확히 구분하고 있습니다. 상상은 상상으로 즐기며, 현실에서는 적절한 판단을 합니다.",
       "핵심": "환상은 안전한 마음속 놀이터입니다.",
       "실천": "일기나 창작활동으로 환상 표현하기"
     },
-    "mid": {
+    "중간": {
       "상태": "가끔 환상과 현실의 경계가 분명하지 않습니다.",
       "핵심": "환상에 현실감을 부여하고 있습니다.",
       "실천": "환상 후 현실 체크 루틴 만들기"
     },
-    "high": {
+    "높음": {
       "상태": "환상과 현실의 경계가 모호해지는 경우가 많습니다. 현실 인식 훈련이 필요합니다.",
       "핵심": "환상의 실행은 현실의 파괴입니다.",
       "실천": "매일 3번 현실 점검 알람 설정하기"
     },
-    "critical": {
+    "심각": {
       "상태": "환상과 현실을 자주 혼동하며, 정확한 현실 인식을 위한 전문적 개입이 권장됩니다.",
       "핵심": "당신의 환상이 누군가의 악몽이 될 수 있습니다",
       "실천": "응급 상황 우려시 가까운 정신건강의학과 방문"
     }
   },
   "irresponsibility": {
-    "low": {
+    "낮음": {
       "상태": "성적 행동에 대한 책임감과 윤리의식을 갖추고 있습니다. 자신과 상대방 모두를 존중하며 성숙한 태도를 보입니다.",
       "핵심": "책임감 있는 성은 모두를 행복하게 합니다.",
       "실천": "파트너와 책임에 대해 대화하기"
     },
-    "mid": {
+    "중간": {
       "상태": "때때로 책임을 회피하려는 경향이 있습니다. 성숙한 태도가 필요합니다.",
       "핵심": "모든 선택에는 책임이 따릅니다.",
       "실천": "내 행동-내 책임 원칙 매일 되새기기"
     },
-    "high": {
+    "높음": {
       "상태": "성적 행동의 결과를 고려하지 않습니다. 책임감 교육이 필요합니다.",
       "핵심": "회피할수록 대가는 커집니다.",
       "실천": "법적 책임에 대해 공부하기"
     },
-    "critical": {
+    "심각": {
       "상태": "성적 책임감이 매우 부족하여 자신과 타인에게 해를 끼칠 수 있습니다.",
       "핵심": "당신의 무책임이 타인의 삶을 파괴합니다.",
       "실천": "가해자 교정 프로그램 즉시 등록"
@@ -866,132 +865,139 @@ function getDetailedScaleInterpretation(scale, score) {
 
 
 
-
 // 상세 리포트 생성 함수
 // script.js의 generateDetailedReport 함수를 HTML 버전으로 개선, 250708
 
-function generateDetailedReport(results, userInfo) {
-    const scaleScores = results.scaleScores;
-    const overallResult = calculateOverallResult(scaleScores);
-    const specialObservation = calculateSpecialObservation(scaleScores);
 
-    const levelColors = {
-        '안정': '#38a169',
-        '주의': '#d69e2e',
-        '경고': '#dd6b20',
-        '위험': '#e53e3e'
-    };
+function generateEnhancedReport(results, userInfo) {
+  const scaleScores = results.scaleScores;
+  const overallResult = calculateOverallResult(scaleScores);
+  const specialObservation = calculateSpecialObservation(scaleScores);
 
-    let reportHTML = `
-<div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.4; font-size: 14px; color: #333; max-width: 700px; margin: 0 auto;">
+  const levelColors = {
+    '안정': '#38a169',
+    '주의': '#d69e2e',
+    '경고': '#dd6b20',
+    '위험': '#e53e3e'
+  };
 
-  <!-- 기본 정보 -->
-  <div style="background: #f8f9fa; padding: 4px 6px; border-radius: 8px; margin-bottom: 2px; border-left: 4px solid #3182ce;">
-    <h2 style="color: #1a3e72; font-size: 18px;">👤 기본 정보</h2>
-    <div><strong>성별:</strong> ${userInfo.gender} | <strong>연령:</strong> ${userInfo.age} | <strong>결혼:</strong> ${userInfo.mari}</div>
-    <div><strong>연애:</strong> ${userInfo.rel} | <strong>학력:</strong> ${userInfo.edu} | <strong>직업:</strong> ${userInfo.occu}</div>
-  </div>
+  const percent = (v) => Math.min(100, Math.max(0, Math.round((v / 5) * 100)));
 
-  <!-- 종합 평가 -->
-  <div style="background: #fff; padding: 6px 8px; border-radius: 8px; margin-bottom: 3px; border-left: 4px solid ${levelColors[overallResult.level]}; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
-    <h2 style="color: #1a3e72; font-size: 18px;">📋 종합 평가</h2>
-    <div style="background: ${levelColors[overallResult.level]}10; padding: 4px 6px; border-radius: 6px; border: 1px solid ${levelColors[overallResult.level]};">
-      <div style="font-size: 18px; font-weight: bold; color: ${levelColors[overallResult.level]}; margin-bottom: 3px;">
-        ${overallResult.level}
-      </div>
-      <p style="margin: 0 0 2px 0; font-size: 13.5px;">${overallResult.description}</p>
-      <div style="background: white; padding: 6px 8px; border-radius: 6px; border-left: 3px solid ${levelColors[overallResult.level]};">
-        <strong style="color: #1a3e72;">권장사항:</strong> ${overallResult.recommendation}
-      </div>
+  let report = `
+  <div style="font-family:'Noto Sans KR',sans-serif;max-width:800px;margin:auto;color:#333;font-size:14px;line-height:1.6;">
+  
+    <h1 style="color:#1a3e72;">나의 성인식 검사 결과 보고서</h1>
+    <p><strong>이름:</strong> 홍길동님</p>
+    <p><strong>검사일:</strong> ${new Date().toLocaleDateString('ko-KR')}</p>
+
+    <h2 style="color:#1a3e72;">1. 종합 평가</h2>
+    <div style="border:1px solid ${levelColors[overallResult.level]}; background-color:${levelColors[overallResult.level]}20; padding:16px; border-radius:8px;">
+      <p><strong>홍길동님,</strong> ${overallResult.description}</p>
+      <p><strong>결과:</strong> ${overallResult.level}</p>
+      <p><strong>권장사항:</strong> ${overallResult.recommendation}</p>
     </div>
-  </div>`;
+  `;
 
-
-
-
-
-
+  // 2. 특별 관찰 영역
   if (specialObservation.hasObservation) {
-    reportHTML += `
-  <div style="background: #fff5f5; padding: 4px 6px; border-radius: 12px; margin-bottom: 3px; border: 2px solid #e53e3e;">
-    <h2 style="color: #e53e3e; font-size: 18px;">🚨 특별 관찰 영역</h2>`;
+    report += `
+      <h2 style="color:#e53e3e; margin-top:40px;">2. 특별 관찰 영역</h2>`;
 
     if (specialObservation.combinations.length > 0) {
-      reportHTML += `
-      <h3 style="color: #1a3e72;">🔍 조합 패턴들</h3>`;
+      report += `<h3 style="margin-top:10px;">🔍 조합 패턴</h3>`;
       specialObservation.combinations.forEach(combo => {
-        reportHTML += `
-      <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #e53e3e; margin-bottom: 4px;">
-        <strong>${combo.name}</strong><br>→ ${getDetailedCombinationText(combo.code)}
-      </div>`;
+        report += `<p><strong>• ${combo.name}</strong> – ${getDetailedCombinationText(combo.code)}</p>`;
       });
     }
 
     if (specialObservation.riskyItems.length > 0) {
-      reportHTML += `
-      <h3 style="color: #1a3e72;">⚠️ 주의 필요한 문항</h3>`;
+      report += `<h3 style="margin-top:12px;">⚠️ 주의 문항</h3>`;
       specialObservation.riskyItems.forEach(item => {
-        reportHTML += `
-      <div style="background: white; padding: 6px 8px; border-radius: 8px; border-left: 4px solid #dd6b20; margin-bottom: 4px;">
-        ● ${item.item}번 문항 (응답: ${item.response}점)<br>→ ${getRiskyItemText(item.item)}
-      </div>`;
+        report += `<p>• ${item.item}번 문항 (${item.response}점): ${getRiskyItemText(item.item)}</p>`;
       });
     }
-
-    reportHTML += `</div>`;
   }
 
-  reportHTML += `
-  <div style="background: #fff; padding: 6px 8px; border-radius: 12px; margin-bottom: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <h2 style="color: #1a3e72; font-size: 18px;">📈 척도별 상세 분석</h2>
+  // 3. 척도별 점수 요약
+  report += `
+    <h2 style="color:#1a3e72; margin-top:40px;">3. 척도별 점수 요약</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <tr><th style="text-align:left; padding:8px; background:#f0f4f8;">척도</th><th style="width:60%; background:#f0f4f8;"></th><th style="text-align:right; padding:8px; background:#f0f4f8;">점수/해석</th></tr>`;
 
-    <!-- 범례 -->
-    <div style="margin: 10px 0 10px 0; font-size: 13px;">
+  Object.entries(scaleScores).forEach(([scale, score]) => {
+    if (scale === 'desirability') return;
+    const scoreVal = score.average.toFixed(1);
+    let color = '#38a169';
+    if (score.average >= 4.0) color = '#e53e3e';
+    else if (score.average >= 3.0) color = '#dd6b20';
+    else if (score.average >= 2.0) color = '#d69e2e';
+
+    report += `
+      <tr>
+        <td style="padding:8px;">${scaleNames[scale]}</td>
+        <td>
+          <div style="background:#e9ecef; height:12px; border-radius:4px;">
+            <div style="height:12px; background:${color}; width:${percent(score.average)}%; border-radius:4px;"></div>
+          </div>
+        </td>
+        <td style="padding:8px; text-align:right;">${scoreVal}점 / ${getScoreLevelText(getScoreLevelKey(score.average)}</td>
+      </tr>`;
+  });
+
+  report += `</table>
+
+    <div style="margin-top:10px; font-size:13px;">
       <strong>점수 해석 기준:</strong><br>
       <span style="color:#e53e3e; font-weight:bold;">■ 즉시 개입 (4.0–5.0)</span>　
       <span style="color:#dd6b20; font-weight:bold;">■ 집중 관리 (3.0–3.9)</span>　
       <span style="color:#d69e2e; font-weight:bold;">■ 주의 필요 (2.0–2.9)</span>　
       <span style="color:#38a169; font-weight:bold;">■ 안정 (1.0–1.9)</span>
-    </div>`;
+    </div>
+  `;
 
-  Object.keys(scaleScores).forEach(scale => {
+  // 4. 척도별 상세 해석
+  report += `
+    <h2 style="color:#1a3e72; margin-top:40px;">4. 척도별 상세 해석</h2>
+  `;
+
+  Object.entries(scaleScores).forEach(([scale, score]) => {
     if (scale === 'desirability') return;
+    const label = scaleNames[scale];
+    const interpretation = getDetailedScaleInterpretation(scale, score.average);
 
-    const scaleName = scaleNames[scale];
-    const score = scaleScores[scale];
-    const detailedInterpretation = getDetailedScaleInterpretation(scale, score.average);
-
-    let scoreColor = '#38a169';
-    if (score.average > 4.4) scoreColor = '#e53e3e';
-    else if (score.average > 3.5) scoreColor = '#dd6b20';
-    else if (score.average > 2.5) scoreColor = '#d69e2e';
-
-    reportHTML += `
-    <div style="background: #f8f9fa; padding: 6px 8px; border-radius: 8px; border-left: 4px solid ${scoreColor}; margin-bottom: 4px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-        <h3 style="color: #1a3e72; margin: 0; font-size: 16px;">${scaleName}</h3>
-        <div style="background: ${scoreColor}; color: white; padding: 4px 10px; border-radius: 8px; font-weight: bold; font-size: 13px;">
-          ${score.average.toFixed(1)}점
-        </div>
+    report += `
+      <div style="margin-bottom:24px;">
+        <h3 style="color:#1a3e72;">${label} (${score.average.toFixed(1)}점)</h3>
+        <div style="margin-left:15px;">${interpretation}</div>
       </div>
-      <div style="background: white; padding: 6px 8px; border-radius: 6px; font-size: 13px;">
-        ${detailedInterpretation}
-      </div>
-    </div>`;
+    `;
   });
 
-  reportHTML += `
-  </div>
+  // 5. PDF 저장 버튼
+  report += `
+    <div style="text-align:center; margin-top:30px;">
+      <p>검사 결과를 저장하시려면 아래 버튼을 눌러주세요.</p>
+      <button onclick="window.print()" style="background:#1a3e72; color:white; border:none; padding:12px 28px; font-size:14px; border-radius:6px; cursor:pointer;">PDF로 저장하기</button>
+    </div>
+  `;
 
-  <div style="font-size: 12px; color: #888; text-align: center; margin-top: 20px;">
-    파일럿 테스트에 참여해주셔서 감사합니다.<br>
-    상담이 필요하신 경우 아래 연락처를 이용해주세요.<br>
-    전화: 0507-1463-8122 | 이메일: seonresearch@gmail.com | 홈페이지: www.seon-r.com
-  </div>
-</div>`;
+  // 6. 하단 안내
+  report += `
+    <div style="margin-top:40px; font-size:13px; color:#666; text-align:center;">
+      파일럿 테스트에 참여해주셔서 감사합니다.<br><br>
+      상담이 필요하시다면 전화상담을 통해 안내를 받으실 수 있습니다.<br>
+      전화: 0507-1463-8122<br>
+      이메일: seonresearch@gmail.com<br>
+      홈페이지: <a href="https://www.seon-r.com" target="_blank">www.seon-r.com</a>
+    </div>
+  </div>`;
 
-  return reportHTML;
+  return report;
 }
+
+
+
+
 
 // 이메일 부분 수정 250708 chat 
 async function sendEmail() {
@@ -1015,7 +1021,7 @@ async function sendEmail() {
         sendBtn.textContent = '발송 중...';
 
         const results = window.testResults;
-        const detailedReport = generateDetailedReport(results, userInfo);
+        const detailedReport = generateEnhancedReport(results, userInfo);
         const overallResult = calculateOverallResult(results.scaleScores);
 
         // ✅ 실제 이메일 전송 요청

@@ -907,11 +907,11 @@ function generateEnhancedReport(results, userInfo) {
   <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">1. 종합 평가</h2>
   <div style="border-left: 6px solid ${overallResult.color}; background:${overallResult.color}20; padding:16px; margin-top:12px; border-radius:4px;">
     <p><strong>결과:</strong> ${overallResult.level}</p>
-    <p><strong>해석:</strong> ${overallResult.description}</p>
-    <p><strong>권장사항:</strong> ${overallResult.recommendation}</p>
+    <p style="text-indent:-3.2em; padding-left:3.2em; line-height:1.6; margin-bottom:8px;"><strong>해석:</strong> ${overallResult.description}</p>
+    <p style="text-indent:-4em; padding-left:4em; line-height:1.6;"><strong>권장사항:</strong> ${overallResult.recommendation}</p>
        ${overallResult.level === '안정' && moderateElevated ? `
-      <p style="margin-top: 12px; color:#555;">
-        ※ 일부 척도(들)에서 다소 높은 경향이 보이나, 전반적인 성적 인식과 반응은 건강한 수준으로 판단됩니다.
+      <p style="margin-top: 12px; color:#555; font-weight: 500;">
+       <span style="color:#1a3e72;">※</span> ※ 일부 척도(들)에서 다소 높은 경향이 보이나, 전반적인 성적 인식과 반응은 건강한 수준으로 판단됩니다.
       </p>` : ''}
   </div>
 `;
@@ -921,9 +921,9 @@ if (specialObservation.hasObservation) {
 <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">2. 특별 관찰 영역</h2>
 <div style="border:1px solid #f6ad55; padding:16px; border-radius:6px;">
 
-  <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-bottom:8px;"><strong>조합 패턴</strong></p>
+  <p style="color:#1a3e72; font-weight:600; font-size:16px; line-height:1.4; margin-bottom:8px;"><strong>조합 패턴</strong></p>
   ${specialObservation.combinations.map(combo => `
-  <div style="display:flex; align-items:flex-start; margin:6px 0;">
+  <div style="display:flex; align-items:flex-start; margin:10px 0;">
     <span style="min-width:3.5em;">• <strong>${combo.name}:</strong></span>
     <span>${getDetailedCombinationText(combo.code)}</span>
   </div>

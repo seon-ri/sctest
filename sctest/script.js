@@ -910,8 +910,8 @@ function generateEnhancedReport(results, userInfo) {
   </div>
 `;
 
-  if (specialObservation.hasObservation) {
-    report += `
+if (specialObservation.hasObservation) {
+  report += `
 <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">2. 특별 관찰 영역</h2>
 <div style="border:1px solid #f6ad55; padding:16px; border-radius:6px;">
 
@@ -922,24 +922,32 @@ function generateEnhancedReport(results, userInfo) {
     </p>
   `).join('')}
 
-${specialObservation.riskyItems.length > 0 ? `
-  <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:13px; margin-bottom:8px;"><strong>주의 문항</strong></p>
-  ${specialObservation.riskyItems.map(item => `
-    <div style="display:flex; align-items:flex-start; margin:6px 0;">
-      <span style="min-width:3.5em;">• <strong>${item.item}번:</strong></span>
-      <div>
-        ${questions[item.item - 1]}<br>
-        <div style="display:inline-block; text-indent:-0.8em; padding-left:0.8em;">
-          → ${getRiskyItemText(item.item)}
+  ${specialObservation.riskyItems.length > 0 ? `
+    <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:13px; margin-bottom:8px;"><strong>주의 문항</strong></p>
+    ${specialObservation.riskyItems.map(item => `
+      <div style="display:flex; align-items:flex-start; margin:6px 0;">
+        <span style="min-width:3.5em;">• <strong>${item.item}번:</strong></span>
+        <div>
+          ${questions[item.item - 1]}<br>
+          <div style="display:inline-block; text-indent:-0.8em; padding-left:0.8em;">
+            → ${getRiskyItemText(item.item)}
+          </div>
         </div>
       </div>
-    </div>
-  `).join('')}
-` : ''}
-
+    `).join('')}
+  ` : ''}
 </div>
 `;
-  }
+} else {
+  report += `
+    <h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">2. 특별 관찰 영역</h2>
+    <div style="border:1px solid #ddd; padding:16px; border-radius:6px; color:#444;">
+      현재 검사 결과에서는 특별한 관찰이 필요한 조합 패턴이나 주의 문항이 발견되지 않았습니다.<br>
+      전반적으로 건강한 성적 인식과 반응 경향을 보이고 있습니다.
+    </div>
+  `;
+}
+
 
   report += `
   <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">3. 척도별 점수 요약</h2>

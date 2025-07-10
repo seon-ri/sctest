@@ -918,6 +918,6 @@ window.addEventListener('popstate', function(event) {
     const hash = window.location.hash.replace('#', '');
     if (hash) {
         const [main, sub] = hash.split('-');
-        showSection(main, sub || null);
+        showSection(main, sub || null, true);  // skipPush = true → pushState 생략
     }
 });

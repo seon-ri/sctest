@@ -870,6 +870,8 @@ function getDetailedScaleInterpretation(scale, score) {
 function generateEnhancedReport(results, userInfo) {
   const scaleScores = results.scaleScores;
   const overallResult = calculateOverallResult(scaleScores);
+  const moderateElevated = Object.values(scaleScores)
+  .filter(s => s.average >= 3.0 && s.average < 3.5).length > 0;
   const specialObservation = calculateSpecialObservation(scaleScores);
 
   const scoreMap = {
@@ -907,6 +909,10 @@ function generateEnhancedReport(results, userInfo) {
     <p><strong>결과:</strong> ${overallResult.level}</p>
     <p><strong>해석:</strong> ${overallResult.description}</p>
     <p><strong>권장사항:</strong> ${overallResult.recommendation}</p>
+       ${overallResult.level === '안정' && moderateElevated ? `
+      <p style="margin-top: 12px; color:#555;">
+        ※ 일부 척도(들)에서 다소 높은 경향이 보이나, 전반적인 성적 인식과 반응은 건강한 수준으로 판단됩니다.
+      </p>` : ''}
   </div>
 `;
 

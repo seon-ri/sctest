@@ -899,7 +899,7 @@ function generateEnhancedReport(results, userInfo) {
 </div>
 
 <p style="font-size:13px; color:#555; text-align:right; margin-top:15px; margin-bottom:24px;">
-  이름: ${userInfo.name || '홍길동'}님 │ 검사일: ${new Date().toLocaleDateString('ko-KR')}
+  이름: ${userInfo.name || '응답자'}님 │ 검사일: ${new Date().toLocaleDateString('ko-KR')}
 </p>
 
   <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">1. 종합 평가</h2>
@@ -927,7 +927,7 @@ function generateEnhancedReport(results, userInfo) {
     ${specialObservation.riskyItems.map(item => `
 <p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
   • <strong>${item.item}번:</strong> ${questions[item.item - 1]}<br>
-  <span style="margin-left:1.8em;">→ ${getRiskyItemText(item.item)}</span>
+  <span style="display:inline-block margin-left:2em;">→ ${getRiskyItemText(item.item)}</span>
 </p>
     `).join('')}
   ` : ''}

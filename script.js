@@ -89,7 +89,8 @@ if (postLink) {
         alert("수료증은 교육 완료 후 발급됩니다.");  //추후 수료증 발급 페이지가 생기면 showSection('certificate') 식으로 바꾸면 되고요.
             return;
         }
-        
+         return;
+}
         // 서브네비(sub-nav-link) 클릭 이벤트 연결
         if (e.target.classList.contains('sub-nav-link')) {
             e.preventDefault();

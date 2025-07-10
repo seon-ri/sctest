@@ -217,7 +217,7 @@ if (location.hash === '#board' && sessionStorage.getItem('scrollToBoard')) {
 });
 
 // 섹션 표시 함수 (디버깅 로그 추가)
-function showSection(sectionId, subsectionId = null) {
+function showSection(sectionId, subsectionId = null, skipPush = false) {
     console.log('[showSection] 호출됨 - sectionId:', sectionId, 'subsectionId:', subsectionId);
     // ✅ 브라우저 히스토리에만 추가 (뒤로가기로 호출된 경우 제외)
     if (!skipPush) {

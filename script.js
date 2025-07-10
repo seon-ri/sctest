@@ -85,7 +85,8 @@ if (postLink) {
             if (idx === 0) showSection('about', 'contact'); // 상담예약 → 소개-상담절차
             else if (idx === 1) showSection('services', 'education'); // 교육프로그램 → 전문서비스-구속전교육
             else if (idx === 2) showSection('services', 'testing'); // 심리검사 → 전문서비스-심리검사
-            else if (idx === 3) showSection('home'); // 수료증 출력 → 홈
+            else if (idx === 3) {
+        alert("수료증은 교육 완료 후 발급됩니다.");  //추후 수료증 발급 페이지가 생기면 showSection('certificate') 식으로 바꾸면 되고요.
             return;
         }
         

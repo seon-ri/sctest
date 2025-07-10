@@ -922,13 +922,16 @@ function generateEnhancedReport(results, userInfo) {
     </p>
   `).join('')}
 
-  ${specialObservation.riskyItems.length > 0 ? `
-    <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:13px; margin-bottom:8px;"><strong>주의 문항</strong></p>
-    ${specialObservation.riskyItems.map(item => `
-<p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
-  • <strong>${item.item}번:</strong> ${questions[item.item - 1]}<br>
-  <span style="display:inline-block margin-left:2em;">→ ${getRiskyItemText(item.item)}</span>
-</p>
+${specialObservation.riskyItems.length > 0 ? `
+  <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-top:13px; margin-bottom:8px;"><strong>주의 문항</strong></p>
+  ${specialObservation.riskyItems.map(item => `
+    <div style="display:flex; align-items:flex-start; margin:6px 0;">
+      <span style="min-width:3.5em;">• <strong>${item.item}번:</strong></span>
+      <div>
+        ${questions[item.item - 1]}<br>
+        <span style="display:inline-block; text-indent:-1.2em; padding-left:1.2em;">→ ${getRiskyItemText(item.item)}</span>
+      </div>
+    </div>
     `).join('')}
   ` : ''}
 

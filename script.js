@@ -219,6 +219,9 @@ if (location.hash === '#board' && sessionStorage.getItem('scrollToBoard')) {
 // 섹션 표시 함수 (디버깅 로그 추가)
 function showSection(sectionId, subsectionId = null) {
     console.log('[showSection] 호출됨 - sectionId:', sectionId, 'subsectionId:', subsectionId);
+        // ✅ URL 기록 추가 (히스토리에 남기기)
+    const newUrl = subsectionId ? `#${sectionId}-${subsectionId}` : `#${sectionId}`;
+    history.pushState({ section: newUrl }, '', newUrl);
     
     // 모든 섹션 숨기기
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
@@ -909,3 +912,11 @@ window.loadPostDetail = function(postId) {
     console.log('올바른 loadPostDetail 실행:', postId);
     window.location.href = `/post-detail.html?id=${postId}`;
 };
+// 뒤로가기 시 섹션 복원
+window.addEventListener('popstate', function(event) {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+        const [main, sub] = hash.split('-');
+        showSection(main, sub || null);
+    }
+});

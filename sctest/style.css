@@ -702,6 +702,7 @@ body {
     .form-buttons button {
         max-width: none;
     }
+  }
 }
 
 @media (max-width: 480px) {
@@ -746,7 +747,9 @@ body {
     .option-text {
         font-size: 1rem;
     }
-    
+    .options-container {
+    margin-top: 20px;
+  }
     .scale-items {
         flex-direction: column;
     }
@@ -777,7 +780,9 @@ body {
     .option-card {
         padding: 12px;
     }
-    
+    .options-container {
+    margin-top: 20px;
+  }
     .option-number {
         width: 35px;
         height: 35px;
@@ -808,6 +813,9 @@ body {
     max-width: 90%;   /* ✅ 양옆 여백 줘서 시각 안정감 */
     margin: 0 auto;   /* ✅ 중앙 정렬 */
     }
+   .options-container {
+    margin-top: 20px;
+  }
       .combo-line {
     margin-left: 1.2em;    /* ✅ 조합명 들여쓰기 */
     text-align: left;      /* ✅ 혹시 정렬 깨졌다면 확실히 고정 */

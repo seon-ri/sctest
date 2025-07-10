@@ -219,10 +219,11 @@ if (location.hash === '#board' && sessionStorage.getItem('scrollToBoard')) {
 // 섹션 표시 함수 (디버깅 로그 추가)
 function showSection(sectionId, subsectionId = null) {
     console.log('[showSection] 호출됨 - sectionId:', sectionId, 'subsectionId:', subsectionId);
-        // ✅ URL 기록 추가 (히스토리에 남기기)
-    const newUrl = subsectionId ? `#${sectionId}-${subsectionId}` : `#${sectionId}`;
-    history.pushState({ section: newUrl }, '', newUrl);
-    
+    // ✅ 브라우저 히스토리에만 추가 (뒤로가기로 호출된 경우 제외)
+    if (!skipPush) {
+        const newUrl = subsectionId ? `#${sectionId}-${subsectionId}` : `#${sectionId}`;
+        history.pushState({ section: newUrl }, '', newUrl);
+    }
     // 모든 섹션 숨기기
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
     

@@ -917,9 +917,10 @@ if (specialObservation.hasObservation) {
 
   <p style="color:#1a3e72; font-weight:600; font-size:16px; margin-bottom:8px;"><strong>조합 패턴</strong></p>
   ${specialObservation.combinations.map(combo => `
-    <p style="text-indent:-1em; padding-left:1.8em; margin:6px 0;">
-      • <strong>${combo.name}:</strong> ${getDetailedCombinationText(combo.code)}
-    </p>
+  <div style="display:flex; align-items:flex-start; margin:6px 0;">
+    <span style="min-width:3.5em;">• <strong>${combo.name}:</strong></span>
+    <span>${getDetailedCombinationText(combo.code)}</span>
+  </div>
   `).join('')}
 
   ${specialObservation.riskyItems.length > 0 ? `
@@ -940,8 +941,8 @@ if (specialObservation.hasObservation) {
 `;
 } else {
   report += `
-    <h2 style="color:#1a3e72; margin-top:40px; font-size:18px;">2. 특별 관찰 영역</h2>
-    <div style="border:1px solid #ddd; padding:16px; border-radius:6px; color:#444;">
+    <h2 style="color:#1a3e72; margin-top:40px; margin-bottom:13px; font-size:18px;">2. 특별 관찰 영역</h2>
+    <div style="border:1px solid #f6ad55; padding:16px; border-radius:6px;">
       현재 검사 결과에서는 특별한 관찰이 필요한 조합 패턴이나 주의 문항이 발견되지 않았습니다.<br>
       전반적으로 건강한 성적 인식과 반응 경향을 보이고 있습니다.
     </div>

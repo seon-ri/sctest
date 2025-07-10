@@ -929,7 +929,7 @@ ${specialObservation.riskyItems.length > 0 ? `
       <span style="min-width:3.5em;">• <strong>${item.item}번:</strong></span>
       <div>
         ${questions[item.item - 1]}<br>
-        <div style="display:inline-block; text-indent:-1.2em; padding-left:1.2em;">
+        <div style="display:inline-block; text-indent:-0.8em; padding-left:0.8em;">
           → ${getRiskyItemText(item.item)}
         </div>
       </div>

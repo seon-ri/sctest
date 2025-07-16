@@ -449,7 +449,6 @@ body {
 
 /* --- HERO SECTION (NOW REMOVED) --- */
 .hero {
-  background-image: url('main/main.jpg'); /* 현재 적용된 이미지 경로 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

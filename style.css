@@ -2023,7 +2023,7 @@ footer {
 }
 .worry-list.worry-dot {
   list-style: disc;
-  padding-left: 1.8em;
+  padding-left: 2em;
   text-align: left;
   display: inline-block;
 }
@@ -2038,7 +2038,7 @@ footer {
 .worry-content-box {
     background:  #f8f9fa;  /* 연한 파란 배경 */
     border-radius: 12px;          /* 둥근 모서리 */
-    padding: 1rem 1.5rem;         /* 내부 여백 */
+    padding: 1rem 1rem;         /* 내부 여백 */
     margin-top: 1rem;             /* 제목과 간격 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);  /* 그림자 */
 }

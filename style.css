@@ -1980,8 +1980,17 @@ footer {
 @supports (-ms-ime-align: auto) {
     .worry-box {
         max-width: 420px !important;
-        top: 1rem !important;
+        top: 1rem !important;       
     }
+  .worry-title {
+  font-size: 1.2rem;
+    }
+  .worry-list {
+     font-size: 1rem;
+    } 
+  .worry-ask {
+  font-size: 1.2rem;
+  }    
 }
 
 .worry-title {

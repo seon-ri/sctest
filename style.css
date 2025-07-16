@@ -489,25 +489,19 @@ body {
 }
 
 .hero-subtitle {
-    background: rgba(255,255,255,0.25) !important;
-    backdrop-filter: blur(5px) !important;
-    color: #fff !important;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
+    background-color: rgba(255, 255, 255, 0.25);  /* 더 투명하게 */
+    backdrop-filter: blur(5px);
+    color: #fff;                                   /* 흰색으로 */
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);       /* 그림자 더 진하게 */
     font-size: 1.2rem;
-    font-weight: 500;
-    margin: 0 0 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
-    white-space: nowrap;     /* 줄바꿈 방지 */
-    text-shadow: 0 0px 8px rgba(0,0,0,0.4);
-    background-color: rgba(255, 255, 255, 0.95);  /* 고민박스와 동일한 하얀색 배경 */
-    color: #003366;                              /* 진한 남색 텍스트 */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    backdrop-filter: blur(2px); /* 유리 느낌 */
+    font-weight: 500;                              /* 조금 더 굵게 */
+    line-height: 1.5;
+    margin: 1.5rem 0 1.5rem 20%;
     padding: 1.2rem 1.8rem;
     border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    margin-top: 1.5rem;
+    white-space: nowrap;
 }
 
 /* --- LATEST POSTS SECTION --- */
@@ -1968,10 +1962,9 @@ footer {
     top: 0rem;
     bottom: 0rem;
     right: 80px;            
-    width: 400px;    
-      min-width: 380px;       /* 최소값 보장 */
-    max-width: 420px;       /* 최대값 제한 */  
-  background: #fff;
+    width: 420px;     
+    max-width: 35%;         
+    background: #fff;
     border-radius: 0px;  
     padding: 2rem 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -1981,8 +1974,14 @@ footer {
     font-size: 1.08rem;
     display: block;
     margin-top: 0;           /* margin-top 제거! */
-      box-sizing: border-box;  /* 추가 */
-    overflow-y: auto;        /* 내용이 넘치면 스크롤 */
+}
+
+/* 워리박스 엣지 전용 - 바로 아래 삽입 */
+@supports (-ms-ime-align: auto) {
+    .worry-box {
+        max-width: 420px !important;
+        top: 1rem !important;
+    }
 }
 
 .worry-title {
@@ -2379,6 +2378,14 @@ body.pc-version {
     min-width: 1200px;
 }
 
+/* PC버전 버튼 엣지 전용 - 그 아래 삽입 */
+@supports (-ms-ime-align: auto) {
+    .pc-version-btn {
+        /* PC버전 버튼 엣지 수정 내용 */
+        z-index: 10 !important;
+        position: relative !important;
+    }
+}
 .mobile-notice-bar {
     text-align: center;
     padding: 12px;

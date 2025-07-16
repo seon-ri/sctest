@@ -1977,7 +1977,7 @@ footer {
 }
 
 /* 워리박스 엣지 전용 - 바로 아래 삽입 */
-@supports (-ms-ime-align: auto) {
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .worry-box {
         max-width: 420px !important;
         top: 1rem !important;       

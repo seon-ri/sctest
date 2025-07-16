@@ -449,17 +449,18 @@ body {
 
 /* --- HERO SECTION (NOW REMOVED) --- */
 .hero {
-    position: relative;
-    height: 500px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    color: var(--white);
-    text-align: center;
+  background-image: url('main/main.jpg'); /* 현재 적용된 이미지 경로 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 650px; /* ✅ 이 부분을 충분히 크게 설정해야 전체가 보입니다 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
     background: url('main.jpg') no-repeat center center/cover;
-    padding: 2;
-    margin-bottom: 0.5rem;
+ 
 }
 
 .hero-content {

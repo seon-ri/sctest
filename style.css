@@ -489,21 +489,25 @@ body {
 }
 
 .hero-subtitle {
-    background: rgba(255,255,255,0.25) !important;
-    backdrop-filter: blur(5px) !important;
-    color: #fff !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);       /* 그림자 더 진하게 */
+background: rgba(255,255,255,0.25) !important;
+backdrop-filter: blur(5px) !important;
+  color: #fff !important;
+text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
     font-size: 1.2rem;
     font-weight: 500;
-    margin: 1.5rem 0 1.5rem 40%;          /* 20% → 40% (더 오른쪽으로) */
-    margin-top: 1.6rem;
-    min-width: 300px;                     /* 최소 너비 보장 */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    white-space: nowrap;
-    backdrop-filter: blur(2px); / 유리 느낌 */
-    padding: 1.5rem 2.2rem;               /* 패딩 늘려서 여유공간 확보 */
+    margin: 0 0 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
+    white-space: nowrap;     /* 줄바꿈 방지 */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.95);  /* 고민박스와 동일한 하얀색 배경 */
+    color: #003366;                              /* 진한 남색 텍스트 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    backdrop-filter: blur(2px); /* 유리 느낌 */
+    padding: 1.2rem 1.8rem;
     border-radius: 12px;
     display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 1.5rem;
 }
 
 /* --- LATEST POSTS SECTION --- */
@@ -1964,37 +1968,18 @@ footer {
     top: 0rem;
     bottom: 0rem;
     right: 80px;            
-    width: 420px;     
-    max-width: 35%;         
+    width: 420px;
+    max-width: 35%;       
     background: #fff;
     border-radius: 0px;  
-    padding-bottom: 6rem;                /* ask 공간 확보 */
     padding: 2rem 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 2rem 2.5rem;
     z-index: 2;
     color: #222;
     font-size: 1.08rem;
     display: block;
     margin-top: 0;           /* margin-top 제거! */
-}
-
-/* 워리박스 엣지 전용 - 바로 아래 삽입 */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    .worry-box {
-        max-width: 500px !important;
-        top: 1rem !important;       
-        width: 500px !important;          /* 더욱 넓게 */
-        right: 20px !important;           /* 화면 끝까지 */
-    }
-  .worry-title {
-  font-size: 1.2rem;
-    }
-  .worry-list {
-     font-size: 1rem;
-    } 
-  .worry-ask {
-  font-size: 1.2rem;
-  }    
 }
 
 .worry-title {
@@ -2025,16 +2010,10 @@ footer {
     margin-bottom: 1rem;     /* 아래 간격 */
 }
 .worry-ask {
-  margin-top: 24px;
+  margin-top: 21px;
   font-size: 1.25rem;
   font-weight: 500;
   color: #1956a5;
-      position: absolute;                   /* absolute 위치 */
-    bottom: 2rem;                         /* 하단에서 2rem 위 */
-    left: 50%;                           /* 중앙 정렬 */
-    transform: translateX(-50%);          /* 정확한 중앙 */
-    width: calc(100% - 4rem);            /* 좌우 여백 확보 */
-    text-align: center;
 }
 
 .worry-emoji {
@@ -2060,7 +2039,7 @@ footer {
     background:  #f8f9fa;  /* 연한 파란 배경 */
     border-radius: 12px;          /* 둥근 모서리 */
     padding: 1rem 1rem;         /* 내부 여백 */
-    margin-top: 2rem;             /* 제목과 간격 */
+    margin-top: 1rem;             /* 제목과 간격 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);  /* 그림자 */
 }
 
@@ -2397,14 +2376,6 @@ body.pc-version {
     min-width: 1200px;
 }
 
-/* PC버전 버튼 엣지 전용 - 그 아래 삽입 */
-@supports (-ms-ime-align: auto) {
-    .pc-version-btn {
-        /* PC버전 버튼 엣지 수정 내용 */
-        z-index: 10 !important;
-        position: relative !important;
-    }
-}
 .mobile-notice-bar {
     text-align: center;
     padding: 12px;

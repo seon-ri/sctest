@@ -102,10 +102,11 @@
     display: block;
 }
 .section-intro {
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 2rem;
   color: #333;
+  font-weight: bold;
 }
 .education-programs-horizontal {
     margin-bottom: 1.5rem;
@@ -752,13 +753,13 @@ footer {
 .footer-contact-info,
 .footer-copyright p {
     color: #fff;
-    font-size: 1.08rem;
+    font-size: 1.1rem;
     margin: 0.2rem 0;
     font-weight: 500;
 }
 .footer-copyright {
     border-top: 1px solid #fff;
-    margin-top: 1.2rem;
+    margin-top: 1.1rem;
     padding-top: 0.7rem;
     opacity: 0.9;
     padding-bottom: 80px; 
@@ -769,13 +770,13 @@ footer {
 
 .footer-notice-text {
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
 .footer-contact-info {
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     display: inline-block;
     padding: 0.8rem 2rem;
     border-radius: 12px;
@@ -787,7 +788,7 @@ footer {
 
 .footer-copyright p {
     margin-top: 0.8rem;
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     opacity: 0.9;
 }
 
@@ -1881,6 +1882,7 @@ footer {
 
 .career-section {
     margin-top: 2.5rem;
+    font-size: 1.2rem;
 }
 
 .affiliations {
@@ -2371,7 +2373,9 @@ body.pc-version .mobile-menu-toggle,
 body.pc-version .mobile-fixed-menu {
     display: none !important;
 }
-
+body.pc-version .mobile-notice-bar {
+    display: none;
+}
 body.pc-version {
     min-width: 1200px;
 }

@@ -84,7 +84,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -343,7 +343,7 @@ body {
     justify-content: center;
     gap: 2rem;
     list-style: none;
-    background: #e0e0e0;
+    background: #d1e5f8;
     padding: 1rem;
     border-radius: var(--border-radius);
     flex-wrap: wrap;
@@ -468,8 +468,8 @@ body {
     max-width: 700px;
     align-items: flex-start; /* flex 컨테이너일 경우 */
     position: absolute; /* static을 absolute로 변경 */
-    left: 30%; /* 화분과 커피 사이 위치 */
-    top: 25%; /* 적절한 높이 */
+    left: 15%; /* 화분과 커피 사이 위치 */
+    top: 15%; /* 적절한 높이 */
 }
 
 .hero-title, .hero-subtitle {
@@ -492,20 +492,21 @@ body {
 
 .hero-subtitle {
    background: rgba(255,255,255,0.25) !important;
-   backdrop-filter: blur(5px) !important;
-   color: #fff !important;
-   text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.6) !important;
+   backdrop-filter: blur(4px) !important;
+   color: #ffffff !important;
+   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) !important;
    font-size: 1.3rem;
-   font-weight: 400;
-    margin: 0 0 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
-    white-space: nowrap;     /* 줄바꿈 방지 */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    backdrop-filter: blur(2px); /* 유리 느낌 */
-    padding: 1rem 1.5rem;
+   font-weight: 500;
+    margin: 0 auto 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
+    white-space: normal;     
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+    padding: 0.7rem 3rem;
     border-radius: 12px;
     display: inline-block;
-    line-height: 1.5;
+    line-height: 1.6;
     margin-top: 1.5rem;
+   text-align: left;
+   padding-left: 2.5rem; /* ← 더 붙이고 싶으면 여기 조정 */
 }
 
 /* --- LATEST POSTS SECTION --- */
@@ -605,6 +606,7 @@ body {
 }
 
 /* 모바일 반응형 */
+
 @media (max-width: 768px) {
     .home-posts-grid {
         grid-template-columns: 1fr;
@@ -782,7 +784,12 @@ footer {
     font-weight: 500;
     width: auto;
 }
-
+ 
+  .hero-subtitle {
+    margin-left: 5%;
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+  }
 .footer-copyright p {
     margin-top: 0.8rem;
     font-size: 1.1rem;
@@ -1698,7 +1705,7 @@ footer {
     position: relative;
     padding-left: 1.8rem;
     margin-bottom: 1rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.6;
 }
 
@@ -1707,7 +1714,7 @@ footer {
     left: 0;
     top: 5px;
     color: var(--primary-color);
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 .contact-box {
   max-width: 700px;

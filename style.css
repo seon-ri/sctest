@@ -464,11 +464,12 @@ body {
 }
 
 .hero-content {
-    text-align: left;
-    margin-left: 5rem;   /* 왼쪽 여백 */
     margin-top: 3rem;
     max-width: 700px;
     align-items: flex-start; /* flex 컨테이너일 경우 */
+    position: absolute; /* static을 absolute로 변경 */
+    left: 30%; /* 화분과 커피 사이 위치 */
+    top: 25%; /* 적절한 높이 */
 }
 
 .hero-title, .hero-subtitle {
@@ -498,15 +499,11 @@ body {
    font-weight: 400;
     margin: 0 0 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
     white-space: nowrap;     /* 줄바꿈 방지 */
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    background-color: rgba(255, 255, 255, 0.95);  /* 고민박스와 동일한 하얀색 배경 */
-    color: #003366;                              /* 진한 남색 텍스트 */
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     backdrop-filter: blur(2px); /* 유리 느낌 */
     padding: 1rem 1.5rem;
     border-radius: 12px;
     display: inline-block;
-    font-weight: 400;
     line-height: 1.5;
     margin-top: 1.5rem;
 }

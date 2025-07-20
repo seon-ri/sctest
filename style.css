@@ -1882,7 +1882,9 @@ footer {
 
 .career-section {
     margin-top: 2.5rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+  
 }
 
 .affiliations {
@@ -1893,15 +1895,16 @@ footer {
 }
 
 #services-education .content-card > p {
-  font-weight: 400;          /* 일반 굵기 */
-  font-size: 0.9rem;
+  font-weight: 500;          /* 일반 굵기 */
+  font-weight: bold;
+  font-size: 1.1rem;
   line-height: 1.4;          /* 줄간도 다른 섹션과 일치시킴 */
   color: #444;
   margin-bottom: 0.8rem;
 }
 #services-education .section-intro {
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 2rem;
   color: #333;

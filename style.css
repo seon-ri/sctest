@@ -1689,7 +1689,7 @@ footer {
   border-right: 5px solid #7b2d3c;
 }
 .content-card-new.gray-border li {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 /* 형사심리자문 서비스 카드 가로 정렬 */
 .horizontal-service-cards {
@@ -1825,7 +1825,7 @@ footer {
 
 .content-card-new p {
     line-height: 1.9;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #444;
     margin-bottom: 15px;
 }
@@ -1895,12 +1895,10 @@ footer {
 
 #services-education .content-card > p {
   font-weight: 500;          /* 일반 굵기 */
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.4;          /* 줄간도 다른 섹션과 일치시킴 */
   color: #444;
-  margin-bottom: 0.8rem;
-}
+ }
 #services-education .section-intro {
   font-weight: 400;
   font-size: 1.1rem;

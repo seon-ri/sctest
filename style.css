@@ -2371,17 +2371,30 @@ footer {
 
 /* 모바일 알림 바: 기본은 숨김 */
 .mobile-notice-bar {
-    display: block; 
-    text-align: center;
-    padding: 12px;
-        background: #2b6cb0; /* 파란색으로 변경 */
-    color: red;        /* 흰색 글씨 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    background: #ffffff;
     position: fixed;
-     top: 0;             /* bottom: 0에서 top: 0으로 */
+    bottom: 0;
     width: 100%;
     z-index: 999;
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
+
+.mobile-notice-bar a {
+    display: inline-block;
+    background: #1a3e72;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 
 /* 모바일에서만 보이게 */
 @media screen and (max-width: 1024px) {
@@ -2395,18 +2408,7 @@ body.pc-version .mobile-notice-bar {
     display: none !important;
 }
 
-/* 버튼 디자인 */
-.mobile-notice-bar a {
-    display: block;
-    background: #1a3e72;
-    color: red;
-    padding: 8px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
+ 
 
 /*하단 메뉴*/
 body.pc-version .mobile-menu-toggle,

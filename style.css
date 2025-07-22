@@ -2369,19 +2369,32 @@ footer {
     .credentials { font-size: 0.85rem; }
 }
 
-/* pc 모바일에서만 보이게 */
+/* 모바일 알림 바: 기본은 숨김 */
 .mobile-notice-bar {
+    display: none;
     text-align: center;
     padding: 12px;
     background: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* 모바일에서만 보이게 */
 @media screen and (max-width: 1024px) {
-  .mobile-notice-bar {
-    display: block;
-  }
+    .mobile-notice-bar {
+        display: block;
+    }
 }
 
+/* PC 버전 모드일 때는 강제로 숨김 */
+body.pc-version .mobile-notice-bar {
+    display: none !important;
+}
+
+/* 버튼 디자인 */
 .mobile-notice-bar a {
     display: inline-block;
     background: #1a3e72;
@@ -2393,10 +2406,6 @@ footer {
     font-weight: 500;
 }
 
-/* PC버전일 때 숨김 */
-body.pc-version .mobile-notice-bar {
-    display: none !important;
-}
 
 /*하단 메뉴*/
 body.pc-version .mobile-menu-toggle,

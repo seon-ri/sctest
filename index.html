@@ -7,6 +7,18 @@
     <meta name="description" content="형사사건 전문 심리분석 기관. 양형자료분석, 진술분석, 재범위험성평가, 심리교육 전문 서비스 제공">
     <meta name="keywords" content="형사사건, 심리분석, 양형자료, 진술분석, 재범위험성평가, 더세온연구소">
     <link rel="stylesheet" href="style.css">
+	    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('version') === 'pc') {
+            document.body.classList.add('pc-version');
+            let viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.content = "width=1200, initial-scale=0.5";
+            }
+        }
+    });
+    </script>
 </head>
 <body>
     <!-- 상단 바 -->
@@ -67,9 +79,9 @@
                     <li class="nav-item has-dropdown">
                         <a href="#" class="nav-link" data-section="board">게시판</a>
 			    	</li>
-                   <li class="nav-item mobile-only">
-  			<a href="?version=pc" class="pc-version-button">PC 버전</a>
-			</li>
+		<div class="mobile-notice-bar">
+    		<a href="?version=pc">PC 버전</a>
+		</div>
                 </ul>
             </nav>
     </div> 

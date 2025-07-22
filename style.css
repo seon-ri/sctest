@@ -2371,7 +2371,7 @@ footer {
 
 /* 모바일 알림 바: 기본은 숨김 */
 .mobile-notice-bar {
-    display: none;
+    display: block; 
     text-align: center;
     padding: 12px;
     background: white;

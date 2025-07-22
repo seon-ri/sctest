@@ -2375,7 +2375,7 @@ footer {
     text-align: center;
     padding: 12px;
         background: #2b6cb0; /* 파란색으로 변경 */
-    color: white;        /* 흰색 글씨 */
+    color: red;        /* 흰색 글씨 */
     position: fixed;
      top: 0;             /* bottom: 0에서 top: 0으로 */
     width: 100%;
@@ -2397,9 +2397,9 @@ body.pc-version .mobile-notice-bar {
 
 /* 버튼 디자인 */
 .mobile-notice-bar a {
-    display: inline-block;
+    display: block;
     background: #1a3e72;
-    color: white;
+    color: red;
     padding: 8px 16px;
     border-radius: 20px;
     text-decoration: none;

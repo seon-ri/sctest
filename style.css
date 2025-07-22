@@ -210,7 +210,7 @@ body {
 
 .logo-container {
     flex-shrink: 0;
-    margin-right: 4rem; 
+    margin-right: 2rem; 
 }
 
 .logo-link {
@@ -247,7 +247,7 @@ body {
 }
 .main-nav ul {
     display: flex;
-    gap: 1.8rem;
+    gap: 3rem;
 }
 .nav-item {
     margin-right: 5rem;

@@ -2401,9 +2401,6 @@ body.pc-version .mobile-fixed-menu {
     display: none !important;
 }
 
-body.pc-version .pc-version-button {
-    display: none !important;
-}
 body.pc-version {
     min-width: 1200px;
 } 

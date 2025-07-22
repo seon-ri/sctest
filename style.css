@@ -2371,30 +2371,32 @@ footer {
 
 /* 모바일 알림 바: 기본은 숨김 */
 .mobile-notice-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-    background: #ffffff;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 999;
-    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 10;
 }
 
 .mobile-notice-bar a {
     display: inline-block;
-    background: #1a3e72;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
+    background: #1a3e72; /* 남색 배경 (사이트 기본 컬러) */
+    color: white;         /* 흰색 글씨 */
+    padding: 8px 16px;
+    border-radius: 20px;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(26, 62, 114, 0.3); /* 남색 그림자 */
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
+.mobile-notice-bar a:hover {
+    background: #2b6cb0; /* 호버 시 조금 더 밝은 남색 */
+    box-shadow: 0 4px 12px rgba(26, 62, 114, 0.4);
+    transform: translateY(-1px);
+}
 
 /* 모바일에서만 보이게 */
 @media screen and (max-width: 1024px) {

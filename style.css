@@ -2374,9 +2374,10 @@ footer {
     display: block; 
     text-align: center;
     padding: 12px;
-    background: white;
+        background: #2b6cb0; /* 파란색으로 변경 */
+    color: white;        /* 흰색 글씨 */
     position: fixed;
-    bottom: 0;
+     top: 0;             /* bottom: 0에서 top: 0으로 */
     width: 100%;
     z-index: 999;
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);

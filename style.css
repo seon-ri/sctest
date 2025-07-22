@@ -2369,10 +2369,17 @@ footer {
     .credentials { font-size: 0.85rem; }
 }
 
+/* pc 모바일에서만 보이게 */
 .mobile-notice-bar {
     text-align: center;
     padding: 12px;
     background: white;
+}
+
+@media screen and (max-width: 1024px) {
+  .mobile-notice-bar {
+    display: block;
+  }
 }
 
 .mobile-notice-bar a {
@@ -2384,12 +2391,6 @@ footer {
     text-decoration: none;
     font-size: 0.8rem;
     font-weight: 500;
-}
-/* 파일 맨 마지막에 추가, pc 버전*/
-.mobile-notice-bar {
-    text-align: center;
-    padding: 12px;
-    background: white;
 }
 
 /* PC버전일 때 숨김 */

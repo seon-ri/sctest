@@ -2386,27 +2386,12 @@ footer {
     font-weight: 500;
 }
 /* 파일 맨 마지막에 추가, pc 버전*/
-.pc-version-button {
-  display: inline-block;
-  padding: 0.3rem 0.9rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background-color: #1a3555;
-  color: #fff;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.pc-version-button:hover {
-  background-color: #2b6cb0;
-}
 
 .mobile-only {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .mobile-only {
     display: block;
   }

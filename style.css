@@ -2386,24 +2386,20 @@ footer {
     font-weight: 500;
 }
 /* 파일 맨 마지막에 추가, pc 버전*/
-
-.mobile-only {
-  display: none;
+.mobile-notice-bar {
+    text-align: center;
+    padding: 12px;
+    background: white;
 }
 
-@media screen and (max-width: 1024px) {
-  .mobile-only {
-    display: block;
-  }
+/* PC버전일 때 숨김 */
+body.pc-version .mobile-notice-bar {
+    display: none !important;
 }
+
+/*하단 메뉴*/
 body.pc-version .mobile-menu-toggle,
 body.pc-version .mobile-fixed-menu {
     display: none !important;
 }
 
-body.pc-version {
-    min-width: 1200px;
-} 
-body.pc-version .mobile-notice-bar {
-    display: none;
-}

@@ -200,9 +200,10 @@ body {
 
 .header-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 4rem; /* 로고와 메뉴 사이 간격 */
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 2rem 0 1rem;
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -210,7 +211,7 @@ body {
 
 .logo-container {
     flex-shrink: 0;
-    margin-right: 2rem; 
+   margin-right: auto; /* 로고를 왼쪽 끝으로 */
 }
 
 .logo-link {
@@ -244,13 +245,14 @@ body {
 
 .main-nav {
     position: relative;
+   margin-left: auto; /* 메뉴를 오른쪽으로 */
 }
 .main-nav ul {
     display: flex;
-    gap: 3rem;
+    gap: 4rem;
 }
 .nav-item {
-    margin-right: 5rem;
+    margin-right: 3rem;
     position: relative;
 }
 .nav-link {
@@ -869,7 +871,9 @@ footer {
     .footer-info {
         text-align: center;
     }
-    
+    .footer-notice-text {
+     font-size: 0.85rem;
+     }
     .sub-nav-list {
         flex-direction: column;
         gap: 0.5rem;
@@ -903,6 +907,7 @@ footer {
     .hero-image-placeholder {
         padding: 2rem;
     }
+  
 .sub-nav-link {
   line-height: 1.4;             /* ✅ 줄간격 확보 */
   white-space: normal;          /* ✅ 줄바꿈 허용 */

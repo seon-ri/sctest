@@ -1975,7 +1975,8 @@ footer {
 .worry-box {
     position: absolute;      /* ← 반드시 absolute! */
     top: 0rem;
-    bottom: 0rem;
+     padding-bottom: 1rem; /* 기존보다 줄임 (기존 2rem 이상인 경우) */
+     bottom: 0rem;
     right: 80px;            
     width: 420px;
     max-width: 35%;       
@@ -1993,12 +1994,12 @@ footer {
 }
 
 .worry-title {
-  font-size: 1.35rem;
-  font-weight: bold;
-  margin-bottom: 18px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
   align-items: center;
   justify-content: center;
-   color: #1a3e72;   
+  color: #1a3e72;   
   gap: 10px;
 }
 .worry-icon {
@@ -2012,7 +2013,7 @@ footer {
   margin: 0 0 24px 0;
   color: #333;
   font-size: 1.06rem;
-  line-height: 2;
+  line-height: 2.6;
   text-align: left;
   display: inline-block;
     background: #f1f3f8;      /* 좀 진한 배경 */
@@ -2025,7 +2026,8 @@ footer {
   text-align: center;    /* 중앙 정렬 */
   font-size: 1.25rem;
   font-weight: 500;
-  color: #1a3e72;  
+  color: #1a3e72; 
+   margin-bottom: 0.5rem; /* 버튼 아래 공간 축소 */
   }
 
 /* 상담 버튼 스타일 */
@@ -2160,6 +2162,7 @@ footer {
 
   .worry-list {
     font-size: 0.9rem;
+     line-height: 1.9;
   }
 
   .worry-ask {
@@ -2224,6 +2227,7 @@ footer {
 
   .worry-list {
     font-size: 0.85rem;
+     line-height: 1.9;
   }
 
   .worry-ask {

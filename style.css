@@ -199,19 +199,19 @@ body {
 }
 
 .header-container {
-    display: flex;
-    justify-content: flex-start;
-    gap: 2rem; /* 로고와 메뉴 사이 간격 */
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 2rem !important; /* 로고와 메뉴 사이 간격 */
     align-items: center;
-    padding: 0 2rem 0 0;
+    padding: 0 2rem 0 1rem;
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
-}
+  }
 
 .logo-container {
     flex-shrink: 0;
-   margin-right: auto; /* 로고를 왼쪽 끝으로 */
+   margin-right: auto !important; /* 로고를 왼쪽 끝으로 */
 }
 
 .logo-link {
@@ -245,7 +245,7 @@ body {
 
 .main-nav {
     position: relative;
-   margin-left: auto; /* 메뉴를 오른쪽으로 */
+   margin-left: auto !important; /* 메뉴를 오른쪽으로 */
 }
 .main-nav ul {
     display: flex;

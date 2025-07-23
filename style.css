@@ -471,8 +471,8 @@ body {
     max-width: 700px;
     align-items: flex-start; /* flex 컨테이너일 경우 */
     position: absolute; /* static을 absolute로 변경 */
-    left: 15%; /* 화분과 커피 사이 위치 */
-    top: 15%; /* 적절한 높이 */
+    left: 25%; /* 화분과 커피 사이 위치 */
+    top: 25%; /* 적절한 높이 */
 }
 
 .hero-title, .hero-subtitle {
@@ -482,7 +482,7 @@ body {
 }
 
 .hero-title {
-    font-size: 3.0rem;
+    font-size: 2.4rem;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.4;
@@ -490,17 +490,18 @@ body {
     margin: 0 0 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
     max-width: 600px;        /* 고정 너비를 최대 너비로 변경 */
     text-align: left;
+    white-space: nowrap;    /* 줄바꿈 방지 */
     margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
-   background: rgba(255,255,255,0.25) !important;
-   backdrop-filter: blur(4px) !important;
+   background: none;
+   backdrop-filter: none;
    color: #ffffff !important;
-   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) !important;
-   font-size: 1.1rem;
+   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4) !important;
+   font-size: 1.4rem;
    font-weight: 500;
-    margin: 0 auto 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
+    margin: 0.5rem auto 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
     white-space: normal;     
     box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
     padding: 0.7rem 3rem;
@@ -1978,14 +1979,15 @@ footer {
     right: 80px;            
     width: 420px;
     max-width: 35%;       
-    background: #fff;
+    border-left: 4px solid #1a3e72;     /* 브랜드 컬러 포인트 라인 */
+    background: #fbfcfd;                 /* 아주 연한 블루 배경 */
     border-radius: 0px;  
     padding: 2rem 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     padding: 2rem 2.5rem;
     z-index: 2;
     color: #222;
-    font-size: 1.08rem;
+      font-size: 1.08rem;
     display: block;
     margin-top: 0;           /* margin-top 제거! */
 }
@@ -1996,6 +1998,7 @@ footer {
   margin-bottom: 18px;
   align-items: center;
   justify-content: center;
+   color: #1a3e72;   
   gap: 10px;
 }
 .worry-icon {
@@ -2021,9 +2024,28 @@ footer {
   margin-top: 21px;
   font-size: 1.25rem;
   font-weight: 500;
-  color: #1956a5;
+  color: #1a3e72;  
+  }
+
+/* 상담 버튼 스타일 */
+.consultation-btn {
+    display: inline-block;
+    background: #1a3e72;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
 }
 
+.consultation-btn:hover {
+    background: #2b6cb0;
+}
+
+.consultation-btn i {
+    margin-right: 0.5rem;
+}
 .worry-emoji {
   font-size: 1.7rem;
   margin-right: 6px;

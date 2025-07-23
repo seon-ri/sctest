@@ -2376,6 +2376,7 @@ footer {
 
 /* 모바일 알림 바: 기본은 숨김 */
 .mobile-notice-bar {
+    display: block;
     position: absolute;
     top: 50%;
     right: 20px;
@@ -2403,9 +2404,9 @@ footer {
 }
 
 /* 모바일에서만 보이게 */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1025px) {
     .mobile-notice-bar {
-        display: block;
+        display: none;
     }
 }
 

@@ -2240,10 +2240,36 @@ footer {
   }
 
   .hero-content {
-    margin-left: 1rem;
-    margin-top: 1rem;
-    max-width: 100%;
-  }
+        display: none !important;  /* 모바일에서만 숨김 */
+    }
+.mobile-title-box {
+    display: none;
+}
+
+/* 모바일에서만 표시 */
+    .mobile-title-box {
+        display: block;
+        background: #1a3e72;
+        color: white;
+        padding: 1.2rem 1rem;
+        text-align: center;
+        border-radius: 8px 8px 0 0;  /* 상단만 둥글게 */
+    }
+    
+    .mobile-hero-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        word-break: keep-all;
+    }
+    
+    .mobile-hero-subtitle {
+        font-size: 0.9rem;
+        font-weight: 400;
+        margin: 0;
+        opacity: 0.9;
+        word-break: keep-all;
+    }
 
   .hero-title {
     font-size: 2.2rem;

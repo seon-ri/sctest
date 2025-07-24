@@ -1744,6 +1744,7 @@ footer {
     position: absolute;      /* ← 반드시 absolute! */
     top: 0rem;
     padding-bottom: 1rem; /* 기존보다 줄임 (기존 2rem 이상인 경우) */
+    padding: 2rem 1.5rem;  
     bottom: 0rem;
     right: 80px;            
     width: 420px;
@@ -1751,20 +1752,20 @@ footer {
     border: none;
     background: #f8fafc;                    /* 아주 연한 블루 배경 */
     border-radius: 0px;  
-    padding: 2rem 1.5rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 2rem 2.5rem;
     z-index: 2;
     color: #222;
-      font-size: 1.08rem;
+    font-size: 1.08rem;
     display: block;
     margin-top: 0;           /* margin-top 제거! */
+    margin-bottom: 2rem;  /* 하단 간격 추가 */
 }
 
 .worry-title {
   font-size: 1.4rem;
   font-weight: 700;
   padding-left: 2.5rem;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
   align-items: center;
   text-align: left;
@@ -1789,7 +1790,7 @@ footer {
 }
 .worry-list {
   list-style: none;
-  padding: 1.2rem;  /* 상 우 하 좌 */
+  padding: 1rem 1.5rem 1rem 1rem;  /* 상 우 하 좌 */
   margin: 0.5rem 0.5rem 1rem 0.5rem;
   color: #333;
   font-size: 1.06rem;
@@ -1800,6 +1801,11 @@ footer {
   border-radius: 8px;      /* 둥근 모서리 */
   margin-bottom: 1rem;     /* 아래 간격 */
 }
+    .worry-list li {
+        padding-right: 0.5rem;  /* 오른쪽 여백 추가 */
+        word-break: keep-all;   /* 단어 단위로 줄바꿈 */
+        line-height: 1.6;       /* 줄간격 조정 */
+      
 .worry-ask {
   margin-top: 21px;
   text-align: center;    /* 중앙 정렬 */
@@ -2034,7 +2040,7 @@ body.pc-version .mobile-title-box {
   }
 
   .hero-subtitle {
-    background: #1956a5 !important;
+    background: none; !important;
     color: #ffffff !important;
     font-size: 2rem;
     margin: 0 0 1rem 15%;  /* 화면이 작아지면 여백도 줄임 */
@@ -2044,9 +2050,13 @@ body.pc-version .mobile-title-box {
   }
 
   .worry-box {
-    right: 15%;             /* 화면이 작아지면 여백도 줄임 */
-    max-width: 40%;         /* 최대 너비 증가 */
-    padding: 1.5rem 2rem;
+   position: relative;         /* absolute → relative로 변경 */
+    right: auto;                /* 오른쪽 고정 해제 */
+    margin: 2rem auto;          /* 수평 가운데 정렬 */
+    max-width: 500px;           /* 너무 좁지 않게 적당한 최대 너비 */
+    padding: 1.5rem 1.5rem;     /* 양 옆 여백 줄임 */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);  /* 살짝 떠보이게 */
+    border-radius: 12px;
   }
 }
 
@@ -2323,7 +2333,9 @@ body.pc-version .mobile-title-box {
   .quick-menu-grid {
     gap: 1rem;
   }
-
+  .quick-menu-section {
+        margin-top: 0;  /* 워리박스와 붙이기 */
+    }
   .worry-box {
     position: relative;     /* absolute에서 relative로 변경 */
     right: auto;
@@ -2336,7 +2348,10 @@ body.pc-version .mobile-title-box {
   .worry-title {
     font-size: 1.1rem;
     padding-left: 2.5rem;
-    margin-bottom: 1rem 0 0.5rem 0;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     align-items: center;
     text-align: left;
     justify-content: center;
@@ -2346,6 +2361,7 @@ body.pc-version .mobile-title-box {
     font-size: 0.9rem;
     line-height: 2;
     margin: 0.5rem 0.8rem 0.5rem 0.8rem;
+    padding: 1rem 1.5rem 1rem 1rem;  /* 좌우 여백 늘리기 */
   }
 
   .worry-ask {
@@ -2417,7 +2433,8 @@ body.pc-version .mobile-title-box {
         padding: 1rem 1.5rem;
         box-sizing: border-box;
     }
-    
+
+  
     /* 본문 글씨도 함께 */
     .content-card-new p,
     .content-card-new li {
@@ -2426,10 +2443,21 @@ body.pc-version .mobile-title-box {
     }
     
     .content-card-new h3 {
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
     }
+
+  .section-subtitle,
+  .content-card p,
+  .content-card li,
+  p,
+  li {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  
     /* 메인 제목들 */
-    .section-header h2 { font-size: 1.1rem; }  /* 기존보다 줄임 */
+    .section-header h2 { font-size: 1rem; }  /* 기존보다 줄임 */
     
     /* 서브 제목들 */
     h3 { font-size: 0.95rem; }

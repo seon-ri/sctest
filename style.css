@@ -87,7 +87,9 @@
     max-width: 700px;
     margin: 0 auto;
 }
-
+#about-location .location-cards-vertical {
+  min-height: 70vh;
+}
 /* 구속전 교육 상세 내용 가로 배치 */
 .expandable-content-horizontal {
     display: none;
@@ -499,8 +501,8 @@ body {
    backdrop-filter: none;
    color: #ffffff !important;
    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4) !important;
-   font-size: 1.4rem;
-   font-weight: 500;
+   font-size: 1.6rem;
+   font-weight: 600;
     margin: 0.5rem auto 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
     white-space: normal;     
     box-shadow: none;
@@ -2010,7 +2012,7 @@ footer {
 .worry-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 24px 0;
+  margin: 1rem 0 2rem 0;
   color: #333;
   font-size: 1.06rem;
   line-height: 2.6;
@@ -2029,7 +2031,14 @@ footer {
   color: #1a3e72; 
    margin-bottom: 0.5rem; /* 버튼 아래 공간 축소 */
   }
+.worry-ask p {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
 
+  
 /* 상담 버튼 스타일 */
 .consultation-btn {
     display: inline-block;

@@ -1805,7 +1805,8 @@ footer {
         padding-right: 0.5rem;  /* 오른쪽 여백 추가 */
         word-break: keep-all;   /* 단어 단위로 줄바꿈 */
         line-height: 1.6;       /* 줄간격 조정 */
-      
+   }    
+
 .worry-ask {
   margin-top: 21px;
   text-align: center;    /* 중앙 정렬 */
@@ -2333,9 +2334,7 @@ body.pc-version .mobile-title-box {
   .quick-menu-grid {
     gap: 1rem;
   }
-  .quick-menu-section {
-        margin-top: 0;  /* 워리박스와 붙이기 */
-    }
+
   .worry-box {
     position: relative;     /* absolute에서 relative로 변경 */
     right: auto;
@@ -2349,9 +2348,7 @@ body.pc-version .mobile-title-box {
     font-size: 1.1rem;
     padding-left: 2.5rem;
     margin-top: 1.5rem;
-    margin-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    margin-bottom: 1rem 0 0.5rem 0;
     align-items: center;
     text-align: left;
     justify-content: center;

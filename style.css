@@ -1764,9 +1764,10 @@ footer {
 .worry-title {
   font-size: 1.4rem;
   font-weight: 700;
+  padding-left: 1rem;
   margin-bottom: 1rem;
   align-items: center;
-  text-align: center;
+  text-align: left;
   justify-content: center;
   color: #1a3e72;   
   gap: 10px;
@@ -1787,17 +1788,16 @@ footer {
 }
 .worry-list {
   list-style: none;
-  padding: 0;
-  margin: 1rem 0 2rem 0;
+  padding: 1rem;  /* 상 우 하 좌 */
+  margin: 1rem auto 2rem auto;
   color: #333;
   font-size: 1.06rem;
   line-height: 2.6;
   text-align: left;
   display: inline-block;
-    background: #f1f3f8;      /* 좀 진한 배경 */
-    padding: 1rem;           /* 여백 */
-    border-radius: 8px;      /* 둥근 모서리 */
-    margin-bottom: 1rem;     /* 아래 간격 */
+  background: #f1f3f8;      /* 좀 진한 배경 */
+  border-radius: 8px;      /* 둥근 모서리 */
+  margin-bottom: 1rem;     /* 아래 간격 */
 }
 .worry-ask {
   margin-top: 21px;
@@ -1987,6 +1987,13 @@ footer {
   color: var(--text-secondary);
   font-size: 0.95rem;
   margin-left: 1rem;
+}
+
+.mobile-title-box {
+   display: none !important;  /* !important 추가 */
+}
+body.pc-version .mobile-title-box {
+    display: none !important;
 }
 
 /* 모바일 알림 바: 기본은 숨김 */
@@ -2239,16 +2246,14 @@ footer {
     padding: 2rem 1rem;
   }
 
-  .hero-content {
+.hero-content {
         display: none !important;  /* 모바일에서만 숨김 */
     }
-.mobile-title-box {
-    display: none;
-}
+
 
 /* 모바일에서만 표시 */
     .mobile-title-box {
-        display: block;
+        display: block !important;  /* !important로 강제 적용 */
         background: #1a3e72;
         color: white;
         padding: 1.2rem 1rem;
@@ -2374,19 +2379,19 @@ footer {
   }
 
     /* 메인 제목들 */
-    .section-header h2 { font-size: 1.6rem; }  /* 기존보다 줄임 */
+    .section-header h2 { font-size: 1.4rem; }  /* 기존보다 줄임 */
     
     /* 서브 제목들 */
-    h3 { font-size: 1.2rem; }
-    h4 { font-size: 1.1rem; }
-    h5 { font-size: 1rem; }
+    h3 { font-size: 1rem; }
+    h4 { font-size: 0.95rem; }
+    h5 { font-size: 0.9rem; }
     
     /* 본문 텍스트 */
-    p, li { font-size: 0.85rem; }
+    p, li { font-size: 0.8rem; }
     
     /* 메뉴/네비게이션 */
-    .nav-link { font-size: 1rem; }
-    .sub-nav-link { font-size: 1.1rem; }
+    .nav-link { font-size: 0.9rem; }
+    .sub-nav-link { font-size: 1rem; }
     
     /* 퀵메뉴 */
     .quick-menu-label { font-size: 1rem; }
@@ -2394,12 +2399,7 @@ footer {
     /* 공지사항 */
     .home-notice-title { font-size: 1.1rem; }
     .home-notice-list a { font-size: 1rem; }
-    
 
-    .expert-profile h4 { font-size: 1.2rem; }
-    .expert-profile h5 { font-size: 1.1rem; }
-    .expert-profile li { font-size: 0.8rem; }
-    .credentials { font-size: 0.85rem; }
 }
 
 @media (max-width: 480px) {

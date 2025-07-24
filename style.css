@@ -88,7 +88,7 @@
     margin: 0 auto;
 }
 #about-location .location-cards-vertical {
-  min-height: 70vh;
+  min-height: 55vh;
 }
 /* 구속전 교육 상세 내용 가로 배치 */
 .expandable-content-horizontal {
@@ -498,6 +498,7 @@ body {
 
 .hero-subtitle {
    background: none;
+  white-space: nowrap;
    backdrop-filter: none;
    color: #ffffff !important;
    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4) !important;
@@ -2004,6 +2005,15 @@ footer {
   color: #1a3e72;   
   gap: 10px;
 }
+.worry-subtitle {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;  /* 구분선 */
+}
 .worry-icon {
   width: 32px;
   height: 32px;
@@ -2084,7 +2094,10 @@ footer {
     margin-top: 1rem;             /* 제목과 간격 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);  /* 그림자 */
 }
-
+/* 모바일 하단 메뉴를 데스크톱에서 숨김 */
+.mobile-fixed-menu {
+    display: none;  /* 기본적으로 숨김 */
+}
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 2.5rem;

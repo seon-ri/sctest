@@ -505,9 +505,9 @@ body {
    border-radius: 12px;
    display: inline-block;
    line-height: 1.6;
-   margin-top: 1.3rem;
+   margin-top: 1rem;
    text-align: left;
-   padding-left: 2.5rem; /* ← 더 붙이고 싶으면 여기 조정 */
+   padding-left: 2rem; /* ← 더 붙이고 싶으면 여기 조정 */
 }
  
 /* --- LATEST POSTS SECTION --- */
@@ -1790,7 +1790,7 @@ footer {
 .worry-list {
   list-style: none;
   padding: 1.2rem;  /* 상 우 하 좌 */
-  margin: 1rem 1rem 2rem 1rem;
+  margin: 0.5rem 0.5rem 1rem 0.5rem;
   color: #333;
   font-size: 1.06rem;
   line-height: 2.6;
@@ -2050,6 +2050,18 @@ body.pc-version .mobile-title-box {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .worry-box {
+        right: 5%;           /* 오른쪽 여백 조정 */
+        width: 380px;        /* 너비 조정 */
+        max-width: 40%;      /* 최대 너비 제한 */
+    }
+    
+    .hero-content {
+        left: 10%;           /* 타이틀 위치도 조정 */
+        max-width: 55%;
+    }
+}
 @media (max-width: 768px) {
     :root {
         --header-height: 70px;
@@ -2287,6 +2299,7 @@ body.pc-version .mobile-title-box {
   }
 
   .hero-subtitle {
+     display: none !important;  /* 기존 서브타이틀 완전 숨김 */
     font-size: 1.1rem;
     margin: 0 0 1rem 10%;  /* 모바일에서는 더 작은 여백 */
     color: #ffffff;
@@ -2323,7 +2336,7 @@ body.pc-version .mobile-title-box {
   .worry-title {
     font-size: 1.1rem;
     padding-left: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem 0 0.5rem 0;
     align-items: center;
     text-align: left;
     justify-content: center;
@@ -2332,13 +2345,26 @@ body.pc-version .mobile-title-box {
   .worry-list {
     font-size: 0.9rem;
     line-height: 2;
-    margin: 1rem 1rem 2rem 1rem;
+    margin: 0.5rem 0.8rem 0.5rem 0.8rem;
   }
 
   .worry-ask {
     font-size: 1rem;
   }
 
+    .footer-notice-text {
+        font-size: 0.75rem !important;  /* 공지 텍스트도 작게 */
+    }
+    
+    .footer-contact-info {
+        font-size: 0.75rem !important;  /* 연락처도 작게 */
+    }
+      
+    .footer-copyright p {
+        font-size: 0.7rem !important;  /* 기존보다 작게 */
+        line-height: 1.4;
+    }
+    
   .mobile-fixed-menu {
     position: fixed;
     bottom: 0;
@@ -2384,7 +2410,24 @@ body.pc-version .mobile-title-box {
     font-size: 1.05rem;
     padding-bottom: 0.3rem;
   }
-
+   .content-card-new {
+        width: 95% !important;      /* PC의 120%를 덮어쓰기 */
+        max-width: 100% !important; /* PC의 900px를 덮어쓰기 */
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        box-sizing: border-box;
+    }
+    
+    /* 본문 글씨도 함께 */
+    .content-card-new p,
+    .content-card-new li {
+        font-size: 0.75rem !important;
+        line-height: 1.5;
+    }
+    
+    .content-card-new h3 {
+        font-size: 1rem !important;
+    }
     /* 메인 제목들 */
     .section-header h2 { font-size: 1.1rem; }  /* 기존보다 줄임 */
     

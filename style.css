@@ -2146,9 +2146,9 @@ body.pc-version .mobile-title-box {
         justify-content: center;
         padding: 1rem;
     }
-        .sub-nav-link {
-        flex: 0 1 45%;        /* 2개씩 배치 */
-        padding: 1rem 0.5rem;
+     .sub-nav-link {
+        flex: 0 1 30%;        /* 2개씩 배치 */
+        padding: 0.4rem 0.4rem;
         background: white;
         color: #1a3e72;
         border-radius: 12px;
@@ -2365,7 +2365,7 @@ body.pc-version .mobile-title-box {
     position: relative;     /* absolute에서 relative로 변경 */
     right: auto;
     top: auto;
-    margin: 1rem 10% 1rem auto;  /* 오른쪽 정렬 유지 */
+    margin: 1rem auto;  /* 오른쪽 정렬 유지 */
     max-width: 45%;         /* 최대 너비 증가 */
     padding: 1rem 1.5rem;
   }

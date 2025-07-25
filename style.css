@@ -2467,15 +2467,23 @@ body.pc-version .mobile-title-box {
 .services-education {
     font-size: 1.1rem;
   } 
-.services-education .content-card > p  {
-    font-size: 0.75rem;
-  } 
-
+ #services-education .content-card > p {
+    font-size: 0.75rem !important;
+    line-height: 1.5;
+  }
+}
  .career-section {
     font-size: 1.1rem;
     text-align: left;
   }
-
+  #about-members .expert-profile,
+  #about-members .profile-details {
+            width: 95% !important;      /* PC의 120%를 덮어쓰기 */
+        max-width: 100% !important; /* PC의 900px를 덮어쓰기 */
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        box-sizing: border-box;
+    }
 .content-card-new, 
   .expert-section,
   .contact-box, 

@@ -2498,11 +2498,18 @@ body.pc-version .mobile-title-box {
   .content-card.gray-border {
         width: 95% !important;      /* PC의 120%를 덮어쓰기 */
         max-width: 100% !important; /* PC의 900px를 덮어쓰기 */
-        margin: 0 auto;
+        margin: 1rem auto;
         padding: 1rem 1.5rem;
         box-sizing: border-box;
     }
-   
+
+.profile-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a3e72; /* 세온 블루 */
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
     /* 본문 글씨도 함께 */
     .content-card-new p,
     .content-card-new li {

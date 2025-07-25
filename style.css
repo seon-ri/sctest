@@ -349,7 +349,7 @@ body {
     gap: 2rem;
     list-style: none;
     background: #d1e5f8;
-    padding: 1rem;
+    padding: 0.9rem;
     border-radius: var(--border-radius);
     flex-wrap: wrap;
 }
@@ -369,7 +369,8 @@ body {
 .sub-nav-link.active {
     background: var(--primary-color);
     color: var(--white);
-     font-weight: 700;           /* 활성화된 탭도 동일하게 */
+    font-weight: 600;           /* 활성화된 탭도 동일하게 */
+    padding: 0.4rem 0.8rem; /* 상하 간격 ↓ */
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
@@ -1756,8 +1757,8 @@ footer {
     color: #222;
     font-size: 1.08rem;
     display: block;
-    margin-top: 1rem;           /* margin-top 제거! */
-    margin-bottom: 2rem;  /* 하단 간격 추가 */
+    margin-top: 0rem;           /* margin-top 제거! */
+    margin-bottom: 0rem;  /* 하단 간격 추가 */
 }
 
 .worry-title {
@@ -2143,6 +2144,17 @@ body.pc-version .mobile-title-box {
         gap: 0.5rem;
     }
     
+.sub-nav-link:hover,
+.sub-nav-link.active {
+    background: var(--primary-color);
+    font-size: 0.9rem;    /* 필요시 글자도 살짝 줄임 */
+    color: var(--white);
+    font-weight: 400;           /* 활성화된 탭도 동일하게 */
+    line-height: 1.8;
+    padding: 0.2rem 0.6rem; /* 상하 간격 ↓ */
+    box-shadow: var(--shadow);
+    border-radius: 4px; /* or 4px */
+}
     .section-container {
         padding: 2rem 1rem;
     }
@@ -2165,7 +2177,7 @@ body.pc-version .mobile-title-box {
         padding: 2rem;
     }
   
-  .sub-nav-link {
+  .-nav-link {
    line-height: 1.4;             /* ✅ 줄간격 확보 */
    white-space: normal;          /* ✅ 줄바꿈 허용 */
    word-break: keep-all;         /* ✅ 단어 단위 줄바꿈 */
@@ -2192,7 +2204,7 @@ body.pc-version .mobile-title-box {
         gap: 0.5rem;
     }
     
-    .sub-nav-link {
+    .-nav-link {
         padding: 0.4rem 1rem;     /* 모바일에서만 탭 박스 높이 줄이기 */
     }
 
@@ -2290,7 +2302,7 @@ body.pc-version .mobile-title-box {
         word-break: keep-all;
     }
     
-    .mobile-hero-subtitle {
+    .mobile-hero-title {
         font-size: 0.9rem;
         font-weight: 400;
         margin: 0;
@@ -2355,8 +2367,8 @@ body.pc-version .mobile-title-box {
   .worry-list {
     font-size: 0.9rem;
     line-height: 2;
-    margin: 0.5rem 0.8rem 0.5rem 0.8rem;
-    padding: 1rem 1.5rem 1rem 1rem;  /* 좌우 여백 늘리기 */
+    margin: 0.5rem 0.7rem 0.5rem 0.7rem;
+    padding: 1rem;  /* 좌우 여백 늘리기 */
     word-break: keep-all;   /* 단어 단위로 줄바꿈 */
   }
 

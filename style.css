@@ -499,7 +499,7 @@ body {
    backdrop-filter: none;
    color: #ffffff !important;
    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4) !important;
-   margin: 0.5rem auto 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
+   margin: 0.2rem auto 1.5rem 20%;  /* 고정 픽셀값을 퍼센트로 변경 */
    white-space: normal;     
    box-shadow: none;
    padding: 0.7rem 3rem;
@@ -2280,7 +2280,7 @@ body.pc-version .mobile-title-box {
     padding: 2rem 1rem;
   }
 
-.hero-content {
+  .hero-content {
         display: none !important;  /* 모바일에서만 숨김 */
     }
 
@@ -2296,20 +2296,13 @@ body.pc-version .mobile-title-box {
     }
     
     .mobile-hero-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-weight: 700;
+       opacity: 0.9;
         margin: 0 0 0.5rem 0;
         word-break: keep-all;
     }
     
-    .mobile-hero-title {
-        font-size: 0.9rem;
-        font-weight: 400;
-        margin: 0;
-        opacity: 0.9;
-        word-break: keep-all;
-    }
-
   .hero-title {
     font-size: 2.2rem;
     margin: 0 0 1rem 10%;  /* 모바일에서는 더 작은 여백 */
@@ -2357,8 +2350,7 @@ body.pc-version .mobile-title-box {
   .worry-title {
     font-size: 1.1rem;
     padding-left: 2.5rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem 0 0.5rem 0;
+    margin: 0.5rem 0 0 0;
     align-items: center;
     text-align: left;
     justify-content: center;
@@ -2367,9 +2359,10 @@ body.pc-version .mobile-title-box {
   .worry-list {
     font-size: 0.9rem;
     line-height: 2;
-    margin: 0.5rem 0.7rem 0.5rem 0.7rem;
-    padding: 1rem;  /* 좌우 여백 늘리기 */
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 0.9rem;  /* 좌우 여백 늘리기 */
     word-break: keep-all;   /* 단어 단위로 줄바꿈 */
+    white-space: nowrap;
   }
 
   .worry-ask {
@@ -2434,15 +2427,18 @@ body.pc-version .mobile-title-box {
     font-size: 1.05rem;
     padding-bottom: 0.3rem;
   }
-   .content-card-new {
+  .content-card-new, 
+  .expert-section,
+  .contact-box, 
+  .content-card, 
+  .expert-section{
         width: 95% !important;      /* PC의 120%를 덮어쓰기 */
         max-width: 100% !important; /* PC의 900px를 덮어쓰기 */
         margin: 0 auto;
         padding: 1rem 1.5rem;
         box-sizing: border-box;
     }
-
-  
+   
     /* 본문 글씨도 함께 */
     .content-card-new p,
     .content-card-new li {

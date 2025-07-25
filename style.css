@@ -2150,7 +2150,7 @@ body.pc-version .mobile-title-box {
         gap: 0.5rem;
         justify-content: center;
         background: #d1e5f8;     /* 하늘색 배경 유지 */
-        padding: 1rem 0.8rem;    /* 상하 패딩 늘리기 */
+        padding: 1rem 0.3rem;    /* 상하 패딩 늘리기 */
         border-radius: var(--border-radius);
         margin: 0;               /* 마진 제거해서 공간 절약 */
     }
@@ -2460,18 +2460,24 @@ body.pc-version .mobile-title-box {
     padding-bottom: 0.3rem;
   }
 .content-card ul li, 
+.content-card ul li i,
 .content-card p {
     font-size: 0.75rem;
   }
 .services-education {
     font-size: 1.1rem;
   }
+ .career-section {
+    font-size: 1.1rem;
+    text-align: left;
+  }
 
-  .content-card-new, 
+.content-card-new, 
   .expert-section,
   .contact-box, 
   .content-card, 
   .expert-profile,
+  .career-section,
   .content-card.gray-border {
         width: 95% !important;      /* PC의 120%를 덮어쓰기 */
         max-width: 100% !important; /* PC의 900px를 덮어쓰기 */

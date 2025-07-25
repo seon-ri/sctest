@@ -2139,12 +2139,20 @@ body.pc-version .mobile-title-box {
      font-size: 0.85rem;
      }
 
-    .sub-nav-list {
+  .sub-navigation {
+        margin-bottom: 1rem;     /* 기존보다 하단 간격 줄이기 */
+        padding-bottom: 0;       /* 패딩 제거 */
+    }
+  
+  .sub-nav-list {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
         justify-content: center;
-        padding: 1rem;
+        background: #d1e5f8;     /* 하늘색 배경 유지 */
+        padding: 1rem 0.8rem;    /* 상하 패딩 늘리기 */
+        border-radius: var(--border-radius);
+        margin: 0;               /* 마진 제거해서 공간 절약 */
     }
      .sub-nav-link {
         flex: 0 1 30%;        /* 2개씩 배치 */
@@ -2155,6 +2163,7 @@ body.pc-version .mobile-title-box {
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         font-size: 0.8rem;
         font-weight: 600;
+        line-height: 2.2;
         text-align: center;
     }
     .sub-nav-link.active {
@@ -2366,7 +2375,7 @@ body.pc-version .mobile-title-box {
     right: auto;
     top: auto;
     margin: 1rem auto;  /* 오른쪽 정렬 유지 */
-    max-width: 45%;         /* 최대 너비 증가 */
+    width: 90%;      
     padding: 1rem 1.5rem;
   }
 
@@ -2450,6 +2459,14 @@ body.pc-version .mobile-title-box {
     font-size: 1.05rem;
     padding-bottom: 0.3rem;
   }
+.content-card ul li, 
+.content-card p {
+    font-size: 0.75rem;
+  }
+.services-education {
+    font-size: 1.1rem;
+  }
+
   .content-card-new, 
   .expert-section,
   .contact-box, 

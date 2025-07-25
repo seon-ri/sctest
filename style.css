@@ -2466,7 +2466,11 @@ body.pc-version .mobile-title-box {
   }
 .services-education {
     font-size: 1.1rem;
-  }
+  } 
+.services-education .content-card > p  {
+    font-size: 0.75rem;
+  } 
+
  .career-section {
     font-size: 1.1rem;
     text-align: left;
@@ -2477,6 +2481,7 @@ body.pc-version .mobile-title-box {
   .contact-box, 
   .content-card, 
   .expert-profile,
+  .profile-details,
   .career-section,
   .content-card.gray-border {
         width: 95% !important;      /* PC의 120%를 덮어쓰기 */

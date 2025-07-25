@@ -2476,9 +2476,12 @@ body.pc-version .mobile-title-box {
     font-size: 1.1rem;
     text-align: left;
   }
+
+  #about-members .expert-section,
   #about-members .expert-profile,
-  #about-members .profile-details {
-            width: 95% !important;      /* PC의 120%를 덮어쓰기 */
+  #about-members .profile-details,
+  #about-members .career-section {
+       width: 95% !important;      /* PC의 120%를 덮어쓰기 */
         max-width: 100% !important; /* PC의 900px를 덮어쓰기 */
         margin: 0 auto;
         padding: 1rem 1.5rem;

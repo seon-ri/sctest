@@ -2173,20 +2173,6 @@ body.pc-version .mobile-title-box {
         box-shadow: 0 4px 12px rgba(26, 62, 114, 0.3);
     }
   
-/* 기존 모바일 서브네비 주석처리 */
-/*
-.sub-nav-link:hover,
-.sub-nav-link.active {
-    background: var(--primary-color);
-    font-size: 0.9rem;    /* 필요시 글자도 살짝 줄임 */
-    color: var(--white);
-    font-weight: 400;           /* 활성화된 탭도 동일하게 */
-    line-height: 1.8;
-    padding: 0.2rem 0.6rem; /* 상하 간격 ↓ */
-    box-shadow: var(--shadow);
-    border-radius: 4px; /* or 4px */
-} */
-  
     .section-container {
         padding: 2rem 1rem;
     }
@@ -2471,10 +2457,14 @@ body.pc-version .mobile-title-box {
     font-size: 0.75rem !important;
     line-height: 1.5;
   }
-}
+ .local-list {
+       line-height: 1.6;
+  }
+  
  .career-section {
     font-size: 1.1rem;
     text-align: left;
+    peding: 1rem; 
   }
 
   #about-members .expert-section,
@@ -2552,7 +2542,6 @@ body.pc-version .mobile-title-box {
     /* 공지사항 */
     .home-notice-title { font-size: 1.1rem; }
     .home-notice-list a { font-size: 1rem; }
-
 }
 
 @media (max-width: 480px) {

@@ -811,6 +811,29 @@ footer {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
 }
+.director-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.director-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.director-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.director-card h6 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
 /* 자문위원 섹션 스타일 */
 .advisory-section {
     margin-top: 2rem;

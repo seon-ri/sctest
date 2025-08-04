@@ -811,8 +811,89 @@ footer {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
 }
+/* 자문위원 섹션 스타일 */
+.advisory-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
 
+.advisory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
 
+.advisory-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.advisory-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.advisory-card h5 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.advisory-position {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+}
+
+.advisory-specialty {
+    color: #495057;
+    font-size: 0.85rem;
+    margin: 0.25rem 0;
+    font-style: italic;
+}
+
+/*협력기관 */
+.partner-section {
+    margin-top: 2rem;
+}
+
+.partner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.partner-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.partner-category {
+    background: #e3f2fd;
+    color: #1976d2;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+}
+
+.partner-description {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0 0;
+}
 /* 검사 버튼 스타일 */
 .test-link {
     margin-top: 1.5rem;

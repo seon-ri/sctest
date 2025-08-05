@@ -814,8 +814,9 @@ footer {
 .director-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-top: 1rem;
+    max-width: 900px;
 }
 
 .director-card {
@@ -885,13 +886,10 @@ footer {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid #e0e0e0;
+    margin-bottom: 3rem;
 }
 
 /* 첫 번째 섹션(연구소장)은 구분선 제거 */
-.leadership-section:first-child {
-    border-top: none;
-    padding-top: 0;
-}
 .leadership-section:first-child {
     margin-top: 0;
     padding-top: 0;

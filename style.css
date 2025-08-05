@@ -877,8 +877,7 @@ footer {
 }
 
 /* 상담위원 */
-<h4 class="profile-name" style="color: #1a3e72; margin-bottom: 0.5rem; text-align: center;">
-정혜정 소장 </h4>     
+ 
 
 
 /* 자문위원 섹션 스타일 */
@@ -934,13 +933,19 @@ footer {
 .staff-specialty {
     color: #495057;
     font-size: 0.85rem;
-    margin: 0.25rem 0;
+    margin: 0.25rem 0 0.25rem 0;
     font-style: italic;
 }
 
 /*협력기관 */
 .partner-section {
     margin-top: 2rem;
+}
+
+/* 첫 번째 섹션(주요협력기관)은 구분선 제거 */
+.partner-section:first-child {
+    border-top: none;
+    padding-top: 0;
 }
 
 .partner-grid {

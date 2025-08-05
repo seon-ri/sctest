@@ -2255,7 +2255,9 @@ body.pc-version .mobile-title-box {
         display: flex;
     }
   
-    
+   .director-cards {
+        grid-template-columns: 1fr;
+    }
     .about-content {
         padding: 0 1rem;
     }

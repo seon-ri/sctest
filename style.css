@@ -835,11 +835,6 @@ footer {
     font-weight: 600;
 }
 /* 자문위원 섹션 스타일 */
-.advisory-section {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e0e0e0;
-}
 
 .advisory-grid {
     display: grid;
@@ -882,8 +877,8 @@ footer {
 }
 
 /* 상담위원 */
-			<h4 class="profile-name" style="color: #1a3e72; margin-bottom: 0.5rem; text-align: center;">
-  				정혜정 소장 </h4>     
+<h4 class="profile-name" style="color: #1a3e72; margin-bottom: 0.5rem; text-align: center;">
+정혜정 소장 </h4>     
 
 
 /* 자문위원 섹션 스타일 */
@@ -893,6 +888,11 @@ footer {
     border-top: 1px solid #e0e0e0;
 }
 
+/* 첫 번째 섹션(연구소장)은 구분선 제거 */
+.leadership-section:first-child {
+    border-top: none;
+    padding-top: 0;
+}
 .leadership-section:first-child {
     margin-top: 0;
     padding-top: 0;

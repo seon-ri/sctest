@@ -887,12 +887,17 @@ footer {
 
 
 /* 자문위원 섹션 스타일 */
-.staff-section {
+.leadership-section {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid #e0e0e0;
 }
 
+.leadership-section:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
 .staff-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

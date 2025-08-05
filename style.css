@@ -938,6 +938,7 @@ footer {
 /*협력기관 */
 .partner-section {
     margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 /* 첫 번째 섹션(주요협력기관)은 구분선 제거 */

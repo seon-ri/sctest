@@ -638,40 +638,13 @@
             </div>
         </section>
 
- <!-- 게시판 -->
+<!-- 게시판 -->
 <section id="board" class="content-section">
   <div class="section-container">
-     <div class="section-header">
+    <div class="section-header">
       <h2>게시판</h2>
-      <p class="section-subtitle">공지사항</p>
+      <p class="section-subtitle">연구소 소식 및 전문 콘텐츠</p>
     </div>
-
-           <!-- 서브 네비게이션 -->
-                <div class="sub-navigation">
-                    <ul class="sub-nav-list">
-                        <li><a href="#" data-subsection="notice" class="sub-nav-link active">공지사항</a></li>
-                        <li><a href="#" data-subsection="case cipher" class="sub-nav-link">case cipher</a></li> 
-                    </ul>
-                </div>
-              <!-- 공지사항-->
-                <div class="sub-content active" id="board-notice">
-                    <div class="content-card gray-border">
-                        <ul>
-                            <li><i class="bi bi-check2-circle"></i>종결된 사건에 대한 심리적 이해가 필요한 당사자</li> 
-                        </ul>
-                    </div>
-                </div>
-              <!-- case -->
-                <div class="sub-content active" id="board-case cipher">
-                    <div class="content-card gray-border">
-                        <ul>
-                            <li><i class="bi bi-check2-circle"></i>종결된 사건에 대한 심리적 이해가 필요한 당사자</li> 
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
 
     <!-- 탭 메뉴 -->
     <div class="board-tabs">
@@ -679,14 +652,8 @@
       <button class="tab-btn" data-category="case-cipher">Case Cipher</button> 
     </div>
 
-    <!-- 공지사항 영역 -->
-    <div id="notice-section" style="margin: 1.5rem 0;">
-      <h3>📢 공지사항</h3>
-      <div id="notice-posts"></div>
-    </div>
-
     <!-- 게시글 테이블 -->
-    <div class="board-table-container">
+    <div class="board-table-container" style="max-width: 1000px; margin: 0 auto;">
       <table class="board-table">
         <thead>
           <tr>
@@ -707,9 +674,10 @@
     <!-- 페이지네이션 -->
     <div id="pagination" class="pagination"></div>
 
-  </div> <!-- section-container -->
-</section> <!-- ✅ 섹션 닫기 여기까지 -->
+  </div>
+</section>
 
+		
     <!-- Footer -->
 <footer>
   <div class="footer-bar">

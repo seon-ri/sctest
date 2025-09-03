@@ -1686,15 +1686,11 @@ body {
 }
 
 /* 리스트 아이콘 개선 */
-.content-card ul li {
-    content: "\f4a6"; /* bi-chevron-right */
-    position: absolute;
-    left: 0;
-    top: 0.1rem;
-    color: var(--primary-color);
-    font-family: 'bootstrap-icons';
-    font-size: 0.8rem;
+.content-card ul {
+  list-style: disc;   /* 원형 불릿 */
+  padding-left: 1.2rem;
 }
+ 
 
 /* ================================
    모바일 추가 수정

@@ -1652,7 +1652,202 @@ body {
 .btn-secondary:hover {
     background-color: #545b62;
 }
+* ================================
+   시각적 개선 - 아이콘 추가
+   ================================ */
 
+/* 메뉴 아이콘 */
+.nav-link::before {
+    margin-right: 0.5rem;
+    font-family: 'bootstrap-icons';
+    font-size: 0.9rem;
+}
+
+.nav-link[data-section="about"]::before {
+    content: "\f4da"; /* bi-people */
+}
+
+.nav-link[data-section="education-counseling"]::before {
+    content: "\f4d3"; /* bi-book */
+}
+
+.nav-link[data-section="evaluation"]::before {
+    content: "\f4eb"; /* bi-clipboard-data */
+}
+
+.nav-link[data-section="analysis"]::before {
+    content: "\f4f5"; /* bi-graph-up */
+}
+
+.nav-link[data-section="education-research"]::before {
+    content: "\f4c7"; /* bi-mortarboard */
+}
+
+.nav-link[data-section="board"]::before {
+    content: "\f4ca"; /* bi-journal-text */
+}
+
+/* 서브 네비게이션 아이콘 */
+.sub-nav-link::before {
+    margin-right: 0.3rem;
+    font-family: 'bootstrap-icons';
+    font-size: 0.8rem;
+}
+
+/* FAQ 아이콘 */
+.faq-question::before {
+    content: "\f4c4"; /* bi-question-circle */
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+    font-family: 'bootstrap-icons';
+}
+/* ================================
+   콘텐츠 카드 시각적 개선
+   ================================ */
+
+.content-card h3::before,
+.content-card-new h2::before {
+    content: "\f4f3"; /* bi-award */
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+    font-family: 'bootstrap-icons';
+}
+
+.content-card h4::before,
+.content-card-new h3::before {
+    content: "\f4a6"; /* bi-chevron-right */
+    margin-right: 0.5rem;
+    color: var(--secondary-color);
+    font-family: 'bootstrap-icons';
+}
+
+/* 리스트 아이콘 개선 */
+.content-card ul li::before,
+.content-card-new ul li::before {
+    content: "\f4a6"; /* bi-chevron-right */
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    color: var(--primary-color);
+    font-family: 'bootstrap-icons';
+    font-size: 0.8rem;
+}
+
+/* ================================
+   모바일 추가 수정
+   ================================ */
+
+@media (max-width: 768px) {
+    /* 프로세스 스텝 모바일 */
+    .process-steps::before {
+        left: 1rem;
+    }
+    
+    .step-box {
+        margin-left: 2.5rem;
+        padding: 1.5rem;
+    }
+    
+    .step-box::before {
+        left: -2.5rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+    
+    /* Footer 모바일 */
+    .footer-bar {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .footer-notice-text {
+        font-size: 0.85rem;
+    }
+    
+    .footer-contact-info {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .footer-copyright {
+        font-size: 0.75rem;
+    }
+    
+    /* 아이콘 크기 조정 */
+    .nav-link::before,
+    .sub-nav-link::before,
+    .faq-question::before {
+        font-size: 0.7rem;
+    }
+    
+    .content-card h3::before,
+    .content-card-new h2::before {
+        font-size: 0.9rem;
+    }
+}
+
+/* ================================
+   추가 시각적 개선
+   ================================ */
+
+/* 그라데이션 배경 */
+.hero {
+    background: linear-gradient(rgba(26, 62, 114, 0.3), rgba(26, 62, 114, 0.3)), url('main.jpg') no-repeat center center/cover;
+}
+
+/* 버튼 개선 */
+.consultation-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 4px 15px rgba(26, 62, 114, 0.3);
+    transition: all 0.3s ease;
+}
+
+.consultation-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 62, 114, 0.4);
+}
+
+/* 카드 호버 효과 */
+.content-card:hover,
+.content-card-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* 로딩 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-section.active {
+    animation: fadeInUp 0.6s ease;
+}
+
+/* 강제 모바일 적용 */
+@media screen and (max-width: 480px) {
+    .worry-box {
+        width: 95% !important;
+        margin: 1rem auto !important;
+        padding: 1rem !important;
+    }
+    
+    .section-container {
+        padding: 1rem 0.5rem !important;
+    }
+    
+    .content-card,
+    .content-card-new {
+        margin: 1rem 0.5rem !important;
+        padding: 1rem !important;
+    }
+}
 /* ================================
    Footer
    ================================ */

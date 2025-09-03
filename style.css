@@ -1686,7 +1686,7 @@ body {
 }
 
 /* 리스트 아이콘 개선 */
-.content-card ul li::before {
+.content-card ul li {
     content: "\f4a6"; /* bi-chevron-right */
     position: absolute;
     left: 0;

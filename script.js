@@ -39,16 +39,7 @@ const subsectionMapping = {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('[DOMContentLoaded] 초기화 시작');
     
-    // PC 버전 설정
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('version') === 'pc') {
-        document.body.classList.add('pc-version');
-        let viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport) {
-            viewport.content = "width=1200, initial-scale=0.5";
-        }
-    }
-    
+       
     // 초기 화면 설정
     showSection('home');
     loadHomepagePosts();

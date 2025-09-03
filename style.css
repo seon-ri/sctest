@@ -1685,12 +1685,6 @@ body {
     font-family: 'bootstrap-icons';
 }
 
-/* 리스트 아이콘 개선 */
-.content-card ul {
-  list-style: disc;   /* 원형 불릿 */
-  padding-left: 1.2rem;
-}
- 
 
 /* ================================
    모바일 추가 수정

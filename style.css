@@ -1179,8 +1179,7 @@ body {
 }
 
 /* 스텝 제목에 아이콘 추가 */
-.step-box h4::before,
-.step-box h5::before {
+.step-box h4::before  {
     margin-right: 0.5rem;
     color: var(--primary-color);
     font-family: 'bootstrap-icons';

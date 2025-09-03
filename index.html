@@ -49,10 +49,10 @@
                     </div>
                 </a>
             </div>
-    <!-- ✅ pc버전 -->
+    <!-- ✅ pc버전 사용안함
 	<div class="mobile-notice-bar">
     	   <a href="?version=pc">PC 버전</a>
-	   </div>
+	   </div> -->
             <!-- 메인 네비게이션 -->
              <nav class="main-nav">
                 <ul>
@@ -199,6 +199,7 @@
                     <span class="home-notice-title">공지사항</span>
                     <a href="#" class="home-notice-plus" data-target="notice">+</a>
                   </div>
+					 <p class="home-notice-desc">운영 안내, 일정 변경, 신규 프로그램 공지</p>
                   <ul id="home-notice-list" class="home-notice-list">
                     <li>로딩 중...</li>
                   </ul>
@@ -209,6 +210,7 @@
                     <span class="home-notice-title">Case Cipher</span>
                     <a href="#" class="home-notice-plus" data-target="case-cipher">+</a>
                   </div>
+					 <p class="home-notice-desc">전문가 관점의 사건 해설·분석 콘텐츠</p>
                   <ul id="home-case-list" class="home-notice-list">
                     <li>로딩 중...</li>
                   </ul>
@@ -316,7 +318,7 @@
                             </div>
                             <div class="staff-card">
                                 <h5>최보경</h5>
-                                <p class="staff-position">범죄심리사 1급, 범죄피해평가전문가</p>
+                                <p class="staff-position">범죄심리사1급, 피해평가전문가</p>
                                 <p class="staff-specialty">범죄심리분석, 피해자상담</p>
                             </div>
                         </div>
@@ -358,11 +360,11 @@
         <!-- 연락처 정보 -->
         <div class="contact-details">
           <p><strong>전화 상담</strong>: 
-            <a href="tel:050714638122" style="color:#1a3555; text-decoration:none;">
+            <a href="tel:0507-1463-8122" style="color:#1a3555; text-decoration:none;">
               0507-1463-8122</a>
           </p>
           <br>
-          <p><strong>운영시간</strong>: 평일 9:00 ~ 18:00</p>
+          <p><strong>운영시간</strong>: 평일 9:00 ~ 18:00/ 필요시 야간·주말 운영</p>
         </div>
         <br>
         
@@ -371,8 +373,8 @@
           <h4>서비스 제공 원칙</h4> <br>
           <p>더세온연구소는 모든 서비스에 대해 전문적 기준과 윤리적 원칙을 적용합니다.</p>
           <p><strong>분석 서비스</strong>는 충분한 자료 확보와 과학적 분석 기법의 적용 가능성을 사전 검토한 후 진행됩니다.</p>
-          <p><strong>교육 및 상담 수료 후</strong> 수료증은 발급되나, <strong>의견서</strong>는 객관적 근거와 실질적 변화가 확인된 경우에 한해 제공됩니다.</p>
-          <p>전문적 판단에 따라 부적합하다고 인정되는 경우, 서비스 제공이 제한될 수 있습니다. 이는 전문성 유지와 서비스 품질 보장을 위한 원칙입니다.</p>
+          <p><strong>교육 및 상담 수료 후</strong> 수료증은 즉시 발급되나, <strong>의견서</strong>는 사실관계·자료, 평가/교육 결과, 법정 활용 적합성 등을 종합 검토하여 발급합니다.</p>
+          <p>모든 상담·평가 내용은 <strong>비밀이 보장</strong>되며, 동의 없이 제3자에게 제공하지 않습니다.</p>
         </div>
        
  
@@ -1143,20 +1145,21 @@
 <script src="script.js"></script>
 
 <!-- ✅ 모바일 하단 고정 메뉴 -->
+<!-- HTML에서 이렇게 수정 -->
 <div class="mobile-fixed-menu">
-  <a href="#" class="menu-item" onclick="showSection('about')">
+  <a href="#" class="menu-item" data-section="about">
     <i class="bi bi-person-lines-fill"></i>
     <span>소개</span>
   </a>
-  <a href="#" class="menu-item" onclick="showSection('education-counseling')">
+  <a href="#" class="menu-item" data-section="education-counseling">
     <i class="bi bi-briefcase-fill"></i>
     <span>심리교육·상담</span>
   </a>
-  <a href="#" class="menu-item" onclick="showSection('evaluation')">
+  <a href="#" class="menu-item" data-section="evaluation">
     <i class="bi bi-search"></i>
     <span>심리평가</span>
   </a>
-  <a href="#" class="menu-item" onclick="showSection('analysis')">
+  <a href="#" class="menu-item" data-section="analysis">
     <i class="bi bi-diagram-3"></i>
     <span>진술·양형·사건분석</span>
   </a>

@@ -1120,7 +1120,86 @@ body {
     font-size: var(--font-size-base);
     line-height: 1.6;
 }
+/* ================================
+   교육절차 아이콘 및 시각적 개선
+   ================================ */
 
+.process-steps {
+    position: relative;
+    margin: 2rem 0;
+}
+
+/* 프로세스 연결선 */
+.process-steps::before {
+    content: '';
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    z-index: 1;
+}
+
+.step-box {
+    position: relative;
+    margin-left: 4rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-left: none;
+    z-index: 2;
+}
+
+/* 스텝 번호 원 */
+.step-box::before {
+    content: attr(data-step);
+    position: absolute;
+    left: -4rem;
+    top: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(26, 62, 114, 0.3);
+    z-index: 3;
+}
+
+.step-box.optional::before {
+    background: var(--secondary-color);
+}
+
+/* 스텝 제목에 아이콘 추가 */
+.step-box h4::before,
+.step-box h5::before {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+    font-family: 'bootstrap-icons';
+}
+
+.step-box h4:contains("사전 상담")::before {
+    content: "\f4a5"; /* bi-chat-dots */
+}
+
+.step-box h4:contains("평가")::before {
+    content: "\f4eb"; /* bi-clipboard-data */
+}
+
+.step-box h4:contains("교육")::before {
+    content: "\f4d3"; /* bi-book */
+}
+
+.step-box h4:contains("결과")::before {
+    content: "\f4f3"; /* bi-award */
+}
 /* ================================
    Education-Counseling 섹션 스타일
    ================================ */

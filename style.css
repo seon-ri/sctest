@@ -1900,6 +1900,8 @@ html { scroll-behavior: smooth; }
 :root { --header-offset: 108px; } /* 공지 38 + 네비 70 */
 section[id] { scroll-margin-top: var(--header-offset); }
 
+#education{display:block !important; visibility:visible !important; height:auto !important;}
+
 .mobile-fixed-menu .menu-item {
     flex: 1;
     text-align: center;

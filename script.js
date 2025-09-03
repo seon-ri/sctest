@@ -227,15 +227,32 @@ function showSection(sectionId, subsectionId = null, skipPush = false) {
     }
 }
 
-function showSubsection(sectionId, subsectionId) {
+function showSubsection(sectionId, subsectionId, fromHistory = false) {
     console.log('[showSubsection] 호출됨 - sectionId:', sectionId, 'subsectionId:', subsectionId);
-    
+     
+    // ② 복합 id 재조합
+  const id = subsectionId ? `${sectionId}-${subsectionId}` : sectionId;
+  
+    // ③ 합친 id로 요소 찾기
+  const sectionElement = document.getElementById(realId);
+  if (!sectionElement) {
+    console.warn('[showSubsection] 섹션을 찾을 수 없음:', realId);
+    return;
+  }
     const sectionElement = document.getElementById(sectionId);
     if (!sectionElement) {
         console.warn('[showSubsection] 섹션을 찾을 수 없음:', sectionId);
         return;
     }
-    
+     // ④ 스크롤 보정(+ 문서 끝 클램프로 footer만 보이는 현상 방지)
+  const header = 108; // 공지(38)+내비(70)
+  const target = sectionElement.getBoundingClientRect().top + window.pageYOffset - header;
+  const maxTop = document.documentElement.scrollHeight - window.innerHeight;
+  window.scrollTo({ top: Math.min(target, maxTop), behavior: 'smooth' });
+
+  // ⑤ 해시 갱신(뒤로가기 중 호출이면 갱신 X)
+  if (!fromHistory) history.pushState(null, '', `#${realId}`);
+}
     // 모든 서브콘텐츠 숨기기
     sectionElement.querySelectorAll('.sub-content').forEach(content => {
         content.classList.remove('active');
@@ -363,6 +380,7 @@ function setupHistoryManagement() {
             showSection('home', null, true);
         }
     });
+
     
     // 초기 URL 해시 처리
     const initialHash = window.location.hash.replace('#', '');
@@ -444,6 +462,7 @@ async function loadHomepagePosts() {
         console.error('홈페이지 게시글 로드 실패:', error);
     }
 }
+
 
 // ================================
 // 게시글 렌더링 함수들

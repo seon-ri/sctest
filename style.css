@@ -1656,37 +1656,7 @@ body {
    시각적 개선 - 아이콘 추가
    ================================ */
 
-/* 메뉴 아이콘 */
-.nav-link::before {
-    margin-right: 0.5rem;
-    font-family: 'bootstrap-icons';
-    font-size: 0.9rem;
-}
-
-.nav-link[data-section="about"]::before {
-    content: "\f4da"; /* bi-people */
-}
-
-.nav-link[data-section="education-counseling"]::before {
-    content: "\f4d3"; /* bi-book */
-}
-
-.nav-link[data-section="evaluation"]::before {
-    content: "\f4eb"; /* bi-clipboard-data */
-}
-
-.nav-link[data-section="analysis"]::before {
-    content: "\f4f5"; /* bi-graph-up */
-}
-
-.nav-link[data-section="education-research"]::before {
-    content: "\f4c7"; /* bi-mortarboard */
-}
-
-.nav-link[data-section="board"]::before {
-    content: "\f4ca"; /* bi-journal-text */
-}
-
+ 
 /* 서브 네비게이션 아이콘 */
 .sub-nav-link::before {
     margin-right: 0.3rem;
@@ -1694,13 +1664,7 @@ body {
     font-size: 0.8rem;
 }
 
-/* FAQ 아이콘 */
-.faq-question::before {
-    content: "\f4c4"; /* bi-question-circle */
-    margin-right: 0.5rem;
-    color: var(--primary-color);
-    font-family: 'bootstrap-icons';
-}
+
 /* ================================
    콘텐츠 카드 시각적 개선
    ================================ */
@@ -1722,8 +1686,7 @@ body {
 }
 
 /* 리스트 아이콘 개선 */
-.content-card ul li::before,
-.content-card-new ul li::before {
+.content-card ul li::before {
     content: "\f4a6"; /* bi-chevron-right */
     position: absolute;
     left: 0;
@@ -1790,10 +1753,6 @@ body {
    추가 시각적 개선
    ================================ */
 
-/* 그라데이션 배경 */
-.hero {
-    background: linear-gradient(rgba(26, 62, 114, 0.3), rgba(26, 62, 114, 0.3)), url('main.jpg') no-repeat center center/cover;
-}
 
 /* 버튼 개선 */
 .consultation-btn {
@@ -2354,14 +2313,4 @@ footer {
     }
 }
 
-/* PC 버전 강제 모드 */
-body.pc-version .mobile-notice-bar,
-body.pc-version .mobile-menu-toggle,
-body.pc-version .mobile-fixed-menu,
-body.pc-version .mobile-title-box {
-    display: none;
-}
-
-body.pc-version .hero-content {
-    display: block;
-}
+ 

@@ -164,7 +164,23 @@ function handleGlobalClick(e) {
         toggleFAQ(e.target);
         return;
     }
-    
+      // 모바일 메뉴 처리
+    if (e.target.closest('.mobile-fixed-menu')) {
+        const menuItem = e.target.closest('.menu-item');
+        if (menuItem) {
+            e.preventDefault();
+            const href = menuItem.getAttribute('href');
+            console.log('전체 href:', href);
+            
+            if (href && href.startsWith('#')) {
+                const section = href.substring(1); // # 제거
+                console.log('추출된 섹션 전체:', section);
+                showSection(section);
+                return; // 이 return은 함수 안에 있어야 함
+            }
+        }
+        return; // 이것도 함수 안에 있어야 함
+    }
     // 모달 관련
     handleModalClicks(e);
     

@@ -1227,7 +1227,6 @@ body {
 .step-box {
     padding: 1.5rem;
     border-radius: var(--border-radius);
-    border-left: 4px solid var(--primary-color);
     background: var(--white);
     box-shadow: var(--shadow);
 }
@@ -1340,15 +1339,21 @@ body {
 }
 
 .assessment-tools li {
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    background: var(--light-gray);
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--secondary-color);
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+   }
+.assessment-tools li:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
 }
-
 .assessment-tools li strong {
     color: var(--primary-color);
+    font-weight: 600;
 }
 
 /* ================================
@@ -1759,7 +1764,7 @@ body {
 
 /* 버튼 개선 */
 .consultation-btn {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    
     box-shadow: 0 4px 15px rgba(26, 62, 114, 0.3);
     transition: all 0.3s ease;
 }

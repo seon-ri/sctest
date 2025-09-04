@@ -1359,6 +1359,29 @@ body {
 }
 
 /* ================================
+   이미지 삽입 스타일
+   ================================ */
+
+.content-img-container {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.content-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.content-img-container figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ================================
    Evaluation 섹션 스타일
    ================================ */
 

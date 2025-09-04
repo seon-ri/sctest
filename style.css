@@ -936,7 +936,7 @@ body {
 .test-btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+    background: #1a3e72;
     color: var(--white);
     text-decoration: none;
     border-radius: 25px;

@@ -1106,7 +1106,13 @@ body {
 .faq-item {
     margin-bottom: 1rem;
 }
-
+/* FAQ 제목에만 아이콘 추가 */
+.faq-section h4::before {
+    content: "\f4a5"; /* bi-patch-question-fill */
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+    font-family: 'bootstrap-icons';
+}
 .faq-question {
     background: var(--light-gray);
     border: none;

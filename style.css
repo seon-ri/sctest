@@ -420,6 +420,30 @@ body {
     color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
+.service-overview {
+    margin: 1.5rem 0; 
+    padding: 1rem; 
+    background-color: #f0f4f8; 
+    border-radius: 8px;
+}
+
+.principle-section {
+    padding: 1.5rem; 
+    background-color: #f8f9fa; 
+    border-left: 4px solid #dc3545;
+}
+
+.faq-section {
+    margin-top: 2rem;
+}
+
+.contact-notice p {
+    text-indent: -1.05rem; 
+    padding-left: 1rem;
+}
+.contact-notice {
+    margin-bottom: 1rem;
+}
 
 /* ================================
    서브 네비게이션

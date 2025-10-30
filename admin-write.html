@@ -16,12 +16,61 @@
         .btn-primary { background: #1a4fa0; color: #fff; border: none; padding: 10px 32px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; }
         .btn-primary:disabled { background: #aaa; }
         .write-success { color: #1a4fa0; text-align: center; margin-top: 24px; font-weight: bold; }
+
+#file-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .file-preview-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .file-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .file-preview-item .file-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-preview-item .remove-file {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+
     </style>
+
 </head>
 <body>
     <div class="admin-write-container">
         <h2>관리자 전용 글쓰기</h2>
-        <form id="admin-write-form">
+<form id="admin-write-form" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="post-title">제목</label>
                 <input type="text" id="post-title" name="title" required>
@@ -39,6 +88,15 @@
                 <label for="post-content">내용</label>
                 <textarea id="post-content" name="content" rows="10" required></textarea>
             </div>
+            <div class="form-group">
+                <label for="post-files">파일 첨부 (최대 5개, 각 10MB)</label>
+                <input type="file" 
+                       id="post-files" 
+                       name="attachments" 
+                       multiple 
+                       accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.hwp">
+            </div>
+
             <div class="form-group">
                 <label for="admin-password">관리자 암호</label>
                 <input type="password" id="admin-password" name="adminPassword" required>

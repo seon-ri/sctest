@@ -15,11 +15,24 @@ const isEdit = this.dataset.mode === 'edit';
 const postId = this.dataset.postId;
 
 try {
-  const res = await fetch(isEdit ? `/api/board/posts/${postId}` : '/api/board/posts', {
+
+const formData = new FormData();
+formData.append('title', title);
+formData.append('category', category);
+formData.append('content', content);
+formData.append('adminPassword', adminPassword);
+
+const fileInput = document.getElementById('post-files');
+if (fileInput && fileInput.files) {
+    for (let file of fileInput.files) {
+        formData.append('attachments', file);
+    }
+}
+
+const res = await fetch(isEdit ? `/api/board/posts/${postId}` : '/api/board/posts', {
     method: isEdit ? 'PUT' : 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, category, content, adminPassword })
-  });
+    body: formData
+});
 
 const result = await res.json();
 if (result.success) {
@@ -115,5 +128,3 @@ document.getElementById('admin-post-list').addEventListener('click', (e) => {
         deletePost(postId);
     }
 });
-
-

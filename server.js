@@ -7,6 +7,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const path = require('path'); 
+const multer = require('multer');
+const fs = require('fs');
 
 const app = express();
 app.use(express.json());
@@ -53,6 +55,14 @@ app.use(express.static(path.join(__dirname, './'), {
 }));
 
 app.use('/sctest', express.static(path.join(__dirname, 'sctest')));
+
+// 여기에 추가 ↓
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+app.use('/uploads', express.static(uploadDir));
+
 
 // MongoDB 연결 이벤트 리스너 먼저 설정
 mongoose.connection.on('connected', () => {

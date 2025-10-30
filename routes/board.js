@@ -11,10 +11,11 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, process.env.UPLOAD_PATH || './uploads');
     },
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    }
+ filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(originalName));
+}
 });
 
 const upload = multer({

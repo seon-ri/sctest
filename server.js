@@ -41,8 +41,8 @@ const limiter = rateLimit({
 });
 
 // Body parsing 미들웨어
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use('/api/', limiter);
 
 // 정적 파일 서빙

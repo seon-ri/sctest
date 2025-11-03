@@ -695,7 +695,7 @@ async function handleWritePostSubmit(e) {
 function getCategoryLabel(category) {
     const labels = {
         'notice': '공지사항',
-        'case-cipher': 'Case Cipher',
+        //'case-cipher': 'Case Cipher',//
         'general': '일반게시판',
         'qna': 'Q&A'
     };

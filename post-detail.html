@@ -157,70 +157,66 @@
         }
         
         // 게시글 표시 함수
-        function displayPost(post) {
-            const container = document.getElementById('post-container');
-            
-            // 관리자 권한 체크 (간단하게 로컬스토리지나 쿠키로 확인)
-         const isAdmin = false;
-            
-            container.innerHTML = `
-                <div class="post-header">
-                    <h1 class="post-title">${post.title}</h1>
-                    <div class="post-meta">
-                        <span>작성자: ${post.author ? (post.author.name || post.author.username) : '관리자'}</span>
-                        <span>작성일: ${formatDate(post.createdAt)}</span>
-                        <span>조회수: ${post.viewCount || 0}</span>
-                    </div>
-                </div>
-                
-             <div class="post-content" style="white-space: pre-wrap;">
-    ${post.content}
-</div>
-                
-${post.attachments && post.attachments.length > 0 ? `
-    <div class="post-attachments" style="margin: 30px 0; padding: 20px; background: #f9f9f9; border-radius: 8px;">
-        <h3 style="font-size: 18px; margin-bottom: 15px;">📎 첨부파일 (${post.attachments.length}개)</h3>
-        <div style="display: flex; flex-direction: column; gap: 15px;">
-            ${post.attachments.map(file => {
-                const isImage = /\.(jpg|jpeg|png|gif)$/i.test(file.originalName);
-                if (isImage) {
-                    return `
-                <div style="width: 100%; overflow-x: auto;">
-    <div style="display: flex; gap: 15px; padding: 10px 0;">
-        ${post.attachments.map(file => {
-            if (isImage) {
-                return `
-                    <img src="${file.path}" 
-                         style="max-height: 400px; width: auto; 
-                                object-fit: contain; border-radius: 8px; 
-                                cursor: pointer; border: 1px solid #ddd;"
-                         onclick="window.open('${file.path}', '_blank')">
-                `;
-            }
-        }).join('')}
-    </div>
-</div>
-                    `;
-                                } else {
-                                    return `
-                                        <a href="${file.path}" download="${file.originalName}" 
-                                           style="display: block; padding: 15px; background: white; border: 1px solid #ddd; border-radius: 6px; text-decoration: none; color: #333; min-width: 200px;">
-                                            📄 ${file.originalName}
-                                            <div style="font-size: 11px; color: #999; margin-top: 5px;">${(file.size / 1024).toFixed(1)} KB</div>
-                                        </a>
-                                    `;
-                                }
-                            }).join('')}
-                        </div>
-                    </div>
-                ` : ''}
+function displayPost(post) {
+  const container = document.getElementById('post-container');
 
-.file-name { display: none !important; }
-	     <div class="post-actions">
-	    <!-- 수정 버튼 제거 - 일반 사용자에게는 보이지 않음 -->
-	   </div>
+  // 경로 보정: './uploads/...' -> '/uploads/...'
+  const fixPath = p => (p || '').replace(/^\.?\/*/, '/');
+
+  container.innerHTML = `
+    <div class="post-header">
+      <h1 class="post-title">${post.title}</h1>
+      <div class="post-meta">
+        <span>작성자: ${post.author ? (post.author.name || post.author.username) : '관리자'}</span>
+        <span>작성일: ${formatDate(post.createdAt)}</span>
+        <span>조회수: ${post.viewCount || 0}</span>
+      </div>
+    </div>
+
+    <div class="post-content" style="white-space: pre-wrap;">
+      ${post.content}
+    </div>
+
+    ${post.attachments && post.attachments.length > 0 ? `
+      <div class="post-attachments" style="margin:30px 0; padding:20px; background:#f9f9f9; border-radius:8px;">
+        <h3 style="font-size:18px; margin-bottom:12px;">📎 첨부파일 (${post.attachments.length}개)</h3>
+
+        <!-- 가로 스크롤 스트립 -->
+        <div class="attachment-strip"
+             style="display:flex; gap:12px; overflow-x:auto; padding:6px 2px; scroll-snap-type:x mandatory;">
+          ${post.attachments.map(file => {
+            const path = fixPath(file.path);
+            const name = file.originalName || '';
+            const isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name) || /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path);
+            if (isImg) {
+              // 이미지: 잘리지 않게 contain, 세로 고정/가로 자동
+              return `
+                <img src="${path}" alt="" loading="lazy"
+                     style="height:360px; width:auto; max-width:none; object-fit:contain;
+                            border-radius:10px; border:1px solid #ddd;
+                            flex:0 0 auto; scroll-snap-align:start; cursor:zoom-in;"
+                     onclick="window.open('${path}','_blank')">
+              `;
+            }
+            // 비이미지: 파일명 숨기고 '다운로드' 버튼만
+            const sizeKB = file.size ? (file.size/1024).toFixed(1) : '';
+            return `
+              <a href="${path}" download
+                 style="display:inline-flex; align-items:center; gap:8px;
+                        padding:12px 14px; background:#fff; border:1px solid #ddd;
+                        border-radius:8px; color:#333; text-decoration:none; flex:0 0 auto;">
+                📄 다운로드 ${sizeKB ? `<span style="font-size:11px; color:#999;">(${sizeKB} KB)</span>` : ''}
+              </a>
             `;
-        }
+          }).join('')}
+        </div>
+      </div>
+    ` : ''}
+
+    <div class="post-actions"><!-- 일반 사용자용 버튼 없음 --></div>
+  `;
+}
+
         
         // 페이지 로드 시 게시글 로드
         document.addEventListener('DOMContentLoaded', loadPost);

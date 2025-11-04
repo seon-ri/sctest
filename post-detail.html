@@ -177,21 +177,22 @@
     ${post.content}
 </div>
                 
-         ${post.attachments && post.attachments.length > 0 ? `
-                    <div class="post-attachments" style="margin: 30px 0; padding: 20px; background: #f9f9f9; border-radius: 8px;">
-                        <h3 style="font-size: 18px; margin-bottom: 15px;">📎 첨부파일 (${post.attachments.length}개)</h3>
-                        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                            ${post.attachments.map(file => {
-                                const isImage = /\.(jpg|jpeg|png|gif)$/i.test(file.originalName);
-                               if (isImage) {
-    return `
-        <div style="max-width: 500px;">
-            <img src="${file.path}" 
-                 style="width: 100%; height: auto; object-fit: contain; 
-                        border-radius: 8px; cursor: pointer; border: 1px solid #ddd;"
-                 onclick="window.open('${file.path}', '_blank')">
-        </div>
-    `;
+${post.attachments && post.attachments.length > 0 ? `
+    <div class="post-attachments" style="margin: 30px 0; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+        <h3 style="font-size: 18px; margin-bottom: 15px;">📎 첨부파일 (${post.attachments.length}개)</h3>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            ${post.attachments.map(file => {
+                const isImage = /\.(jpg|jpeg|png|gif)$/i.test(file.originalName);
+                if (isImage) {
+                    return `
+                        <div style="width: 100%; max-width: 700px;">
+                            <img src="${file.path}" 
+                                 style="width: 100%; height: auto; 
+                                        border-radius: 8px; cursor: pointer; 
+                                        border: 1px solid #ddd; display: block;"
+                                 onclick="window.open('${file.path}', '_blank')">
+                        </div>
+                    `;
                                 } else {
                                     return `
                                         <a href="${file.path}" download="${file.originalName}" 

@@ -444,7 +444,7 @@ async function loadPosts(page = 1, category = null) {
 
 async function loadHomepagePosts() {
     try {
-        // 공지사항 로드
+        // 게시판 로드
         const noticeResponse = await fetch('/api/board/posts?category=notice&limit=5');
         const noticeData = await noticeResponse.json();
         if (noticeData.success) {
@@ -694,7 +694,7 @@ async function handleWritePostSubmit(e) {
 
 function getCategoryLabel(category) {
     const labels = {
-        'notice': '공지사항',
+        'notice': '게시판',
         //'case-cipher': 'Case Cipher',//
         'general': '일반게시판',
         'qna': 'Q&A'

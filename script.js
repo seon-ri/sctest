@@ -452,11 +452,11 @@ async function loadHomepagePosts() {
         }
         
         // Case Cipher 로드
-        const caseResponse = await fetch('/api/board/posts?category=case-cipher&limit=5');
+      /*   const caseResponse = await fetch('/api/board/posts?category=case-cipher&limit=5');
         const caseData = await caseResponse.json();
         if (caseData.success) {
             renderHomepagePostList(caseData.data.posts, 'home-case-list');
-        }
+        } */
     } catch (error) {
         console.error('홈페이지 게시글 로드 실패:', error);
     }

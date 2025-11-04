@@ -185,13 +185,21 @@ ${post.attachments && post.attachments.length > 0 ? `
                 const isImage = /\.(jpg|jpeg|png|gif)$/i.test(file.originalName);
                 if (isImage) {
                     return `
-                        <div style="width: 100%; max-width: 700px;">
-                            <img src="${file.path}" 
-                                 style="width: 100%; height: auto; 
-                                        border-radius: 8px; cursor: pointer; 
-                                        border: 1px solid #ddd; display: block;"
-                                 onclick="window.open('${file.path}', '_blank')">
-                        </div>
+                <div style="width: 100%; overflow-x: auto;">
+    <div style="display: flex; gap: 15px; padding: 10px 0;">
+        ${post.attachments.map(file => {
+            if (isImage) {
+                return `
+                    <img src="${file.path}" 
+                         style="max-height: 400px; width: auto; 
+                                object-fit: contain; border-radius: 8px; 
+                                cursor: pointer; border: 1px solid #ddd;"
+                         onclick="window.open('${file.path}', '_blank')">
+                `;
+            }
+        }).join('')}
+    </div>
+</div>
                     `;
                                 } else {
                                     return `
@@ -207,7 +215,7 @@ ${post.attachments && post.attachments.length > 0 ? `
                     </div>
                 ` : ''}
 
-
+.file-name { display: none !important; }
 	     <div class="post-actions">
 	    <!-- 수정 버튼 제거 - 일반 사용자에게는 보이지 않음 -->
 	   </div>

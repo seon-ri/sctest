@@ -57,7 +57,7 @@ const verifyAdminPassword = (req, res, next) => {
 router.get('/posts', [
     query('page').optional().isInt({ min: 1 }).withMessage('페이지는 1 이상이어야 합니다.'),
     query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('한 페이지당 게시글 수는 1-50개여야 합니다.'),
-    query('category').optional().isIn(['notice', 'case-cipher', 'general']).withMessage('유효하지 않은 카테고리입니다.'),
+    query('category').optional().isIn(['notice', 'general']).withMessage('유효하지 않은 카테고리입니다.'),
     query('search').optional().isString().withMessage('검색어는 문자열이어야 합니다.')
 ], async (req, res) => {
     try {
@@ -177,7 +177,7 @@ router.post('/posts', upload.array('attachments', 5), [
         .withMessage('내용을 입력해주세요.')
         .trim(),
     body('category')
-        .isIn(['notice', 'case-cipher', 'general'])
+        .isIn(['notice', 'general'])
         .withMessage('유효하지 않은 카테고리입니다.'),
     body('adminPassword')
         .notEmpty()
@@ -247,7 +247,7 @@ router.put('/posts/:postId', upload.array('attachments', 5), [
         .trim(),
     body('category')
         .optional()
-        .isIn(['notice', 'case-cipher', 'general'])
+        .isIn(['notice', 'general'])
         .withMessage('유효하지 않은 카테고리입니다.'),
     body('adminPassword')
         .notEmpty()

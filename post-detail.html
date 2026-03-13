@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +36,16 @@
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 860px;
             margin: 0 auto;
         }
-        .back-button { margin-bottom: 20px; }
+
+        .back-button {
+            margin-bottom: 20px;
+        }
+
         .back-button a {
             display: inline-block;
             padding: 10px 20px;
@@ -50,18 +56,23 @@
             font-size: 14px;
             transition: opacity 0.2s;
         }
-        .back-button a:hover { opacity: 0.8; }
+
+        .back-button a:hover {
+            opacity: 0.8;
+        }
 
         .post-detail-container {
             background: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
+
         .post-header {
             padding: 28px 32px 20px;
             border-bottom: 2px solid #f0f0f0;
         }
+
         .post-title {
             font-size: 22px;
             font-weight: 700;
@@ -70,6 +81,7 @@
             line-height: 1.4;
             word-break: keep-all;
         }
+
         .post-meta {
             display: flex;
             flex-wrap: wrap;
@@ -77,7 +89,12 @@
             color: #888;
             font-size: 13px;
         }
-        .post-meta span { display: flex; align-items: center; gap: 4px; }
+
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
         /* Quill HTML 본문 렌더링 영역 */
         .post-content {
@@ -89,17 +106,30 @@
             word-break: keep-all;
             overflow-wrap: break-word;
         }
-        /* Quill에서 생성하는 태그들 스타일 보정 */
-        .post-content p { margin: 0 0 0.8em; }
-        .post-content br { display: block; content: ""; margin-top: 0; }
-        .post-content h1, .post-content h2, .post-content h3 {
+
+        .post-content p {
+            margin: 0 0 0.8em;
+        }
+
+        .post-content br {
+            display: block;
+            content: "";
+            margin-top: 0;
+        }
+
+        .post-content h1,
+        .post-content h2,
+        .post-content h3 {
             color: #1a3e72;
             margin: 1.2em 0 0.6em;
         }
-        .post-content ul, .post-content ol {
+
+        .post-content ul,
+        .post-content ol {
             padding-left: 1.5em;
             margin: 0.5em 0;
         }
+
         .post-content blockquote {
             border-left: 4px solid #1a3e72;
             padding: 8px 16px;
@@ -107,15 +137,26 @@
             background: #f9f9f9;
             color: #555;
         }
+
         .post-content img {
             max-width: 100%;
             height: auto;
             border-radius: 6px;
             margin: 8px 0;
         }
-        .post-content a { color: #1a3e72; text-decoration: underline; }
-        .post-content strong { font-weight: 700; }
-        .post-content em { font-style: italic; }
+
+        .post-content a {
+            color: #1a3e72;
+            text-decoration: underline;
+        }
+
+        .post-content strong {
+            font-weight: 700;
+        }
+
+        .post-content em {
+            font-style: italic;
+        }
 
         /* 첨부파일 이미지 그리드 */
         .attachments-section {
@@ -123,20 +164,24 @@
             background: #fafafa;
             border-top: 1px solid #f0f0f0;
         }
+
         .attachments-title {
             font-size: 15px;
             font-weight: 600;
             color: #555;
             margin: 0 0 14px;
         }
+
         .attachment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
         }
+
         .attachment-grid img {
             width: 100%;
             height: auto;
+            max-height: 500px;
             object-fit: contain;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
@@ -144,16 +189,19 @@
             transition: transform 0.2s, box-shadow 0.2s;
             background: #fff;
         }
+
         .attachment-grid img:hover {
             transform: scale(1.02);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
         }
+
         .file-download-list {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 10px;
         }
+
         .file-download-link {
             display: inline-flex;
             align-items: center;
@@ -167,7 +215,10 @@
             font-size: 13px;
             transition: background 0.2s;
         }
-        .file-download-link:hover { background: #f0f4ff; }
+
+        .file-download-link:hover {
+            background: #f0f4ff;
+        }
 
         /* 관리자 액션 바 */
         .admin-actions {
@@ -176,12 +227,20 @@
             border-top: 1px solid #f0f0f0;
             background: #fefefe;
         }
-        .admin-actions.visible { display: flex; gap: 10px; justify-content: flex-end; align-items: center; }
+
+        .admin-actions.visible {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
         .admin-actions .admin-label {
             font-size: 12px;
             color: #999;
             margin-right: auto;
         }
+
         .admin-actions button {
             padding: 8px 20px;
             border: none;
@@ -191,9 +250,26 @@
             font-weight: 500;
             transition: opacity 0.2s;
         }
-        .admin-actions button:hover { opacity: 0.85; }
-        .btn-edit { background: #1a3e72; color: #fff; }
-        .btn-delete { background: #dc3545; color: #fff; }
+
+        .admin-actions button:hover {
+            opacity: 0.85;
+        }
+
+        .btn-edit {
+            background: #1a3e72;
+            color: #fff;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .btn-lock {
+            background: #f5f5f5;
+            color: #666;
+            border: 1px solid #ccc !important;
+        }
 
         .admin-password-bar {
             display: none;
@@ -203,7 +279,11 @@
             gap: 10px;
             align-items: center;
         }
-        .admin-password-bar.visible { display: flex; }
+
+        .admin-password-bar.visible {
+            display: flex;
+        }
+
         .admin-password-bar input {
             padding: 8px 12px;
             border: 1px solid #ccc;
@@ -211,6 +291,7 @@
             font-size: 13px;
             width: 200px;
         }
+
         .admin-password-bar button {
             padding: 8px 16px;
             border: none;
@@ -218,26 +299,136 @@
             cursor: pointer;
             font-size: 13px;
         }
-        .admin-password-bar .btn-confirm { background: #1a3e72; color: #fff; }
-        .admin-password-bar .btn-cancel { background: #aaa; color: #fff; }
 
-        .loading { text-align: center; padding: 60px 20px; color: #888; font-size: 15px; }
-        .error { text-align: center; padding: 60px 20px; color: #dc3545; font-size: 15px; }
+        .admin-password-bar .btn-confirm {
+            background: #1a3e72;
+            color: #fff;
+        }
+
+        .admin-password-bar .btn-cancel {
+            background: #aaa;
+            color: #fff;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+            font-size: 15px;
+        }
+
+        .error {
+            text-align: center;
+            padding: 60px 20px;
+            color: #dc3545;
+            font-size: 15px;
+        }
+
+        /* 플로팅 버튼 */
+        .floating-buttons {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .floating-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating-btn img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .btn-kakao {
+            background: #FEE500;
+        }
+
+        .btn-phone {
+            background: #1a3e72;
+        }
+
+        .btn-phone svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
 
         /* 모바일 반응형 */
         @media (max-width: 600px) {
-            body { padding: 12px; }
-            .post-header { padding: 20px 18px 16px; }
-            .post-title { font-size: 18px; }
-            .post-content { padding: 20px 18px 28px; font-size: 15px; }
-            .attachments-section { padding: 16px 18px; }
-            .attachment-grid { grid-template-columns: 1fr; }
-            .admin-actions { padding: 12px 18px; }
-            .admin-password-bar { padding: 10px 18px; flex-wrap: wrap; }
-            .admin-password-bar input { width: 100%; }
+            body {
+                padding: 12px;
+            }
+
+            .post-header {
+                padding: 20px 18px 16px;
+            }
+
+            .post-title {
+                font-size: 18px;
+            }
+
+            .post-content {
+                padding: 20px 18px 28px;
+                font-size: 15px;
+            }
+
+            .attachments-section {
+                padding: 16px 18px;
+            }
+
+            .attachment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-actions {
+                padding: 12px 18px;
+            }
+
+            .admin-password-bar {
+                padding: 10px 18px;
+                flex-wrap: wrap;
+            }
+
+            .admin-password-bar input {
+                width: 100%;
+            }
+
+            .floating-buttons {
+                bottom: 16px;
+                right: 16px;
+            }
+
+            .floating-btn {
+                width: 48px;
+                height: 48px;
+            }
+
+            .floating-btn img {
+                width: 26px;
+                height: 26px;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="back-button">
@@ -249,185 +440,199 @@
         </div>
     </div>
 
+    <!-- 플로팅 버튼: 카카오톡 + 전화 -->
+    <div class="floating-buttons">
+        <!-- 카카오톡 채널 상담 (아래 URL을 실제 카카오톡 채널 URL로 교체) -->
+        <a href="https://pf.kakao.com/_xnxaZxj/chat" target="_blank" class="floating-btn btn-kakao" title="카카오톡 상담">
+            <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="카카오톡">
+        </a>
+        <!-- 전화 상담 -->
+        <a href="tel:0507-1463-8122" class="floating-btn btn-phone" title="전화 상담">
+            <svg viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+        </a>
+    </div>
+
     <script>
-    (function() {
-        // URL에서 게시글 ID 추출
-        function getPostId() {
-            return new URLSearchParams(window.location.search).get('id');
-        }
-
-        // 날짜 포맷
-        function fmtDate(d) {
-            const date = new Date(d);
-            const now = new Date();
-            const diff = Math.ceil(Math.abs(now - date) / 86400000);
-            if (diff <= 1) return '오늘';
-            if (diff <= 2) return '어제';
-            if (diff <= 7) return (diff - 1) + '일 전';
-            return date.toLocaleDateString('ko-KR');
-        }
-
-        // 경로 보정
-        function fixPath(p) { return (p || '').replace(/^\.?\/*/, '/'); }
-
-        // 이미지 파일 판별
-        function isImage(name, path) {
-            return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name || '') ||
-                   /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path || '');
-        }
-
-        // 게시글 렌더링
-        function render(post) {
-            var c = document.getElementById('post-container');
-
-            // DOMPurify로 HTML 정화 (XSS 방지)
-            var _ATTR: false
-            });
-
-            // 이미지/비이미지 분리
-            var images = [];
-            var files = [];
-            if (post.attachments && post.attachments.length > 0) {
-                post.attachments.forEach(function(f) {
-                    var p = fixPath(f.path);
-                    if (isImage(f.originalName, p)) {
-                        images.push({ path: p, name: f.originalName });
-                    } else {
-                        files.push({ path: p, name: f.originalName, size: f.size });
-                    }
-                });
+        (function () {
+            function getPostId() {
+                return new URLSearchParams(window.location.search).get('id');
             }
 
-            var html = '';
-
-            // 헤더
-            html += '<div class="post-header">';
-            html += '<h1 class="post-title">' + DOMPurify.sanitize(post.title) + '</h1>';
-            html += '<div class="post-meta">';
-            html += '<span>작성자: ' + (post.author ? (post.author.name || post.author.username) : '관리자') + '</span>';
-            html += '<span>작성일: ' + fmtDate(post.createdAt) + '</span>';
-            html += '<span>조회수: ' + (post.viewCount || 0) + '</span>';
-            html += '</div></div>';
-
-            // 본문 (innerHTML로 Quill HTML 렌더링 - pre-wrap 제거!)
-            html += '<div class="post-content">' + cleanContent + '</div>';
-
-            // 첨부 이미지 (CSS Grid)
-            if (images.length > 0) {
-                html += '<div class="attachments-section">';
-                html += '<div class="attachments-title">📷 첨부 이미지 (' + images.length + '개)</div>';
-                html += '<div class="attachment-grid">';
-                images.forEach(function(img) {
-                    html += '<img src="' + img.path + '" alt="' + DOMPurify.sanitize(img.name || '') + '" loading="lazy" onclick="window.open(\'' + img.path + '\',\'_blank\')">';
-                });
-                html += '</div></div>';
+            function fmtDate(d) {
+                var date = new Date(d);
+                var now = new Date();
+                var diff = Math.ceil(Math.abs(now - date) / 86400000);
+                if (diff <= 1) return '오늘';
+                if (diff <= 2) return '어제';
+                if (diff <= 7) return (diff - 1) + '일 전';
+                return date.toLocaleDateString('ko-KR');
             }
 
-            // 첨부 파일 (비이미지)
-            if (files.length > 0) {
-                html += '<div class="attachments-section">';
-                html += '<div class="attachments-title">📎 첨부 파일 (' + files.length + '개)</div>';
-                html += '<div class="file-download-list">';
-                files.forEach(function(f) {
-                    var sizeKB = f.size ? (f.size / 1024).toFixed(1) + ' KB' : '';
-                    html += '<a href="' + f.path + '" download class="file-download-link">';
-                    html += '📄 다운로드' + (sizeKB ? ' <span style="color:#999;font-size:11px;">(' + sizeKB + ')</span>' : '');
-                    html += '</a>';
-                });
-                html += '</div></div>';
+            function fixPath(p) { return (p || '').replace(/^\.?\/*/, '/'); }
+
+            function isImage(name, path) {
+                return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name || '') ||
+                    /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path || '');
             }
 
-            // 관리자 비밀번호 입력 바
-            html += '<div id="admin-pw-bar" class="admin-password-bar">';
-            html += '<input type="password" id="admin-pw-input" placeholder="관리자 비밀번호">';
-            html += '<button class="btn-confirm" id="admin-pw-confirm">확인</button>';
-            html += '<button class="btn-cancel" id="admin-pw-cancel">취소</button>';
-            html += '</div>';
+            function render(post) {
+                var c = document.getElementById('post-container');
 
-            // 관리자 액션 바
-            html += '<div id="admin-actions" class="admin-actions">';
-            html += '<span class="admin-label">관리자 메뉴</span>';
-            html += '<button class="btn-edit" id="btn-edit-post">수정</button>';
-            html += '<button class="btn-delete" id="btn-delete-post">삭제</button>';
-            html += '</div>';
+                var cleanContent = DOMPurify.sanitize(post.content, {
+                    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 's', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                        'ul', 'ol', 'li', 'a', 'img', 'blockquote', 'pre', 'code', 'span', 'div',
+                        'table', 'thead', 'tbody', 'tr', 'th', 'td', 'sub', 'sup', 'hr'],
+                    ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'style', 'target', 'width', 'height',
+                        'rel', 'data-value', 'colspan', 'rowspan'],
+                    ALLOW_DATA_ATTR: false
+                });
 
-            c.innerHTML = html;
-
-            // 관리자 토글 (더블클릭으로 활성화)
-            var adminActions = document.getElementById('admin-actions');
-            var adminPwBar = document.getElementById('admin-pw-bar');
-            var currentAction = null;
-
-            // 제목 영역 더블클릭으로 관리자 모드 진입
-            c.querySelector('.post-header').addEventListener('dblclick', function() {
-                adminPwBar.classList.toggle('visible');
-                adminActions.classList.remove('visible');
-            });
-
-            document.getElementById('admin-pw-confirm').addEventListener('click', function() {
-                var pw = document.getElementById('admin-pw-input').value;
-                if (!pw) { alert('비밀번호를 입력하세요'); return; }
-                // 비밀번호를 세션에 임시 저장
-                sessionStorage.setItem('_apw', pw);
-                adminPwBar.classList.remove('visible');
-                adminActions.classList.add('visible');
-            });
-
-            document.getElementById('admin-pw-cancel').addEventListener('click', function() {
-                adminPwBar.classList.remove('visible');
-            });
-
-            document.getElementById('btn-edit-post').addEventListener('click', function() {
-                window.location.href = '/admin-write.html?edit=' + post._id;
-            });
-
-            document.getElementById('btn-delete-post').addEventListener('click', function() {
-                if (!confirm('정말 삭제하시겠습니까?')) return;
-                var pw = sessionStorage.getItem('_apw');
-                fetch('/api/board/posts/' + post._id, {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ adminPassword: pw })
-                })
-                .then(function(r) { return r.json(); })
-                .then(function(res) {
-                    if (res.success) {
-                        alert('삭제되었습니다');
-                        window.location.href = '/#board';
-                    } else {
-                        alert('삭제 실패: ' + (res.message || ''));
-                    }
-                })
-                .catch(function() { alert('서버 오류'); });
-            });
-        }
-
-        // 게시글 로드
-        async function load() {
-            var id = getPostId();
-            var c = document.getElementById('post-container');
-            if (!id) { c.innerHTML = '<div class="error">잘못된 접근입니다</div>'; return; }
-
-            try {
-                var res = await fetch('/api/board/posts/' + id);
-                var result = await res.json();
-                if (result.success) {
-                    render(result.data.post);
-                    // OG 태그 동적 업데이트
-                    document.title = result.data.post.title + ' - 더세온연구소';
-                    var ogTitle = document.querySelector('meta[property="og:title"]');
-                    if (ogTitle) ogTitle.content = result.data.post.title + ' - 더세온연구소';
-                } else {
-                    c.innerHTML = '<div class="error">게시글을 찾을 수 없습니다</div>';
+                var images = [];
+                var files = [];
+                if (post.attachments && post.attachments.length > 0) {
+                    post.attachments.forEach(function (f) {
+                        var p = fixPath(f.path);
+                        if (isImage(f.originalName, p)) {
+                            images.push({ path: p, name: f.originalName });
+                        } else {
+                            files.push({ path: p, name: f.originalName, size: f.size });
+                        }
+                    });
                 }
-            } catch(e) {
-                console.error(e);
-                c.innerHTML = '<div class="error">게시글을 불러오는 중 오류가 발생했습니다</div>';
-            }
-        }
 
-        document.addEventListener('DOMContentLoaded', load);
-    })();
+                var html = '';
+
+                html += '<div class="post-header">';
+                html += '<h1 class="post-title">' + DOMPurify.sanitize(post.title) + '</h1>';
+                html += '<div class="post-meta">';
+                html += '<span>작성자: ' + (post.author ? (post.author.name || post.author.username) : '관리자') + '</span>';
+                html += '<span>작성일: ' + fmtDate(post.createdAt) + '</span>';
+                html += '<span>조회수: ' + (post.viewCount || 0) + '</span>';
+                html += '</div></div>';
+
+                html += '<div class="post-content ql-editor">' + cleanContent + '</div>';
+
+                if (images.length > 0) {
+                    html += '<div class="attachments-section">';
+                    html += '<div class="attachments-title">첨부 이미지 (' + images.length + '개)</div>';
+                    html += '<div class="attachment-grid">';
+                    images.forEach(function (img) {
+                        html += '<img src="' + img.path + '" alt="' + DOMPurify.sanitize(img.name || '') + '" loading="lazy" onclick="window.open(\'' + img.path + '\',\'_blank\')">';
+                    });
+                    html += '</div></div>';
+                }
+
+                if (files.length > 0) {
+                    html += '<div class="attachments-section">';
+                    html += '<div class="attachments-title">첨부 파일 (' + files.length + '개)</div>';
+                    html += '<div class="file-download-list">';
+                    files.forEach(function (f) {
+                        var sizeKB = f.size ? (f.size / 1024).toFixed(1) + ' KB' : '';
+                        html += '<a href="' + f.path + '" download class="file-download-link">';
+                        html += '다운로드' + (sizeKB ? ' <span style="color:#999;font-size:11px;">(' + sizeKB + ')</span>' : '');
+                        html += '</a>';
+                    });
+                    html += '</div></div>';
+                }
+
+                html += '<div id="admin-actions" class="admin-actions">';
+                html += '<span class="admin-label">관리자 메뉴</span>';
+                html += '<button class="btn-edit" id="btn-edit-post">수정</button>';
+                html += '<button class="btn-delete" id="btn-delete-post">삭제</button>';
+                html += '<button class="btn-lock" id="btn-admin-logout">잠금</button>';
+                html += '</div>';
+
+                html += '<div id="admin-pw-bar" class="admin-password-bar">';
+                html += '<input type="password" id="admin-pw-input" placeholder="관리자 비밀번호 입력">';
+                html += '<button class="btn-confirm" id="admin-pw-confirm">확인</button>';
+                html += '<button class="btn-cancel" id="admin-pw-cancel">취소</button>';
+                html += '</div>';
+
+                c.innerHTML = html;
+
+                var adminActions = document.getElementById('admin-actions');
+                var adminPwBar = document.getElementById('admin-pw-bar');
+
+                c.querySelector('.post-header').addEventListener('dblclick', function () {
+                    adminPwBar.classList.toggle('visible');
+                    adminActions.classList.remove('visible');
+                });
+
+                document.getElementById('admin-pw-confirm').addEventListener('click', function () {
+                    var pw = document.getElementById('admin-pw-input').value;
+                    if (!pw) { alert('비밀번호를 입력하세요'); return; }
+                    sessionStorage.setItem('_apw', pw);
+                    adminPwBar.classList.remove('visible');
+                    adminActions.classList.add('visible');
+                });
+
+                document.getElementById('admin-pw-input').addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') document.getElementById('admin-pw-confirm').click();
+                });
+
+                document.getElementById('admin-pw-cancel').addEventListener('click', function () {
+                    adminPwBar.classList.remove('visible');
+                    document.getElementById('admin-pw-input').value = '';
+                });
+
+                document.getElementById('btn-admin-logout').addEventListener('click', function () {
+                    sessionStorage.removeItem('_apw');
+                    adminActions.classList.remove('visible');
+                    document.getElementById('admin-pw-input').value = '';
+                });
+
+                document.getElementById('btn-edit-post').addEventListener('click', function () {
+                    window.location.href = '/admin-write.html?edit=' + post._id;
+                });
+
+                document.getElementById('btn-delete-post').addEventListener('click', function () {
+                    if (!confirm('정말 삭제하시겠습니까?')) return;
+                    var pw = sessionStorage.getItem('_apw');
+                    fetch('/api/board/posts/' + post._id, {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ adminPassword: pw })
+                    })
+                        .then(function (r) { return r.json(); })
+                        .then(function (res) {
+                            if (res.success) {
+                                alert('삭제되었습니다');
+                                window.location.href = '/#board';
+                            } else {
+                                alert('삭제 실패: ' + (res.message || '비밀번호를 확인해주세요'));
+                            }
+                        })
+                        .catch(function () { alert('서버 오류가 발생했습니다'); });
+                });
+            }
+
+            async function load() {
+                var id = getPostId();
+                var c = document.getElementById('post-container');
+                if (!id) { c.innerHTML = '<div class="error">잘못된 접근입니다</div>'; return; }
+
+                try {
+                    var res = await fetch('/api/board/posts/' + id);
+                    var result = await res.json();
+                    if (result.success) {
+                        render(result.data.post);
+                        document.title = result.data.post.title + ' - 더세온연구소';
+                        var ogTitle = document.querySelector('meta[property="og:title"]');
+                        if (ogTitle) ogTitle.content = result.data.post.title + ' - 더세온연구소';
+                    } else {
+                        c.innerHTML = '<div class="error">게시글을 찾을 수 없습니다</div>';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    c.innerHTML = '<div class="error">게시글을 불러오는 중 오류가 발생했습니다</div>';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', load);
+        })();
     </script>
 </body>
+
 </html>

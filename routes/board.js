@@ -21,14 +21,13 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits: {
-         fileSize: 50 * 1024 * 1024 // 50MB
-}
+        fileSize: 50 * 1024 * 1024 // 50MB
     },
     fileFilter: (req, file, cb) => {
-       const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx|txt|mp4|mov|avi|wmv/;
+        const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx|txt|mp4|mov|avi|wmv/;
         const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
         const mimetype = allowedTypes.test(file.mimetype);
-        
+
         if (mimetype && extname) {
             return cb(null, true);
         } else {
@@ -40,14 +39,14 @@ const upload = multer({
 // ✅ 관리자 비밀번호 검증 미들웨어
 const verifyAdminPassword = (req, res, next) => {
     const { adminPassword } = req.body;
-    
+
     if (!adminPassword || adminPassword !== process.env.ADMIN_PASSWORD) {
         return res.status(403).json({
             success: false,
             message: '❌ 관리자 비밀번호가 올바르지 않습니다.'
         });
     }
-    
+
     next();
 };
 
@@ -63,10 +62,10 @@ router.get('/posts', [
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ 
-                success: false, 
+            return res.status(400).json({
+                success: false,
                 message: '잘못된 요청입니다.',
-                errors: errors.array() 
+                errors: errors.array()
             });
         }
 
@@ -290,7 +289,7 @@ router.put('/posts/:postId', upload.array('attachments', 5), [
                 size: file.size,
                 mimeType: file.mimetype
             }));
-            
+
             post.attachments = [...(post.attachments || []), ...newAttachments];
         }
 

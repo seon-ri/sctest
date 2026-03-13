@@ -38,18 +38,18 @@ const subsectionMapping = {
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('[DOMContentLoaded] 초기화 시작');
-    
-       
+
+
     // 초기 화면 설정
     showSection('home');
     loadHomepagePosts();
-    
+
     // 이벤트 리스너 설정
     setupEventListeners();
-    
+
     // 브라우저 히스토리 관리
     setupHistoryManagement();
-    
+
     console.log('[DOMContentLoaded] 초기화 완료');
 });
 
@@ -62,7 +62,7 @@ function setupEventListeners() {
     document.addEventListener('click', function(e) {
         handleGlobalClick(e);
     });
-    
+
     // 게시판 탭 이벤트
     const boardTabs = document.querySelector('.board-tabs');
     if (boardTabs) {
@@ -74,7 +74,7 @@ function setupEventListeners() {
             }
         });
     }
-    
+
     // 글쓰기 폼 이벤트
     const writePostForm = document.getElementById('write-post-form');
     if (writePostForm) {
@@ -97,7 +97,7 @@ function handleGlobalClick(e) {
         }
         return;
     }
-    
+
     // 메인 네비게이션
     if (e.target.classList.contains('nav-link')) {
         e.preventDefault();
@@ -108,7 +108,7 @@ function handleGlobalClick(e) {
         }
         return;
     }
-    
+
     // 드롭다운 메뉴
     if (e.target.classList.contains('dropdown-item')) {
         e.preventDefault();
@@ -119,7 +119,7 @@ function handleGlobalClick(e) {
         }
         return;
     }
-    
+
     // 서브 네비게이션
     if (e.target.classList.contains('sub-nav-link')) {
         e.preventDefault();
@@ -131,7 +131,7 @@ function handleGlobalClick(e) {
         }
         return;
     }
-    
+
     // 퀵메뉴
     const quickMenuItem = e.target.closest('.quick-menu-item');
     if (quickMenuItem) {
@@ -139,14 +139,14 @@ function handleGlobalClick(e) {
         handleQuickMenuClick(quickMenuItem);
         return;
     }
-    
+
     // 로고 및 홈 링크
     if (e.target.closest('.logo-link') || e.target.classList.contains('home-link') || e.target.closest('.home-link')) {
         e.preventDefault();
         showSection('home');
         return;
     }
-    
+
     // 홈페이지 더보기 버튼
     if (e.target.classList.contains('home-notice-plus')) {
         e.preventDefault();
@@ -157,7 +157,7 @@ function handleGlobalClick(e) {
         }
         return;
     }
-    
+
     // FAQ 아코디언
     if (e.target.classList.contains('faq-question')) {
         e.preventDefault();
@@ -171,7 +171,7 @@ function handleGlobalClick(e) {
             e.preventDefault();
             const href = menuItem.getAttribute('href');
             console.log('전체 href:', href);
-            
+
             if (href && href.startsWith('#')) {
                 const section = href.substring(1); // # 제거
                 console.log('추출된 섹션 전체:', section);
@@ -183,7 +183,7 @@ function handleGlobalClick(e) {
     }
     // 모달 관련
     handleModalClicks(e);
-    
+
     // 게시글 행 클릭
     const postRow = e.target.closest('.post-row');
     if (postRow) {
@@ -201,28 +201,28 @@ function handleGlobalClick(e) {
 
 function showSection(sectionId, subsectionId = null, skipPush = false) {
     console.log('[showSection] 호출됨 - sectionId:', sectionId, 'subsectionId:', subsectionId);
-    
+
     // 브라우저 히스토리 관리
     if (!skipPush) {
         const newUrl = subsectionId ? `#${sectionId}-${subsectionId}` : `#${sectionId}`;
         history.pushState({ section: sectionId, subsection: subsectionId }, '', newUrl);
     }
-    
+
     // 모든 섹션 숨기기
     document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
     });
-    
+
     // 선택된 섹션 표시
     const targetSection = document.getElementById(sectionId);
     if (targetSection) {
         targetSection.classList.add('active');
         currentSection = sectionId;
         currentSubsection = subsectionId;
-        
+
         // 섹션별 특별 처리
         handleSectionSpecificLogic(sectionId, subsectionId);
-        
+
         // 서브섹션 처리
         if (subsectionId && subsectionMapping[sectionId]) {
             showSubsection(sectionId, subsectionId);
@@ -230,13 +230,13 @@ function showSection(sectionId, subsectionId = null, skipPush = false) {
             // 첫 번째 서브섹션을 기본으로 표시
             showSubsection(sectionId, subsectionMapping[sectionId][0]);
         }
-        
+
         // 네비게이션 업데이트
         updateActiveNavigation(sectionId);
-        
+
         // 페이지 상단으로 스크롤
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
+
         console.log('[showSection] 섹션 활성화 성공:', sectionId);
     } else {
         console.warn('[showSection] 섹션을 찾을 수 없음:', sectionId);
@@ -245,18 +245,18 @@ function showSection(sectionId, subsectionId = null, skipPush = false) {
 
 function showSubsection(sectionId, subsectionId) {
     console.log('[showSubsection] 호출됨 - sectionId:', sectionId, 'subsectionId:', subsectionId);
-  
+
     const sectionElement = document.getElementById(sectionId);
     if (!sectionElement) {
         console.warn('[showSubsection] 섹션을 찾을 수 없음:', sectionId);
         return;
     }
-  
+
     // 모든 서브콘텐츠 숨기기
     sectionElement.querySelectorAll('.sub-content').forEach(content => {
         content.classList.remove('active');
     });
-    
+
     // 선택된 서브콘텐츠 표시
     const targetSubcontent = document.getElementById(`${sectionId}-${subsectionId}`);
     if (targetSubcontent) {
@@ -266,7 +266,7 @@ function showSubsection(sectionId, subsectionId) {
     } else {
         console.warn('[showSubsection] 서브콘텐츠를 찾을 수 없음:', `${sectionId}-${subsectionId}`);
     }
-    
+
     // 서브 네비게이션 업데이트
     updateSubNavigation(sectionId, subsectionId);
 }
@@ -293,7 +293,7 @@ function updateActiveNavigation(sectionId) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
     });
-    
+
     // 현재 섹션에 해당하는 네비게이션 링크 활성화
     const activeNavLink = document.querySelector(`[data-section="${sectionId}"]`);
     if (activeNavLink && activeNavLink.classList.contains('nav-link')) {
@@ -308,7 +308,7 @@ function updateSubNavigation(sectionId, subsectionId) {
         sectionElement.querySelectorAll('.sub-nav-link').forEach(link => {
             link.classList.remove('active');
         });
-        
+
         // 해당 서브 네비게이션 링크 활성화
         const activeSubNavLink = sectionElement.querySelector(`[data-subsection="${subsectionId}"]`);
         if (activeSubNavLink) {
@@ -324,9 +324,9 @@ function updateSubNavigation(sectionId, subsectionId) {
 function handleQuickMenuClick(quickMenuItem) {
     const quickMenuItems = Array.from(document.querySelectorAll('.quick-menu-item'));
     const index = quickMenuItems.indexOf(quickMenuItem);
-    
+
     console.log('[QuickMenu] 퀵메뉴 클릭, 인덱스:', index);
-    
+
     switch(index) {
         case 0: // 상담예약
             showSection('about', 'contact');
@@ -352,12 +352,12 @@ function handleQuickMenuClick(quickMenuItem) {
 function toggleFAQ(questionElement) {
     const answer = questionElement.nextElementSibling;
     const isActive = answer.style.display === 'block';
-    
+
     // 모든 FAQ 답변 닫기
     document.querySelectorAll('.faq-answer').forEach(ans => {
         ans.style.display = 'none';
     });
-    
+
     // 현재 클릭된 FAQ만 열기/닫기
     if (!isActive) {
         answer.style.display = 'block';
@@ -380,7 +380,7 @@ function setupHistoryManagement() {
         }
     });
 
-    
+
     // 초기 URL 해시 처리
     const initialHash = window.location.hash.replace('#', '');
     if (initialHash) {
@@ -398,17 +398,17 @@ function setupHistoryManagement() {
 function switchBoardTab(category) {
     console.log('[switchBoardTab] 호출됨 - category:', category);
     currentBoardTab = category;
-    
+
     // 탭 버튼 활성화 상태 업데이트
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    
+
     const activeTab = document.querySelector(`[data-category="${category}"]`);
     if (activeTab) {
         activeTab.classList.add('active');
     }
-    
+
     // 게시글 로드
     loadPosts(1, category);
 }
@@ -420,18 +420,18 @@ async function loadPosts(page = 1, category = null) {
             page: page,
             limit: 15
         });
-        
+
         if (category && category !== 'all') {
             params.append('category', category);
         }
-        
+
         const response = await fetch(`/api/board/posts?${params}`);
         const result = await response.json();
-        
+
         if (result.success) {
             posts = result.data.posts || [];
             totalPosts = result.data.totalPosts || 0;
-            
+
             renderPosts();
             renderPagination();
             updatePostCount();
@@ -450,13 +450,6 @@ async function loadHomepagePosts() {
         if (noticeData.success) {
             renderHomepagePostList(noticeData.data.posts, 'home-notice-list');
         }
-        
-        // Case Cipher 로드
-      /*   const caseResponse = await fetch('/api/board/posts?category=case-cipher&limit=5');
-        const caseData = await caseResponse.json();
-        if (caseData.success) {
-            renderHomepagePostList(caseData.data.posts, 'home-case-list');
-        } */
     } catch (error) {
         console.error('홈페이지 게시글 로드 실패:', error);
     }
@@ -470,7 +463,7 @@ async function loadHomepagePosts() {
 function renderPosts() {
     const container = document.getElementById('posts-container');
     if (!container) return;
-    
+
     if (posts.length === 0) {
         container.innerHTML = `
             <tr>
@@ -484,7 +477,7 @@ function renderPosts() {
         `;
         return;
     }
-    
+
     const postsHTML = posts.map((post, index) => {
         const rowNumber = (currentPage - 1) * 15 + index + 1;
         return `
@@ -505,59 +498,59 @@ function renderPosts() {
             </tr>
         `;
     }).join('');
-    
+
     container.innerHTML = postsHTML;
 }
 
 function renderHomepagePostList(posts, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    
+
     if (!posts || posts.length === 0) {
         container.innerHTML = '<li>등록된 게시글이 없습니다.</li>';
         return;
     }
-    
+
     const postsHTML = posts.map(post => `
         <li>
             <a href="#" class="home-post-link" data-id="${post._id}">${post.title}</a>
             <span class="info-post-date">${formatDate(post.createdAt)}</span>
         </li>
     `).join('');
-    
+
     container.innerHTML = postsHTML;
 }
 
 function renderPagination() {
     const container = document.getElementById('pagination');
     if (!container) return;
-    
+
     const totalPages = Math.ceil(totalPosts / 15);
     if (totalPages <= 1) {
         container.innerHTML = '';
         return;
     }
-    
+
     let paginationHTML = '';
-    
+
     // 이전 페이지 버튼
     if (currentPage > 1) {
         paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})">‹</button>`;
     }
-    
+
     // 페이지 번호들
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
-    
+
     for (let i = startPage; i <= endPage; i++) {
         paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
     }
-    
+
     // 다음 페이지 버튼
     if (currentPage < totalPages) {
         paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})">›</button>`;
     }
-    
+
     container.innerHTML = paginationHTML;
 }
 
@@ -572,7 +565,7 @@ function handleModalClicks(e) {
         showWritePostModal();
         return;
     }
-    
+
     // 모달 닫기 버튼
     if (e.target.classList.contains('close')) {
         e.preventDefault();
@@ -582,7 +575,7 @@ function handleModalClicks(e) {
         }
         return;
     }
-    
+
     // 모달 취소 버튼
     if (e.target.classList.contains('btn-secondary') && e.target.textContent === '취소') {
         e.preventDefault();
@@ -598,14 +591,14 @@ function showWritePostModal() {
     const modal = document.getElementById('write-post-modal');
     if (modal) {
         modal.style.display = 'block';
-        
+
         // 폼 초기화
         const form = document.getElementById('write-post-form');
         if (form) {
             form.reset();
             form.dataset.mode = '';
             form.dataset.postId = '';
-            
+
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
                 submitBtn.textContent = '작성 완료';
@@ -616,27 +609,27 @@ function showWritePostModal() {
 
 async function handleWritePostSubmit(e) {
     e.preventDefault();
-    
+
     const form = e.target;
     const isEdit = form.dataset.mode === 'edit';
     const postId = form.dataset.postId;
-    
+
     const postData = {
         title: form.querySelector('input[name="title"]').value,
         content: form.querySelector('textarea[name="content"]').value,
         category: form.querySelector('select[name="category"]').value
     };
-    
+
     if (!postData.title || !postData.content || !postData.category) {
         showMessage('모든 필드를 입력해주세요.', 'error');
         return;
     }
-    
+
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = isEdit ? '수정 중...' : '작성 중...';
     submitBtn.disabled = true;
-    
+
     try {
         let response;
         if (isEdit) {
@@ -655,30 +648,30 @@ async function handleWritePostSubmit(e) {
                 body: JSON.stringify(postData)
             });
         }
-        
+
         const result = await response.json();
-        
+
         if (result.success) {
             showMessage(isEdit ? '게시글이 수정되었습니다.' : '게시글이 작성되었습니다.', 'success');
-            
+
             // 모달 닫기
             const modal = document.getElementById('write-post-modal');
             if (modal) {
                 modal.style.display = 'none';
             }
-            
+
             if (!isEdit) {
                 form.reset();
             }
-            
+
             form.dataset.mode = '';
             form.dataset.postId = '';
-            
+
             loadPosts(1, currentBoardTab);
         } else {
             showMessage(result.message || '게시글 작성에 실패했습니다.', 'error');
         }
-        
+
     } catch (error) {
         console.error('게시글 작성 에러:', error);
         showMessage('서버 오류가 발생했습니다.', 'error');
@@ -706,7 +699,7 @@ function formatDate(dateString) {
     const now = new Date();
     const diffTime = Math.abs(now - date);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays === 1) {
         return '오늘';
     } else if (diffDays === 2) {
@@ -728,13 +721,13 @@ function updatePostCount() {
 function showMessage(message, type = 'info') {
     const container = document.getElementById('message-container');
     if (!container) return;
-    
+
     const messageElement = document.createElement('div');
     messageElement.className = `message ${type}`;
     messageElement.textContent = message;
-    
+
     container.appendChild(messageElement);
-    
+
     setTimeout(() => {
         if (messageElement.parentNode) {
             messageElement.parentNode.removeChild(messageElement);

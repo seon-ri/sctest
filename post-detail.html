@@ -1,224 +1,433 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 상세 - 세온연구소</title>
+    <title>게시글 상세 - 더세온연구소</title>
+    <meta name="description" content="전 법원 양형조사관이 직접 운영하는 형사사건 심리 전문 기관">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="더세온연구소">
+    <meta property="og:title" content="게시글 - 더세온연구소">
+    <meta property="og:description" content="전 법원 양형조사관이 직접 운영하는 형사사건 심리 전문 기관">
+    <meta property="og:image" content="https://www.seon-r.com/logo.jpg">
+    <meta property="og:url" content="https://www.seon-r.com/post-detail.html">
+
+    <!-- Kakao -->
+    <meta property="kakao:title" content="더세온연구소">
+    <meta property="kakao:description" content="형사사건 전문 심리교육·분석 기관">
+    <meta property="kakao:image" content="https://www.seon-r.com/logo.jpg">
+
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+
+    <!-- DOMPurify CDN (XSS 방지) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+
+    <!-- Quill CSS (본문 스타일 호환) -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+
     <style>
-        .post-detail-container {
-            max-width: 800px;
-            margin: 0 auto;
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f7f8fa;
+            margin: 0;
             padding: 20px;
-            background: white;
+        }
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .back-button { margin-bottom: 20px; }
+        .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #6c757d;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+        .back-button a:hover { opacity: 0.8; }
+
+        .post-detail-container {
+            background: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
-        
         .post-header {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            padding: 28px 32px 20px;
+            border-bottom: 2px solid #f0f0f0;
         }
-        
         .post-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
+            font-size: 22px;
+            font-weight: 700;
+            color: #222;
+            margin: 0 0 14px;
+            line-height: 1.4;
+            word-break: keep-all;
         }
-        
         .post-meta {
             display: flex;
-            gap: 20px;
-            color: #666;
-            font-size: 14px;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: #888;
+            font-size: 13px;
         }
-        
+        .post-meta span { display: flex; align-items: center; gap: 4px; }
+
+        /* Quill HTML 본문 렌더링 영역 */
         .post-content {
-            line-height: 1.8;
+            padding: 28px 32px 36px;
             font-size: 16px;
+            line-height: 1.85;
             color: #333;
-            margin-bottom: 30px;
             min-height: 200px;
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
-        
-        .post-actions {
+        /* Quill에서 생성하는 태그들 스타일 보정 */
+        .post-content p { margin: 0 0 0.8em; }
+        .post-content br { display: block; content: ""; margin-top: 0; }
+        .post-content h1, .post-content h2, .post-content h3 {
+            color: #1a3e72;
+            margin: 1.2em 0 0.6em;
+        }
+        .post-content ul, .post-content ol {
+            padding-left: 1.5em;
+            margin: 0.5em 0;
+        }
+        .post-content blockquote {
+            border-left: 4px solid #1a3e72;
+            padding: 8px 16px;
+            margin: 1em 0;
+            background: #f9f9f9;
+            color: #555;
+        }
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+        .post-content a { color: #1a3e72; text-decoration: underline; }
+        .post-content strong { font-weight: 700; }
+        .post-content em { font-style: italic; }
+
+        /* 첨부파일 이미지 그리드 */
+        .attachments-section {
+            padding: 20px 32px 28px;
+            background: #fafafa;
+            border-top: 1px solid #f0f0f0;
+        }
+        .attachments-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #555;
+            margin: 0 0 14px;
+        }
+        .attachment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+        .attachment-grid img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            cursor: zoom-in;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: #fff;
+        }
+        .attachment-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .file-download-list {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
-            justify-content: flex-end;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+            margin-top: 10px;
         }
-        
-        .btn {
-            padding: 10px 20px;
+        .file-download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+        .file-download-link:hover { background: #f0f4ff; }
+
+        /* 관리자 액션 바 */
+        .admin-actions {
+            display: none;
+            padding: 16px 32px;
+            border-top: 1px solid #f0f0f0;
+            background: #fefefe;
+        }
+        .admin-actions.visible { display: flex; gap: 10px; justify-content: flex-end; align-items: center; }
+        .admin-actions .admin-label {
+            font-size: 12px;
+            color: #999;
+            margin-right: auto;
+        }
+        .admin-actions button {
+            padding: 8px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            transition: opacity 0.2s;
         }
-        
-        .btn-primary {
-            background-color: #1a3e72;
-            color: white;
+        .admin-actions button:hover { opacity: 0.85; }
+        .btn-edit { background: #1a3e72; color: #fff; }
+        .btn-delete { background: #dc3545; color: #fff; }
+
+        .admin-password-bar {
+            display: none;
+            padding: 12px 32px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+            gap: 10px;
+            align-items: center;
         }
-        
-        .btn-secondary {
-            background-color: #6c757d;
-            color: white;
+        .admin-password-bar.visible { display: flex; }
+        .admin-password-bar input {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 13px;
+            width: 200px;
         }
-        
-        .btn:hover {
-            opacity: 0.8;
+        .admin-password-bar button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
         }
-        
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: #666;
-        }
-        
-        .error {
-            text-align: center;
-            padding: 50px;
-            color: #dc3545;
-        }
-        
-        .back-button {
-            margin-bottom: 20px;
+        .admin-password-bar .btn-confirm { background: #1a3e72; color: #fff; }
+        .admin-password-bar .btn-cancel { background: #aaa; color: #fff; }
+
+        .loading { text-align: center; padding: 60px 20px; color: #888; font-size: 15px; }
+        .error { text-align: center; padding: 60px 20px; color: #dc3545; font-size: 15px; }
+
+        /* 모바일 반응형 */
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .post-header { padding: 20px 18px 16px; }
+            .post-title { font-size: 18px; }
+            .post-content { padding: 20px 18px 28px; font-size: 15px; }
+            .attachments-section { padding: 16px 18px; }
+            .attachment-grid { grid-template-columns: 1fr; }
+            .admin-actions { padding: 12px 18px; }
+            .admin-password-bar { padding: 10px 18px; flex-wrap: wrap; }
+            .admin-password-bar input { width: 100%; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="back-button">
-            <a href="/#board" class="btn btn-secondary" onclick="sessionStorage.setItem('scrollToBoard', 'true')">
-  ← 목록으로 돌아가기
-</a>
+            <a href="/#board" onclick="sessionStorage.setItem('scrollToBoard','true')">← 목록으로 돌아가기</a>
         </div>
-        
+
         <div id="post-container" class="post-detail-container">
             <div class="loading">게시글을 불러오는 중...</div>
         </div>
     </div>
 
     <script>
+    (function() {
         // URL에서 게시글 ID 추출
-        function getPostIdFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id');
+        function getPostId() {
+            return new URLSearchParams(window.location.search).get('id');
         }
-        
-        // 날짜 포맷 함수
-        function formatDate(dateString) {
-            const date = new Date(dateString);
+
+        // 날짜 포맷
+        function fmtDate(d) {
+            const date = new Date(d);
             const now = new Date();
-            const diffTime = Math.abs(now - date);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
-            if (diffDays === 1) {
-                return '오늘';
-            } else if (diffDays === 2) {
-                return '어제';
-            } else if (diffDays <= 7) {
-                return `${diffDays - 1}일 전`;
-            } else {
-                return date.toLocaleDateString('ko-KR');
-            }
+            const diff = Math.ceil(Math.abs(now - date) / 86400000);
+            if (diff <= 1) return '오늘';
+            if (diff <= 2) return '어제';
+            if (diff <= 7) return (diff - 1) + '일 전';
+            return date.toLocaleDateString('ko-KR');
         }
-        
-        // 게시글 로드 함수
-        async function loadPost() {
-            const postId = getPostIdFromURL();
-            const container = document.getElementById('post-container');
-            
-            if (!postId) {
-                container.innerHTML = '<div class="error">잘못된 접근입니다.</div>';
-                return;
+
+        // 경로 보정
+        function fixPath(p) { return (p || '').replace(/^\.?\/*/, '/'); }
+
+        // 이미지 파일 판별
+        function isImage(name, path) {
+            return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name || '') ||
+                   /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path || '');
+        }
+
+        // 게시글 렌더링
+        function render(post) {
+            var c = document.getElementById('post-container');
+
+            // DOMPurify로 HTML 정화 (XSS 방지)
+            var _ATTR: false
+            });
+
+            // 이미지/비이미지 분리
+            var images = [];
+            var files = [];
+            if (post.attachments && post.attachments.length > 0) {
+                post.attachments.forEach(function(f) {
+                    var p = fixPath(f.path);
+                    if (isImage(f.originalName, p)) {
+                        images.push({ path: p, name: f.originalName });
+                    } else {
+                        files.push({ path: p, name: f.originalName, size: f.size });
+                    }
+                });
             }
-            
+
+            var html = '';
+
+            // 헤더
+            html += '<div class="post-header">';
+            html += '<h1 class="post-title">' + DOMPurify.sanitize(post.title) + '</h1>';
+            html += '<div class="post-meta">';
+            html += '<span>작성자: ' + (post.author ? (post.author.name || post.author.username) : '관리자') + '</span>';
+            html += '<span>작성일: ' + fmtDate(post.createdAt) + '</span>';
+            html += '<span>조회수: ' + (post.viewCount || 0) + '</span>';
+            html += '</div></div>';
+
+            // 본문 (innerHTML로 Quill HTML 렌더링 - pre-wrap 제거!)
+            html += '<div class="post-content">' + cleanContent + '</div>';
+
+            // 첨부 이미지 (CSS Grid)
+            if (images.length > 0) {
+                html += '<div class="attachments-section">';
+                html += '<div class="attachments-title">📷 첨부 이미지 (' + images.length + '개)</div>';
+                html += '<div class="attachment-grid">';
+                images.forEach(function(img) {
+                    html += '<img src="' + img.path + '" alt="' + DOMPurify.sanitize(img.name || '') + '" loading="lazy" onclick="window.open(\'' + img.path + '\',\'_blank\')">';
+                });
+                html += '</div></div>';
+            }
+
+            // 첨부 파일 (비이미지)
+            if (files.length > 0) {
+                html += '<div class="attachments-section">';
+                html += '<div class="attachments-title">📎 첨부 파일 (' + files.length + '개)</div>';
+                html += '<div class="file-download-list">';
+                files.forEach(function(f) {
+                    var sizeKB = f.size ? (f.size / 1024).toFixed(1) + ' KB' : '';
+                    html += '<a href="' + f.path + '" download class="file-download-link">';
+                    html += '📄 다운로드' + (sizeKB ? ' <span style="color:#999;font-size:11px;">(' + sizeKB + ')</span>' : '');
+                    html += '</a>';
+                });
+                html += '</div></div>';
+            }
+
+            // 관리자 비밀번호 입력 바
+            html += '<div id="admin-pw-bar" class="admin-password-bar">';
+            html += '<input type="password" id="admin-pw-input" placeholder="관리자 비밀번호">';
+            html += '<button class="btn-confirm" id="admin-pw-confirm">확인</button>';
+            html += '<button class="btn-cancel" id="admin-pw-cancel">취소</button>';
+            html += '</div>';
+
+            // 관리자 액션 바
+            html += '<div id="admin-actions" class="admin-actions">';
+            html += '<span class="admin-label">관리자 메뉴</span>';
+            html += '<button class="btn-edit" id="btn-edit-post">수정</button>';
+            html += '<button class="btn-delete" id="btn-delete-post">삭제</button>';
+            html += '</div>';
+
+            c.innerHTML = html;
+
+            // 관리자 토글 (더블클릭으로 활성화)
+            var adminActions = document.getElementById('admin-actions');
+            var adminPwBar = document.getElementById('admin-pw-bar');
+            var currentAction = null;
+
+            // 제목 영역 더블클릭으로 관리자 모드 진입
+            c.querySelector('.post-header').addEventListener('dblclick', function() {
+                adminPwBar.classList.toggle('visible');
+                adminActions.classList.remove('visible');
+            });
+
+            document.getElementById('admin-pw-confirm').addEventListener('click', function() {
+                var pw = document.getElementById('admin-pw-input').value;
+                if (!pw) { alert('비밀번호를 입력하세요'); return; }
+                // 비밀번호를 세션에 임시 저장
+                sessionStorage.setItem('_apw', pw);
+                adminPwBar.classList.remove('visible');
+                adminActions.classList.add('visible');
+            });
+
+            document.getElementById('admin-pw-cancel').addEventListener('click', function() {
+                adminPwBar.classList.remove('visible');
+            });
+
+            document.getElementById('btn-edit-post').addEventListener('click', function() {
+                window.location.href = '/admin-write.html?edit=' + post._id;
+            });
+
+            document.getElementById('btn-delete-post').addEventListener('click', function() {
+                if (!confirm('정말 삭제하시겠습니까?')) return;
+                var pw = sessionStorage.getItem('_apw');
+                fetch('/api/board/posts/' + post._id, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminPassword: pw })
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(res) {
+                    if (res.success) {
+                        alert('삭제되었습니다');
+                        window.location.href = '/#board';
+                    } else {
+                        alert('삭제 실패: ' + (res.message || ''));
+                    }
+                })
+                .catch(function() { alert('서버 오류'); });
+            });
+        }
+
+        // 게시글 로드
+        async function load() {
+            var id = getPostId();
+            var c = document.getElementById('post-container');
+            if (!id) { c.innerHTML = '<div class="error">잘못된 접근입니다</div>'; return; }
+
             try {
-                const response = await fetch(`/api/board/posts/${postId}`);
-                const result = await response.json();
-                
+                var res = await fetch('/api/board/posts/' + id);
+                var result = await res.json();
                 if (result.success) {
-                    const post = result.data.post;
-                    displayPost(post);
+                    render(result.data.post);
+                    // OG 태그 동적 업데이트
+                    document.title = result.data.post.title + ' - 더세온연구소';
+                    var ogTitle = document.querySelector('meta[property="og:title"]');
+                    if (ogTitle) ogTitle.content = result.data.post.title + ' - 더세온연구소';
                 } else {
-                    container.innerHTML = '<div class="error">게시글을 찾을 수 없습니다.</div>';
+                    c.innerHTML = '<div class="error">게시글을 찾을 수 없습니다</div>';
                 }
-            } catch (error) {
-                console.error('게시글 로드 에러:', error);
-                container.innerHTML = '<div class="error">게시글을 불러오는 중 오류가 발생했습니다.</div>';
+            } catch(e) {
+                console.error(e);
+                c.innerHTML = '<div class="error">게시글을 불러오는 중 오류가 발생했습니다</div>';
             }
         }
-        
-        // 게시글 표시 함수
-function displayPost(post) {
-  const container = document.getElementById('post-container');
 
-  // 경로 보정: './uploads/...' -> '/uploads/...'
-  const fixPath = p => (p || '').replace(/^\.?\/*/, '/');
-
-  container.innerHTML = `
-    <div class="post-header">
-      <h1 class="post-title">${post.title}</h1>
-      <div class="post-meta">
-        <span>작성자: ${post.author ? (post.author.name || post.author.username) : '관리자'}</span>
-        <span>작성일: ${formatDate(post.createdAt)}</span>
-        <span>조회수: ${post.viewCount || 0}</span>
-      </div>
-    </div>
-
-    <div class="post-content" style="white-space: pre-wrap;">
-      ${post.content}
-    </div>
-
-    ${post.attachments && post.attachments.length > 0 ? `
-      <div class="post-attachments" style="margin:30px 0; padding:20px; background:#f9f9f9; border-radius:8px;">
-        <h3 style="font-size:18px; margin-bottom:12px;">📎 첨부파일 (${post.attachments.length}개)</h3>
-
-<!-- 세로로 쌓이는 레이아웃 -->
-<div class="attachment-strip"
-     style="display:flex; flex-direction:column; gap:20px; padding:6px 2px;">
-  ${post.attachments.map(file => {
-    const path = fixPath(file.path);
-    const name = file.originalName || '';
-    const isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name) || /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path);
-    if (isImg) {
-      return `
-        <img src="${path}" alt="" loading="lazy"
-             style="width:100%; max-width:800px; height:auto; object-fit:contain;
-                    border-radius:10px; border:1px solid #ddd; cursor:zoom-in;
-                    display:block; margin:0 auto;"
-             onclick="window.open('${path}','_blank')">
-      `;
-    }
-            // 비이미지: 파일명 숨기고 '다운로드' 버튼만
-            const sizeKB = file.size ? (file.size/1024).toFixed(1) : '';
-            return `
-              <a href="${path}" download
-                 style="display:inline-flex; align-items:center; gap:8px;
-                        padding:12px 14px; background:#fff; border:1px solid #ddd;
-                        border-radius:8px; color:#333; text-decoration:none; flex:0 0 auto;">
-                📄 다운로드 ${sizeKB ? `<span style="font-size:11px; color:#999;">(${sizeKB} KB)</span>` : ''}
-              </a>
-            `;
-          }).join('')}
-        </div>
-      </div>
-    ` : ''}
-
-    <div class="post-actions"><!-- 일반 사용자용 버튼 없음 --></div>
-  `;
-}
-
-        
-        // 페이지 로드 시 게시글 로드
-        document.addEventListener('DOMContentLoaded', loadPost);
+        document.addEventListener('DOMContentLoaded', load);
+    })();
     </script>
 </body>
 </html>

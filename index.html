@@ -1,416 +1,424 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>더세온연구소 - 형사사건 전문 심리교육·분석 기관</title>
-    <meta name="description" content="재범방지교육, 양형자료작성, 진술분석, 재범위험성평가 전문 서비스 제공">
-    <meta name="keywords" content="형사사건, 심리교육, 양형자료작성, 진술분석, 재범위험성평가, 더세온연구소">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>더세온연구소 - 형사사건 전문 심리교육·분석 기관</title>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="더세온연구소">
+  <meta property="og:title" content="더세온연구소 - 형사사건 전문 심리교육·분석 기관">
+  <meta property="og:description" content="전 법원 양형조사관이 직접 운영하는 형사사건 심리 전문 기관">
+  <meta property="og:image" content="https://www.seon-r.com/logo.jpg">
+  <meta property="og:url" content="https://www.seon-r.com">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="더세온연구소 - 형사사건 전문 심리교육·분석 기관">
+  <meta name="twitter:description" content="전 법원 양형조사관이 직접 운영하는 형사사건 심리 전문 기관">
+  <meta name="twitter:image" content="https://www.seon-r.com/logo.jpg">
+
+  <!-- Naver -->
+  <meta name="naver-site-verification" content="">
+  <meta name="description" content="재범방지교육, 양형자료작성, 진술분석, 재범위험성평가 전문 서비스 제공">
+  <meta name="keywords" content="형사사건, 심리교육, 양형자료작성, 진술분석, 재범위험성평가, 더세온연구소">
+  <link rel="stylesheet" href="style.css">
 
 
- </head>
-	 
+</head>
+
 <body>
-	<!-- pc버전 -->
-    <script>
-    window.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('version') === 'pc') {
-            document.body.classList.add('pc-version');
-            let viewport = document.querySelector('meta[name="viewport"]');
-            if (viewport) {
-                viewport.content = "width=1200, initial-scale=0.5";
-            }
+  <!-- pc버전 -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('version') === 'pc') {
+        document.body.classList.add('pc-version');
+        let viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+          viewport.content = "width=1200, initial-scale=0.5";
         }
+      }
     });
-    </script>
-	<!-- 상단 바 -->
-    <div id="top-bar">
-        <div class="top-bar-container">
-            <a href="#" class="top-bar-link home-link">
-                <i class="bi bi-house-door-fill"></i> 처음으로
-            </a>
-            <div class="top-bar-menu">
-                <!-- 회원가입/로그인/사이트맵/검색 제거 -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header id="header">
-        <div class="header-container">
-            <div class="logo-container">
-                <a href="#" class="logo-link">
-                    <img src="logo.jpg" alt="더세온연구소 로고" class="logo-img">
-                    <div class="logo-text">
-                        <h1>더세온연구소</h1>
-                   <!--       <p>Criminal Psychology Education & Analysis</p> -->
-                    </div>
-                </a>
-            </div>
-    <!-- ✅ pc버전 사용안함
-	<div class="mobile-notice-bar">
-    	   <a href="?version=pc">PC 버전</a>
-	   </div> -->
-            <!-- 메인 네비게이션 -->
-             <nav class="main-nav">
-                <ul>
-                    <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link" data-section="about">소개</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" data-section="about" data-subsection="intro">연구소 소개</a>
-                            <a href="#" class="dropdown-item" data-section="about" data-subsection="members">구성원</a>
-                            <a href="#" class="dropdown-item" data-section="about" data-subsection="contact">상담 안내</a>
-                            <a href="#" class="dropdown-item" data-section="about" data-subsection="location">자문·협력</a>
-                        </div>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link" data-section="education-counseling">심리교육·상담</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" data-section="education-counseling" data-subsection="process">교육절차</a>
-                            <a href="#" class="dropdown-item" data-section="education-counseling" data-subsection="programs">교육과정</a>
-                            <a href="#" class="dropdown-item" data-section="education-counseling" data-subsection="counseling">개별상담</a> 
-                        </div>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link" data-section="evaluation">심리평가</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="recidivism">재범위험성 평가</a>
-                            <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="sexual-violence">성폭력·폭력위험성 평가</a>
-                            <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="comprehensive">종합심리평가</a>
-                            <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="victim">피해자평가</a>
-                            <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="education-effect">교육효과평가</a> 
-                        </div>
-                    </li>
-
-                    <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link" data-section="analysis">진술·양형·사건분석</a>
-                       <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" data-section="analysis" data-subsection="statement">진술분석</a>
-                            <a href="#" class="dropdown-item" data-section="analysis" data-subsection="sentencing">양형자료작성</a>
-                          //  <a href="#" class="dropdown-item" data-section="analysis" data-subsection="case-analysis">사건분석</a>//
-		 </div>
-   	          </li>
-                      
-                  <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link" data-section="education-research">교육·연구</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" data-section="education-research" data-subsection="training">전문가 양성</a>
-                             <a href="#" class="dropdown-item" data-section="education-research" data-subsection="development">심리검사 개발</a>
-                        </div>
-                    </li>
-
-                   <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link" data-section="board">게시판</a> 
-                    </li>
-
-                </ul>
-            </nav>
-    </div> 
-</header>
-
-    <!-- 메가 메뉴 (드롭다운) -->
-    <div id="mega-menu" class="mega-menu-container" style="display: none;">
-        <!-- 이 부분은 더 이상 사용되지 않습니다 -->
-    </div>
-    
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- hero(사진) 섹션 복원 -->
- <section id="home" class="content-section active">
-  <div class="hero">
-    <div class="hero-content">
-      <h2 class="hero-title">지금, 다시 세온에서</h2>
-      <h3 class="hero-subtitle">Start&nbsp;Everything&nbsp;Over,&nbsp;Now</h3>
-    </div>
-
-    <div class="worry-box">
-    <!-- 모바일에서만 보이는 타이틀 박스 -->
-     <div class="mobile-title-box">
-        <h2 class="mobile-hero-title">지금, 다시 세온에서</h2>
-        <h3 class="mobile-hero-subtitle">Start Everything Over, Now</h3>
-    </div>
-      <div class="worry-title">
-        <span class="worry-emoji bi bi-check2-circle"></span>
-        더세온연구소
-    </div>
-      <div class="worry-subtitle">
-        형사사건 전문 심리교육·분석 기관
-    </div>
-      <ul class="worry-list worry-dot">
-        <li>형사사건에서 심리 자문이 필요할 때</li>
-        <li>양형자료나 전문가 의견서가 필요할 때</li>
-        <li>진술의 신빙성에 대해 의문이 들 때</li>
-        <li>수사·재판 중 심리교육이 필요할 때</li>
-        <li>성폭력·가정폭력 행동 개선이 필요할 때</li>
-        <li>형사사건 피해 상담이 필요할 때</li>
-      </ul>
-      <div class="worry-ask">
-        <a href="tel:0507-1463-8122" class="consultation-btn">
-          <i class="bi bi-telephone-fill"></i> 상담 문의하기
-        </a>
-    <!--  <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
-    전화 또는 화상 상담 가능합니다
-  </p> -->
+  </script>
+  <!-- 상단 바 -->
+  <div id="top-bar">
+    <div class="top-bar-container">
+      <a href="#" class="top-bar-link home-link">
+        <i class="bi bi-house-door-fill"></i> 처음으로
+      </a>
+      <div class="top-bar-menu">
+        <!-- 회원가입/로그인/사이트맵/검색 제거 -->
       </div>
     </div>
   </div>
 
-  <div class="quick-menu-section">
-    <!-- 퀵메뉴 내용 -->
-            <div class="section-container">
-                <div class="quick-menu-grid">
-                    <div class="quick-menu-item">
-                        <a href="#">
-                            <div class="quick-menu-icon"><i class="bi bi-calendar-check"></i></div>
-                            <span class="quick-menu-label">상담 예약</span>
-                        </a>
-                    </div>
-                    <div class="quick-menu-item">
-                        <a href="#">
-                            <div class="quick-menu-icon"><i class="bi bi-easel"></i></div>
-                            <span class="quick-menu-label">교육 신청</span>
-                        </a>
-                    </div>
-                    <div class="quick-menu-item">
-                        <a href="#">
-                            <div class="quick-menu-icon"><i class="bi bi-clipboard2-pulse"></i></div>
-                            <span class="quick-menu-label">평가 신청</span>
-                        </a>
-                    </div>
-                    <div class="quick-menu-item">
-                         <a href="#" >
-        	           <div class="quick-menu-icon"><i class="bi bi-file-earmark-text"></i></div>
-  			  <span class="quick-menu-label">서류 신청</span>
-                        </a>
-                    </div>
-                </div>
+  <!-- Header -->
+  <header id="header">
+    <div class="header-container">
+      <div class="logo-container">
+        <a href="#" class="logo-link">
+          <img src="logo.jpg" alt="더세온연구소 로고" class="logo-img">
+          <div class="logo-text">
+            <h1>더세온연구소</h1>
+            <!--       <p>Criminal Psychology Education & Analysis</p> -->
+          </div>
+        </a>
+      </div>
+      <!-- ✅ pc버전 사용안함
+	<div class="mobile-notice-bar">
+    	   <a href="?version=pc">PC 버전</a>
+	   </div> -->
+      <!-- 메인 네비게이션 -->
+      <nav class="main-nav">
+        <ul>
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link" data-section="about">소개</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item" data-section="about" data-subsection="intro">연구소 소개</a>
+              <a href="#" class="dropdown-item" data-section="about" data-subsection="members">구성원</a>
+              <a href="#" class="dropdown-item" data-section="about" data-subsection="contact">상담 안내</a>
+              <a href="#" class="dropdown-item" data-section="about" data-subsection="location">자문·협력</a>
             </div>
-          </div> 
-          
-          <!-- 홈페이지 게시글 목록 섹션 -->
-          <div class="home-posts-section">
-            <div class="section-container">
-              <div class="home-posts-grid home-notice-simple">
-                <!-- 게시판 -->
-                <div class="home-notice-block">
-                  <div class="home-notice-header">
-                    <span class="home-notice-title">게시판</span>
-                    <a href="#" class="home-notice-plus" data-target="notice">+</a>
-                  </div>
-					 
-                  <ul id="home-notice-list" class="home-notice-list">
-                    <li>로딩 중...</li>
-                  </ul>
-                </div>          
+          </li>
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link" data-section="education-counseling">심리교육·상담</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item" data-section="education-counseling" data-subsection="process">교육절차</a>
+              <a href="#" class="dropdown-item" data-section="education-counseling" data-subsection="programs">교육과정</a>
+              <a href="#" class="dropdown-item" data-section="education-counseling" data-subsection="counseling">개별상담</a>
+            </div>
+          </li>
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link" data-section="evaluation">심리평가</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="recidivism">재범위험성 평가</a>
+              <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="sexual-violence">성폭력·폭력위험성 평가</a>
+              <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="comprehensive">종합심리평가</a>
+              <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="victim">피해자평가</a>
+              <a href="#" class="dropdown-item" data-section="evaluation" data-subsection="education-effect">교육효과평가</a>
+            </div>
+          </li>
+
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link" data-section="analysis">진술·양형·사건분석</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item" data-section="analysis" data-subsection="statement">진술분석</a>
+              <a href="#" class="dropdown-item" data-section="analysis" data-subsection="sentencing">양형자료작성</a>
+              // <a href="#" class="dropdown-item" data-section="analysis" data-subsection="case-analysis">사건분석</a>//
+            </div>
+          </li>
+
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link" data-section="education-research">교육·연구</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item" data-section="education-research" data-subsection="training">전문가 양성</a>
+              <a href="#" class="dropdown-item" data-section="education-research" data-subsection="development">심리검사 개발</a>
+            </div>
+          </li>
+
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link" data-section="board">게시판</a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 메가 메뉴 (드롭다운) -->
+  <div id="mega-menu" class="mega-menu-container" style="display: none;">
+    <!-- 이 부분은 더 이상 사용되지 않습니다 -->
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- hero(사진) 섹션 복원 -->
+    <section id="home" class="content-section active">
+      <div class="hero">
+        <div class="hero-content">
+          <h2 class="hero-title">지금, 다시 세온에서</h2>
+          <h3 class="hero-subtitle">Start&nbsp;Everything&nbsp;Over,&nbsp;Now</h3>
+        </div>
+
+        <div class="worry-box">
+          <!-- 모바일에서만 보이는 타이틀 박스 -->
+          <div class="mobile-title-box">
+            <h2 class="mobile-hero-title">지금, 다시 세온에서</h2>
+            <h3 class="mobile-hero-subtitle">Start Everything Over, Now</h3>
+          </div>
+          <div class="worry-title">
+            <span class="worry-emoji bi bi-check2-circle"></span>
+            더세온연구소
+          </div>
+          <div class="worry-subtitle">
+            형사사건 전문 심리교육·분석 기관
+          </div>
+          <ul class="worry-list worry-dot">
+            <li>형사사건에서 심리 자문이 필요할 때</li>
+            <li>양형자료나 전문가 의견서가 필요할 때</li>
+            <li>진술의 신빙성에 대해 의문이 들 때</li>
+            <li>수사·재판 중 심리교육이 필요할 때</li>
+            <li>성폭력·가정폭력 행동 개선이 필요할 때</li>
+            <li>형사사건 피해 상담이 필요할 때</li>
+          </ul>
+          <div class="worry-ask">
+            <a href="tel:0507-1463-8122" class="consultation-btn">
+              <i class="bi bi-telephone-fill"></i> 상담 문의하기
+            </a>
+            <!--  <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
+    전화 또는 화상 상담 가능합니다
+  </p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-menu-section">
+        <!-- 퀵메뉴 내용 -->
+        <div class="section-container">
+          <div class="quick-menu-grid">
+            <div class="quick-menu-item">
+              <a href="#">
+                <div class="quick-menu-icon"><i class="bi bi-calendar-check"></i></div>
+                <span class="quick-menu-label">상담 예약</span>
+              </a>
+            </div>
+            <div class="quick-menu-item">
+              <a href="#">
+                <div class="quick-menu-icon"><i class="bi bi-easel"></i></div>
+                <span class="quick-menu-label">교육 신청</span>
+              </a>
+            </div>
+            <div class="quick-menu-item">
+              <a href="#">
+                <div class="quick-menu-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+                <span class="quick-menu-label">평가 신청</span>
+              </a>
+            </div>
+            <div class="quick-menu-item">
+              <a href="#">
+                <div class="quick-menu-icon"><i class="bi bi-file-earmark-text"></i></div>
+                <span class="quick-menu-label">서류 신청</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 홈페이지 게시글 목록 섹션 -->
+      <div class="home-posts-section">
+        <div class="section-container">
+          <div class="home-posts-grid home-notice-simple">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- 소개 섹션 -->
+    <section id="about" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>연구소 소개</h2>
+          <p class="section-subtitle">형사사건 전문 심리교육·분석 기관</p>
+        </div>
+
+        <!-- 서브 네비게이션 -->
+        <div class="sub-navigation">
+          <ul class="sub-nav-list">
+            <li><a href="#" data-subsection="intro" class="sub-nav-link active">연구소 소개</a></li>
+            <li><a href="#" data-subsection="members" class="sub-nav-link">구성원</a></li>
+            <li><a href="#" data-subsection="contact" class="sub-nav-link">상담 안내</a></li>
+            <li><a href="#" data-subsection="directions" class="sub-nav-link">오시는 길</a></li>
+            <li><a href="#" data-subsection="faq" class="sub-nav-link">자주 묻는 질문</a></li>
+            <li><a href="#" data-subsection="location" class="sub-nav-link">자문·협력</a></li>
+          </ul>
+        </div>
+
+        <!-- 연구소 소개 -->
+        <div class="sub-content active" id="about-intro">
+          <div class="content-card-new">
+
+            <h3>형사사건 심리분석의 신뢰할 수 있는 전문가</h3>
+            <p>더세온연구소는 20년 이상의 경험을 바탕으로 형사사건과 관련된 심리 자문, 교육, 평가, 상담 서비스를 전문적으로 수행하는 심리분석 기관입니다. 수사·재판 과정에서의 전문가 자문, 진술분석, 양형자료 보고서부터, 구속 전 심리교육, 재범 예방 상담, 재범위험성 평가까지 형사사건 전 과정에 필요한 맞춤형 서비스를 제공합니다. 더세온연구소는 당사자의 이해와 행동 개선을 돕고, 긍정적 변화와 회복을 위한 실질적인 심리 지원을 추구합니다.</p>
+            <h3>더세온의 전문성과 가치</h3>
+            <ul class="value-list" style="list-style: none;">
+              <li>• <strong>객관적 분석:</strong> 과학적 심리기법과 분석 도구를 활용하여 편견 없는 객관적 분석을 제공합니다. 감정이나 추측이 아닌, 데이터와 이론에 기반한 신뢰할 수 있는 결과를 도출합니다.</li>
+              <li>• <strong>실질적 도움:</strong> 경찰청 범죄분석요원(프로파일러), 법원 양형조사관 등의 실무 경험을 토대로 이론적 분석에 그치지 않고, 법정에서 실제로 활용할 수 있는 실용적인 자료와 조언을 제공합니다. 변론 전략 수립과 양형 참작에 직접적으로 도움이 되는 서비스를 지향합니다.</li>
+              <li>• <strong>맞춤형 솔루션:</strong> 각 사건의 특성과 당사자의 상황에 맞는 개별화된 분석과 상담을 제공합니다. 획일적인 접근이 아닌, 사건별 특성을 고려한 전문적 해결책을 제시합니다.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 구성원 -->
+        <div class="sub-content" id="about-members">
+          <!-- 연구소장 섹션 -->
+          <div class="leadership-section">
+            <h4 style="font-size: 1.2rem;">연구소장 | 정혜정</h4>
+            <div class="director-cards">
+              <div class="director-card">
+                <h5 style="font-size: 1.1rem;">주요 경력</h5>
+                <div class="career-list">
+                  <p>• 경기대학교 범죄심리학 박사</p>
+                  <p>• 前 서울중앙지방법원 양형조사관</p>
+                  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경찰청 범죄분석요원 (프로파일러)</p>
+                  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;국방부 국군방첩사령부 양성평등담당관</p>
+                  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;법무부 교정본부 심리치료과</p>
+                  <p>• 現 경기대학교 범죄교정심리학과 겸임교수</p>
+                  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경기남부경찰청 전문가참여제, 범죄피해평가 전문가</p>
+                </div>
+              </div>
+              <div class="director-card">
+                <h5 style="font-size: 1.1rem;">전문 자격</h5>
+                <div class="credential-list">
+                  <p>• 정신건강임상심리사 1급</p>
+                  <p>• 임상심리전문가</p>
+                  <p>• 범죄심리전문가</p>
+                </div>
+                <h5 style="font-size: 1.1rem; margin-top: 1.5rem;">주요 저서 및 방송</h5>
+                <div class="achievement-list">
+                  <p>• 사악한 본능 어디에서 오는가 (공저, 2023)</p>
+                  <p>• RSVP 성폭력 위험성 평가 프로토콜 (공저, 2022)</p>
+                  <p>• KBS 스모킹건 99회 이대영 사건 등 다수 출연</p>
+                </div>
               </div>
             </div>
           </div>
-</section>
-           
 
-
-        <!-- 소개 섹션 -->
-        <section id="about" class="content-section">
-            <div class="section-container">
-               <div class="section-header">
-                    <h2>연구소 소개</h2>
-                    <p class="section-subtitle">형사사건 전문 심리교육·분석 기관</p>
-                </div>
-                
-                <!-- 서브 네비게이션 -->
-                <div class="sub-navigation">
-                    <ul class="sub-nav-list">
-                        <li><a href="#" data-subsection="intro" class="sub-nav-link active">연구소 소개</a></li>
-                        <li><a href="#" data-subsection="members" class="sub-nav-link">구성원</a></li>
-                        <li><a href="#" data-subsection="contact" class="sub-nav-link">상담 안내</a></li>
-                        <li><a href="#" data-subsection="location" class="sub-nav-link">자문·협력</a></li>
-                    </ul>
-                </div>
-                
-                <!-- 연구소 소개 -->
-                <div class="sub-content active" id="about-intro">
-                    <div class="content-card-new">
-
-                        <h3>형사사건 심리분석의 신뢰할 수 있는 전문가</h3>
-                        <p>더세온연구소는 20년 이상의 경험을 바탕으로 형사사건과 관련된 심리 자문, 교육, 평가, 상담 서비스를 전문적으로 수행하는 심리분석 기관입니다. 수사·재판 과정에서의 전문가 자문, 진술분석, 양형자료 보고서부터, 구속 전 심리교육, 재범 예방 상담, 재범위험성 평가까지 형사사건 전 과정에 필요한 맞춤형 서비스를 제공합니다. 더세온연구소는 당사자의 이해와 행동 개선을 돕고, 긍정적 변화와 회복을 위한 실질적인 심리 지원을 추구합니다.</p>
-                        <h3>더세온의 전문성과 가치</h3>
-                        <ul class="value-list" style="list-style: none;">
-                            <li>• <strong>객관적 분석:</strong> 과학적 심리기법과 분석 도구를 활용하여 편견 없는 객관적 분석을 제공합니다. 감정이나 추측이 아닌, 데이터와 이론에 기반한 신뢰할 수 있는 결과를 도출합니다.</li>
-                            <li>• <strong>실질적 도움:</strong> 경찰청 범죄분석요원(프로파일러), 법원 양형조사관 등의 실무 경험을 토대로 이론적 분석에 그치지 않고, 법정에서 실제로 활용할 수 있는 실용적인 자료와 조언을 제공합니다. 변론 전략 수립과 양형 참작에 직접적으로 도움이 되는 서비스를 지향합니다.</li>
-                            <li>• <strong>맞춤형 솔루션:</strong> 각 사건의 특성과 당사자의 상황에 맞는 개별화된 분석과 상담을 제공합니다. 획일적인 접근이 아닌, 사건별 특성을 고려한 전문적 해결책을 제시합니다.</li>
-                           </ul>
-                    </div>
-                </div>
-                
-             <!-- 구성원 -->
-                <div class="sub-content" id="about-members">
-                    <!-- 연구소장 섹션 -->
-                    <div class="leadership-section">
-                              <h4 style="font-size: 1.2rem;">연구소장 | 정혜정</h4>
-                        <div class="director-cards">
-                            <div class="director-card">
-                              <h5 style="font-size: 1.1rem;">주요 경력</h5>
-                                <div class="career-list">
-                                    <p>• 경기대학교 범죄심리학 박사</p>
-                                    <p>• 前 서울중앙지방법원 양형조사관</p>
-                                    <p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경찰청 범죄분석요원 (프로파일러)</p>
-                                    <p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;국방부 국군방첩사령부 양성평등담당관</p>
-                                    <p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;법무부 교정본부 심리치료과</p>
-                                    <p>• 現 경기대학교 범죄교정심리학과 겸임교수</p>
-				    <p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경기남부경찰청 전문가참여제, 범죄피해평가 전문가</p> 
-                                </div>
-                            </div>
-                            <div class="director-card">
-                                <h5 style="font-size: 1.1rem;">전문 자격</h5>
-                                <div class="credential-list">
-                                    <p>• 정신건강임상심리사 1급</p>
-                                    <p>• 임상심리전문가</p>
-                                    <p>• 범죄심리전문가</p>
-                                </div>
-                                <h5 style="font-size: 1.1rem; margin-top: 1.5rem;">주요 저서 및 방송</h5>
-                                <div class="achievement-list">
-                                    <p>• 사악한 본능 어디에서 오는가 (공저, 2023)</p>
-                                    <p>• RSVP 성폭력 위험성 평가 프로토콜 (공저, 2022)</p>
-                                    <p>• KBS 스모킹건 99회 이대영 사건 등 다수 출연</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-		        <!-- 상담/분석위원 섹션 -->
-                 <div class="leadership-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
-                         <h4 style="font-size: 1.2rem;">상담/분석위원</h4>
-                        <div class="staff-grid">
-                            <div class="staff-card">
-                                <h5>남궁혜정</h5>
-                                <p class="staff-position">임상심리전문가, 범죄심리전문가</p>
-                                <p class="staff-specialty">심리상담 및 교육</p>
-                            </div>
-			<div class="staff-card">
-                                <h5>최문희</h5>
-                                <p class="staff-position">임상심리전문가, 상담심리전문가</p>
-                                <p class="staff-specialty">심리상담 및 교육</p>
-                            </div>
-                            <div class="staff-card">
-                                <h5>김정동</h5>
-                                <p class="staff-position">상담심리전문가</p>
-                                <p class="staff-specialty">심리상담 및 교육</p>
-                            </div>
-                            <div class="staff-card">
-                                <h5>최보경</h5>
-                                <p class="staff-position">범죄심리사1급, 피해평가전문가</p>
-                                <p class="staff-specialty">범죄심리분석, 피해자상담</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-		
-                <!-- 상담 안내 -->
-<div class="sub-content" id="about-contact">
-  <div class="content-card double-border">
-        
-        <!-- 기본 안내 -->
-<div class="contact-notice">
-  <p>
-    <i class="bi bi-info-circle-fill"></i> 모든 서비스는 전화 상담 후 예약을 통해 진행됩니다.
-  </p>
-</div>
-        <!-- 주요 서비스 개요 -->
-        <div class="service-overview" >
-          <h4>주요 서비스</h4>
-          <p><strong>심리교육·상담</strong> | <strong>심리평가</strong> | <strong>진술분석</strong> | <strong>양형자료작성</strong> | <strong>사건분석</strong></p>
-          <p style="font-size: 0.9rem; color: #666;">자세한 내용은 각 메뉴를 참고하시거나 전화 상담 시 문의하세요.</p>
-        </div>
-        
-        <!-- 서비스 지역 -->
-        <div class="location-section">
-          <p><strong>서비스 지역</strong></p>
-          <div class="location-list">
-            <p>• 본원(서울) — 서울시 서초구 사임당로 39. 한성빌딩 3층</p>
-            <p>• 지점(대전) — 대전시 동구 삼성동 301-6</p>
-            <p>• 온라인 화상 상담 — 거리·시간 제약이 있는 경우</p>
+          <!-- 상담/분석위원 섹션 -->
+          <div class="leadership-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+            <h4 style="font-size: 1.2rem;">상담/분석위원</h4>
+            <div class="staff-grid">
+              <div class="staff-card">
+                <h5>남궁혜정</h5>
+                <p class="staff-position">임상심리전문가, 범죄심리전문가</p>
+                <p class="staff-specialty">심리상담 및 교육</p>
+              </div>
+              <div class="staff-card">
+                <h5>최문희</h5>
+                <p class="staff-position">임상심리전문가, 상담심리전문가</p>
+                <p class="staff-specialty">심리상담 및 교육</p>
+              </div>
+              <div class="staff-card">
+                <h5>김정동</h5>
+                <p class="staff-position">상담심리전문가</p>
+                <p class="staff-specialty">심리상담 및 교육</p>
+              </div>
+              <div class="staff-card">
+                <h5>최보경</h5>
+                <p class="staff-position">범죄심리사1급, 피해평가전문가</p>
+                <p class="staff-specialty">범죄심리분석, 피해자상담</p>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <!-- 연락처 정보 -->
-        <div class="contact-details">
-          <p><strong>전화 상담</strong>: 
-            <a href="tel:0507-1463-8122" style="color:#1a3555; text-decoration:none;">
-              0507-1463-8122</a>
-          </p>
-          <br>
-          <p><strong>운영시간</strong>: 평일 9:00 ~ 18:00/ 필요시 야간·주말 운영</p>
+
+        <!-- 상담 안내 -->
+        <div class="sub-content" id="about-contact">
+          <div class="content-card double-border">
+
+            <!-- 기본 안내 -->
+            <div class="contact-notice">
+              <p>
+                <i class="bi bi-info-circle-fill"></i> 모든 서비스는 전화 상담 후 예약을 통해 진행됩니다.
+              </p>
+            </div>
+            <!-- 주요 서비스 개요 -->
+            <div class="service-overview">
+              <h4>주요 서비스</h4>
+              <p><strong>심리교육·상담</strong> | <strong>심리평가</strong> | <strong>진술분석</strong> | <strong>양형자료작성</strong> | <strong>사건분석</strong></p>
+              <p style="font-size: 0.9rem; color: #666;">자세한 내용은 각 메뉴를 참고하시거나 전화 상담 시 문의하세요.</p>
+            </div>
+
+            <!-- 서비스 지역 -->
+            <div class="location-section">
+              <p><strong>서비스 지역</strong></p>
+              <div class="location-list">
+                <p>• 본원(서울) — 서울시 서초구 사임당로 39. 한성빌딩 3층</p>
+                <p>• 지점(대전) — 대전시 동구 삼성동 301-6</p>
+                <p>• 온라인 화상 상담 — 거리·시간 제약이 있는 경우</p>
+              </div>
+            </div>
+
+            <!-- 연락처 정보 -->
+            <div class="contact-details">
+              <p><strong>전화 상담</strong>:
+                <a href="tel:0507-1463-8122" style="color:#1a3555; text-decoration:none;">
+                  0507-1463-8122</a>
+              </p>
+              <br>
+              <p><strong>운영시간</strong>: 평일 9:00 ~ 18:00/ 필요시 야간·주말 운영</p>
+            </div>
+            <br>
+
+            <!-- 서비스 제공 원칙 -->
+            <div class="principle-section">
+              <h4>서비스 제공 원칙</h4> <br>
+              <p>• 더세온연구소는 모든 서비스에 대해 전문적 기준과 윤리적 원칙을 적용합니다.</p>
+              <p>• <strong>분석 서비스</strong>는 충분한 자료 확보와 과학적 분석 기법의 적용 가능성을 사전 검토한 후 진행됩니다.</p>
+              <p>• <strong>교육 및 상담 수료 후</strong> 수료증은 즉시 발급되나, <strong>의견서</strong>는 사실관계·자료, 평가/교육 결과, 법정 활용 적합성 등을 종합 검토하여 발급합니다.</p>
+              <p>• 모든 상담·평가 내용은 <strong>비밀이 보장</strong>되며, 동의 없이 제3자에게 제공하지 않습니다.</p>
+            </div>
+
+
+            <div class="faq-section">
+              <h4>자주 묻는 질문 (FAQ)</h4>
+              <div class="faq-item">
+                <button class="faq-question"> 비용은 어떻게 되나요?</button>
+                <div class="faq-answer">
+                  <p>사건의 성격, 교육/상담 회기 수, 의견서 발급 여부에 따라 달라집니다.
+                    기본 상담 후 개별 견적을 안내해드립니다.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question"> 소요 시간, 기간은 얼마나 걸리나요?</button>
+                <div class="faq-answer">
+                  <p>교육은 주 1~2회, 회기당 1~2시간, 총 1주~4주 이상의 과정입니다.<br>
+                    상담은 주 1~2회, 회기당 50분, 총 1주~2주 이상의 과정입니다.<br>
+                    심리평가는 1~3시간 정도 소요되며 검사 종류에 따라 달라집니다.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question"> 결과물은 어떤 형태로 제공되나요?</button>
+                <div class="faq-answer">
+                  <p>교육을 마치면 <strong>수료증</strong>이 발급됩니다.
+                    필요 시 <strong>전문가 의견서</strong>(사전 상담 및 근거 확인 후)를 추가로 발급받을 수 있습니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <br>
-        
-        <!-- 서비스 제공 원칙 -->
-        <div class="principle-section" >
-          <h4>서비스 제공 원칙</h4> <br>
-          <p>• 더세온연구소는 모든 서비스에 대해 전문적 기준과 윤리적 원칙을 적용합니다.</p>
-          <p>• <strong>분석 서비스</strong>는 충분한 자료 확보와 과학적 분석 기법의 적용 가능성을 사전 검토한 후 진행됩니다.</p>
-          <p>• <strong>교육 및 상담 수료 후</strong> 수료증은 즉시 발급되나, <strong>의견서</strong>는 사실관계·자료, 평가/교육 결과, 법정 활용 적합성 등을 종합 검토하여 발급합니다.</p>
-          <p>• 모든 상담·평가 내용은 <strong>비밀이 보장</strong>되며, 동의 없이 제3자에게 제공하지 않습니다.</p>
+      </div>
+
+      <!-- 협력 · 자문 -->
+      <div class="sub-content" id="about-location" style="max-width: 1200px; margin: 0 auto;">
+        <!-- 자문위원 섹션 -->
+        <div class="partner-section" style="max-width: 1200px; margin: 0 auto;">
+          <h4 style="font-size: 1.2rem;">자문위원</h4>
+          <div class="advisory-grid">
+            <div class="advisory-card">
+              <h5>서종한</h5>
+              <p class="advisory-position">영남대학교 심리학과 교수</p>
+              <p class="advisory-specialty">법심리, 범죄심리 등</p>
+            </div>
+            <div class="advisory-card">
+              <h5>윤외출</h5>
+              <p class="advisory-position">전 경무관, 범죄사건 해설위원</p>
+              <p class="advisory-specialty">과학수사, 형사정책</p>
+            </div>
+            <div class="advisory-card">
+              <h5>박경호</h5>
+              <p class="advisory-position">변호사, 前 대검찰청 중앙수사1과장</p>
+              <p class="advisory-specialty">형사사건 법리검토, 수사실무 자문</p>
+            </div>
+          </div>
         </div>
-       
- 
-				<div class="faq-section"  >
-  <h4>자주 묻는 질문 (FAQ)</h4>
-  <div class="faq-item">
-    <button class="faq-question"> 비용은 어떻게 되나요?</button>
-    <div class="faq-answer">
-      <p>사건의 성격, 교육/상담 회기 수, 의견서 발급 여부에 따라 달라집니다. 
-         기본 상담 후 개별 견적을 안내해드립니다.</p>
-    </div>
-  </div>
 
-  <div class="faq-item">
-    <button class="faq-question"> 소요 시간, 기간은 얼마나 걸리나요?</button>
-    <div class="faq-answer">
-      <p>교육은 주 1~2회, 회기당 1~2시간, 총 1주~4주 이상의 과정입니다.<br>
-		 상담은 주 1~2회, 회기당 50분, 총 1주~2주 이상의 과정입니다.<br>
-		 심리평가는 1~3시간 정도 소요되며 검사 종류에 따라 달라집니다.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-question"> 결과물은 어떤 형태로 제공되나요?</button>
-    <div class="faq-answer">
-      <p>교육을 마치면 <strong>수료증</strong>이 발급됩니다. 
-         필요 시 <strong>전문가 의견서</strong>(사전 상담 및 근거 확인 후)를 추가로 발급받을 수 있습니다.</p>
-    </div>
-  </div>
-</div>
-		</div>
-    </div>
-  </div> 
-						    
-                <!-- 협력 · 자문 -->
-                <div class="sub-content" id="about-location" style="max-width: 1200px; margin: 0 auto;">
-           <!-- 자문위원 섹션 -->
-              <div class="partner-section" style="max-width: 1200px; margin: 0 auto;">
-                      <h4 style="font-size: 1.2rem;">자문위원</h4>
-                        <div class="advisory-grid">
-                            <div class="advisory-card">
-                                <h5>서종한</h5>
-                                <p class="advisory-position">영남대학교 심리학과 교수</p>
-                                <p class="advisory-specialty">법심리, 범죄심리 등</p>
-                            </div>
-                            <div class="advisory-card">
-                                <h5>윤외출</h5>
-                                <p class="advisory-position">전 경무관, 범죄사건 해설위원</p>
-                                <p class="advisory-specialty">과학수사, 형사정책</p>
-                            </div>
-                            <div class="advisory-card">
- 			<h5>박경호</h5>
-			<p class="advisory-position">변호사, 前 대검찰청 중앙수사1과장</p>
-			<p class="advisory-specialty">형사사건 법리검토, 수사실무 자문</p>
-                            </div>
-                        </div>
-                    </div>
-
-					<!-- 협력기관 카드 섹션 
+        <!-- 협력기관 카드 섹션
         <div class="partner-section" style="padding-top: 2rem; border-top: 1px solid #e0e0e0; max-width: 1200px; margin: 2rem 0 3rem 0;">
              <h4 style="font-size: 1.2rem; max-width: 1200px; margin: 0 auto;">주요 협력기관</h4>
             <div class="partner-grid">
@@ -419,638 +427,644 @@
                     <h5>기관명 (예정)</h5>
                     <p class="partner-description">협력 내용 (예정)</p>
                 </div>  -->
-       </div> 
-   </section>
+      </div>
+    </section>
 
-        <!-- 기존 전문 서비스 섹션 비활성화 / 현재 심리교육, 상담 섹션 -->
-    
-        <section id="education-counseling" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <h2>심리교육·상담</h2>
-                    <p class="section-subtitle"> 형사사건 심리교육·상담</p>
-                </div>
-               
-                <!-- 서브 네비게이션 -->
-                <div class="sub-navigation">
-                    <ul class="sub-nav-list">
-                        <li><a href="#" data-subsection="process" class="sub-nav-link active">교육절차</a></li>
-                        <li><a href="#" data-subsection="programs" class="sub-nav-link">교육과정</a></li>
-                        <li><a href="#" data-subsection="counseling" class="sub-nav-link">개별상담</a></li>
-                    </ul>
-                </div>
+    <!-- 기존 전문 서비스 섹션 비활성화 / 현재 심리교육, 상담 섹션 -->
 
-              <!-- 1. 교육절차 -->   
-<div class="sub-content active" id="education-counseling-process">
-  <div class="content-card double-border">
-    <h3>형사사건 심리교육 절차</h3>
-    <p>개별 상황에 맞는 유연한 교육 과정으로 효과적인 행동 변화를 지원합니다.</p>
-
-    <div class="process-steps">
-      <div class="step-box required" data-step="1">
-        <h4>사전 상담</h4>
-        <p>• 사건 개요 및 개인 상황 파악<br>
-        • 적합한 교육과정 안내<br>
-        • 교육 일정 및 방식 협의<br>
-        • 소요시간: 30-60분</p>
-      </div>
-
-      <div class="step-box optional" data-step="2">
-        <h4>교육전 평가 (선택)</h4>
-        <p>• SCT, 문장완성검사, MMPI-2, 전문 척도 실시<br>
-        • 개별 특성 분석 및 교육 계획 수립<br>
-        • 교육 효과 측정 가능<br>
-        • 소요시간: 1~2시간</p>
-      </div>
-
-      <div class="step-box required" data-step="3">
-        <h4>교육 과정</h4>
-        <p>• 공통기본과정 + 문제행동개선과정<br>
-        • 주 1~2회 진행 (상황에 따라 조정)<br>
-        • 개별 또는 소그룹 교육<br>
-		• 진행기간: 1~4주<br>
-        • 소요시간: 매회 1~2시간</p>
-      </div>
-
-      <div class="step-box optional" data-step="4">
-        <h4>교육후 평가 (선택)</h4>
-        <p>• 교육 전후 변화 측정<br>
-        • 학습 성과 및 태도 변화 확인<br>
-        • 교육전 평가 실시자에 한함<br>
-        • 소요시간: 1시간</p>
-      </div>
-
-      <div class="step-box required" data-step="5">
-        <h4>결과 제공</h4>
-        <p><strong>기본:</strong> 교육 수료증<br>
-        <strong>추가 선택:</strong><br>
-        • 전문가 의견서 (유료)<br>
-        • 사후 상담 및 관리 (유료)</p>
-      </div>
-    </div>
- 
-  </div>
-</div>
-        <!-- 2.교육과정 -->
-<div class="sub-content" id="education-counseling-programs">
-  <div class="content-card double-border">
-    <h3>형사사건 심리교육 과정</h3>
-    <p>개별 사건 특성과 당사자 상황을 종합적으로 고려한 맞춤형 교육을 제공합니다.</p>
-
-    <!-- 공통기본과정 -->
-    <div class="education-section">
-      <h4>공통기본과정</h4>
-      <div class="course-table">
-        <table class="education-table">
-          <thead>
-            <tr>
-              <th>과정명</th>
-              <th>주요 내용</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>준법의식 함양</td>
-              <td>법과 사회 질서의 의미, 준법정신의 중요성</td>
-            </tr>
-            <tr>
-              <td>책임인식 및 반성내면화</td>
-              <td>사건에 대한 책임감 인식, 진정한 반성과 성찰</td>
-            </tr>
-            <tr>
-              <td>피해자 공감교육</td>
-              <td>피해자 관점 이해, 공감능력 향상</td>
-            </tr>
-            <tr>
-              <td>재범위험요인 관리</td>
-              <td>개인별 위험요인 파악 및 관리 방안</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 문제행동개선과정 -->
-<div class="education-section">
-  <h4>문제행동개선과정</h4>
-  <div class="faq-section edu-accordion">
-    <div class="faq-item">
-      <button class="faq-question">분노조절교육</button>
-      <div class="faq-answer">
-        <p><strong>대상 죄명</strong>: 폭행, 상해 등<br>
-           <strong>주요 내용</strong>: 분노 관리 기술, 충동 조절 능력 향상</p>
-      </div>
-    </div>
-  <div class="faq-item">
-      <button class="faq-question">성인지교육</button>
-      <div class="faq-answer">
-        <p><strong>대상 죄명</strong>: 성폭력, 강제추행, 아동대상 성폭력 등<br>
-           <strong>주요 내용</strong>: 올바른 성 가치관 확립, 왜곡된 성의식 교정</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">관계회복교육</button>
-      <div class="faq-answer">
-        <p><strong>대상 죄명</strong>: 스토킹, 협박 등<br>
-           <strong>주요 내용</strong>: 건강한 인간관계, 갈등 해결 방법</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">음주문제 개선교육</button>
-      <div class="faq-answer">
-        <p><strong>대상 죄명</strong>: 음주운전, 주취폭행 등<br>
-           <strong>주요 내용</strong>: 음주 문제 인식, 건전한 생활습관 형성</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">약물문제 인식교육</button>
-      <div class="faq-answer">
-        <p><strong>대상 죄명</strong>: 마약, 향정신성의약품 등<br>
-           <strong>주요 내용</strong>: 약물 의존성 이해, 건전한 일상 회복</p>
-      </div>
-    </div>
-  </div>
-</div>
-    
-
-    <!-- 패키지 안내 -->
-    <div class="package-section">
-      <h4>교육 서비스 패키지</h4>
-      <div class="package-container">
-        <div class="package-card basic">
-          <div class="package-header">
-            <h5 style="color:white;">기본 패키지(Essential)</h5>
-           </div>
-          <div class="package-content">
-            <ul>
-              <li>• 사전 상담</li>
-              <li>• 맞춤형 교육 과정</li>
-              <li>• 교육 수료증</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="package-card extended">
-          <div class="package-header">
-            <h5 style="color:white;">확장 패키지(Premium)</h5>
-           </div>
-          <div class="package-content">
-            <ul>
-              <li>• 기본 패키지 전체 포함 </li>
-              <li>• 교육전후 심리평가</li>
-              <li>• 전문가 의견서</li>
-              <li>• 사후 상담 (선택)</li>
-            </ul>
-          </div>
+    <section id="education-counseling" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>심리교육·상담</h2>
+          <p class="section-subtitle"> 형사사건 심리교육·상담</p>
         </div>
 
-      </div>
-    </div>
-
-	  	  
-    <div class="education-notice">
-      <p><strong>참고:</strong> 모든 교육 과정은 개별 상담을 통해 당사자의 상황과 사건 특성에 맞게 조정됩니다.</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- 3. 개별 상담 -->
-<div class="sub-content" id="education-counseling-counseling">
-  <div class="content-card double-border">
-    <h3>개별 심리상담</h3>
-    <p>형사사건과 관련된 심리적 어려움을 겪고 있는 당사자와 가족을 위한 전문 상담 서비스입니다.</p>
-
-    <!-- 상담 대상 -->
-    <div class="counseling-section">
-      <h4>상담 대상</h4>
-      <div class="target-grid">
-        <div class="target-box">
-          <h5>당사자 상담</h5>
-          <ul>
-            <li>• 범죄 행위로 인한 죄책감과 불안</li>
-            <li>• 법적 절차 진행 중 심리적 스트레스</li>
-            <li>• 재범 방지를 위한 행동 변화 의지 강화</li>
-            <li>• 사회 복귀에 대한 두려움과 걱정</li>
-          </ul>
-        </div>
-        
-        <div class="target-box">
-          <h5>가족 상담</h5>
-          <ul>
-            <li>• 가족 구성원의 범죄로 인한 충격과 혼란</li>
-            <li>• 사회적 시선과 편견에 대한 스트레스</li>
-            <li>• 당사자와의 관계 회복 방법</li>
-            <li>• 가정 내 갈등 해결 및 재발 방지</li>
+        <!-- 서브 네비게이션 -->
+        <div class="sub-navigation">
+          <ul class="sub-nav-list">
+            <li><a href="#" data-subsection="process" class="sub-nav-link active">교육절차</a></li>
+            <li><a href="#" data-subsection="programs" class="sub-nav-link">교육과정</a></li>
+            <li><a href="#" data-subsection="counseling" class="sub-nav-link">개별상담</a></li>
           </ul>
         </div>
 
-        <div class="target-box">
-          <h5>피해자 상담</h5>
-          <ul>
-             <li>• 법적 절차 진행에서의 심리적 부담</li>
-			 <li>• 사건 진행에 따른 2차 피해 예방</li>
-             <li>• 가해자와의 관계 정리 및 대처 방안</li>
-          </ul>
-        </div>
-      </div>
-   </div>
-   </div>
-  </div>
-</section>
-        <!-- 심리평가 섹션 -->
-        <section id="evaluation" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <h2>심리평가</h2>
-                    <p class="section-subtitle">재범위험성, 피해자 평가, 교육효과평가</p>
-                </div>
-                
-                <!-- 서브 네비게이션 -->
-                <div class="sub-navigation">
-                    <ul class="sub-nav-list">
-                        <li><a href="#" data-subsection="recidivism" class="sub-nav-link active">재범위험성 평가</a></li>
-                        <li><a href="#" data-subsection="sexual-violence" class="sub-nav-link">성폭력·폭력위험성 평가</a></li>
-                        <li><a href="#" data-subsection="comprehensive" class="sub-nav-link">종합심리평가</a></li>
-                        <li><a href="#" data-subsection="victim" class="sub-nav-link">피해자 평가</a></li> 
-                        <li><a href="#" data-subsection="education-effect" class="sub-nav-link">교육효과평가</a></li>
-                    </ul>
-                </div>
+        <!-- 1. 교육절차 -->
+        <div class="sub-content active" id="education-counseling-process">
+          <div class="content-card double-border">
+            <h3>형사사건 심리교육 절차</h3>
+            <p>개별 상황에 맞는 유연한 교육 과정으로 효과적인 행동 변화를 지원합니다.</p>
 
-                <!-- 재범위험성 평가 -->
-  <div class="sub-content active" id="evaluation-recidivism">
-  <div class="content-card double-border">
-    <h3>재범위험성 평가</h3>
-    <p>재범 가능성을 객관적으로 측정하고, 효과적인 관리 방안을 제시합니다.</p>
-    
-    <h4>주요 평가 도구</h4>
-    <ul class="assessment-tools">
-     <li><strong>정신병질 체크리스트</strong> (PCL-R) - 정신병질적 성향과 재범 위험성 평가</li>
-     <li><strong>한국 범죄자 위험성 평가</strong> (KORAS-G) - 일반 범죄의 재범 가능성을 종합적으로 측정</li>
-    </ul>
+            <div class="process-steps">
+              <div class="step-box required" data-step="1">
+                <h4>사전 상담</h4>
+                <p>• 사건 개요 및 개인 상황 파악<br>
+                  • 적합한 교육과정 안내<br>
+                  • 교육 일정 및 방식 협의<br>
+                  • 소요시간: 30-60분</p>
+              </div>
 
-    <h4>평가 목적</h4>
-    <ul>
-     <li>• 양형 참작을 위한 객관적 자료 제공</li>
-    <li>• 집행유예 또는 기소유예 결정 지원</li>
-    <li>• 개별 맞춤형 관리 계획 수립</li>
-    <li>• 사회복귀 프로그램 선정</li>
-    </ul>
-  </div>
-</div>
+              <div class="step-box optional" data-step="2">
+                <h4>교육전 평가 (선택)</h4>
+                <p>• SCT, 문장완성검사, MMPI-2, 전문 척도 실시<br>
+                  • 개별 특성 분석 및 교육 계획 수립<br>
+                  • 교육 효과 측정 가능<br>
+                  • 소요시간: 1~2시간</p>
+              </div>
 
-                <!-- 성폭력·폭력위험성 평가 -->
-<div class="sub-content" id="evaluation-sexual-violence">
-  <div class="content-card double-border">
-    <h3>성폭력·폭력위험성 평가</h3>
-    <p>성범죄, 폭력행위의 재발 방지와 효과적인 예방 및 관리 전략을 수립합니다.</p>
-    <h4>주요 평가 도구</h4>
-    <ul class="assessment-tools"> 
-     <li><strong>성범죄자 위험성 평가</strong> (K-SORAS) - 성범죄 재발 가능성과 위험 요인 평가</li>
-     <li><strong>성폭력 위험성 프로토콜</strong> (RSVP) - 성폭력의 위험도 다면적 분석</li>
-     <li><strong>폭력위험성 종합평가</strong> (HCR-20) - 과거력, 임상적, 위험관리 요소를 통합 평가</li>
-     <li><strong>스토킹 위험성 평가</strong> (SAM) - 스토킹 행동의 지속성과 escalation 위험 측정</li>
-    </ul>
+              <div class="step-box required" data-step="3">
+                <h4>교육 과정</h4>
+                <p>• 공통기본과정 + 문제행동개선과정<br>
+                  • 주 1~2회 진행 (상황에 따라 조정)<br>
+                  • 개별 또는 소그룹 교육<br>
+                  • 진행기간: 1~4주<br>
+                  • 소요시간: 매회 1~2시간</p>
+              </div>
 
-    <h4>평가 목적</h4>
-    <ul>
-     <li>• 성범죄 재발 방지를 위한 위험요인 파악</li>
-     <li>• 폭력 행동 예측 및 관리 방안 수립</li>
-     <li>• 치료명령 및 수강명령 적용 근거 제시</li>
-     <li>• 피해자 보호를 위한 접근금지 등 조치 지원</li>
-    </ul>
-  </div>
-</div>
-               <!-- 종합심리평가-->
-				<div class="sub-content" id="evaluation-comprehensive">
-  <div class="content-card double-border">
-    <h3>종합심리평가</h3>
-    <p>개인의 인지·정서·성격 특성을 다면적으로 분석하여 법정 제출용 전문가 의견서 작성이 가능한 종합적 심리평가입니다.</p>
-    
-    <h4>주요 평가 도구</h4>
-    <ul class="assessment-tools"> 
-  <li><strong>다면적 인성검사</strong> (MMPI-2) - 성격 특성과 정신건강 상태를 종합적으로 평가</li>
-  <li><strong>문장완성검사</strong> (SCT) - 무의식적 욕구와 내적 갈등을 탐색</li>
-  <li><strong>집-나무-사람 그림검사</strong> (HTP) - 그림을 통한 성격과 심리상태 분석</li>
-  <li><strong>로샤 잉크블롯 검사</strong> (Rorschach) - 무의식적 심리과정과 사고 패턴을 심층 분석</li> 
-  <li><strong>웩슬러 지능검사</strong> (K-WAIS-IV) - 전반적 인지능력과 세부 영역별 기능 측정</li>
-	</ul> 
-		<figure class="content-img-container">
-  <img src="psychological-assessment.jpg" alt="종합심리평가 진행 모습" class="content-img"> 
-  <figcaption>전문가와 함께하는 종합심리평가 과정</figcaption>
-</figure>
-	
+              <div class="step-box optional" data-step="4">
+                <h4>교육후 평가 (선택)</h4>
+                <p>• 교육 전후 변화 측정<br>
+                  • 학습 성과 및 태도 변화 확인<br>
+                  • 교육전 평가 실시자에 한함<br>
+                  • 소요시간: 1시간</p>
+              </div>
 
-    <h4>평가 목적</h4>
-    <ul>
-     <li>• 정신질환이 범행에 미친 영향 분석</li>
-     <li>• 양형 결정을 위한 심리상태 평가</li>
-     <li>• 치료명령 또는 치료감호 적용 근거 제시</li>
-     <li>• 법정 제출용 전문가 의견서 작성</li>
-    </ul>
- 
-  </div>
-</div>
-				
-            <!-- 피해자 평가 -->
-<div class="sub-content" id="evaluation-victim">
-  <div class="content-card double-border">
-    <h3>피해자평가</h3>
-    <p>범죄 피해로 인한 심리적 손상 정도를 객관적으로 측정하여 적절한 치료와 지원 방안을 제시합니다.</p>
-    
-    <h4>주요 평가 도구</h4>
-   <ul class="assessment-tools">
-  <li><strong>사건충격척도</strong> (IES-R) - 외상 후 스트레스 반응의 심각도 측정</li>
-  <li><strong>성격평가검사</strong> (PAI) - 임상적 증상과 성격 특성을 종합 평가</li>
-  <li><strong>Beck 우울척도</strong> (BDI-II) - 우울 증상의 정도와 양상 측정</li>
-  <li><strong>Beck 불안척도</strong> (BAI) - 불안 증상의 정도와 양상 측정</li>
-</ul>
-
-    <h4>평가 목적</h4>
-    <ul>
-    <li>• 범죄로 인한 정신적 피해 정도 입증</li>
-    <li>• 치료비 및 위자료 산정 근거 제공</li>
-    <li>• 적절한 치료 계획 수립 지원</li> 
-    </ul>
- 
-  </div>
-</div>
-            <!-- 교육효과평가 -->
-<div class="sub-content" id="evaluation-education-effect">
-  <div class="content-card double-border">
-    <h3>교육효과평가</h3>
-    <p>심리교육 전후 변화를 객관적으로 측정하여 교육의 효과성을 입증합니다.</p>
-    
-    <h4>주요 평가 도구</h4>
-    <ul class="assessment-tools">
-      <li><strong>성의식검사</strong> - 성에 대한 인식과 태도 변화 측정</li>
-      <li><strong>충동성 척도</strong> (BIS-11) - 충동 조절 능력 평가</li>
-      <li><strong>한국어판 위험음주자 선별도구 (AUDIT-K)</strong> – 음주 문제 여부와 위험 수준 평가</li>
-      <li><strong>약물선별검사 (DAST-10-K)</strong> – 약물 남용/중독 위험도 확인</li> 
-      <li><strong>공격성 척도</strong> (BPAQ) - 공격적 성향과 분노 조절 능력 변화 측정</li> 
-	  <li><strong>내성-통찰 척도</strong>(SRIS) - 자기성찰 및 통찰능력 평가</li> 
-      <li><strong>대인관계반응 척도</strong> (IRI) - 타인에 대한 공감과 이해 능력 향상 측정</li>
-    </ul>
-
-    <h4>평가 목적</h4>
-    <ul>
-      <li>• 심리교육의 효과성 객관적 입증</li>
-      <li>• 양형 참작을 위한 개선 의지 확인</li>
-      <li>• 재범 방지를 위한 추가 교육 필요성 판단</li>
-      <li>• 사회복귀 준비도 및 적응 능력 평가</li>
-    </ul>
- 
-  </div>
-</div>
+              <div class="step-box required" data-step="5">
+                <h4>결과 제공</h4>
+                <p><strong>기본:</strong> 교육 수료증<br>
+                  <strong>추가 선택:</strong><br>
+                  • 전문가 의견서 (유료)<br>
+                  • 사후 상담 및 관리 (유료)
+                </p>
+              </div>
             </div>
-        </section>
 
-  <!-- 진술·양형·사건분석 섹션 -->
-<section id="analysis" class="content-section">
-  <div class="section-container">
-     <div class="section-header">
-      <h2>진술·양형·사건분석</h2>
-      <p class="section-subtitle">진술분석, 양형자료작성, 사건분석</p>
-    </div>
-
-           <!-- 서브 네비게이션 -->
-                <div class="sub-navigation">
-                    <ul class="sub-nav-list">
-                        <li><a href="#" data-subsection="statement" class="sub-nav-link active">진술분석</a></li>
-                        <li><a href="#" data-subsection="sentencing" class="sub-nav-link">양형자료작성</a></li>
-                        <li><a href="#" data-subsection="case-analysis" class="sub-nav-link">사건분석</a></li>
-                    </ul>
-                </div>
-              <!-- 진술분석 -->
-<div class="sub-content active" id="analysis-statement">
-  <div class="content-card double-border">
-    <h3>진술분석</h3>
-    <p>진술 신빙성을 과학적인 방법으로 분석하여 수사 및 재판에 객관적인 자료를 제공합니다. CBCA(내용 기반 진술분석)와 SVA(진술 유효성 평가) 기법을 통해 체계적이고 전문적인 분석을 수행합니다.</p>
-
-	  <h4>분석 내용</h4>
-<ul>
-    <li>• 진술 내용의 일관성 및 논리성 검증</li>
-    <li>• 진술자의 심리상태 및 인지능력 분석</li>
-    <li>• 진술 과정에서 나타나는 언어적·비언어적 특징</li>
-     <li>• 외부 압력, 유도 질문, 암시적 영향 여부 확인</li>
-    <li>• 진술 오염 및 정보 공유가 진술에 미친 영향</li>
-</ul>
-	  
-    <h4>진술분석이 필요한 경우</h4>
-    <ul class="worry-dot">
-	  <li>• 성범죄 피해자 진술 분석</li>
-      <li>• 허위신고 의심 사건</li>
-      <li>• 목격자 진술의 신뢰성 평가</li>
-      <li>• 피의자·피고인 자백의 진위 판단</li>
-       <li>• 피해자·피고인의 진술이 서로 충돌할 때</li>
-    </ul>
- 
-  </div>
-</div>
-              <!-- 양형자료작성 -->
- <div class="sub-content" id="analysis-sentencing">
-  <div class="content-card double-border">
-    <h3>양형자료작성</h3>
-    <p>피고인의 개인력, 심리적 상태, 상황적 요인들을 종합적으로 분석하여 양형 참작에 도움이 되는 전문적 자료를 제공합니다.</p>
-
-    <h4>분석 내용</h4>
-    <ul class="assessment-tools">
-      <li><strong>성격 및 심리상태 분석</strong> - 범행 당시와 현재의 정신상태</li>
-      <li><strong>범행 동기 및 배경 분석</strong> - 사건 발생에 이른 심리적 요인</li>
-      <li><strong>재범위험성 평가</strong> - 향후 범죄 가능성에 대한 전문적 판단</li>
-      <li><strong>치료 필요성 및 가능성</strong> - 교정·치료 프로그램 적합성</li>
-    </ul>
-
-    <h4>양형자료작성이 필요한 경우</h4>
-    <ul class="worry-dot">
-      <li>• 정신질환이나 심리적 문제가 범행에 영향을 미쳤을 때</li>
-      <li>• 초범이거나 우발적 범행으로 양형 참작이 필요할 때</li>
-      <li>• 피고인의 반성 정도와 개선 의지를 객관적으로 입증하려 할 때</li>
-      <li>• 치료명령이나 수강명령 등 대안적 처분을 고려할 때</li>
-    </ul>
- 
-  </div>
-</div>
-
-
-              <!-- 사건분석 -->
-<div class="sub-content" id="analysis-case-analysis">
-  <div class="content-card double-border">
-    <h3>사건분석</h3>
-    <p>종결된 형사사건에 대한 심리적 해석과 분석을 통해 당사자의 이해를 돕고, 사회적 오해나 편견 해소에 기여하는 전문적 분석 서비스입니다.</p>
- <h4>분석 내용</h4>
-<ul class="assessment-tools">
-  <li><strong>사건의 동기와 배경</strong> – 범행에 이르게 된 심리적·환경적 요인 분석</li>
-  <li><strong>범행 전후 행동 패턴</strong> – 정서 상태 변화와 대처 방식 검토</li>
-  <li><strong>정신건강과 사건의 연관성</strong> – 당시 정신건강 상태가 사건에 미친 영향 평가</li>
-  <li><strong>사회적 요인과 인식</strong> – 가족·관계·환경적 맥락, 대중적 인식과 낙인 해소 관점에서의 해석</li>
-</ul>
-    <h4>사건분석이 필요한 경우</h4>
-    <ul class="worry-dot">
-    <li>• 종결된 사건에 대한 심리적 이해가 필요할 때</li>
-    <li>• 객관적 해석을 통해 사회적 오해나 편견을 해소하고자 할 때</li>
-    <li>• 교육, 연구, 또는 심리적 이해를 위한 사건 분석이 필요한 경우</li>
-    <li>• 언론이나 대중의 관심을 받은 사건의 심층 분석</li>
-    </ul>
-
-
- 
-  </div>
-</div>
-	     </div>
-        </section>
-
-  <!-- 교육 및 연구 섹션 -->
-<section id="education-research" class="content-section">
-  <div class="section-container">
-     <div class="section-header">
-      <h2>교육·연구</h2>
-      <p class="section-subtitle">전문가 양성, 심리검사 개발</p>
-    </div>
-
-           <!-- 서브 네비게이션 -->
-                <div class="sub-navigation">
-                    <ul class="sub-nav-list">
-                        <li><a href="#" data-subsection="training" class="sub-nav-link active">전문가 양성</a></li>
-                        <li><a href="#" data-subsection="development" class="sub-nav-link">심리검사 개발</a></li> 
-                    </ul>
-                </div>
-              <!-- 전문가 양성-->
-      <div class="sub-content active" id="education-research-training">
-  <div class="content-card double-border">
-    <h3>전문가 양성</h3>
-    <p>형사사건에 특화된 심리교육 역량을 갖춘 전문가를 양성합니다. 본 과정은 교정기관·사법기관·교육기관 등에서 실제 활동이 가능한 <strong>실무형 교육</strong>을 목표로 합니다.
-</p>
-    <h4>양성 과정</h4>
-    <ul class="assessment-tools">
-      <li><strong>범죄심리교육 전문강사 과정</strong> - 형사사건 당사자 대상 교육 전문가</li>
-      <li><strong>재범방지 프로그램 전문가 </strong> - 행동 변화 프로그램 운영 전문가</li>
-    </ul>
-
-    <h4>교육 대상</h4>
-    <ul class="worry-dot">
-     <li>• 교정기관 및 사법기관에서 교육 업무를 담당하는 종사자</li>
-     <li>• 범죄심리·상담 분야 전문인 및 경력자</li>
-     <li>• 형사사건 교육·연구 분야로 확장을 원하는 전문가 및 연구자</li>
-   </ul>
-
-    <h4>교육 내용</h4>
-<ul>
-  <li>• <strong>이론 학습</strong> – 형사사건 당사자의 심리적 특성 이해, 교육 방법론</li>
-  <li>• <strong>실습 훈련</strong> – 재범위험요인 분석, 사례 기반 워크숍 운영 기술</li>
-  <li>• <strong>성과 평가</strong> – 교육 효과 측정 및 피드백 방법</li>
-</ul>
-
-   <h4>수료 후 활동 내용</h4>
-	  <ul>
-     <li>• 기소·구속 전 심리교육 프로그램 진행</li>
-	 <li>• 교정기관 및 법원 명령 교육 프로그램 운영</li> 
-     <li>• 지역사회 범죄예방·재범방지 교육 활동</li>
-     <li>• 학술연구 및 전문가 교육 활동 참여</li>
-  </ul>
-    </div>
-  </div>
-</div>
-              <!-- 심리검사 개발-->
-<div class="sub-content" id="education-research-development">
-  <div class="content-card double-border">
-    <h3>심리검사 개발</h3>
-    <p>
-      특정 목적(법정 제출, 재범위험 선별, 교육 효과 측정 등)에 맞춘 <strong>맞춤형 심리검사</strong>를 설계·타당화합니다.
-      문항 개발부터 파일럿, 통계 분석, 채점·보고서 자동화까지 <strong>현장 적용 중심</strong>으로 제공합니다.
-    </p>
-
-    <h4>개발 범위</h4>
-    <ul class="assessment-tools">
-      <li><strong>위험성 평가·선별</strong> – 재범·성폭력·폭력 등 사건 특성에 맞춘 스크리너/평가</li>
-      <li><strong>교육 효과 평가</strong> – 책임 인식, 반성 내면화, 피해자 공감 등 사전·사후 미니척도</li>
-      <li><strong>피해자 평가 보조</strong> – 심리 상태·대처 양식 파악을 돕는 보조 척도</li>
-      <li><strong>조직/교육 프로그램 평가</strong> – 이해·태도·만족·행동변화 지표 설계</li>
-      <li><strong>일반인용 스크리너</strong> – 현장 안전·예방 목적의 간단 선별 도구</li>
-    </ul>
-
-     <h4>제공 산출물</h4>
-    <ul class="worry-dot">
-      <li>• <strong>개발·타당화 보고서</strong> – 분석 절차·지표표·해석 포함</li>
-      <li>• <strong>사용자 매뉴얼</strong> – 실시·채점·해석 가이드(FAQ 포함)</li>
-      <li>• <strong>채점 규칙·절단점, 보고서 템플릿</li> 
-      <li>* 웹 연동 – 폼 입력 → 점수 계산 → 이메일 발송, 데이터 저장 자동</li>
-    </ul>
- 
-<div class="notice-box" style="margin-top: 1.5rem;"> 
-  <h4>개발 사례</h4>
-   <p>EBS 학교폭력예방진단검사: 학생들의 심리 상태를 조기에 진단하여 학교폭력을 예방하고 건전한 학교 환경을 조성합니다.</p>
-  <a href="https://ebsmpi.com/ebsmpi/product_view.php?part_idx=134&goods_data=aWR4PTU1NCZfJnN0YXJ0UGFnZT0wJl8mbGlzdE5vPTEmXyZ0YWJsZT1jc19nb29kcyZfJnBhcnRfaWR4PTEzNCZfJnNlYXJjaF9pdGVtPTQmXyZwb3NpdGlvbj0=||" target="_blank" class="test-btn">
-    검사 시작하기
-  </a> 
-	
-  <p style="margin-top: 2rem;">나의 성, 문제없을까? (개발·검증 진행 중): 자신의 성 건강 상태를 점검하고 잠재적인 문제를 파악하여 전문가의 도움을 받을 수 있도록 안내합니다.</p>
-  <a href="/sctest" target="_blank" class="test-btn">
-    검사 시작하기
-  </a>
-</div>
-</div>
- 
-  </div>
-</div>
-</section>
-
-<!-- 게시판 -->
-<section id="board" class="content-section">
-  <div class="section-container">
-    <div class="section-header">
-      <h2>게시판</h2>
           </div>
+        </div>
+        <!-- 2.교육과정 -->
+        <div class="sub-content" id="education-counseling-programs">
+          <div class="content-card double-border">
+            <h3>형사사건 심리교육 과정</h3>
+            <p>개별 사건 특성과 당사자 상황을 종합적으로 고려한 맞춤형 교육을 제공합니다.</p>
 
-    <!-- 탭 메뉴 -->
-    <div class="board-tabs">
-      <button class="tab-btn active" data-category="notice">게시판</button> 
-    </div>
-    <div id="notice-section" style="display: none;">
-      <div id="notice-posts"></div>
-    </div>
-    <!-- 게시글 테이블 -->
-    <div class="board-table-container" style="max-width: 1000px; margin: 0 auto;">
-      <table class="board-table">
-        <thead>
-          <tr>
-            <th class="col-number">번호</th>
-            <th class="col-category">분류</th>
-            <th class="col-title">제목</th>
-            <th class="col-author">작성자</th>
-            <th class="col-date">작성일</th>
-            <th class="col-views">조회</th>
-          </tr>
-        </thead>
-        <tbody id="posts-container">
-          <!-- 게시글이 여기에 동적으로 로드됩니다 -->
-        </tbody>
-      </table>
-    </div>
+            <!-- 공통기본과정 -->
+            <div class="education-section">
+              <h4>공통기본과정</h4>
+              <div class="course-table">
+                <table class="education-table">
+                  <thead>
+                    <tr>
+                      <th>과정명</th>
+                      <th>주요 내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>준법의식 함양</td>
+                      <td>법과 사회 질서의 의미, 준법정신의 중요성</td>
+                    </tr>
+                    <tr>
+                      <td>책임인식 및 반성내면화</td>
+                      <td>사건에 대한 책임감 인식, 진정한 반성과 성찰</td>
+                    </tr>
+                    <tr>
+                      <td>피해자 공감교육</td>
+                      <td>피해자 관점 이해, 공감능력 향상</td>
+                    </tr>
+                    <tr>
+                      <td>재범위험요인 관리</td>
+                      <td>개인별 위험요인 파악 및 관리 방안</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-    <!-- 페이지네이션 -->
-    <div id="pagination" class="pagination"></div>
+            <!-- 문제행동개선과정 -->
+            <div class="education-section">
+              <h4>문제행동개선과정</h4>
+              <div class="faq-section edu-accordion">
+                <div class="faq-item">
+                  <button class="faq-question">분노조절교육</button>
+                  <div class="faq-answer">
+                    <p><strong>대상 죄명</strong>: 폭행, 상해 등<br>
+                      <strong>주요 내용</strong>: 분노 관리 기술, 충동 조절 능력 향상
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">성인지교육</button>
+                  <div class="faq-answer">
+                    <p><strong>대상 죄명</strong>: 성폭력, 강제추행, 아동대상 성폭력 등<br>
+                      <strong>주요 내용</strong>: 올바른 성 가치관 확립, 왜곡된 성의식 교정
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">관계회복교육</button>
+                  <div class="faq-answer">
+                    <p><strong>대상 죄명</strong>: 스토킹, 협박 등<br>
+                      <strong>주요 내용</strong>: 건강한 인간관계, 갈등 해결 방법
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">음주문제 개선교육</button>
+                  <div class="faq-answer">
+                    <p><strong>대상 죄명</strong>: 음주운전, 주취폭행 등<br>
+                      <strong>주요 내용</strong>: 음주 문제 인식, 건전한 생활습관 형성
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">약물문제 인식교육</button>
+                  <div class="faq-answer">
+                    <p><strong>대상 죄명</strong>: 마약, 향정신성의약품 등<br>
+                      <strong>주요 내용</strong>: 약물 의존성 이해, 건전한 일상 회복
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  </div>
-</section>
 
-		
-    <!-- Footer -->
-<footer>
-  <div class="footer-bar">
-    <div class="footer-bar-inner">
-      <p class="footer-notice-text" >
-        <i class="bi bi-patch-check-fill"></i> 전화 상담 후 예약을 통해 진행됩니다.
-      </p>
-      <p class="footer-contact-info">
-        <i class="bi bi-telephone-fill"></i> 0507-1463-8122  
-      </p>
-      <div class="footer-copyright">
-        <p>© 2025 더세온연구소. All rights reserved.</p>
+            <!-- 패키지 안내 -->
+            <div class="package-section">
+              <h4>교육 서비스 패키지</h4>
+              <div class="package-container">
+                <div class="package-card basic">
+                  <div class="package-header">
+                    <h5 style="color:white;">기본 패키지(Essential)</h5>
+                  </div>
+                  <div class="package-content">
+                    <ul>
+                      <li>• 사전 상담</li>
+                      <li>• 맞춤형 교육 과정</li>
+                      <li>• 교육 수료증</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="package-card extended">
+                  <div class="package-header">
+                    <h5 style="color:white;">확장 패키지(Premium)</h5>
+                  </div>
+                  <div class="package-content">
+                    <ul>
+                      <li>• 기본 패키지 전체 포함 </li>
+                      <li>• 교육전후 심리평가</li>
+                      <li>• 전문가 의견서</li>
+                      <li>• 사후 상담 (선택)</li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="education-notice">
+              <p><strong>참고:</strong> 모든 교육 과정은 개별 상담을 통해 당사자의 상황과 사건 특성에 맞게 조정됩니다.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. 개별 상담 -->
+        <div class="sub-content" id="education-counseling-counseling">
+          <div class="content-card double-border">
+            <h3>개별 심리상담</h3>
+            <p>형사사건과 관련된 심리적 어려움을 겪고 있는 당사자와 가족을 위한 전문 상담 서비스입니다.</p>
+
+            <!-- 상담 대상 -->
+            <div class="counseling-section">
+              <h4>상담 대상</h4>
+              <div class="target-grid">
+                <div class="target-box">
+                  <h5>당사자 상담</h5>
+                  <ul>
+                    <li>• 범죄 행위로 인한 죄책감과 불안</li>
+                    <li>• 법적 절차 진행 중 심리적 스트레스</li>
+                    <li>• 재범 방지를 위한 행동 변화 의지 강화</li>
+                    <li>• 사회 복귀에 대한 두려움과 걱정</li>
+                  </ul>
+                </div>
+
+                <div class="target-box">
+                  <h5>가족 상담</h5>
+                  <ul>
+                    <li>• 가족 구성원의 범죄로 인한 충격과 혼란</li>
+                    <li>• 사회적 시선과 편견에 대한 스트레스</li>
+                    <li>• 당사자와의 관계 회복 방법</li>
+                    <li>• 가정 내 갈등 해결 및 재발 방지</li>
+                  </ul>
+                </div>
+
+                <div class="target-box">
+                  <h5>피해자 상담</h5>
+                  <ul>
+                    <li>• 법적 절차 진행에서의 심리적 부담</li>
+                    <li>• 사건 진행에 따른 2차 피해 예방</li>
+                    <li>• 가해자와의 관계 정리 및 대처 방안</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- 심리평가 섹션 -->
+    <section id="evaluation" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>심리평가</h2>
+          <p class="section-subtitle">재범위험성, 피해자 평가, 교육효과평가</p>
+        </div>
+
+        <!-- 서브 네비게이션 -->
+        <div class="sub-navigation">
+          <ul class="sub-nav-list">
+            <li><a href="#" data-subsection="recidivism" class="sub-nav-link active">재범위험성 평가</a></li>
+            <li><a href="#" data-subsection="sexual-violence" class="sub-nav-link">성폭력·폭력위험성 평가</a></li>
+            <li><a href="#" data-subsection="comprehensive" class="sub-nav-link">종합심리평가</a></li>
+            <li><a href="#" data-subsection="victim" class="sub-nav-link">피해자 평가</a></li>
+            <li><a href="#" data-subsection="education-effect" class="sub-nav-link">교육효과평가</a></li>
+          </ul>
+        </div>
+
+        <!-- 재범위험성 평가 -->
+        <div class="sub-content active" id="evaluation-recidivism">
+          <div class="content-card double-border">
+            <h3>재범위험성 평가</h3>
+            <p>재범 가능성을 객관적으로 측정하고, 효과적인 관리 방안을 제시합니다.</p>
+
+            <h4>주요 평가 도구</h4>
+            <ul class="assessment-tools">
+              <li><strong>정신병질 체크리스트</strong> (PCL-R) - 정신병질적 성향과 재범 위험성 평가</li>
+              <li><strong>한국 범죄자 위험성 평가</strong> (KORAS-G) - 일반 범죄의 재범 가능성을 종합적으로 측정</li>
+            </ul>
+
+            <h4>평가 목적</h4>
+            <ul>
+              <li>• 양형 참작을 위한 객관적 자료 제공</li>
+              <li>• 집행유예 또는 기소유예 결정 지원</li>
+              <li>• 개별 맞춤형 관리 계획 수립</li>
+              <li>• 사회복귀 프로그램 선정</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 성폭력·폭력위험성 평가 -->
+        <div class="sub-content" id="evaluation-sexual-violence">
+          <div class="content-card double-border">
+            <h3>성폭력·폭력위험성 평가</h3>
+            <p>성범죄, 폭력행위의 재발 방지와 효과적인 예방 및 관리 전략을 수립합니다.</p>
+            <h4>주요 평가 도구</h4>
+            <ul class="assessment-tools">
+              <li><strong>성범죄자 위험성 평가</strong> (K-SORAS) - 성범죄 재발 가능성과 위험 요인 평가</li>
+              <li><strong>성폭력 위험성 프로토콜</strong> (RSVP) - 성폭력의 위험도 다면적 분석</li>
+              <li><strong>폭력위험성 종합평가</strong> (HCR-20) - 과거력, 임상적, 위험관리 요소를 통합 평가</li>
+              <li><strong>스토킹 위험성 평가</strong> (SAM) - 스토킹 행동의 지속성과 escalation 위험 측정</li>
+            </ul>
+
+            <h4>평가 목적</h4>
+            <ul>
+              <li>• 성범죄 재발 방지를 위한 위험요인 파악</li>
+              <li>• 폭력 행동 예측 및 관리 방안 수립</li>
+              <li>• 치료명령 및 수강명령 적용 근거 제시</li>
+              <li>• 피해자 보호를 위한 접근금지 등 조치 지원</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 종합심리평가-->
+        <div class="sub-content" id="evaluation-comprehensive">
+          <div class="content-card double-border">
+            <h3>종합심리평가</h3>
+            <p>개인의 인지·정서·성격 특성을 다면적으로 분석하여 법정 제출용 전문가 의견서 작성이 가능한 종합적 심리평가입니다.</p>
+
+            <h4>주요 평가 도구</h4>
+            <ul class="assessment-tools">
+              <li><strong>다면적 인성검사</strong> (MMPI-2) - 성격 특성과 정신건강 상태를 종합적으로 평가</li>
+              <li><strong>문장완성검사</strong> (SCT) - 무의식적 욕구와 내적 갈등을 탐색</li>
+              <li><strong>집-나무-사람 그림검사</strong> (HTP) - 그림을 통한 성격과 심리상태 분석</li>
+              <li><strong>로샤 잉크블롯 검사</strong> (Rorschach) - 무의식적 심리과정과 사고 패턴을 심층 분석</li>
+              <li><strong>웩슬러 지능검사</strong> (K-WAIS-IV) - 전반적 인지능력과 세부 영역별 기능 측정</li>
+            </ul>
+            <figure class="content-img-container">
+              <img src="psychological-assessment.jpg" alt="종합심리평가 진행 모습" class="content-img">
+              <figcaption>전문가와 함께하는 종합심리평가 과정</figcaption>
+            </figure>
+
+
+            <h4>평가 목적</h4>
+            <ul>
+              <li>• 정신질환이 범행에 미친 영향 분석</li>
+              <li>• 양형 결정을 위한 심리상태 평가</li>
+              <li>• 치료명령 또는 치료감호 적용 근거 제시</li>
+              <li>• 법정 제출용 전문가 의견서 작성</li>
+            </ul>
+
+          </div>
+        </div>
+
+          <!-- 피해자 평가 -->
+        <div class="sub-content" id="evaluation-victim">
+          <div class="content-card double-border">
+            <h3>피해자평가</h3>
+            <p>범죄 피해로 인한 심리적 손상 정도를 객관적으로 측정하여 적절한 치료와 지원 방안을 제시합니다.</p>
+
+            <h4>주요 평가 도구</h4>
+            <ul class="assessment-tools">
+              <li><strong>사건충격척도</strong> (IES-R) - 외상 후 스트레스 반응의 심각도 측정</li>
+              <li><strong>성격평가검사</strong> (PAI) - 임상적 증상과 성격 특성을 종합 평가</li>
+              <li><strong>Beck 우울척도</strong> (BDI-II) - 우울 증상의 정도와 양상 측정</li>
+              <li><strong>Beck 불안척도</strong> (BAI) - 불안 증상의 정도와 양상 측정</li>
+            </ul>
+
+            <h4>평가 목적</h4>
+            <ul>
+              <li>• 범죄로 인한 정신적 피해 정도 입증</li>
+              <li>• 치료비 및 위자료 산정 근거 제공</li>
+              <li>• 적절한 치료 계획 수립 지원</li>
+            </ul>
+
+          </div>
+        </div>
+          <!-- 교육효과평가 -->
+        <div class="sub-content" id="evaluation-education-effect">
+          <div class="content-card double-border">
+            <h3>교육효과평가</h3>
+            <p>심리교육 전후 변화를 객관적으로 측정하여 교육의 효과성을 입증합니다.</p>
+
+            <h4>주요 평가 도구</h4>
+            <ul class="assessment-tools">
+              <li><strong>성의식검사</strong> - 성에 대한 인식과 태도 변화 측정</li>
+              <li><strong>충동성 척도</strong> (BIS-11) - 충동 조절 능력 평가</li>
+              <li><strong>한국어판 위험음주자 선별도구 (AUDIT-K)</strong> – 음주 문제 여부와 위험 수준 평가</li>
+              <li><strong>약물선별검사 (DAST-10-K)</strong> – 약물 남용/중독 위험도 확인</li>
+              <li><strong>공격성 척도</strong> (BPAQ) - 공격적 성향과 분노 조절 능력 변화 측정</li>
+              <li><strong>내성-통찰 척도</strong>(SRIS) - 자기성찰 및 통찰능력 평가</li>
+              <li><strong>대인관계반응 척도</strong> (IRI) - 타인에 대한 공감과 이해 능력 향상 측정</li>
+            </ul>
+
+            <h4>평가 목적</h4>
+            <ul>
+              <li>• 심리교육의 효과성 객관적 입증</li>
+              <li>• 양형 참작을 위한 개선 의지 확인</li>
+              <li>• 재범 방지를 위한 추가 교육 필요성 판단</li>
+              <li>• 사회복귀 준비도 및 적응 능력 평가</li>
+            </ul>
+
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</footer>
+    </section>
+
+    <!-- 진술·양형·사건분석 섹션 -->
+    <section id="analysis" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>진술·양형·사건분석</h2>
+          <p class="section-subtitle">진술분석, 양형자료작성, 사건분석</p>
+        </div>
+
+        <!-- 서브 네비게이션 -->
+        <div class="sub-navigation">
+          <ul class="sub-nav-list">
+            <li><a href="#" data-subsection="statement" class="sub-nav-link active">진술분석</a></li>
+            <li><a href="#" data-subsection="sentencing" class="sub-nav-link">양형자료작성</a></li>
+            <li><a href="#" data-subsection="case-analysis" class="sub-nav-link">사건분석</a></li>
+          </ul>
+        </div>
+        <!-- 진술분석 -->
+        <div class="sub-content active" id="analysis-statement">
+          <div class="content-card double-border">
+            <h3>진술분석</h3>
+            <p>진술 신빙성을 과학적인 방법으로 분석하여 수사 및 재판에 객관적인 자료를 제공합니다. CBCA(내용 기반 진술분석)와 SVA(진술 유효성 평가) 기법을 통해 체계적이고 전문적인 분석을 수행합니다.</p>
+
+            <h4>분석 내용</h4>
+            <ul>
+              <li>• 진술 내용의 일관성 및 논리성 검증</li>
+              <li>• 진술자의 심리상태 및 인지능력 분석</li>
+              <li>• 진술 과정에서 나타나는 언어적·비언어적 특징</li>
+              <li>• 외부 압력, 유도 질문, 암시적 영향 여부 확인</li>
+              <li>• 진술 오염 및 정보 공유가 진술에 미친 영향</li>
+            </ul>
+
+            <h4>진술분석이 필요한 경우</h4>
+            <ul class="worry-dot">
+              <li>• 성범죄 피해자 진술 분석</li>
+              <li>• 허위신고 의심 사건</li>
+              <li>• 목격자 진술의 신뢰성 평가</li>
+              <li>• 피의자·피고인 자백의 진위 판단</li>
+              <li>• 피해자·피고인의 진술이 서로 충돌할 때</li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- 양형자료작성 -->
+        <div class="sub-content" id="analysis-sentencing">
+          <div class="content-card double-border">
+            <h3>양형자료작성</h3>
+            <p>피고인의 개인력, 심리적 상태, 상황적 요인들을 종합적으로 분석하여 양형 참작에 도움이 되는 전문적 자료를 제공합니다.</p>
+
+            <h4>분석 내용</h4>
+            <ul class="assessment-tools">
+              <li><strong>성격 및 심리상태 분석</strong> - 범행 당시와 현재의 정신상태</li>
+              <li><strong>범행 동기 및 배경 분석</strong> - 사건 발생에 이른 심리적 요인</li>
+              <li><strong>재범위험성 평가</strong> - 향후 범죄 가능성에 대한 전문적 판단</li>
+              <li><strong>치료 필요성 및 가능성</strong> - 교정·치료 프로그램 적합성</li>
+            </ul>
+
+            <h4>양형자료작성이 필요한 경우</h4>
+            <ul class="worry-dot">
+              <li>• 정신질환이나 심리적 문제가 범행에 영향을 미쳤을 때</li>
+              <li>• 초범이거나 우발적 범행으로 양형 참작이 필요할 때</li>
+              <li>• 피고인의 반성 정도와 개선 의지를 객관적으로 입증하려 할 때</li>
+              <li>• 치료명령이나 수강명령 등 대안적 처분을 고려할 때</li>
+            </ul>
+
+          </div>
+        </div>
+
+
+        <!-- 사건분석 -->
+        <div class="sub-content" id="analysis-case-analysis">
+          <div class="content-card double-border">
+            <h3>사건분석</h3>
+            <p>종결된 형사사건에 대한 심리적 해석과 분석을 통해 당사자의 이해를 돕고, 사회적 오해나 편견 해소에 기여하는 전문적 분석 서비스입니다.</p>
+            <h4>분석 내용</h4>
+            <ul class="assessment-tools">
+              <li><strong>사건의 동기와 배경</strong> – 범행에 이르게 된 심리적·환경적 요인 분석</li>
+              <li><strong>범행 전후 행동 패턴</strong> – 정서 상태 변화와 대처 방식 검토</li>
+              <li><strong>정신건강과 사건의 연관성</strong> – 당시 정신건강 상태가 사건에 미친 영향 평가</li>
+              <li><strong>사회적 요인과 인식</strong> – 가족·관계·환경적 맥락, 대중적 인식과 낙인 해소 관점에서의 해석</li>
+            </ul>
+            <h4>사건분석이 필요한 경우</h4>
+            <ul class="worry-dot">
+              <li>• 종결된 사건에 대한 심리적 이해가 필요할 때</li>
+              <li>• 객관적 해석을 통해 사회적 오해나 편견을 해소하고자 할 때</li>
+              <li>• 교육, 연구, 또는 심리적 이해를 위한 사건 분석이 필요한 경우</li>
+              <li>• 언론이나 대중의 관심을 받은 사건의 심층 분석</li>
+            </ul>
+
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 교육 및 연구 섹션 -->
+    <section id="education-research" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>교육·연구</h2>
+          <p class="section-subtitle">전문가 양성, 심리검사 개발</p>
+        </div>
+
+        <!-- 서브 네비게이션 -->
+        <div class="sub-navigation">
+          <ul class="sub-nav-list">
+            <li><a href="#" data-subsection="training" class="sub-nav-link active">전문가 양성</a></li>
+            <li><a href="#" data-subsection="development" class="sub-nav-link">심리검사 개발</a></li>
+          </ul>
+        </div>
+        <!-- 전문가 양성-->
+        <div class="sub-content active" id="education-research-training">
+          <div class="content-card double-border">
+            <h3>전문가 양성</h3>
+            <p>형사사건에 특화된 심리교육 역량을 갖춘 전문가를 양성합니다. 본 과정은 교정기관·사법기관·교육기관 등에서 실제 활동이 가능한 <strong>실무형 교육</strong>을 목표로 합니다.
+            </p>
+            <h4>양성 과정</h4>
+            <ul class="assessment-tools">
+              <li><strong>범죄심리교육 전문강사 과정</strong> - 형사사건 당사자 대상 교육 전문가</li>
+              <li><strong>재범방지 프로그램 전문가 </strong> - 행동 변화 프로그램 운영 전문가</li>
+            </ul>
+
+            <h4>교육 대상</h4>
+            <ul class="worry-dot">
+              <li>• 교정기관 및 사법기관에서 교육 업무를 담당하는 종사자</li>
+              <li>• 범죄심리·상담 분야 전문인 및 경력자</li>
+              <li>• 형사사건 교육·연구 분야로 확장을 원하는 전문가 및 연구자</li>
+            </ul>
+
+            <h4>교육 내용</h4>
+            <ul>
+              <li>• <strong>이론 학습</strong> – 형사사건 당사자의 심리적 특성 이해, 교육 방법론</li>
+              <li>• <strong>실습 훈련</strong> – 재범위험요인 분석, 사례 기반 워크숍 운영 기술</li>
+              <li>• <strong>성과 평가</strong> – 교육 효과 측정 및 피드백 방법</li>
+            </ul>
+
+            <h4>수료 후 활동 내용</h4>
+            <ul>
+              <li>• 기소·구속 전 심리교육 프로그램 진행</li>
+              <li>• 교정기관 및 법원 명령 교육 프로그램 운영</li>
+              <li>• 지역사회 범죄예방·재범방지 교육 활동</li>
+              <li>• 학술연구 및 전문가 교육 활동 참여</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 심리검사 개발-->
+      <div class="sub-content" id="education-research-development">
+        <div class="content-card double-border">
+          <h3>심리검사 개발</h3>
+          <p>
+            특정 목적(법정 제출, 재범위험 선별, 교육 효과 측정 등)에 맞춘 <strong>맞춤형 심리검사</strong>를 설계·타당화합니다.
+            문항 개발부터 파일럿, 통계 분석, 채점·보고서 자동화까지 <strong>현장 적용 중심</strong>으로 제공합니다.
+          </p>
+
+          <h4>개발 범위</h4>
+          <ul class="assessment-tools">
+            <li><strong>위험성 평가·선별</strong> – 재범·성폭력·폭력 등 사건 특성에 맞춘 스크리너/평가</li>
+            <li><strong>교육 효과 평가</strong> – 책임 인식, 반성 내면화, 피해자 공감 등 사전·사후 미니척도</li>
+            <li><strong>피해자 평가 보조</strong> – 심리 상태·대처 양식 파악을 돕는 보조 척도</li>
+            <li><strong>조직/교육 프로그램 평가</strong> – 이해·태도·만족·행동변화 지표 설계</li>
+            <li><strong>일반인용 스크리너</strong> – 현장 안전·예방 목적의 간단 선별 도구</li>
+          </ul>
+
+          <h4>제공 산출물</h4>
+          <ul class="worry-dot">
+            <li>• <strong>개발·타당화 보고서</strong> – 분석 절차·지표표·해석 포함</li>
+            <li>• <strong>사용자 매뉴얼</strong> – 실시·채점·해석 가이드(FAQ 포함)</li>
+            <li>• <strong>채점 규칙·절단점, 보고서 템플릿</li>
+            <li>* 웹 연동 – 폼 입력 → 점수 계산 → 이메일 발송, 데이터 저장 자동</li>
+          </ul>
+
+          <div class="notice-box" style="margin-top: 1.5rem;">
+            <h4>개발 사례</h4>
+            <p>EBS 학교폭력예방진단검사: 학생들의 심리 상태를 조기에 진단하여 학교폭력을 예방하고 건전한 학교 환경을 조성합니다.</p>
+            <a href="https://ebsmpi.com/ebsmpi/product_view.php?part_idx=134&goods_data=aWR4PTU1NCZfJnN0YXJ0UGFnZT0wJl8mbGlzdE5vPTEmXyZ0YWJsZT1jc19nb29kcyZfJnBhcnRfaWR4PTEzNCZfJnNlYXJjaF9pdGVtPTQmXyZwb3NpdGlvbj0=||" target="_blank" class="test-btn">
+              검사 시작하기
+            </a>
+
+            <p style="margin-top: 2rem;">나의 성, 문제없을까? (개발·검증 진행 중): 자신의 성 건강 상태를 점검하고 잠재적인 문제를 파악하여 전문가의 도움을 받을 수 있도록 안내합니다.</p>
+            <a href="/sctest" target="_blank" class="test-btn">
+              검사 시작하기
+            </a>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </section>
+
+    <!-- 게시판 -->
+    <section id="board" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>게시판</h2>
+        </div>
+
+        <!-- 탭 메뉴 -->
+        <div class="board-tabs">
+          <button class="tab-btn active" data-category="notice">게시판</button>
+        </div>
+        <div id="notice-section" style="display: none;">
+          <div id="notice-posts"></div>
+        </div>
+        <!-- 게시글 테이블 -->
+        <div class="board-table-container" style="max-width: 1000px; margin: 0 auto;">
+          <table class="board-table">
+            <thead>
+              <tr>
+                <th class="col-number">번호</th>
+                <th class="col-category">분류</th>
+                <th class="col-title">제목</th>
+                <th class="col-author">작성자</th>
+                <th class="col-date">작성일</th>
+                <th class="col-views">조회</th>
+              </tr>
+            </thead>
+            <tbody id="posts-container">
+              <!-- 게시글이 여기에 동적으로 로드됩니다 -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div id="pagination" class="pagination"></div>
+
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-bar">
+        <div class="footer-bar-inner">
+          <p class="footer-notice-text">
+            <i class="bi bi-patch-check-fill"></i> 전화 상담 후 예약을 통해 진행됩니다.
+          </p>
+          <p class="footer-contact-info">
+            <i class="bi bi-telephone-fill"></i> 0507-1463-8122
+          </p>
+          <div class="footer-copyright">
+            <p>© 2025 더세온연구소. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- 로그인 모달 -->
     <!-- <div id="login-modal" class="modal" ...> ... </div> -->
@@ -1058,67 +1072,134 @@
     <!-- 회원가입 모달 -->
     <!-- <div id="register-modal" class="modal" ...> ... </div> -->
 
-    <!-- 글쓰기 모달 완전 제거 
+    <!-- 글쓰기 모달 완전 제거
      <div id="write-post-modal" class="modal" ...> ... </div>  -->
 
-<!-- 글쓰기 모달 -->
-<div id="write-post-modal" class="modal" style="display: none;">
-    <div class="modal-content">
+    <!-- 글쓰기 모달 -->
+    <div id="write-post-modal" class="modal" style="display: none;">
+      <div class="modal-content">
         <div class="modal-header">
-            <h2>글 작성 / 수정</h2>
-            <span class="close">&times;</span>
+          <h2>글 작성 / 수정</h2>
+          <span class="close">&times;</span>
         </div>
         <div class="modal-body">
-            <form id="write-post-form">
-                <div class="form-group">
-                    <label for="title">제목</label>
-                    <input type="text" name="title" required>
-                </div>
-                <div class="form-group">
-                    <label for="content">내용</label>
-                    <textarea name="content" rows="6" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="category">분류</label>
-                    <select name="category" required>
-                        <option value="notice">게시판</option>
-                       // <option value="case-cipher">Case Cipher</option>//
-                      //  <option value="general">일반게시판</option>//
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit">작성 완료</button>
-                </div>
-            </form>
+          <form id="write-post-form">
+            <div class="form-group">
+              <label for="title">제목</label>
+              <input type="text" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="content">내용</label>
+              <textarea name="content" rows="6" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="category">분류</label>
+              <select name="category" required>
+                <option value="notice">게시판</option>
+                // <option value="case-cipher">Case Cipher</option>//
+                // <option value="general">일반게시판</option>//
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="submit">작성 완료</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- ✅ 부가 기능: 섹션 바깥에 위치해야 정상 작동 -->
-<div id="message-container"></div>
-<script src="script.js"></script>
+    <!-- ✅ 부가 기능: 섹션 바깥에 위치해야 정상 작동 -->
+    <div id="message-container"></div>
+    <script src="script.js"></script>
 
-<!-- ✅ 모바일 하단 고정 메뉴 -->
-<!-- HTML에서 이렇게 수정 -->
-<!-- 기존 onclick을 data-section으로 변경 -->
-<div class="mobile-fixed-menu">
-  <a class="menu-item" href="#about">
-  <i class="bi bi-person-lines-fill"></i>
-    <span>소개</span>
-  </a>
-  <a class="menu-item" href="#education-counseling">
-    <i class="bi bi-briefcase-fill"></i>
-    <span>심리교육</span>
-  </a>
-  <a class="menu-item" href="#evaluation">
-    <i class="bi bi-search"></i>
-    <span>심리평가</span>
-  </a>
-  <a class="menu-item" href="#analysis">
-    <i class="bi bi-diagram-3"></i>
-    <span>사건분석</span>
-  </a>
-</div>
+    <!-- ✅ 모바일 하단 고정 메뉴 -->
+    <!-- HTML에서 이렇게 수정 -->
+    <!-- 기존 onclick을 data-section으로 변경 -->
+    <div class="mobile-fixed-menu">
+      <a class="menu-item" href="#about">
+        <i class="bi bi-person-lines-fill"></i>
+        <span>소개</span>
+      </a>
+      <a class="menu-item" href="#education-counseling">
+        <i class="bi bi-briefcase-fill"></i>
+        <span>심리교육</span>
+      </a>
+      <a class="menu-item" href="#evaluation">
+        <i class="bi bi-search"></i>
+        <span>심리평가</span>
+      </a>
+      <a class="menu-item" href="#analysis">
+        <i class="bi bi-diagram-3"></i>
+        <span>사건분석</span>
+      </a>
+    </div>
+    <!-- 카카오톡 채널 상담 플로팅 버튼 -->
+    <div id="kakao-chat-btn" style="
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: flex-end;
+      ">
+      <!-- 전화 상담 버튼 -->
+      <a href="tel:0507-1463-8122" style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 56px; height: 56px;
+              background: #1a3e72;
+              border-radius: 50%;
+              box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+              text-decoration: none;
+              transition: transform 0.2s;
+          " title="전화 상담">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16">
+          <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+        </svg>
+      </a>
+      <!-- 카카오톡 채널 버튼 -->
+      <a href="https://pf.kakao.com/_xnKxbxj/chat" target="_blank" rel="noopener noreferrer" style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 56px; height: 56px;
+              background: #FEE500;
+              border-radius: 50%;
+              box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+              text-decoration: none;
+              transition: transform 0.2s;
+          " title="카카오톡 상담">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256">
+          <path fill="#3C1E1E" d="M128 36C70.6 36 24 72.8 24 118c0 29.2 19.4 54.8 48.8 69.4l-10 36.2c-.8 2.8 2.4 5.2 4.8 3.6l43.2-28.8c5.6.8 11.4 1.2 17.2 1.2 57.4 0 104-36.8 104-81.6S185.4 36 128 36z" />
+        </svg>
+      </a>
+    </div>
 
+    <!-- 푸터 -->
+    <footer style="
+          background: #1a3e72;
+          color: rgba(255,255,255,0.85);
+          padding: 32px 20px;
+          text-align: center;
+          font-size: 0.85rem;
+          line-height: 1.8;
+          margin-top: 40px;
+      ">
+      <div style="max-width: 800px; margin: 0 auto;">
+        <p style="margin: 0;"><strong style="color: #fff; font-size: 1rem;">더세온연구소</strong></p>
+        <p style="margin: 4px 0;">서울시 서초구 사임당로 39 한성빌딩 3층 | 대전시 동구 삼성동 301-6</p>
+        <p style="margin: 4px 0;">전화: 0507-1463-8122 | 이메일: seonresearch@gmail.com</p>
+        <p style="margin: 12px 0 0;">
+          <a href="/privacy.html" style="color: rgba(255,255,255,0.9); text-decoration: underline;">개인정보처리방침</a>
+        </p>
+        <p style="margin: 8px 0 0; color: rgba(255,255,255,0.5); font-size: 0.78rem;">
+          &copy; 2025 더세온연구소 All rights reserved
+        </p>
+      </div>
+    </footer>
 </body>
+
 </html>

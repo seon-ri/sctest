@@ -450,19 +450,20 @@
             <p>서울시 서초구 사임당로 39 한성빌딩 3층</p>
             <p style="font-size:0.9rem; color:#666;">지하철 3호선 남부터미널역 5번 출구 도보 5분</p>
             <!-- 카카오맵/네이버맵 iframe 삽입 가능 영역 -->
-            <div class="map-container" style="margin:1rem 0; border-radius:8px; overflow:hidden;">
-              <!-- 카카오맵 - 지도퍼가기 -->
+            <!-- 카카오맵 - 지도퍼가기 -->
+            <div class="map-container" style="max-width:640px; margin:1rem auto; border-radius:8px; overflow:hidden;">
               <div id="daumRoughmapContainer1773490509230" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-              <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-              <script charset="UTF-8">
-                new daum.roughmap.Lander({
-                  "timestamp": "1773490509230",
-                  "key": "jaqrmwewoc8",
-                  "mapWidth": "640",
-                  "mapHeight": "360"
-                }).render();
-              </script>
             </div>
+
+            <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+            <script charset="UTF-8">
+              new daum.roughmap.Lander({
+                "timestamp": "1773490509230",
+                "key": "jaqrmwewoc8",
+                "mapWidth": "640",
+                "mapHeight": "360"
+              }).render();
+            </script>
           </div>
 
           <!-- 지점 -->

@@ -2921,4 +2921,18 @@ section[id] {
                 font-size: 0.8rem;
             }
         }
+
+}
+/* 카카오맵 반응형 수정 */
+.root_daum_roughmap {
+  width: 100% !important;
+  max-width: 640px !important;
+}
+.root_daum_roughmap .wrap_map {
+  width: 100% !important;
+  height: 360px !important;
+}
+.root_daum_roughmap .wrap_map .map {
+  width: 100% !important;
+  height: 100% !important;
 }

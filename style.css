@@ -2925,8 +2925,7 @@ section[id] {
 }
 /* 카카오맵 반응형 수정 */
 .root_daum_roughmap {
-  width: 100% !important;
-  max-width: 640px !important;
+    width: 100% !important;
 }
 .root_daum_roughmap .wrap_map {
   width: 100% !important;

@@ -82,7 +82,7 @@
         }
         .post-meta span { display: flex; align-items: center; gap: 4px; }
 
-        /* ===== Quill HTML 본문 렌더링 영역 ===== */
+        /* ===== Quill HTML 본문 렌더링 영역 (1-1 수정) ===== */
         .post-content {
             padding: 28px 32px 36px;
             font-size: 16px;
@@ -91,6 +91,10 @@
             min-height: 200px;
             word-break: keep-all;
             overflow-wrap: break-word;
+        }
+        /* plain text 게시글용 줄바꿈 (1-1) */
+        .post-content.plain-text {
+            white-space: pre-wrap;
         }
         .post-content p { margin: 0 0 0.8em; }
         .post-content h1, .post-content h2, .post-content h3 {
@@ -133,7 +137,7 @@
         .post-content .ql-indent-2 { padding-left: 6em; }
         .post-content .ql-indent-3 { padding-left: 9em; }
 
-        /* ===== 첨부파일 이미지 그리드 (1-2) ===== */
+        /* ===== 첨부파일 이미지 그리드 (1-2 개선) ===== */
         .attachments-section {
             padding: 20px 32px 28px;
             background: #fafafa;
@@ -149,6 +153,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
+        }
+        /* 이미지 1장일 때 한 열로 크게 표시 (1-2) */
+        .attachment-grid.single-image {
+            grid-template-columns: 1fr;
+            max-width: 680px;
         }
         .attachment-grid-item {
             border-radius: 8px;
@@ -167,7 +176,9 @@
             display: block;
             object-fit: contain;
             cursor: zoom-in;
-            max-height: 500px;
+            max-height: 600px;
+            background: #f9f9f9;
+            padding: 4px;
         }
         .file-download-list {
             display: flex;
@@ -190,7 +201,7 @@
         }
         .file-download-link:hover { background: #f0f4ff; }
 
-        /* ===== 관리자 액션 바 (1-6) ===== */
+        /* ===== 관리자 액션 바 (1-6 개선) ===== */
         .admin-actions {
             display: none;
             padding: 16px 32px;
@@ -310,12 +321,10 @@
 
     <script>
     (function() {
-        // URL에서 게시글 ID 추출
         function getPostId() {
             return new URLSearchParams(window.location.search).get('id');
         }
 
-        // 날짜 포맷
         function fmtDate(d) {
             var date = new Date(d);
             var now = new Date();
@@ -326,16 +335,13 @@
             return date.toLocaleDateString('ko-KR');
         }
 
-        // 경로 보정
         function fixPath(p) { return (p || '').replace(/^\.?\/*/, '/'); }
 
-        // 이미지 파일 판별
         function isImage(name, path) {
             return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name || '') ||
                    /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path || '');
         }
 
-        // 라이트박스
         var lightbox = document.getElementById('lightbox');
         var lightboxImg = document.getElementById('lightbox-img');
         lightbox.addEventListener('click', function() {
@@ -346,19 +352,30 @@
             lightbox.classList.add('active');
         }
 
-        // 게시글 렌더링
         function render(post) {
             var c = document.getElementById('post-container');
 
-            // DOMPurify로 HTML 정화 (XSS 방지) - Quill에서 사용하는 class/style 허용
-            var cleanContent = DOMPurify.sanitize(post.content, {
-                ALLOWED_TAGS: ['p','br','strong','em','u','s','a','img','h1','h2','h3','h4','h5','h6',
-                               'ul','ol','li','blockquote','pre','code','span','div','table','thead',
-                               'tbody','tr','th','td','sub','sup','hr'],
-                ALLOWED_ATTR: ['href','src','alt','class','style','target','rel','width','height',
-                               'colspan','rowspan','loading'],
-                ALLOW_DATA_ATTR: false
-            });
+            // ===== (1-1) Quill HTML인지 plain text인지 감지 =====
+            var rawContent = post.content || '';
+            var isHtml = /<[a-z][\s\S]*>/i.test(rawContent);
+            var cleanContent;
+            var isPlainText = false;
+
+            if (isHtml) {
+                // Quill HTML -> DOMPurify 정화
+                cleanContent = DOMPurify.sanitize(rawContent, {
+                    ALLOWED_TAGS: ['p','br','strong','em','u','s','a','img','h1','h2','h3','h4','h5','h6',
+                                   'ul','ol','li','blockquote','pre','code','span','div','table','thead',
+                                   'tbody','tr','th','td','sub','sup','hr'],
+                    ALLOWED_ATTR: ['href','src','alt','class','style','target','rel','width','height',
+                                   'colspan','rowspan','loading'],
+                    ALLOW_DATA_ATTR: false
+                });
+            } else {
+                // plain text -> \n을 <br>로 변환
+                isPlainText = true;
+                cleanContent = DOMPurify.sanitize(rawContent);
+            }
 
             // 이미지/비이미지 분리
             var images = [];
@@ -385,14 +402,14 @@
             html += '<span>조회수: ' + (post.viewCount || 0) + '</span>';
             html += '</div></div>';
 
-            // 본문 (innerHTML로 Quill HTML 렌더링)
-            html += '<div class="post-content">' + cleanContent + '</div>';
+            // 본문 (1-1: plain text면 white-space:pre-wrap 클래스 추가)
+            html += '<div class="post-content' + (isPlainText ? ' plain-text' : '') + '">' + cleanContent + '</div>';
 
-            // 첨부 이미지 (CSS Grid - 잘림 없이 보기 좋게)
+            // (1-2) 첨부 이미지 - 1장이면 single-image 클래스 추가
             if (images.length > 0) {
                 html += '<div class="attachments-section">';
                 html += '<div class="attachments-title">📷 첨부 이미지 (' + images.length + '개)</div>';
-                html += '<div class="attachment-grid">';
+                html += '<div class="attachment-grid' + (images.length === 1 ? ' single-image' : '') + '">';
                 images.forEach(function(img) {
                     html += '<div class="attachment-grid-item">';
                     html += '<img src="' + img.path + '" alt="' + DOMPurify.sanitize(img.name || '') + '" loading="lazy" data-lightbox="true">';
@@ -415,14 +432,14 @@
                 html += '</div></div>';
             }
 
-            // 관리자 비밀번호 입력 바
+            // (1-6) 관리자 비밀번호 입력 바
             html += '<div id="admin-pw-bar" class="admin-password-bar">';
             html += '<input type="password" id="admin-pw-input" placeholder="관리자 비밀번호">';
             html += '<button class="btn-confirm" id="admin-pw-confirm">확인</button>';
             html += '<button class="btn-cancel" id="admin-pw-cancel">취소</button>';
             html += '</div>';
 
-            // 관리자 액션 바
+            // (1-6) 관리자 액션 바
             html += '<div id="admin-actions" class="admin-actions">';
             html += '<span class="admin-label">관리자 메뉴</span>';
             html += '<button class="btn-edit" id="btn-edit-post">수정</button>';
@@ -438,7 +455,7 @@
                 }
             });
 
-            // 관리자 토글 (제목 영역 더블클릭으로 관리자 모드 진입)
+            // (1-6) 관리자 토글 - 제목 영역 더블클릭
             var adminActions = document.getElementById('admin-actions');
             var adminPwBar = document.getElementById('admin-pw-bar');
 
@@ -484,7 +501,6 @@
             });
         }
 
-        // 게시글 로드
         async function load() {
             var id = getPostId();
             var c = document.getElementById('post-container');
@@ -495,7 +511,6 @@
                 var result = await res.json();
                 if (result.success) {
                     render(result.data.post);
-                    // OG 태그 동적 업데이트
                     document.title = result.data.post.title + ' - 더세온연구소';
                     var ogTitle = document.querySelector('meta[property="og:title"]');
                     if (ogTitle) ogTitle.content = result.data.post.title + ' - 더세온연구소';

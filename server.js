@@ -11,7 +11,6 @@ const multer = require('multer');
 const fs = require('fs');
 
 const app = express();
-app.use(express.json());
 app.use((req, res, next) => {
     res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline';");
     next();

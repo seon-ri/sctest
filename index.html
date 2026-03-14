@@ -79,7 +79,10 @@
               <a href="#" class="dropdown-item" data-section="about" data-subsection="intro">연구소 소개</a>
               <a href="#" class="dropdown-item" data-section="about" data-subsection="members">구성원</a>
               <a href="#" class="dropdown-item" data-section="about" data-subsection="contact">상담 안내</a>
+              <a href="#" class="dropdown-item" data-section="about" data-subsection="directions">오시는 길</a>
+              <a href="#" class="dropdown-item" data-section="about" data-subsection="faq">자주 묻는 질문</a>
               <a href="#" class="dropdown-item" data-section="about" data-subsection="location">자문·협력</a>
+
             </div>
           </li>
           <li class="nav-item has-dropdown">
@@ -102,11 +105,10 @@
           </li>
 
           <li class="nav-item has-dropdown">
-            <a href="#" class="nav-link" data-section="analysis">진술·양형·사건분석</a>
+            <a href="#" class="nav-link" data-section="analysis">진술·양형분석</a>
             <div class="dropdown-menu">
               <a href="#" class="dropdown-item" data-section="analysis" data-subsection="statement">진술분석</a>
               <a href="#" class="dropdown-item" data-section="analysis" data-subsection="sentencing">양형자료작성</a>
-              <!-- <a href="#" class="dropdown-item" data-section="analysis" data-subsection="case-analysis">사건분석</a> -->
             </div>
           </li>
 
@@ -1199,24 +1201,6 @@
       </div>
     </section>
 
-
-    <!-- Footer -->
-    <footer>
-      <div class="footer-bar">
-        <div class="footer-bar-inner">
-          <p class="footer-notice-text">
-            <i class="bi bi-patch-check-fill"></i> 전화 상담 후 예약을 통해 진행됩니다.
-          </p>
-          <p class="footer-contact-info">
-            <i class="bi bi-telephone-fill"></i> 0507-1463-8122
-          </p>
-          <div class="footer-copyright">
-            <p>© 2025 더세온연구소. All rights reserved.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
     <!-- 로그인 모달 -->
     <!-- <div id="login-modal" class="modal" ...> ... </div> -->
 
@@ -1257,41 +1241,34 @@
       </div>
     </div>
 
-    <!-- ✅ 부가 기능: 섹션 바깥에 위치해야 정상 작동 -->
-    <div id="message-container"></div>
-
-    <!-- ================================ -->
-    <!-- 플로팅 버튼: 카카오톡 + 전화 -->
-    <!-- ================================ -->
-    <div class="floating-buttons">
-      <a href="https://pf.kakao.com/_xnxaZxj/chat" target="_blank" rel="noopener" class="floating-btn btn-kakao" title="카카오톡 상담">
-        <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="카카오톡">
-      </a>
-      <a href="tel:0507-1463-8122" class="floating-btn btn-phone" title="전화 상담">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path fill="#fff" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-        </svg>
-      </a>
-    </div>
-
-    <!-- ================================ -->
-    <!-- 푸터 (4-1) -->
-    <!-- ================================ -->
-    <footer id="site-footer">
-      <div class="footer-container">
-        <div class="footer-info">
-          <p class="footer-name">더세온연구소</p>
-          <p>서울시 서초구 사임당로 39 한성빌딩 3층</p>
-          <p>전화: <a href="tel:0507-1463-8122">0507-1463-8122</a> | 이메일: seonresearch@gmail.com</p>
-        </div>
-        <div class="footer-links">
-          <a href="/privacy.html" target="_blank">개인정보처리방침</a>
-        </div>
-        <div class="footer-copyright">
-          <p>&copy; 2025 더세온연구소 All rights reserved</p>
-        </div>
+  <!-- ===== 푸터 (4-1) ===== -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <p class="footer-name">더세온연구소</p>
+        <p>서울시 서초구 사임당로 39 한성빌딩 3층</p>
+        <p>전화: <a href="tel:0507-1463-8122">0507-1463-8122</a> | 이메일: seonresearch@gmail.com</p>
       </div>
-    </footer>
+      <div class="footer-links">
+        <a href="/privacy.html" target="_blank">개인정보처리방침</a>
+      </div>
+      <p class="footer-copy">&copy; 2025 더세온연구소 All rights reserved</p>
+    </div>
+  </footer>
+
+  <!-- ===== 플로팅 버튼 (3-1 카카오톡 + 3-2 전화) ===== -->
+  <div class="floating-buttons">
+    <!-- ▼ 카카오톡 채널 URL을 아래 href에 입력하세요 (예: https://pf.kakao.com/xxxxx) ▼ -->
+    <a href="https://pf.kakao.com/여기에채널URL입력" class="floating-btn kakao-btn" target="_blank" rel="noopener" title="카카오톡 상담">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#3C1E1E">
+        <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.66 6.6l-.9 3.3c-.08.3.25.55.52.39l3.8-2.52c.62.09 1.26.13 1.92.13 5.52 0 10-3.58 10-7.9S17.52 3 12 3z" />
+      </svg>
+    </a>
+    <!-- ▲ 카카오톡 채널 URL을 위 href에 입력하세요 ▲ -->
+    <a href="tel:0507-1463-8122" class="floating-btn phone-btn" title="전화 상담">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+  </div>
 
     <script src="script.js"></script>
 </body>

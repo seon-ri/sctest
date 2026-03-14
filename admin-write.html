@@ -10,10 +10,7 @@
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 
-    <!-- (1-3) Quill 이미지 리사이즈 모듈 -->
-    <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
-
-    <!-- (1-5) Sortable.js -->
+    <!-- Sortable.js (파일 순서 변경) -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
     <style>
@@ -72,7 +69,7 @@
         .ql-editor { min-height: 280px; }
         .ql-editor img { max-width: 100%; height: auto; cursor: pointer; }
 
-        /* (1-4) 드래그앤드롭 영역 */
+        /* 드래그앤드롭 영역 */
         .drop-zone {
             border: 2px dashed #c0c6d0;
             border-radius: 8px;
@@ -96,7 +93,7 @@
             opacity: 0; cursor: pointer;
         }
 
-        /* (1-5) 파일 미리보기 (Sortable) */
+        /* 파일 미리보기 (Sortable) */
         #file-preview {
             display: flex;
             flex-wrap: wrap;
@@ -141,6 +138,7 @@
         }
         .file-preview-item .remove-file:hover { background: #c82333; }
 
+        /* 순서 드래그 중 */
         .sortable-ghost { opacity: 0.4; }
         .sortable-chosen { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
@@ -162,6 +160,7 @@
             font-size: 0.95rem;
         }
 
+        /* 게시글 목록 */
         .admin-post-list { margin-top: 40px; }
         .admin-post-item {
             display: flex;
@@ -201,7 +200,7 @@
                 <label for="post-category">카테고리</label>
                 <select id="post-category" name="category" required>
                     <option value="">카테고리 선택</option>
-                    <option value="notice">게시판</option>
+                    <option value="notice">공지</option>
                     <option value="general">일반</option>
                 </select>
             </div>
@@ -232,13 +231,8 @@
 
     <script>
     (function() {
-        // ===== (1-3) Quill 에디터 + 이미지 리사이즈 모듈 =====
-        // 이미지 리사이즈 모듈 등록 (CDN에서 window.ImageResize로 노출됨)
-        if (window.ImageResize) {
-            Quill.register('modules/imageResize', window.ImageResize.default || window.ImageResize);
-        }
-
-        var quillConfig = {
+        // =================== Quill 에디터 초기화 ===================
+        var quill = new Quill('#editor-container', {
             theme: 'snow',
             placeholder: '내용을 입력하세요...',
             modules: {
@@ -249,35 +243,29 @@
                     [{ 'list': 'ordered' }, { 'list': 'bullet' }],
                     ['blockquote', 'code-block'],
                     [{ 'align': [] }],
-                    [{ 'indent': '-1' }, { 'indent': '+1' }],
                     ['link', 'image'],
                     ['clean']
                 ]
             }
-        };
+        });
 
-        // 이미지 리사이즈가 로드됐으면 모듈 추가
-        if (window.ImageResize) {
-            quillConfig.modules.imageResize = {
-                displaySize: true
-            };
-        }
-
-        var quill = new Quill('#editor-container', quillConfig);
-
-        // (1-3) Quill 이미지 핸들러 - base64 삽입
+        // Quill 이미지 핸들러 (base64 삽입)
         quill.getModule('toolbar').addHandler('image', function() {
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('accept', 'image/*');
             input.click();
+
             input.onchange = function() {
                 var file = input.files[0];
                 if (!file) return;
+
+                // 10MB 제한
                 if (file.size > 10 * 1024 * 1024) {
-                    alert('에디터 삽입 이미지는 10MB 이하만 가능합니다');
+                    alert('이미지는 10MB 이하만 삽입할 수 있습니다');
                     return;
                 }
+
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     var range = quill.getSelection(true);
@@ -288,12 +276,13 @@
             };
         });
 
-        // ===== (1-4, 1-5) 파일 관리 =====
+        // =================== 파일 관리 ===================
         var selectedFiles = [];
         var dropZone = document.getElementById('drop-zone');
         var fileInput = document.getElementById('post-files');
         var filePreview = document.getElementById('file-preview');
 
+        // Sortable.js 적용
         new Sortable(filePreview, {
             animation: 200,
             ghostClass: 'sortable-ghost',
@@ -361,6 +350,7 @@
             });
         }
 
+        // 드래그 앤 드롭 이벤트
         dropZone.addEventListener('dragover', function(e) {
             e.preventDefault();
             dropZone.classList.add('drag-over');
@@ -380,7 +370,7 @@
             this.value = '';
         });
 
-        // ===== 폼 제출 =====
+        // =================== 폼 제출 ===================
         var form = document.getElementById('admin-write-form');
         var submitBtn = document.getElementById('submit-btn');
 
@@ -446,11 +436,11 @@
                 console.error(err);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = isEdit ? '수정하기' : '글쓰기';
+                submitBtn.textContent = form.dataset.mode === 'edit' ? '수정하기' : '글쓰기';
             }
         });
 
-        // ===== 게시글 목록 =====
+        // =================== 게시글 목록 ===================
         async function loadAdminPosts() {
             try {
                 var res = await fetch('/api/board/posts?limit=20');
@@ -465,7 +455,7 @@
                 container.innerHTML = result.data.posts.map(function(post) {
                     return '<div class="admin-post-item">' +
                         '<strong>' + escapeHtml(post.title) + '</strong>' +
-                        '<span class="post-cat">[' + (post.category === 'notice' ? '게시판' : '일반') + ']</span>' +
+                        '<span class="post-cat">[' + (post.category === 'notice' ? '공지' : '일반') + ']</span>' +
                         '<div class="admin-post-btns">' +
                         '<button class="edit-btn" data-id="' + post._id + '">✏ 수정</button>' +
                         '<button class="del-btn" data-id="' + post._id + '">🗑 삭제</button>' +
@@ -505,12 +495,14 @@
                         renderPreview();
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
-                } catch(e) { alert('불러오기 실패'); }
+                } catch(e) {
+                    alert('불러오기 실패');
+                    console.error(e);
+                }
             }
 
             if (btn.classList.contains('del-btn')) {
-                if (!confirm('정말 삭제하시겠습니까?')) return;
-                var pw = prompt('관리자 비밀번호:');
+                var pw = prompt('관리자 비밀번호를 입력하세요');
                 if (!pw) return;
                 try {
                     var res = await fetch('/api/board/posts/' + postId, {
@@ -525,7 +517,7 @@
             }
         });
 
-        // ===== 수정 모드 진입 (URL 파라미터) =====
+        // =================== 수정 모드 진입 (URL 파라미터) ===================
         var editParam = new URLSearchParams(window.location.search).get('edit');
         if (editParam) {
             fetch('/api/board/posts/' + editParam)
@@ -545,6 +537,7 @@
                 .catch(function() { /* 무시 */ });
         }
 
+        // 초기 로드
         loadAdminPosts();
     })();
     </script>

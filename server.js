@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: './config.env' });
 
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -12,7 +12,7 @@ const fs = require('fs');
 
 const app = express();
 app.use((req, res, next) => {
-    res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline';");
+    res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data: blob:;");
     next();
 });
 
@@ -21,6 +21,8 @@ const PORT = process.env.PORT || 3000;
 // 보안 미들웨어
 app.use(helmet({
     contentSecurityPolicy: false,
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
 }));
 
 app.use(cors({

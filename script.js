@@ -465,7 +465,7 @@ function renderPosts() {
             '<td class="col-title"><span class="post-title">' + escapeHtml(post.title) + '</span>' +
             (post.commentCount > 0 ? '<span class="comment-count">[' + post.commentCount + ']</span>' : '') +
             '</td>' +
-            '<td class="col-date">' + formatDate(post.createdAt) + '</td>' +
+            '<span class="info-post-date">' + formatDate(post.createdAt) + '</span>' +
             '<td class="col-views">' + (post.viewCount || 0) + '</td>' +
             '</tr>';
     }).join('');

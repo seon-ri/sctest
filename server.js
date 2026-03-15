@@ -28,7 +28,7 @@ app.use(helmet({
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
         ? ['https://www.seon-r.com']
-        : ['http://localhost:3005', 'http://127.0.0.1:3005'],
+        : ['http://localhost:3000', 'http://127.0.0.1:3000'],
     credentials: true
 }));
 

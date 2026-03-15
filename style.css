@@ -2953,3 +2953,56 @@ section[id] {
 #evaluation .sub-content .content-card {
     margin-top: 2rem;
 }
+/* ================================
+   레이아웃 보정
+   ================================ */
+
+/* 섹션 하단 여백 - 푸터와 간격 확보 */
+.content-section {
+    padding-bottom: 4rem;
+}
+
+/* 자문·협력 하단 여백 */
+#about-location {
+    margin-bottom: 3rem;
+}
+
+/* 구성원 카드 컨테이너 정렬 */
+#about-members {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* 상담/분석위원 구분선 */
+.section-divider {
+    max-width: 800px;
+    margin: 2rem auto 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* 전문가 카드 그리드 중앙 정렬 */
+.expert-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 1.5rem auto 0;
+    padding: 0 1rem;
+}
+
+/* 연구소장 카드 중앙 정렬 */
+.expert-card-full {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* 심리평가 서브콘텐츠 상단 여백 통일 */
+#evaluation .sub-content .content-card {
+    margin-top: 2rem;
+}

@@ -382,7 +382,7 @@ body {
 
 .section-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .section-header h2 {
@@ -2230,15 +2230,6 @@ footer {
   text-align: center;
 }
 
-.sub-content> :first-child {
-  margin-top: 0;
-}
-
-.sub-content>.content-card,
-.sub-content>.content-card-new {
-  margin-top: 0;
-}
-
 /* ================================
    모바일 대응 추가
    ================================ */
@@ -3004,9 +2995,13 @@ section[id] {
   margin-bottom: 3rem;
 }
 
-#evaluation .sub-content .content-card {
+#evaluation .sub-content {
   margin-top: 0;
-  margin-bottom: 0;
+  padding-top: 0;
+}
+
+#evaluation .sub-content .content-card {
+  margin-top: 2rem;
 }
 
 #about-members {

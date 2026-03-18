@@ -591,7 +591,7 @@
                         form.dataset.postId = '';
                         document.getElementById('form-heading').textContent = '관리자 전용 글쓰기';
                         submitBtn.textContent = '글쓰기';
-
+                        history.replaceState(null, '', window.location.pathname);
                         var msg = document.getElementById('write-success');
                         msg.textContent = isEdit ? '글이 수정되었습니다!' : '글이 등록되었습니다!';
                         msg.style.display = 'block';

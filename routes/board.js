@@ -283,19 +283,18 @@ router.put('/posts/:postId', upload.array('attachments', 5), [
         // 첨부파일 처리
         const { keepAttachments } = req.body;
 
-        // 1) 기존 파일 중 유지할 것만 필터
         let keptFiles = [];
         if (keepAttachments) {
             const keepList = JSON.parse(keepAttachments);
-            keptFiles = (post.attachments || []).filter(att =>
-                keepList.includes(att.filename)
-            );
+            // keepList 순서대로 정렬 (프론트 드래그 순서 반영)
+            keepList.forEach(function (fname) {
+                var found = (post.attachments || []).find(att => att.filename === fname);
+                if (found) keptFiles.push(found);
+            });
         } else {
-            // keepAttachments가 안 넘어오면 기존 전부 유지 (하위 호환)
             keptFiles = post.attachments || [];
         }
 
-        // 2) 새로 업로드된 파일
         const newAttachments = req.files ? req.files.map(file => ({
             filename: file.filename,
             originalName: file.originalname,
@@ -304,7 +303,6 @@ router.put('/posts/:postId', upload.array('attachments', 5), [
             mimeType: file.mimetype
         })) : [];
 
-        // 3) 합치기 (기존 유지분 + 신규)
         post.attachments = [...keptFiles, ...newAttachments];
 
         post.updatedAt = new Date();

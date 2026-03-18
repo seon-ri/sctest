@@ -370,23 +370,18 @@
                 }
             });
 
-            // Quill 이미지 핸들러 (base64 삽입)
             quill.getModule('toolbar').addHandler('image', function () {
                 var input = document.createElement('input');
                 input.setAttribute('type', 'file');
                 input.setAttribute('accept', 'image/*');
                 input.click();
-
                 input.onchange = function () {
                     var file = input.files[0];
                     if (!file) return;
-
-                    // 10MB 제한
                     if (file.size > 10 * 1024 * 1024) {
                         alert('이미지는 10MB 이하만 삽입할 수 있습니다');
                         return;
                     }
-
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         var range = quill.getSelection(true);
@@ -398,7 +393,7 @@
             });
 
             // =================== 파일 관리 ===================
-            var selectedFiles = [];
+            var selectedFiles = []; // 통합 배열: { id, file(또는 null), filename, originalName, path, mimeType, isExisting }
             var dropZone = document.getElementById('drop-zone');
             var fileInput = document.getElementById('post-files');
             var filePreview = document.getElementById('file-preview');
@@ -409,23 +404,14 @@
                 ghostClass: 'sortable-ghost',
                 chosenClass: 'sortable-chosen',
                 onEnd: function () {
-                    // DOM 순서에서 배열 재구성
                     var items = filePreview.querySelectorAll('.file-preview-item');
-                    var newExisting = [];
-                    var newNew = [];
+                    var reordered = [];
                     items.forEach(function (item) {
                         var id = item.getAttribute('data-id');
-                        var isEx = item.getAttribute('data-existing') === 'true';
-                        if (isEx) {
-                            var found = existingFiles.find(function (f) { return f.id === id; });
-                            if (found) newExisting.push(found);
-                        } else {
-                            var found = newFiles.find(function (f) { return f.id === id; });
-                            if (found) newNew.push(found);
-                        }
+                        var found = selectedFiles.find(function (f) { return f.id === id; });
+                        if (found) reordered.push(found);
                     });
-                    existingFiles = newExisting;
-                    newFiles = newNew;
+                    selectedFiles = reordered;
                 }
             });
 
@@ -441,19 +427,16 @@
                         continue;
                     }
                     var id = Date.now() + '-' + Math.random().toString(36).substr(2, 6);
-                    selectedFiles.push({ file: f, id: id });
+                    selectedFiles.push({ id: id, file: f, isExisting: false });
                 }
                 renderPreview();
             }
 
-            function removeFile(id, isExisting) {
-                if (isExisting) {
-                    existingFiles = existingFiles.filter(function (f) { return f.id !== id; });
-                } else {
-                    newFiles = newFiles.filter(function (f) { return f.id !== id; });
-                }
+            function removeFile(id) {
+                selectedFiles = selectedFiles.filter(function (sf) { return sf.id !== id; });
                 renderPreview();
             }
+
             function renderPreview() {
                 filePreview.innerHTML = '';
                 selectedFiles.forEach(function (sf) {
@@ -462,7 +445,6 @@
                     div.setAttribute('data-id', sf.id);
 
                     if (sf.isExisting) {
-                        // 기존 서버 파일
                         var isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(sf.originalName || sf.filename);
                         if (isImg) {
                             var img = document.createElement('img');
@@ -479,7 +461,6 @@
                         nameSpan.textContent = sf.originalName || sf.filename;
                         div.appendChild(nameSpan);
                     } else {
-                        // 새로 추가한 파일
                         var isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(sf.file.name);
                         if (isImg) {
                             var img = document.createElement('img');
@@ -506,6 +487,25 @@
 
                     filePreview.appendChild(div);
                 });
+            }
+
+            // 기존 첨부파일을 selectedFiles에 로드하는 헬퍼
+            function loadExistingAttachments(attachments) {
+                selectedFiles = [];
+                if (attachments && attachments.length > 0) {
+                    attachments.forEach(function (att) {
+                        selectedFiles.push({
+                            id: 'existing-' + att.filename,
+                            file: null,
+                            filename: att.filename,
+                            originalName: att.originalName,
+                            path: att.path,
+                            mimeType: att.mimeType,
+                            isExisting: true
+                        });
+                    });
+                }
+                renderPreview();
             }
 
             // 드래그 앤 드롭 이벤트
@@ -585,26 +585,12 @@
                     if (result.success) {
                         form.reset();
                         quill.setContents([]);
-                        // 기존 첨부파일을 existingFiles 배열로 별도 관리
-                        var existingFiles = [];  // { id, filename, originalName, path, isExisting: true }
-                        var newFiles = [];       // { id, file, isExisting: false }
-
-                        // 수정 모드 진입 시
-                        if (post.attachments && post.attachments.length > 0) {
-                            existingFiles = post.attachments.map(function (att) {
-                                return {
-                                    id: att.filename || att._id,
-                                    filename: att.filename,
-                                    originalName: att.originalName,
-                                    path: att.path,
-                                    isExisting: true
-                                };
-                            });
-                        }
-                        renderPreview();  // 기존 파일 썸네일 + 삭제 버튼 표시
+                        selectedFiles = [];
+                        renderPreview();
                         form.dataset.mode = '';
                         form.dataset.postId = '';
                         document.getElementById('form-heading').textContent = '관리자 전용 글쓰기';
+                        submitBtn.textContent = '글쓰기';
 
                         var msg = document.getElementById('write-success');
                         msg.textContent = isEdit ? '글이 수정되었습니다!' : '글이 등록되었습니다!';
@@ -675,22 +661,7 @@
                             form.dataset.postId = post._id;
                             document.getElementById('form-heading').textContent = '글 수정 모드';
                             submitBtn.textContent = '수정하기';
-                            selectedFiles = [];
-                            if (post.attachments && post.attachments.length > 0) {
-                                post.attachments.forEach(function (att) {
-                                    var id = 'existing-' + att.filename;
-                                    selectedFiles.push({
-                                        id: id,
-                                        file: null,           // 기존 파일은 File 객체 없음
-                                        filename: att.filename,
-                                        originalName: att.originalName,
-                                        path: att.path,
-                                        mimeType: att.mimeType,
-                                        isExisting: true
-                                    });
-                                });
-                            }
-                            renderPreview();
+                            loadExistingAttachments(post.attachments);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }
                     } catch (e) {
@@ -730,6 +701,7 @@
                             form.dataset.postId = post._id;
                             document.getElementById('form-heading').textContent = '글 수정 모드';
                             submitBtn.textContent = '수정하기';
+                            loadExistingAttachments(post.attachments);
                         }
                     })
                     .catch(function () { /* 무시 */ });

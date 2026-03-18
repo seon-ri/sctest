@@ -654,7 +654,7 @@
                         var result = await res.json();
                         if (result.success) {
                             var post = result.data.post;
-                            history.replaceState(null, '', 'admin-write.html?edit=' + post._id);
+                            history.replaceState(null, '', window.location.pathname + '?edit=' + post._id);
                             document.getElementById('post-title').value = post.title;
                             document.getElementById('post-category').value = post.category;
                             quill.root.innerHTML = post.content;

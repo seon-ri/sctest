@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +17,27 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans KR', sans-serif; background: #f5f6f8; padding: 24px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f5f6f8;
+            padding: 24px;
+        }
 
         .admin-write-container {
             max-width: 780px;
             margin: 0 auto;
             background: #fff;
             border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
             padding: 32px;
         }
+
         .admin-write-container h2 {
             text-align: center;
             margin-bottom: 28px;
@@ -34,7 +45,10 @@
             color: #1a3e72;
         }
 
-        .form-group { margin-bottom: 20px; }
+        .form-group {
+            margin-bottom: 20px;
+        }
+
         .form-group label {
             display: block;
             margin-bottom: 6px;
@@ -42,6 +56,7 @@
             font-size: 0.95rem;
             color: #333;
         }
+
         .form-group input,
         .form-group select {
             width: 100%;
@@ -52,6 +67,7 @@
             font-family: inherit;
             transition: border 0.2s;
         }
+
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
@@ -64,10 +80,27 @@
             background: #fff;
             border-radius: 0 0 6px 6px;
         }
-        .ql-toolbar.ql-snow { border-radius: 6px 6px 0 0; border-color: #d0d0d0; }
-        .ql-container.ql-snow { border-color: #d0d0d0; border-radius: 0 0 6px 6px; font-size: 15px; }
-        .ql-editor { min-height: 280px; }
-        .ql-editor img { max-width: 100%; height: auto; cursor: pointer; }
+
+        .ql-toolbar.ql-snow {
+            border-radius: 6px 6px 0 0;
+            border-color: #d0d0d0;
+        }
+
+        .ql-container.ql-snow {
+            border-color: #d0d0d0;
+            border-radius: 0 0 6px 6px;
+            font-size: 15px;
+        }
+
+        .ql-editor {
+            min-height: 280px;
+        }
+
+        .ql-editor img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
 
         /* 드래그앤드롭 영역 */
         .drop-zone {
@@ -82,15 +115,21 @@
             position: relative;
             background: #fafbfc;
         }
+
         .drop-zone.drag-over {
             border-color: #1a3e72;
             background: #f0f4ff;
             color: #1a3e72;
         }
+
         .drop-zone input[type="file"] {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0; cursor: pointer;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
         }
 
         /* 파일 미리보기 (Sortable) */
@@ -101,6 +140,7 @@
             margin-top: 12px;
             min-height: 10px;
         }
+
         .file-preview-item {
             position: relative;
             width: 110px;
@@ -111,46 +151,97 @@
             cursor: grab;
             background: #f9f9f9;
         }
-        .file-preview-item:active { cursor: grabbing; }
+
+        .file-preview-item:active {
+            cursor: grabbing;
+        }
+
         .file-preview-item img {
-            width: 100%; height: 100%; object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
+
         .file-preview-item .file-icon {
-            display: flex; align-items: center; justify-content: center;
-            width: 100%; height: 100%;
-            font-size: 2rem; color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 2rem;
+            color: #999;
         }
+
         .file-preview-item .file-name {
             position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.65);
-            color: #fff; font-size: 0.65rem;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            font-size: 0.65rem;
             padding: 3px 5px;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
+
         .file-preview-item .remove-file {
-            position: absolute; top: 3px; right: 3px;
-            background: #dc3545; color: #fff;
-            border: none; border-radius: 50%;
-            width: 22px; height: 22px;
-            cursor: pointer; font-size: 12px; line-height: 1;
-            display: flex; align-items: center; justify-content: center;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .file-preview-item .remove-file:hover { background: #c82333; }
+
+        .file-preview-item .remove-file:hover {
+            background: #c82333;
+        }
 
         /* 순서 드래그 중 */
-        .sortable-ghost { opacity: 0.4; }
-        .sortable-chosen { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-
-        .form-actions { text-align: center; margin-top: 28px; }
-        .btn-primary {
-            background: #1a3e72; color: #fff; border: none;
-            padding: 12px 40px; border-radius: 6px;
-            font-size: 1.05rem; font-weight: 600;
-            cursor: pointer; transition: background 0.2s;
+        .sortable-ghost {
+            opacity: 0.4;
         }
-        .btn-primary:hover { background: #2b5a9e; }
-        .btn-primary:disabled { background: #aaa; cursor: not-allowed; }
+
+        .sortable-chosen {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        .btn-primary {
+            background: #1a3e72;
+            color: #fff;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 6px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #2b5a9e;
+        }
+
+        .btn-primary:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
 
         .write-success {
             color: #1a3e72;
@@ -161,7 +252,10 @@
         }
 
         /* 게시글 목록 */
-        .admin-post-list { margin-top: 40px; }
+        .admin-post-list {
+            margin-top: 40px;
+        }
+
         .admin-post-item {
             display: flex;
             align-items: center;
@@ -170,10 +264,27 @@
             border-bottom: 1px solid #eee;
             font-size: 0.92rem;
         }
-        .admin-post-item:last-child { border-bottom: none; }
-        .admin-post-item strong { flex: 1; color: #333; }
-        .admin-post-item .post-cat { color: #888; font-size: 0.8rem; margin-left: 8px; }
-        .admin-post-btns { display: flex; gap: 6px; }
+
+        .admin-post-item:last-child {
+            border-bottom: none;
+        }
+
+        .admin-post-item strong {
+            flex: 1;
+            color: #333;
+        }
+
+        .admin-post-item .post-cat {
+            color: #888;
+            font-size: 0.8rem;
+            margin-left: 8px;
+        }
+
+        .admin-post-btns {
+            display: flex;
+            gap: 6px;
+        }
+
         .admin-post-btns button {
             padding: 5px 12px;
             border: 1px solid #ddd;
@@ -183,11 +294,22 @@
             font-size: 0.82rem;
             transition: background 0.15s;
         }
-        .admin-post-btns button:hover { background: #f0f0f0; }
-        .admin-post-btns .del-btn { color: #dc3545; border-color: #dc3545; }
-        .admin-post-btns .del-btn:hover { background: #fff5f5; }
+
+        .admin-post-btns button:hover {
+            background: #f0f0f0;
+        }
+
+        .admin-post-btns .del-btn {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .admin-post-btns .del-btn:hover {
+            background: #fff5f5;
+        }
     </style>
 </head>
+
 <body>
     <div class="admin-write-container">
         <h2 id="form-heading">관리자 전용 글쓰기</h2>
@@ -212,8 +334,7 @@
                 <label>파일 첨부 (최대 5개 / 각 50MB / 드래그 순서 변경 가능)</label>
                 <div class="drop-zone" id="drop-zone">
                     📁 여기에 파일을 끌어다 놓거나 클릭하여 선택하세요
-                    <input type="file" id="post-files" name="attachments" multiple
-                           accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.hwp,.mp4,.mov,.avi,.wmv">
+                    <input type="file" id="post-files" name="attachments" multiple accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.hwp,.mp4,.mov,.avi,.wmv">
                 </div>
                 <div id="file-preview"></div>
             </div>
@@ -230,316 +351,394 @@
     </div>
 
     <script>
-    (function() {
-        // =================== Quill 에디터 초기화 ===================
-        var quill = new Quill('#editor-container', {
-            theme: 'snow',
-            placeholder: '내용을 입력하세요...',
-            modules: {
-                toolbar: [
-                    [{ 'header': [1, 2, 3, false] }],
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'color': [] }, { 'background': [] }],
-                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                    ['blockquote', 'code-block'],
-                    [{ 'align': [] }],
-                    ['link', 'image'],
-                    ['clean']
-                ]
-            }
-        });
-
-        // Quill 이미지 핸들러 (base64 삽입)
-        quill.getModule('toolbar').addHandler('image', function() {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-            input.click();
-
-            input.onchange = function() {
-                var file = input.files[0];
-                if (!file) return;
-
-                // 10MB 제한
-                if (file.size > 10 * 1024 * 1024) {
-                    alert('이미지는 10MB 이하만 삽입할 수 있습니다');
-                    return;
+        (function () {
+            // =================== Quill 에디터 초기화 ===================
+            var quill = new Quill('#editor-container', {
+                theme: 'snow',
+                placeholder: '내용을 입력하세요...',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        ['blockquote', 'code-block'],
+                        [{ 'align': [] }],
+                        ['link', 'image'],
+                        ['clean']
+                    ]
                 }
-
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var range = quill.getSelection(true);
-                    quill.insertEmbed(range.index, 'image', e.target.result);
-                    quill.setSelection(range.index + 1);
-                };
-                reader.readAsDataURL(file);
-            };
-        });
-
-        // =================== 파일 관리 ===================
-        var selectedFiles = [];
-        var dropZone = document.getElementById('drop-zone');
-        var fileInput = document.getElementById('post-files');
-        var filePreview = document.getElementById('file-preview');
-
-        // Sortable.js 적용
-        new Sortable(filePreview, {
-            animation: 200,
-            ghostClass: 'sortable-ghost',
-            chosenClass: 'sortable-chosen',
-            onEnd: function(evt) {
-                var moved = selectedFiles.splice(evt.oldIndex, 1)[0];
-                selectedFiles.splice(evt.newIndex, 0, moved);
-            }
-        });
-
-        function addFiles(fileList) {
-            for (var i = 0; i < fileList.length; i++) {
-                if (selectedFiles.length >= 5) {
-                    alert('최대 5개까지 첨부할 수 있습니다');
-                    break;
-                }
-                var f = fileList[i];
-                if (f.size > 50 * 1024 * 1024) {
-                    alert(f.name + ': 50MB를 초과합니다');
-                    continue;
-                }
-                var id = Date.now() + '-' + Math.random().toString(36).substr(2, 6);
-                selectedFiles.push({ file: f, id: id });
-            }
-            renderPreview();
-        }
-
-        function removeFile(id) {
-            selectedFiles = selectedFiles.filter(function(sf) { return sf.id !== id; });
-            renderPreview();
-        }
-
-        function renderPreview() {
-            filePreview.innerHTML = '';
-            selectedFiles.forEach(function(sf) {
-                var div = document.createElement('div');
-                div.className = 'file-preview-item';
-                div.setAttribute('data-id', sf.id);
-
-                var isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(sf.file.name);
-                if (isImg) {
-                    var img = document.createElement('img');
-                    img.src = URL.createObjectURL(sf.file);
-                    div.appendChild(img);
-                } else {
-                    var icon = document.createElement('div');
-                    icon.className = 'file-icon';
-                    icon.textContent = '📄';
-                    div.appendChild(icon);
-                }
-
-                var nameSpan = document.createElement('div');
-                nameSpan.className = 'file-name';
-                nameSpan.textContent = sf.file.name;
-                div.appendChild(nameSpan);
-
-                var removeBtn = document.createElement('button');
-                removeBtn.className = 'remove-file';
-                removeBtn.textContent = '×';
-                removeBtn.type = 'button';
-                removeBtn.onclick = function(e) { e.stopPropagation(); removeFile(sf.id); };
-                div.appendChild(removeBtn);
-
-                filePreview.appendChild(div);
             });
-        }
 
-        // 드래그 앤 드롭 이벤트
-        dropZone.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            dropZone.classList.add('drag-over');
-        });
-        dropZone.addEventListener('dragleave', function() {
-            dropZone.classList.remove('drag-over');
-        });
-        dropZone.addEventListener('drop', function(e) {
-            e.preventDefault();
-            dropZone.classList.remove('drag-over');
-            if (e.dataTransfer.files.length > 0) {
-                addFiles(e.dataTransfer.files);
-            }
-        });
-        fileInput.addEventListener('change', function() {
-            addFiles(this.files);
-            this.value = '';
-        });
+            // Quill 이미지 핸들러 (base64 삽입)
+            quill.getModule('toolbar').addHandler('image', function () {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                input.click();
 
-        // =================== 폼 제출 ===================
-        var form = document.getElementById('admin-write-form');
-        var submitBtn = document.getElementById('submit-btn');
+                input.onchange = function () {
+                    var file = input.files[0];
+                    if (!file) return;
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
+                    // 10MB 제한
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('이미지는 10MB 이하만 삽입할 수 있습니다');
+                        return;
+                    }
 
-            var title = document.getElementById('post-title').value.trim();
-            var category = document.getElementById('post-category').value;
-            var content = quill.root.innerHTML;
-            var adminPassword = document.getElementById('admin-password').value;
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var range = quill.getSelection(true);
+                        quill.insertEmbed(range.index, 'image', e.target.result);
+                        quill.setSelection(range.index + 1);
+                    };
+                    reader.readAsDataURL(file);
+                };
+            });
 
-            if (!title || !category || !adminPassword) {
-                alert('모든 필수 정보를 입력해 주세요');
-                return;
-            }
-            if (quill.getText().trim().length === 0) {
-                alert('내용을 입력해 주세요');
-                return;
-            }
+            // =================== 파일 관리 ===================
+            var selectedFiles = [];
+            var dropZone = document.getElementById('drop-zone');
+            var fileInput = document.getElementById('post-files');
+            var filePreview = document.getElementById('file-preview');
 
-            submitBtn.disabled = true;
-            var isEdit = form.dataset.mode === 'edit';
-            var postId = form.dataset.postId;
-            submitBtn.textContent = isEdit ? '수정 중...' : '작성 중...';
-
-            try {
-                var formData = new FormData();
-                formData.append('title', title);
-                formData.append('category', category);
-                formData.append('content', content);
-                formData.append('adminPassword', adminPassword);
-
-                selectedFiles.forEach(function(sf) {
-                    formData.append('attachments', sf.file);
-                });
-
-                var url = isEdit ? '/api/board/posts/' + postId : '/api/board/posts';
-                var method = isEdit ? 'PUT' : 'POST';
-
-                var res = await fetch(url, { method: method, body: formData });
-                var result = await res.json();
-
-                if (result.success) {
-                    form.reset();
-                    quill.setContents([]);
-                    selectedFiles = [];
-                    renderPreview();
-                    form.dataset.mode = '';
-                    form.dataset.postId = '';
-                    document.getElementById('form-heading').textContent = '관리자 전용 글쓰기';
-
-                    var msg = document.getElementById('write-success');
-                    msg.textContent = isEdit ? '글이 수정되었습니다!' : '글이 등록되었습니다!';
-                    msg.style.display = 'block';
-                    setTimeout(function() { msg.style.display = 'none'; }, 4000);
-
-                    loadAdminPosts();
-                } else {
-                    alert(result.message || '실패했습니다');
+            // Sortable.js 적용
+            new Sortable(filePreview, {
+                animation: 200,
+                ghostClass: 'sortable-ghost',
+                chosenClass: 'sortable-chosen',
+                onEnd: function () {
+                    // DOM 순서에서 배열 재구성
+                    var items = filePreview.querySelectorAll('.file-preview-item');
+                    var newExisting = [];
+                    var newNew = [];
+                    items.forEach(function (item) {
+                        var id = item.getAttribute('data-id');
+                        var isEx = item.getAttribute('data-existing') === 'true';
+                        if (isEx) {
+                            var found = existingFiles.find(function (f) { return f.id === id; });
+                            if (found) newExisting.push(found);
+                        } else {
+                            var found = newFiles.find(function (f) { return f.id === id; });
+                            if (found) newNew.push(found);
+                        }
+                    });
+                    existingFiles = newExisting;
+                    newFiles = newNew;
                 }
-            } catch(err) {
-                alert('서버 오류가 발생했습니다');
-                console.error(err);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = form.dataset.mode === 'edit' ? '수정하기' : '글쓰기';
+            });
+
+            function addFiles(fileList) {
+                for (var i = 0; i < fileList.length; i++) {
+                    if (selectedFiles.length >= 5) {
+                        alert('최대 5개까지 첨부할 수 있습니다');
+                        break;
+                    }
+                    var f = fileList[i];
+                    if (f.size > 50 * 1024 * 1024) {
+                        alert(f.name + ': 50MB를 초과합니다');
+                        continue;
+                    }
+                    var id = Date.now() + '-' + Math.random().toString(36).substr(2, 6);
+                    selectedFiles.push({ file: f, id: id });
+                }
+                renderPreview();
             }
-        });
 
-        // =================== 게시글 목록 ===================
-        async function loadAdminPosts() {
-            try {
-                var res = await fetch('/api/board/posts?limit=20');
-                var result = await res.json();
-                var container = document.getElementById('admin-post-list');
+            function removeFile(id, isExisting) {
+                if (isExisting) {
+                    existingFiles = existingFiles.filter(function (f) { return f.id !== id; });
+                } else {
+                    newFiles = newFiles.filter(function (f) { return f.id !== id; });
+                }
+                renderPreview();
+            }
+            function renderPreview() {
+                filePreview.innerHTML = '';
+                selectedFiles.forEach(function (sf) {
+                    var div = document.createElement('div');
+                    div.className = 'file-preview-item';
+                    div.setAttribute('data-id', sf.id);
 
-                if (!result.success || !result.data.posts.length) {
-                    container.innerHTML = '<p style="color:#999;text-align:center;padding:20px;">게시글이 없습니다</p>';
+                    if (sf.isExisting) {
+                        // 기존 서버 파일
+                        var isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(sf.originalName || sf.filename);
+                        if (isImg) {
+                            var img = document.createElement('img');
+                            img.src = '/uploads/' + sf.filename;
+                            div.appendChild(img);
+                        } else {
+                            var icon = document.createElement('div');
+                            icon.className = 'file-icon';
+                            icon.textContent = '📄';
+                            div.appendChild(icon);
+                        }
+                        var nameSpan = document.createElement('div');
+                        nameSpan.className = 'file-name';
+                        nameSpan.textContent = sf.originalName || sf.filename;
+                        div.appendChild(nameSpan);
+                    } else {
+                        // 새로 추가한 파일
+                        var isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(sf.file.name);
+                        if (isImg) {
+                            var img = document.createElement('img');
+                            img.src = URL.createObjectURL(sf.file);
+                            div.appendChild(img);
+                        } else {
+                            var icon = document.createElement('div');
+                            icon.className = 'file-icon';
+                            icon.textContent = '📄';
+                            div.appendChild(icon);
+                        }
+                        var nameSpan = document.createElement('div');
+                        nameSpan.className = 'file-name';
+                        nameSpan.textContent = sf.file.name;
+                        div.appendChild(nameSpan);
+                    }
+
+                    var removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-file';
+                    removeBtn.textContent = '×';
+                    removeBtn.type = 'button';
+                    removeBtn.onclick = function (e) { e.stopPropagation(); removeFile(sf.id); };
+                    div.appendChild(removeBtn);
+
+                    filePreview.appendChild(div);
+                });
+            }
+
+            // 드래그 앤 드롭 이벤트
+            dropZone.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+            dropZone.addEventListener('dragleave', function () {
+                dropZone.classList.remove('drag-over');
+            });
+            dropZone.addEventListener('drop', function (e) {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                if (e.dataTransfer.files.length > 0) {
+                    addFiles(e.dataTransfer.files);
+                }
+            });
+            fileInput.addEventListener('change', function () {
+                addFiles(this.files);
+                this.value = '';
+            });
+
+            // =================== 폼 제출 ===================
+            var form = document.getElementById('admin-write-form');
+            var submitBtn = document.getElementById('submit-btn');
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                var title = document.getElementById('post-title').value.trim();
+                var category = document.getElementById('post-category').value;
+                var content = quill.root.innerHTML;
+                var adminPassword = document.getElementById('admin-password').value;
+
+                if (!title || !category || !adminPassword) {
+                    alert('모든 필수 정보를 입력해 주세요');
+                    return;
+                }
+                if (quill.getText().trim().length === 0) {
+                    alert('내용을 입력해 주세요');
                     return;
                 }
 
-                container.innerHTML = result.data.posts.map(function(post) {
-                    return '<div class="admin-post-item">' +
-                        '<strong>' + escapeHtml(post.title) + '</strong>' +
-                        '<span class="post-cat">[' + (post.category === 'notice' ? '공지' : '일반') + ']</span>' +
-                        '<div class="admin-post-btns">' +
-                        '<button class="edit-btn" data-id="' + post._id + '">✏ 수정</button>' +
-                        '<button class="del-btn" data-id="' + post._id + '">🗑 삭제</button>' +
-                        '</div></div>';
-                }).join('');
-            } catch(e) {
-                console.error(e);
-            }
-        }
+                submitBtn.disabled = true;
+                var isEdit = form.dataset.mode === 'edit';
+                var postId = form.dataset.postId;
+                submitBtn.textContent = isEdit ? '수정 중...' : '작성 중...';
 
-        function escapeHtml(str) {
-            var div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        // 수정/삭제 위임
-        document.getElementById('admin-post-list').addEventListener('click', async function(e) {
-            var btn = e.target.closest('button');
-            if (!btn) return;
-            var postId = btn.dataset.id;
-
-            if (btn.classList.contains('edit-btn')) {
                 try {
-                    var res = await fetch('/api/board/posts/' + postId);
-                    var result = await res.json();
-                    if (result.success) {
-                        var post = result.data.post;
-                        document.getElementById('post-title').value = post.title;
-                        document.getElementById('post-category').value = post.category;
-                        quill.root.innerHTML = post.content;
-                        form.dataset.mode = 'edit';
-                        form.dataset.postId = post._id;
-                        document.getElementById('form-heading').textContent = '글 수정 모드';
-                        submitBtn.textContent = '수정하기';
-                        selectedFiles = [];
-                        renderPreview();
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    var formData = new FormData();
+                    formData.append('title', title);
+                    formData.append('category', category);
+                    formData.append('content', content);
+                    formData.append('adminPassword', adminPassword);
+
+                    if (isEdit) {
+                        // 유지할 기존 파일 목록
+                        var keepList = selectedFiles
+                            .filter(function (sf) { return sf.isExisting; })
+                            .map(function (sf) { return sf.filename; });
+                        formData.append('keepAttachments', JSON.stringify(keepList));
                     }
-                } catch(e) {
-                    alert('불러오기 실패');
+
+                    // 새 파일만 전송
+                    selectedFiles.forEach(function (sf) {
+                        if (!sf.isExisting) {
+                            formData.append('attachments', sf.file);
+                        }
+                    });
+
+                    var url = isEdit ? '/api/board/posts/' + postId : '/api/board/posts';
+                    var method = isEdit ? 'PUT' : 'POST';
+
+                    var res = await fetch(url, { method: method, body: formData });
+                    var result = await res.json();
+
+                    if (result.success) {
+                        form.reset();
+                        quill.setContents([]);
+                        // 기존 첨부파일을 existingFiles 배열로 별도 관리
+                        var existingFiles = [];  // { id, filename, originalName, path, isExisting: true }
+                        var newFiles = [];       // { id, file, isExisting: false }
+
+                        // 수정 모드 진입 시
+                        if (post.attachments && post.attachments.length > 0) {
+                            existingFiles = post.attachments.map(function (att) {
+                                return {
+                                    id: att.filename || att._id,
+                                    filename: att.filename,
+                                    originalName: att.originalName,
+                                    path: att.path,
+                                    isExisting: true
+                                };
+                            });
+                        }
+                        renderPreview();  // 기존 파일 썸네일 + 삭제 버튼 표시
+                        form.dataset.mode = '';
+                        form.dataset.postId = '';
+                        document.getElementById('form-heading').textContent = '관리자 전용 글쓰기';
+
+                        var msg = document.getElementById('write-success');
+                        msg.textContent = isEdit ? '글이 수정되었습니다!' : '글이 등록되었습니다!';
+                        msg.style.display = 'block';
+                        setTimeout(function () { msg.style.display = 'none'; }, 4000);
+
+                        loadAdminPosts();
+                    } else {
+                        alert(result.message || '실패했습니다');
+                    }
+                } catch (err) {
+                    alert('서버 오류가 발생했습니다');
+                    console.error(err);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = form.dataset.mode === 'edit' ? '수정하기' : '글쓰기';
+                }
+            });
+
+            // =================== 게시글 목록 ===================
+            async function loadAdminPosts() {
+                try {
+                    var res = await fetch('/api/board/posts?limit=20');
+                    var result = await res.json();
+                    var container = document.getElementById('admin-post-list');
+
+                    if (!result.success || !result.data.posts.length) {
+                        container.innerHTML = '<p style="color:#999;text-align:center;padding:20px;">게시글이 없습니다</p>';
+                        return;
+                    }
+
+                    container.innerHTML = result.data.posts.map(function (post) {
+                        return '<div class="admin-post-item">' +
+                            '<strong>' + escapeHtml(post.title) + '</strong>' +
+                            '<span class="post-cat">[' + (post.category === 'notice' ? '공지' : '일반') + ']</span>' +
+                            '<div class="admin-post-btns">' +
+                            '<button class="edit-btn" data-id="' + post._id + '">✏ 수정</button>' +
+                            '<button class="del-btn" data-id="' + post._id + '">🗑 삭제</button>' +
+                            '</div></div>';
+                    }).join('');
+                } catch (e) {
                     console.error(e);
                 }
             }
 
-            if (btn.classList.contains('del-btn')) {
-                var pw = prompt('관리자 비밀번호를 입력하세요');
-                if (!pw) return;
-                try {
-                    var res = await fetch('/api/board/posts/' + postId, {
-                        method: 'DELETE',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ adminPassword: pw })
-                    });
-                    var result = await res.json();
-                    if (result.success) { alert('삭제 완료'); loadAdminPosts(); }
-                    else { alert('삭제 실패: ' + result.message); }
-                } catch(e) { alert('서버 오류'); }
+            function escapeHtml(str) {
+                var div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
             }
-        });
 
-        // =================== 수정 모드 진입 (URL 파라미터) ===================
-        var editParam = new URLSearchParams(window.location.search).get('edit');
-        if (editParam) {
-            fetch('/api/board/posts/' + editParam)
-                .then(function(r) { return r.json(); })
-                .then(function(result) {
-                    if (result.success) {
-                        var post = result.data.post;
-                        document.getElementById('post-title').value = post.title;
-                        document.getElementById('post-category').value = post.category;
-                        quill.root.innerHTML = post.content;
-                        form.dataset.mode = 'edit';
-                        form.dataset.postId = post._id;
-                        document.getElementById('form-heading').textContent = '글 수정 모드';
-                        submitBtn.textContent = '수정하기';
+            // 수정/삭제 위임
+            document.getElementById('admin-post-list').addEventListener('click', async function (e) {
+                var btn = e.target.closest('button');
+                if (!btn) return;
+                var postId = btn.dataset.id;
+
+                if (btn.classList.contains('edit-btn')) {
+                    try {
+                        var res = await fetch('/api/board/posts/' + postId);
+                        var result = await res.json();
+                        if (result.success) {
+                            var post = result.data.post;
+                            document.getElementById('post-title').value = post.title;
+                            document.getElementById('post-category').value = post.category;
+                            quill.root.innerHTML = post.content;
+                            form.dataset.mode = 'edit';
+                            form.dataset.postId = post._id;
+                            document.getElementById('form-heading').textContent = '글 수정 모드';
+                            submitBtn.textContent = '수정하기';
+                            selectedFiles = [];
+                            if (post.attachments && post.attachments.length > 0) {
+                                post.attachments.forEach(function (att) {
+                                    var id = 'existing-' + att.filename;
+                                    selectedFiles.push({
+                                        id: id,
+                                        file: null,           // 기존 파일은 File 객체 없음
+                                        filename: att.filename,
+                                        originalName: att.originalName,
+                                        path: att.path,
+                                        mimeType: att.mimeType,
+                                        isExisting: true
+                                    });
+                                });
+                            }
+                            renderPreview();
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    } catch (e) {
+                        alert('불러오기 실패');
+                        console.error(e);
                     }
-                })
-                .catch(function() { /* 무시 */ });
-        }
+                }
 
-        // 초기 로드
-        loadAdminPosts();
-    })();
+                if (btn.classList.contains('del-btn')) {
+                    var pw = prompt('관리자 비밀번호를 입력하세요');
+                    if (!pw) return;
+                    try {
+                        var res = await fetch('/api/board/posts/' + postId, {
+                            method: 'DELETE',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ adminPassword: pw })
+                        });
+                        var result = await res.json();
+                        if (result.success) { alert('삭제 완료'); loadAdminPosts(); }
+                        else { alert('삭제 실패: ' + result.message); }
+                    } catch (e) { alert('서버 오류'); }
+                }
+            });
+
+            // =================== 수정 모드 진입 (URL 파라미터) ===================
+            var editParam = new URLSearchParams(window.location.search).get('edit');
+            if (editParam) {
+                fetch('/api/board/posts/' + editParam)
+                    .then(function (r) { return r.json(); })
+                    .then(function (result) {
+                        if (result.success) {
+                            var post = result.data.post;
+                            document.getElementById('post-title').value = post.title;
+                            document.getElementById('post-category').value = post.category;
+                            quill.root.innerHTML = post.content;
+                            form.dataset.mode = 'edit';
+                            form.dataset.postId = post._id;
+                            document.getElementById('form-heading').textContent = '글 수정 모드';
+                            submitBtn.textContent = '수정하기';
+                        }
+                    })
+                    .catch(function () { /* 무시 */ });
+            }
+
+            // 초기 로드
+            loadAdminPosts();
+        })();
     </script>
 </body>
+
 </html>

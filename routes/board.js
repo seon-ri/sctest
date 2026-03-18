@@ -11,11 +11,11 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, process.env.UPLOAD_PATH || './uploads');
     },
- filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(originalName));
-}
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
+        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(originalName));
+    }
 });
 
 const upload = multer({
@@ -134,8 +134,8 @@ router.get('/posts/:postId', async (req, res) => {
             isDeleted: false,
             status: 'published'
         })
-        .populate('author', 'username name')
-        .populate('comments.author', 'username name');
+            .populate('author', 'username name')
+            .populate('comments.author', 'username name');
 
         if (!post) {
             return res.status(404).json({
@@ -281,17 +281,31 @@ router.put('/posts/:postId', upload.array('attachments', 5), [
         if (caseInfo !== undefined) post.caseInfo = JSON.parse(caseInfo);
 
         // 첨부파일 처리
-        if (req.files && req.files.length > 0) {
-            const newAttachments = req.files.map(file => ({
-                filename: file.filename,
-                originalName: file.originalname,
-                path: file.path,
-                size: file.size,
-                mimeType: file.mimetype
-            }));
+        const { keepAttachments } = req.body;
 
-            post.attachments = [...(post.attachments || []), ...newAttachments];
+        // 1) 기존 파일 중 유지할 것만 필터
+        let keptFiles = [];
+        if (keepAttachments) {
+            const keepList = JSON.parse(keepAttachments);
+            keptFiles = (post.attachments || []).filter(att =>
+                keepList.includes(att.filename)
+            );
+        } else {
+            // keepAttachments가 안 넘어오면 기존 전부 유지 (하위 호환)
+            keptFiles = post.attachments || [];
         }
+
+        // 2) 새로 업로드된 파일
+        const newAttachments = req.files ? req.files.map(file => ({
+            filename: file.filename,
+            originalName: file.originalname,
+            path: file.path,
+            size: file.size,
+            mimeType: file.mimetype
+        })) : [];
+
+        // 3) 합치기 (기존 유지분 + 신규)
+        post.attachments = [...keptFiles, ...newAttachments];
 
         post.updatedAt = new Date();
         await post.save();

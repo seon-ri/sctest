@@ -526,13 +526,13 @@ body {
 .sub-nav-link:hover,
 .sub-nav-link.active {
   background: var(--primary-color);
-    color: var(--white);
-    font-weight: 700;
-    padding: 0.6rem 1rem;
-    /* 동일한 패딩 유지 */
-    transform: none;
-    /* translateY(-2px) 제거 */
-    box-shadow: var(--shadow);
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.6rem 1rem;
+  /* 동일한 패딩 유지 */
+  transform: none;
+  /* translateY(-2px) 제거 */
+  box-shadow: var(--shadow);
 }
 
 /* 서브 콘텐츠 */
@@ -2947,22 +2947,24 @@ section[id] {
       font-size: 0.8rem;
     }
 
-      .sub-nav-list {
-    gap: 0.3rem;
-    padding: 0.5rem;
-    -webkit-overflow-scrolling: touch;  /* iOS 부드러운 스크롤 */
-  }
+    .sub-nav-list {
+      gap: 0.3rem;
+      padding: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      /* iOS 부드러운 스크롤 */
+    }
 
-  .sub-nav-link {
-    font-size: var(--mobile-font-size-sm);  /* 12.8px */
-    padding: 0.5rem 0.7rem;
-  }
+    .sub-nav-link {
+      font-size: var(--mobile-font-size-sm);
+      /* 12.8px */
+      padding: 0.5rem 0.7rem;
+    }
 
-  .sub-nav-link:hover,
-  .sub-nav-link.active {
-    padding: 0.5rem 0.7rem;
-    transform: none;
-  }
+    .sub-nav-link:hover,
+    .sub-nav-link.active {
+      padding: 0.5rem 0.7rem;
+      transform: none;
+    }
   }
 
 }

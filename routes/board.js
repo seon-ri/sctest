@@ -11,24 +11,23 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, process.env.UPLOAD_PATH || './uploads');
     },
- filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(originalName));
-}
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
+        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(originalName));
+    }
 });
 
 const upload = multer({
     storage: storage,
     limits: {
-         fileSize: 50 * 1024 * 1024 // 50MB
-}
+        fileSize: 50 * 1024 * 1024 // 50MB
     },
     fileFilter: (req, file, cb) => {
-       const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx|txt|mp4|mov|avi|wmv/;
+        const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx|txt|mp4|mov|avi|wmv/;
         const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
         const mimetype = allowedTypes.test(file.mimetype);
-        
+
         if (mimetype && extname) {
             return cb(null, true);
         } else {
@@ -40,14 +39,14 @@ const upload = multer({
 // ✅ 관리자 비밀번호 검증 미들웨어
 const verifyAdminPassword = (req, res, next) => {
     const { adminPassword } = req.body;
-    
+
     if (!adminPassword || adminPassword !== process.env.ADMIN_PASSWORD) {
         return res.status(403).json({
             success: false,
             message: '❌ 관리자 비밀번호가 올바르지 않습니다.'
         });
     }
-    
+
     next();
 };
 
@@ -63,10 +62,10 @@ router.get('/posts', [
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ 
-                success: false, 
+            return res.status(400).json({
+                success: false,
                 message: '잘못된 요청입니다.',
-                errors: errors.array() 
+                errors: errors.array()
             });
         }
 
@@ -135,8 +134,8 @@ router.get('/posts/:postId', async (req, res) => {
             isDeleted: false,
             status: 'published'
         })
-        .populate('author', 'username name')
-        .populate('comments.author', 'username name');
+            .populate('author', 'username name')
+            .populate('comments.author', 'username name');
 
         if (!post) {
             return res.status(404).json({
@@ -282,17 +281,29 @@ router.put('/posts/:postId', upload.array('attachments', 5), [
         if (caseInfo !== undefined) post.caseInfo = JSON.parse(caseInfo);
 
         // 첨부파일 처리
-        if (req.files && req.files.length > 0) {
-            const newAttachments = req.files.map(file => ({
-                filename: file.filename,
-                originalName: file.originalname,
-                path: file.path,
-                size: file.size,
-                mimeType: file.mimetype
-            }));
-            
-            post.attachments = [...(post.attachments || []), ...newAttachments];
+        const { keepAttachments } = req.body;
+
+        let keptFiles = [];
+        if (keepAttachments) {
+            const keepList = JSON.parse(keepAttachments);
+            // keepList 순서대로 정렬 (프론트 드래그 순서 반영)
+            keepList.forEach(function (fname) {
+                var found = (post.attachments || []).find(att => att.filename === fname);
+                if (found) keptFiles.push(found);
+            });
+        } else {
+            keptFiles = post.attachments || [];
         }
+
+        const newAttachments = req.files ? req.files.map(file => ({
+            filename: file.filename,
+            originalName: file.originalname,
+            path: file.path,
+            size: file.size,
+            mimeType: file.mimetype
+        })) : [];
+
+        post.attachments = [...keptFiles, ...newAttachments];
 
         post.updatedAt = new Date();
         await post.save();

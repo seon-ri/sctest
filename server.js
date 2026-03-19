@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: './config.env' });
 
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -6,14 +6,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const path = require('path'); 
+const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
 
 const app = express();
-app.use(express.json());
 app.use((req, res, next) => {
-    res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline';");
+    res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data: blob:;");
     next();
 });
 
@@ -22,11 +21,13 @@ const PORT = process.env.PORT || 3000;
 // 보안 미들웨어
 app.use(helmet({
     contentSecurityPolicy: false,
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
 }));
 
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-        ? ['https://www.seon-r.com'] 
+    origin: process.env.NODE_ENV === 'production'
+        ? ['https://www.seon-r.com']
         : ['http://localhost:3000', 'http://127.0.0.1:3000'],
     credentials: true
 }));
@@ -80,7 +81,7 @@ mongoose.connection.on('disconnected', () => {
 // MongoDB 연결
 mongoose.connect('mongodb+srv://seonweb:web1234@cluster0.0lhgygt.mongodb.net/seon_research?retryWrites=true&w=majority', {
     serverSelectionTimeoutMS: 30000,
-    socketTimeoutMS: 45000, 
+    socketTimeoutMS: 45000,
 })
 .then(() => console.log('✅ MongoDB 연결 성공'))
 .catch(err => console.error('❌ MongoDB 연결 실패:', err));
@@ -113,7 +114,7 @@ app.get('/admin', (req, res) => {
 app.post('/api/send-email', async (req, res) => {
     try {
         const { email, reportContent, userInfo, resultLevel } = req.body;
-        
+
         console.log('이메일 발송 요청:', email);
         console.log('EMAIL_USER:', process.env.EMAIL_USER);
         console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? '설정됨' : '없음');
@@ -125,23 +126,23 @@ app.post('/api/send-email', async (req, res) => {
                 pass: process.env.EMAIL_PASS
             }
         });
-        
+
         const mailOptions = {
             from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_USER}>`,
             to: email,
             subject: `[세온연구소] 나의 성, 문제 없을까? 상세 결과 리포트 - ${resultLevel}`,
-            html: reportContent  
+            html: reportContent
         };
-        
+
         const info = await transporter.sendMail(mailOptions);
         console.log('이메일 발송 성공:', info.messageId);
-        
+
         res.json({
             success: true,
             message: '이메일이 성공적으로 발송되었습니다.',
             messageId: info.messageId
         });
-        
+
     } catch (error) {
         console.error('이메일 발송 오류:', error);
         res.status(500).json({
@@ -154,20 +155,25 @@ app.post('/api/send-email', async (req, res) => {
 
 // 404 에러 핸들러
 app.use('*', (req, res) => {
-    res.status(404).json({
-        success: false,
-        message: '요청한 리소스를 찾을 수 없습니다.'
-    });
+    // API 요청은 JSON 응답
+    if (req.originalUrl.startsWith('/api/')) {
+        return res.status(404).json({
+            success: false,
+            message: '요청한 리소스를 찾을 수 없습니다.'
+        });
+    }
+    // 일반 페이지 요청은 HTML 응답
+    res.status(404).sendFile(path.join(__dirname, '404.html'));
 });
 
 // 전역 에러 핸들러
 app.use((err, req, res, next) => {
     console.error('서버 에러:', err);
-    
+
     res.status(err.status || 500).json({
         success: false,
-        message: process.env.NODE_ENV === 'production' 
-            ? '서버 내부 오류가 발생했습니다.' 
+        message: process.env.NODE_ENV === 'production'
+            ? '서버 내부 오류가 발생했습니다.'
             : err.message
     });
 });

@@ -3036,3 +3036,18 @@ section[id] {
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
+.expert-card-full,
+.section-divider,
+.expert-cards-grid {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 자문·협력 - 다른 서브콘텐츠와 동일한 너비 */
+#about-location,
+#about-location .partner-section {
+    max-width: 800px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

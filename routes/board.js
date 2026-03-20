@@ -3,36 +3,12 @@ const { body, validationResult, query } = require('express-validator');
 const Post = require('../models/Post');
 const multer = require('multer');
 const path = require('path');
-
-const router = express.Router();
-
-// 파일 업로드 설정
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, process.env.UPLOAD_PATH || './uploads');
-    },
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
-        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(originalName));
-    }
-});
+const { cloudinary, storage } = require('../config/cloudinary');
 
 const upload = multer({
     storage: storage,
     limits: {
-        fileSize: 50 * 1024 * 1024 // 50MB
-    },
-    fileFilter: (req, file, cb) => {
-        const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx|txt|mp4|mov|avi|wmv/;
-        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-        const mimetype = allowedTypes.test(file.mimetype);
-
-        if (mimetype && extname) {
-            return cb(null, true);
-        } else {
-            cb(new Error('지원하지 않는 파일 형식입니다.'));
-        }
+        fileSize: 50 * 1024 * 1024
     }
 });
 
@@ -200,7 +176,8 @@ router.post('/posts', upload.array('attachments', 5), [
             originalName: file.originalname,
             path: file.path,
             size: file.size,
-            mimeType: file.mimetype
+            mimeType: file.mimetype,
+            cloudinaryId: file.filename
         })) : [];
 
         const post = new Post({
@@ -300,7 +277,8 @@ router.put('/posts/:postId', upload.array('attachments', 5), [
             originalName: file.originalname,
             path: file.path,
             size: file.size,
-            mimeType: file.mimetype
+            mimeType: file.mimetype,
+            cloudinaryId: file.filename
         })) : [];
 
         post.attachments = [...keptFiles, ...newAttachments];

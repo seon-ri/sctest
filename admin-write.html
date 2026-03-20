@@ -448,7 +448,7 @@
                         var isImg = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(sf.originalName || sf.filename);
                         if (isImg) {
                             var img = document.createElement('img');
-                            img.src = '/uploads/' + sf.filename;
+                            img.src = sf.path;
                             div.appendChild(img);
                         } else {
                             var icon = document.createElement('div');

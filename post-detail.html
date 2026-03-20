@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
@@ -38,11 +43,16 @@
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 860px;
             margin: 0 auto;
         }
-        .back-button { margin-bottom: 20px; }
+
+        .back-button {
+            margin-bottom: 20px;
+        }
+
         .back-button a {
             display: inline-block;
             padding: 10px 20px;
@@ -53,18 +63,23 @@
             font-size: 14px;
             transition: opacity 0.2s;
         }
-        .back-button a:hover { opacity: 0.8; }
+
+        .back-button a:hover {
+            opacity: 0.8;
+        }
 
         .post-detail-container {
             background: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
+
         .post-header {
             padding: 28px 32px 20px;
             border-bottom: 2px solid #f0f0f0;
         }
+
         .post-title {
             font-size: 22px;
             font-weight: 700;
@@ -73,6 +88,7 @@
             line-height: 1.4;
             word-break: keep-all;
         }
+
         .post-meta {
             display: flex;
             flex-wrap: wrap;
@@ -80,7 +96,12 @@
             color: #888;
             font-size: 13px;
         }
-        .post-meta span { display: flex; align-items: center; gap: 4px; }
+
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
         /* ===== Quill HTML 본문 렌더링 영역 (1-1 수정) ===== */
         .post-content {
@@ -92,19 +113,29 @@
             word-break: keep-all;
             overflow-wrap: break-word;
         }
+
         /* plain text 게시글용 줄바꿈 (1-1) */
         .post-content.plain-text {
             white-space: pre-wrap;
         }
-        .post-content p { margin: 0 0 0.8em; }
-        .post-content h1, .post-content h2, .post-content h3 {
+
+        .post-content p {
+            margin: 0 0 0.8em;
+        }
+
+        .post-content h1,
+        .post-content h2,
+        .post-content h3 {
             color: #1a3e72;
             margin: 1.2em 0 0.6em;
         }
-        .post-content ul, .post-content ol {
+
+        .post-content ul,
+        .post-content ol {
             padding-left: 1.5em;
             margin: 0.5em 0;
         }
+
         .post-content blockquote {
             border-left: 4px solid #1a3e72;
             padding: 8px 16px;
@@ -112,15 +143,27 @@
             background: #f9f9f9;
             color: #555;
         }
+
         .post-content img {
             max-width: 100%;
             height: auto;
             border-radius: 6px;
             margin: 8px 0;
         }
-        .post-content a { color: #1a3e72; text-decoration: underline; }
-        .post-content strong { font-weight: 700; }
-        .post-content em { font-style: italic; }
+
+        .post-content a {
+            color: #1a3e72;
+            text-decoration: underline;
+        }
+
+        .post-content strong {
+            font-weight: 700;
+        }
+
+        .post-content em {
+            font-style: italic;
+        }
+
         .post-content pre {
             background: #f4f4f4;
             padding: 12px;
@@ -128,14 +171,32 @@
             overflow-x: auto;
             font-size: 14px;
         }
+
         /* Quill의 text-align 클래스 대응 */
-        .post-content .ql-align-center { text-align: center; }
-        .post-content .ql-align-right { text-align: right; }
-        .post-content .ql-align-justify { text-align: justify; }
+        .post-content .ql-align-center {
+            text-align: center;
+        }
+
+        .post-content .ql-align-right {
+            text-align: right;
+        }
+
+        .post-content .ql-align-justify {
+            text-align: justify;
+        }
+
         /* Quill indent 클래스 대응 */
-        .post-content .ql-indent-1 { padding-left: 3em; }
-        .post-content .ql-indent-2 { padding-left: 6em; }
-        .post-content .ql-indent-3 { padding-left: 9em; }
+        .post-content .ql-indent-1 {
+            padding-left: 3em;
+        }
+
+        .post-content .ql-indent-2 {
+            padding-left: 6em;
+        }
+
+        .post-content .ql-indent-3 {
+            padding-left: 9em;
+        }
 
         /* ===== 첨부파일 이미지 그리드 (1-2 개선) ===== */
         .attachments-section {
@@ -143,22 +204,26 @@
             background: #fafafa;
             border-top: 1px solid #f0f0f0;
         }
+
         .attachments-title {
             font-size: 15px;
             font-weight: 600;
             color: #555;
             margin: 0 0 14px;
         }
+
         .attachment-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
         }
+
         /* 이미지 1장일 때 한 열로 크게 표시 (1-2) */
         .attachment-grid.single-image {
             grid-template-columns: 1fr;
             max-width: 680px;
         }
+
         .attachment-grid-item {
             border-radius: 8px;
             border: 1px solid #e0e0e0;
@@ -166,10 +231,12 @@
             background: #fff;
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .attachment-grid-item:hover {
             transform: scale(1.01);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
         }
+
         .attachment-grid-item img {
             width: 100%;
             height: auto;
@@ -180,12 +247,14 @@
             background: #f9f9f9;
             padding: 4px;
         }
+
         .file-download-list {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 10px;
         }
+
         .file-download-link {
             display: inline-flex;
             align-items: center;
@@ -199,7 +268,10 @@
             font-size: 13px;
             transition: background 0.2s;
         }
-        .file-download-link:hover { background: #f0f4ff; }
+
+        .file-download-link:hover {
+            background: #f0f4ff;
+        }
 
         /* ===== 관리자 액션 바 (1-6 개선) ===== */
         .admin-actions {
@@ -208,12 +280,14 @@
             border-top: 1px solid #f0f0f0;
             background: #fefefe;
         }
+
         .admin-actions.visible {
             display: flex;
             gap: 10px;
             justify-content: flex-end;
             align-items: center;
         }
+
         .admin-actions .admin-label {
             font-size: 12px;
             color: #999;
@@ -222,9 +296,11 @@
             align-items: center;
             gap: 6px;
         }
+
         .admin-actions .admin-label::before {
             content: '🔒';
         }
+
         .admin-actions button {
             padding: 8px 20px;
             border: none;
@@ -234,11 +310,30 @@
             font-weight: 500;
             transition: opacity 0.2s, transform 0.1s;
         }
-        .admin-actions button:hover { opacity: 0.85; transform: translateY(-1px); }
-        .admin-actions button:active { transform: translateY(0); }
-        .btn-edit { background: #1a3e72; color: #fff; }
-        .btn-delete { background: #dc3545; color: #fff; }
-        .btn-list { background: #6c757d; color: #fff; }
+
+        .admin-actions button:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        .admin-actions button:active {
+            transform: translateY(0);
+        }
+
+        .btn-edit {
+            background: #1a3e72;
+            color: #fff;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .btn-list {
+            background: #6c757d;
+            color: #fff;
+        }
 
         .admin-password-bar {
             display: none;
@@ -248,7 +343,11 @@
             gap: 10px;
             align-items: center;
         }
-        .admin-password-bar.visible { display: flex; }
+
+        .admin-password-bar.visible {
+            display: flex;
+        }
+
         .admin-password-bar input {
             padding: 8px 12px;
             border: 1px solid #ccc;
@@ -256,6 +355,7 @@
             font-size: 13px;
             width: 200px;
         }
+
         .admin-password-bar button {
             padding: 8px 16px;
             border: none;
@@ -263,24 +363,50 @@
             cursor: pointer;
             font-size: 13px;
         }
-        .admin-password-bar .btn-confirm { background: #1a3e72; color: #fff; }
-        .admin-password-bar .btn-cancel { background: #aaa; color: #fff; }
 
-        .loading { text-align: center; padding: 60px 20px; color: #888; font-size: 15px; }
-        .error { text-align: center; padding: 60px 20px; color: #dc3545; font-size: 15px; }
+        .admin-password-bar .btn-confirm {
+            background: #1a3e72;
+            color: #fff;
+        }
+
+        .admin-password-bar .btn-cancel {
+            background: #aaa;
+            color: #fff;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+            font-size: 15px;
+        }
+
+        .error {
+            text-align: center;
+            padding: 60px 20px;
+            color: #dc3545;
+            font-size: 15px;
+        }
 
         /* ===== 이미지 라이트박스 ===== */
         .lightbox-overlay {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
             z-index: 9999;
             justify-content: center;
             align-items: center;
             cursor: pointer;
         }
-        .lightbox-overlay.active { display: flex; }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
         .lightbox-overlay img {
             max-width: 90%;
             max-height: 90%;
@@ -290,19 +416,51 @@
 
         /* ===== 모바일 반응형 ===== */
         @media (max-width: 600px) {
-            body { padding: 12px; }
-            .post-header { padding: 20px 18px 16px; }
-            .post-title { font-size: 18px; }
-            .post-content { padding: 20px 18px 28px; font-size: 15px; }
-            .attachments-section { padding: 16px 18px; }
-            .attachment-grid { grid-template-columns: 1fr; }
-            .admin-actions { padding: 12px 18px; }
-            .admin-actions.visible { flex-wrap: wrap; }
-            .admin-password-bar { padding: 10px 18px; flex-wrap: wrap; }
-            .admin-password-bar input { width: 100%; }
+            body {
+                padding: 12px;
+            }
+
+            .post-header {
+                padding: 20px 18px 16px;
+            }
+
+            .post-title {
+                font-size: 18px;
+            }
+
+            .post-content {
+                padding: 20px 18px 28px;
+                font-size: 15px;
+            }
+
+            .attachments-section {
+                padding: 16px 18px;
+            }
+
+            .attachment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-actions {
+                padding: 12px 18px;
+            }
+
+            .admin-actions.visible {
+                flex-wrap: wrap;
+            }
+
+            .admin-password-bar {
+                padding: 10px 18px;
+                flex-wrap: wrap;
+            }
+
+            .admin-password-bar input {
+                width: 100%;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="back-button">
@@ -320,213 +478,220 @@
     </div>
 
     <script>
-    (function() {
-        function getPostId() {
-            return new URLSearchParams(window.location.search).get('id');
-        }
-
-        function fmtDate(d) {
-            var date = new Date(d);
-            var now = new Date();
-            var diff = Math.ceil(Math.abs(now - date) / 86400000);
-            if (diff <= 1) return '오늘';
-            if (diff <= 2) return '어제';
-            if (diff <= 7) return (diff - 1) + '일 전';
-            return date.toLocaleDateString('ko-KR');
-        }
-
-        function fixPath(p) { return (p || '').replace(/^\.?\/*/, '/'); }
-
-        function isImage(name, path) {
-            return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name || '') ||
-                   /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path || '');
-        }
-
-        var lightbox = document.getElementById('lightbox');
-        var lightboxImg = document.getElementById('lightbox-img');
-        lightbox.addEventListener('click', function() {
-            lightbox.classList.remove('active');
-        });
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-        }
-
-        function render(post) {
-            var c = document.getElementById('post-container');
-
-            // ===== (1-1) Quill HTML인지 plain text인지 감지 =====
-            var rawContent = post.content || '';
-            var isHtml = /<[a-z][\s\S]*>/i.test(rawContent);
-            var cleanContent;
-            var isPlainText = false;
-
-            if (isHtml) {
-                // Quill HTML -> DOMPurify 정화
-                cleanContent = DOMPurify.sanitize(rawContent, {
-                    ALLOWED_TAGS: ['p','br','strong','em','u','s','a','img','h1','h2','h3','h4','h5','h6',
-                                   'ul','ol','li','blockquote','pre','code','span','div','table','thead',
-                                   'tbody','tr','th','td','sub','sup','hr'],
-                    ALLOWED_ATTR: ['href','src','alt','class','style','target','rel','width','height',
-                                   'colspan','rowspan','loading'],
-                    ALLOW_DATA_ATTR: false
-                });
-            } else {
-                // plain text -> \n을 <br>로 변환
-                isPlainText = true;
-                cleanContent = DOMPurify.sanitize(rawContent);
+        (function () {
+            function getPostId() {
+                return new URLSearchParams(window.location.search).get('id');
             }
 
-            // 이미지/비이미지 분리
-            var images = [];
-            var files = [];
-            if (post.attachments && post.attachments.length > 0) {
-                post.attachments.forEach(function(f) {
-                    var p = fixPath(f.path);
-                    if (isImage(f.originalName, p)) {
-                        images.push({ path: p, name: f.originalName });
-                    } else {
-                        files.push({ path: p, name: f.originalName, size: f.size });
-                    }
-                });
+            function fmtDate(d) {
+                var date = new Date(d);
+                var now = new Date();
+                var diff = Math.ceil(Math.abs(now - date) / 86400000);
+                if (diff <= 1) return '오늘';
+                if (diff <= 2) return '어제';
+                if (diff <= 7) return (diff - 1) + '일 전';
+                return date.toLocaleDateString('ko-KR');
             }
 
-            var html = '';
-
-            // 헤더
-            html += '<div class="post-header">';
-            html += '<h1 class="post-title">' + DOMPurify.sanitize(post.title) + '</h1>';
-            html += '<div class="post-meta">';
-            html += '<span>작성자: ' + (post.author ? (post.author.name || post.author.username) : '관리자') + '</span>';
-            html += '<span>작성일: ' + fmtDate(post.createdAt) + '</span>';
-            html += '<span>조회수: ' + (post.viewCount || 0) + '</span>';
-            html += '</div></div>';
-
-            // 본문 (1-1: plain text면 white-space:pre-wrap 클래스 추가)
-            html += '<div class="post-content' + (isPlainText ? ' plain-text' : '') + '">' + cleanContent + '</div>';
-
-            // (1-2) 첨부 이미지 - 1장이면 single-image 클래스 추가
-            if (images.length > 0) {
-                html += '<div class="attachments-section">';
-                html += '<div class="attachments-title">📷 첨부 이미지 (' + images.length + '개)</div>';
-                html += '<div class="attachment-grid' + (images.length === 1 ? ' single-image' : '') + '">';
-                images.forEach(function(img) {
-                    html += '<div class="attachment-grid-item">';
-                    html += '<img src="' + img.path + '" alt="' + DOMPurify.sanitize(img.name || '') + '" loading="lazy" data-lightbox="true">';
-                    html += '</div>';
-                });
-                html += '</div></div>';
+            function fixPath(p) {
+                if (!p) return '';
+                // Cloudinary 등 외부 URL이면 그대로 반환
+                if (p.startsWith('http://') || p.startsWith('https://')) return p;
+                // 로컬 경로면 기존 방식
+                return p.replace(/^\.?\/*/, '/');
             }
 
-            // 첨부 파일 (비이미지)
-            if (files.length > 0) {
-                html += '<div class="attachments-section">';
-                html += '<div class="attachments-title">📎 첨부 파일 (' + files.length + '개)</div>';
-                html += '<div class="file-download-list">';
-                files.forEach(function(f) {
-                    var sizeKB = f.size ? (f.size / 1024).toFixed(1) + ' KB' : '';
-                    html += '<a href="' + f.path + '" download class="file-download-link">';
-                    html += '📄 다운로드' + (sizeKB ? ' <span style="color:#999;font-size:11px;">(' + sizeKB + ')</span>' : '');
-                    html += '</a>';
-                });
-                html += '</div></div>';
+            function isImage(name, path) {
+                return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(name || '') ||
+                    /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(path || '');
             }
 
-            // (1-6) 관리자 비밀번호 입력 바
-            html += '<div id="admin-pw-bar" class="admin-password-bar">';
-            html += '<input type="password" id="admin-pw-input" placeholder="관리자 비밀번호">';
-            html += '<button class="btn-confirm" id="admin-pw-confirm">확인</button>';
-            html += '<button class="btn-cancel" id="admin-pw-cancel">취소</button>';
-            html += '</div>';
-
-            // (1-6) 관리자 액션 바
-            html += '<div id="admin-actions" class="admin-actions">';
-            html += '<span class="admin-label">관리자 메뉴</span>';
-            html += '<button class="btn-edit" id="btn-edit-post">수정</button>';
-            html += '<button class="btn-delete" id="btn-delete-post">삭제</button>';
-            html += '</div>';
-
-            c.innerHTML = html;
-
-            // 이미지 라이트박스 이벤트 위임
-            c.addEventListener('click', function(e) {
-                if (e.target.getAttribute('data-lightbox') === 'true') {
-                    openLightbox(e.target.src);
-                }
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightbox-img');
+            lightbox.addEventListener('click', function () {
+                lightbox.classList.remove('active');
             });
+            function openLightbox(src) {
+                lightboxImg.src = src;
+                lightbox.classList.add('active');
+            }
 
-            // (1-6) 관리자 토글 - 제목 영역 더블클릭
-            var adminActions = document.getElementById('admin-actions');
-            var adminPwBar = document.getElementById('admin-pw-bar');
+            function render(post) {
+                var c = document.getElementById('post-container');
 
-            c.querySelector('.post-header').addEventListener('dblclick', function() {
-                adminPwBar.classList.toggle('visible');
-                adminActions.classList.remove('visible');
-            });
+                // ===== (1-1) Quill HTML인지 plain text인지 감지 =====
+                var rawContent = post.content || '';
+                var isHtml = /<[a-z][\s\S]*>/i.test(rawContent);
+                var cleanContent;
+                var isPlainText = false;
 
-            document.getElementById('admin-pw-confirm').addEventListener('click', function() {
-                var pw = document.getElementById('admin-pw-input').value;
-                if (!pw) { alert('비밀번호를 입력하세요'); return; }
-                sessionStorage.setItem('_apw', pw);
-                adminPwBar.classList.remove('visible');
-                adminActions.classList.add('visible');
-            });
-
-            document.getElementById('admin-pw-cancel').addEventListener('click', function() {
-                adminPwBar.classList.remove('visible');
-            });
-
-            document.getElementById('btn-edit-post').addEventListener('click', function() {
-                window.location.href = '/admin-write.html?edit=' + post._id;
-            });
-
-            document.getElementById('btn-delete-post').addEventListener('click', function() {
-                if (!confirm('정말 삭제하시겠습니까?')) return;
-                var pw = sessionStorage.getItem('_apw');
-                fetch('/api/board/posts/' + post._id, {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ adminPassword: pw })
-                })
-                .then(function(r) { return r.json(); })
-                .then(function(res) {
-                    if (res.success) {
-                        alert('삭제되었습니다');
-                        window.location.href = '/#board';
-                    } else {
-                        alert('삭제 실패: ' + (res.message || ''));
-                    }
-                })
-                .catch(function() { alert('서버 오류'); });
-            });
-        }
-
-        async function load() {
-            var id = getPostId();
-            var c = document.getElementById('post-container');
-            if (!id) { c.innerHTML = '<div class="error">잘못된 접근입니다</div>'; return; }
-
-            try {
-                var res = await fetch('/api/board/posts/' + id);
-                var result = await res.json();
-                if (result.success) {
-                    render(result.data.post);
-                    document.title = result.data.post.title + ' - 더세온연구소';
-                    var ogTitle = document.querySelector('meta[property="og:title"]');
-                    if (ogTitle) ogTitle.content = result.data.post.title + ' - 더세온연구소';
-                    var ogUrl = document.querySelector('meta[property="og:url"]');
-                    if (ogUrl) ogUrl.content = 'https://www.seon-r.com/post-detail.html?id=' + id;
+                if (isHtml) {
+                    // Quill HTML -> DOMPurify 정화
+                    cleanContent = DOMPurify.sanitize(rawContent, {
+                        ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 's', 'a', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                            'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'span', 'div', 'table', 'thead',
+                            'tbody', 'tr', 'th', 'td', 'sub', 'sup', 'hr'],
+                        ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'style', 'target', 'rel', 'width', 'height',
+                            'colspan', 'rowspan', 'loading'],
+                        ALLOW_DATA_ATTR: false
+                    });
                 } else {
-                    c.innerHTML = '<div class="error">게시글을 찾을 수 없습니다</div>';
+                    // plain text -> \n을 <br>로 변환
+                    isPlainText = true;
+                    cleanContent = DOMPurify.sanitize(rawContent);
                 }
-            } catch(e) {
-                console.error(e);
-                c.innerHTML = '<div class="error">게시글을 불러오는 중 오류가 발생했습니다</div>';
-            }
-        }
 
-        document.addEventListener('DOMContentLoaded', load);
-    })();
+                // 이미지/비이미지 분리
+                var images = [];
+                var files = [];
+                if (post.attachments && post.attachments.length > 0) {
+                    post.attachments.forEach(function (f) {
+                        var p = fixPath(f.path);
+                        if (isImage(f.originalName, p)) {
+                            images.push({ path: p, name: f.originalName });
+                        } else {
+                            files.push({ path: p, name: f.originalName, size: f.size });
+                        }
+                    });
+                }
+
+                var html = '';
+
+                // 헤더
+                html += '<div class="post-header">';
+                html += '<h1 class="post-title">' + DOMPurify.sanitize(post.title) + '</h1>';
+                html += '<div class="post-meta">';
+                html += '<span>작성자: ' + (post.author ? (post.author.name || post.author.username) : '관리자') + '</span>';
+                html += '<span>작성일: ' + fmtDate(post.createdAt) + '</span>';
+                html += '<span>조회수: ' + (post.viewCount || 0) + '</span>';
+                html += '</div></div>';
+
+                // 본문 (1-1: plain text면 white-space:pre-wrap 클래스 추가)
+                html += '<div class="post-content' + (isPlainText ? ' plain-text' : '') + '">' + cleanContent + '</div>';
+
+                // (1-2) 첨부 이미지 - 1장이면 single-image 클래스 추가
+                if (images.length > 0) {
+                    html += '<div class="attachments-section">';
+                    html += '<div class="attachments-title">📷 첨부 이미지 (' + images.length + '개)</div>';
+                    html += '<div class="attachment-grid' + (images.length === 1 ? ' single-image' : '') + '">';
+                    images.forEach(function (img) {
+                        html += '<div class="attachment-grid-item">';
+                        html += '<img src="' + img.path + '" alt="' + DOMPurify.sanitize(img.name || '') + '" loading="lazy" data-lightbox="true">';
+                        html += '</div>';
+                    });
+                    html += '</div></div>';
+                }
+
+                // 첨부 파일 (비이미지)
+                if (files.length > 0) {
+                    html += '<div class="attachments-section">';
+                    html += '<div class="attachments-title">📎 첨부 파일 (' + files.length + '개)</div>';
+                    html += '<div class="file-download-list">';
+                    files.forEach(function (f) {
+                        var sizeKB = f.size ? (f.size / 1024).toFixed(1) + ' KB' : '';
+                        html += '<a href="' + f.path + '" download class="file-download-link">';
+                        html += '📄 다운로드' + (sizeKB ? ' <span style="color:#999;font-size:11px;">(' + sizeKB + ')</span>' : '');
+                        html += '</a>';
+                    });
+                    html += '</div></div>';
+                }
+
+                // (1-6) 관리자 비밀번호 입력 바
+                html += '<div id="admin-pw-bar" class="admin-password-bar">';
+                html += '<input type="password" id="admin-pw-input" placeholder="관리자 비밀번호">';
+                html += '<button class="btn-confirm" id="admin-pw-confirm">확인</button>';
+                html += '<button class="btn-cancel" id="admin-pw-cancel">취소</button>';
+                html += '</div>';
+
+                // (1-6) 관리자 액션 바
+                html += '<div id="admin-actions" class="admin-actions">';
+                html += '<span class="admin-label">관리자 메뉴</span>';
+                html += '<button class="btn-edit" id="btn-edit-post">수정</button>';
+                html += '<button class="btn-delete" id="btn-delete-post">삭제</button>';
+                html += '</div>';
+
+                c.innerHTML = html;
+
+                // 이미지 라이트박스 이벤트 위임
+                c.addEventListener('click', function (e) {
+                    if (e.target.getAttribute('data-lightbox') === 'true') {
+                        openLightbox(e.target.src);
+                    }
+                });
+
+                // (1-6) 관리자 토글 - 제목 영역 더블클릭
+                var adminActions = document.getElementById('admin-actions');
+                var adminPwBar = document.getElementById('admin-pw-bar');
+
+                c.querySelector('.post-header').addEventListener('dblclick', function () {
+                    adminPwBar.classList.toggle('visible');
+                    adminActions.classList.remove('visible');
+                });
+
+                document.getElementById('admin-pw-confirm').addEventListener('click', function () {
+                    var pw = document.getElementById('admin-pw-input').value;
+                    if (!pw) { alert('비밀번호를 입력하세요'); return; }
+                    sessionStorage.setItem('_apw', pw);
+                    adminPwBar.classList.remove('visible');
+                    adminActions.classList.add('visible');
+                });
+
+                document.getElementById('admin-pw-cancel').addEventListener('click', function () {
+                    adminPwBar.classList.remove('visible');
+                });
+
+                document.getElementById('btn-edit-post').addEventListener('click', function () {
+                    window.location.href = '/admin-write.html?edit=' + post._id;
+                });
+
+                document.getElementById('btn-delete-post').addEventListener('click', function () {
+                    if (!confirm('정말 삭제하시겠습니까?')) return;
+                    var pw = sessionStorage.getItem('_apw');
+                    fetch('/api/board/posts/' + post._id, {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ adminPassword: pw })
+                    })
+                        .then(function (r) { return r.json(); })
+                        .then(function (res) {
+                            if (res.success) {
+                                alert('삭제되었습니다');
+                                window.location.href = '/#board';
+                            } else {
+                                alert('삭제 실패: ' + (res.message || ''));
+                            }
+                        })
+                        .catch(function () { alert('서버 오류'); });
+                });
+            }
+
+            async function load() {
+                var id = getPostId();
+                var c = document.getElementById('post-container');
+                if (!id) { c.innerHTML = '<div class="error">잘못된 접근입니다</div>'; return; }
+
+                try {
+                    var res = await fetch('/api/board/posts/' + id);
+                    var result = await res.json();
+                    if (result.success) {
+                        render(result.data.post);
+                        document.title = result.data.post.title + ' - 더세온연구소';
+                        var ogTitle = document.querySelector('meta[property="og:title"]');
+                        if (ogTitle) ogTitle.content = result.data.post.title + ' - 더세온연구소';
+                        var ogUrl = document.querySelector('meta[property="og:url"]');
+                        if (ogUrl) ogUrl.content = 'https://www.seon-r.com/post-detail.html?id=' + id;
+                    } else {
+                        c.innerHTML = '<div class="error">게시글을 찾을 수 없습니다</div>';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    c.innerHTML = '<div class="error">게시글을 불러오는 중 오류가 발생했습니다</div>';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', load);
+        })();
     </script>
 </body>
+
 </html>

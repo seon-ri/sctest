@@ -930,6 +930,8 @@ body {
   color: var(--text-secondary);
   font-size: 0.85rem;
   margin-left: 1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ================================
@@ -1534,7 +1536,7 @@ body {
 }
 
 .board-table td {
-  padding: 1rem;
+  padding: 0.75rem 0.5rem;
   border-bottom: 1px solid var(--light-gray);
   vertical-align: middle;
 }
@@ -1561,7 +1563,9 @@ body {
 }
 
 .col-date {
-  width: 120px;
+  width: 140px;
+  min-width: 140px;
+  white-space: nowrap;
 }
 
 .col-views {
@@ -1829,6 +1833,36 @@ body {
    ================================ */
 
 @media (max-width: 768px) {
+  .board-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .board-table {
+    min-width: 580px;
+  }
+
+  .col-date {
+    width: 120px;
+    min-width: 120px;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+
+  .col-number {
+    width: 40px;
+    min-width: 40px;
+  }
+
+  .col-views {
+    width: 40px;
+    min-width: 40px;
+  }
+
+  .col-category {
+    width: 60px;
+    min-width: 60px;
+  }
 
   /* 프로세스 스텝 모바일 */
   .process-steps::before {

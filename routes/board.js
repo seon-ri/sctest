@@ -1,4 +1,5 @@
 const express = require('express');
+const router = express.Router();
 const { body, validationResult, query } = require('express-validator');
 const Post = require('../models/Post');
 const multer = require('multer');

@@ -213,6 +213,8 @@ function showSection(sectionId, subsectionId, skipPush) {
         }
 
         updateActiveNavigation(sectionId);
+        updateMobileMenu(sectionId);
+        updateMobileMenu(sectionId);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         console.warn('[showSection] 섹션 없음:', sectionId);
@@ -685,3 +687,35 @@ window.showSection = showSection;
 window.showSubsection = showSubsection;
 window.changePage = changePage;
 window.loadPostDetail = loadPostDetail;
+
+function updateMobileMenu(sectionId) {
+    var mobileMenu = document.querySelector('.mobile-fixed-menu');
+    if (!mobileMenu) return;
+
+    mobileMenu.querySelectorAll('.menu-item').forEach(function(item) {
+        item.classList.remove('active');
+        if (item.getAttribute('data-section') === sectionId) {
+            item.classList.add('active');
+        }
+    });
+}
+
+window.updateMobileMenu = updateMobileMenu;
+
+// ================================
+// 모바일 하단 메뉴 활성 탭 업데이트
+// ================================
+
+function updateMobileMenu(sectionId) {
+    var mobileMenu = document.querySelector('.mobile-fixed-menu');
+    if (!mobileMenu) return;
+
+    mobileMenu.querySelectorAll('.menu-item').forEach(function(item) {
+        item.classList.remove('active');
+        if (item.getAttribute('data-section') === sectionId) {
+            item.classList.add('active');
+        }
+    });
+}
+
+window.updateMobileMenu = updateMobileMenu;

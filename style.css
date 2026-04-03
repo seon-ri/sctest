@@ -3085,3 +3085,105 @@ section[id] {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+
+/* ================================
+   모바일 하단 고정 메뉴
+   ================================ */
+
+.mobile-fixed-menu {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--white);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+  z-index: 1100;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid var(--medium-gray);
+}
+
+.mobile-fixed-menu .menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  gap: 2px;
+  transition: color 0.2s ease;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-fixed-menu .menu-item i {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.mobile-fixed-menu .menu-item span {
+  font-size: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.mobile-fixed-menu .menu-item.active {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.mobile-fixed-menu .menu-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 0 0 3px 3px;
+}
+
+.mobile-fixed-menu .menu-item:active {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .mobile-fixed-menu {
+    display: flex;
+  }
+
+  body {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .floating-kakao,
+  .kakao-chat-btn,
+  .floating-phone,
+  .phone-btn,
+  [class*="floating"][class*="kakao"],
+  [class*="floating"][class*="phone"],
+  [class*="floating"][class*="call"],
+  .quick-call-btn,
+  #kakao-talk-channel-chat-button {
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  #footer {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-fixed-menu {
+    display: none !important;
+  }
+}

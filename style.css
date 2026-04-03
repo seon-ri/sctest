@@ -3070,20 +3070,21 @@ section[id] {
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
+
 .expert-card-full,
 .section-divider,
 .expert-cards-grid {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* 자문·협력 - 다른 서브콘텐츠와 동일한 너비 */
 #about-location,
 #about-location .partner-section {
-    max-width: 800px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* ================================
@@ -3179,6 +3180,57 @@ section[id] {
 
   #footer {
     padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* 소메뉴 탭: 가로 스크롤 -> 자동 줄바꿈 */
+  .sub-nav-list {
+    flex-wrap: wrap !important;
+    /* 한 줄에 안 들어가면 자동 줄바꿈 */
+    overflow-x: visible !important;
+    /* 가로 스크롤 제거 */
+    justify-content: center;
+    gap: 0.3rem;
+    /* 탭 간격 축소 */
+    padding: 0.4rem;
+    /* 내부 여백 축소 */
+  }
+
+  /* 소메뉴 탭 개별 항목 크기 축소 */
+  .sub-nav-link {
+    font-size: var(--mobile-font-size-sm) !important;
+    /* 12.8px */
+    padding: 0.4rem 0.6rem !important;
+    /* 패딩 축소 */
+    white-space: nowrap;
+  }
+
+  .sub-nav-link:hover,
+  .sub-nav-link.active {
+    padding: 0.4rem 0.6rem !important;
+    /* active 상태도 동일 패딩 */
+  }
+
+  /* 섹션 헤더 위 여백 축소 (탭 위 흰 박스 여백) */
+  .section-header {
+    margin-bottom: 1.5rem;
+    /* 4rem -> 1.5rem */
+    padding-top: 0.5rem;
+  }
+
+  .section-header h2 {
+    font-size: var(--mobile-font-size-2xl);
+    /* 제목 크기 축소 */
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    font-size: var(--mobile-font-size-base);
+  }
+
+  /* 서브 네비게이션 영역 마진 축소 */
+  .sub-navigation {
+    margin-bottom: 1.5rem;
+    /* 3rem -> 1.5rem */
   }
 }
 

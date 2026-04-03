@@ -35,15 +35,11 @@ const subsectionMapping = {
 // DOM 로드 및 초기화
 // ================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('[DOMContentLoaded] 초기화 시작');
-
+document.addEventListener('DOMContentLoaded', function () {
     showSection('home');
     loadHomepagePosts();
     setupEventListeners();
     setupHistoryManagement();
-
-    console.log('[DOMContentLoaded] 초기화 완료');
 });
 
 // ================================
@@ -51,13 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // ================================
 
 function setupEventListeners() {
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         handleGlobalClick(e);
     });
 
     var boardTabs = document.querySelector('.board-tabs');
     if (boardTabs) {
-        boardTabs.addEventListener('click', function(e) {
+        boardTabs.addEventListener('click', function (e) {
             if (e.target.classList.contains('tab-btn')) {
                 e.preventDefault();
                 var category = e.target.getAttribute('data-category');
@@ -184,8 +180,6 @@ function showSection(sectionId, subsectionId, skipPush) {
     subsectionId = subsectionId || null;
     skipPush = skipPush || false;
 
-    console.log('[showSection]', sectionId, subsectionId);
-
     // 브라우저 히스토리
     if (!skipPush) {
         var newUrl = subsectionId ? '#' + sectionId + '/' + subsectionId : '#' + sectionId;
@@ -193,7 +187,7 @@ function showSection(sectionId, subsectionId, skipPush) {
     }
 
     // 모든 섹션 숨기기
-    document.querySelectorAll('.content-section').forEach(function(s) {
+    document.querySelectorAll('.content-section').forEach(function (s) {
         s.classList.remove('active');
     });
 
@@ -213,11 +207,8 @@ function showSection(sectionId, subsectionId, skipPush) {
         }
 
         updateActiveNavigation(sectionId);
-        updateMobileMenu(sectionId);
-        updateMobileMenu(sectionId);
+        updateMobileMenu(sectionId);  /* 수정: 중복 호출 제거 (2회 -> 1회) */
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-        console.warn('[showSection] 섹션 없음:', sectionId);
     }
 }
 
@@ -225,7 +216,7 @@ function showSubsection(sectionId, subsectionId) {
     var sectionElement = document.getElementById(sectionId);
     if (!sectionElement) return;
 
-    sectionElement.querySelectorAll('.sub-content').forEach(function(c) {
+    sectionElement.querySelectorAll('.sub-content').forEach(function (c) {
         c.classList.remove('active');
     });
 
@@ -234,8 +225,6 @@ function showSubsection(sectionId, subsectionId) {
     if (target) {
         target.classList.add('active');
         currentSubsection = subsectionId;
-    } else {
-        console.warn('[showSubsection] 서브콘텐츠 없음:', targetId);
     }
 
     updateSubNavigation(sectionId, subsectionId);
@@ -257,7 +246,7 @@ function handleSectionSpecificLogic(sectionId, subsectionId) {
 // ================================
 
 function updateActiveNavigation(sectionId) {
-    document.querySelectorAll('.nav-link').forEach(function(link) {
+    document.querySelectorAll('.nav-link').forEach(function (link) {
         link.classList.remove('active');
     });
     var activeLink = document.querySelector('.nav-link[data-section="' + sectionId + '"]');
@@ -268,12 +257,28 @@ function updateSubNavigation(sectionId, subsectionId) {
     var sectionElement = document.getElementById(sectionId);
     if (!sectionElement) return;
 
-    sectionElement.querySelectorAll('.sub-nav-link').forEach(function(link) {
+    sectionElement.querySelectorAll('.sub-nav-link').forEach(function (link) {
         link.classList.remove('active');
     });
 
     var activeLink = sectionElement.querySelector('.sub-nav-link[data-subsection="' + subsectionId + '"]');
     if (activeLink) activeLink.classList.add('active');
+}
+
+// ================================
+// 모바일 하단 메뉴 활성 탭 업데이트 (수정: 중복 3개 -> 1개로 통합)
+// ================================
+
+function updateMobileMenu(sectionId) {
+    var mobileMenu = document.querySelector('.mobile-fixed-menu');
+    if (!mobileMenu) return;
+
+    mobileMenu.querySelectorAll('.menu-item').forEach(function (item) {
+        item.classList.remove('active');
+        if (item.getAttribute('data-section') === sectionId) {
+            item.classList.add('active');
+        }
+    });
 }
 
 // ================================
@@ -303,7 +308,7 @@ function toggleFAQ(questionElement) {
     // 같은 섹션 내 FAQ만 닫기 (다른 섹션 FAQ 간섭 방지)
     var parentSection = questionElement.closest('.sub-content') || questionElement.closest('.content-card');
     if (parentSection) {
-        parentSection.querySelectorAll('.faq-answer').forEach(function(ans) {
+        parentSection.querySelectorAll('.faq-answer').forEach(function (ans) {
             ans.style.display = 'none';
         });
     }
@@ -318,7 +323,7 @@ function toggleFAQ(questionElement) {
 // ================================
 
 function setupHistoryManagement() {
-    window.addEventListener('popstate', function(event) {
+    window.addEventListener('popstate', function (event) {
         var hash = window.location.hash.replace('#', '');
         if (hash) {
             parseAndNavigate(hash, true);
@@ -354,10 +359,9 @@ function parseAndNavigate(hash, skipPush) {
     }
 
     // 하이픈 구분자 (기존 형식: about-directions)
-    // 섹션 ID에 하이픈이 포함된 경우 처리 (education-counseling 등)
     var matched = false;
-    var sectionKeys = Object.keys(sectionMapping).sort(function(a, b) {
-        return b.length - a.length; // 긴 키부터 매칭
+    var sectionKeys = Object.keys(sectionMapping).sort(function (a, b) {
+        return b.length - a.length;
     });
 
     for (var i = 0; i < sectionKeys.length; i++) {
@@ -376,7 +380,6 @@ function parseAndNavigate(hash, skipPush) {
     }
 
     if (!matched) {
-        // 단순 섹션명으로 시도
         showSection(hash, null, skipPush);
     }
 }
@@ -388,7 +391,7 @@ function parseAndNavigate(hash, skipPush) {
 function switchBoardTab(category) {
     currentBoardTab = category;
 
-    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    document.querySelectorAll('.tab-btn').forEach(function (btn) {
         btn.classList.remove('active');
     });
 
@@ -415,10 +418,9 @@ async function loadPosts(page, category) {
 
         if (result.success) {
             posts = result.data.posts || [];
-            // API 응답 구조 대응 (pagination 객체 또는 직접 totalPosts)
             totalPosts = (result.data.pagination && result.data.pagination.totalPosts)
-                       || result.data.totalPosts
-                       || 0;
+                || result.data.totalPosts
+                || 0;
 
             renderPosts();
             renderPagination();
@@ -459,7 +461,7 @@ function renderPosts() {
         return;
     }
 
-    var html = posts.map(function(post, index) {
+    var html = posts.map(function (post, index) {
         var rowNumber = (currentPage - 1) * 15 + index + 1;
         return '<tr class="post-row" data-id="' + post._id + '">' +
             '<td class="col-number">' + rowNumber + '</td>' +
@@ -484,7 +486,7 @@ function renderHomepagePostList(postsList, containerId) {
         return;
     }
 
-    var html = postsList.map(function(post) {
+    var html = postsList.map(function (post) {
         return '<li>' +
             '<a href="#" class="home-post-link" data-id="' + post._id + '">' + escapeHtml(post.title) + '</a>' +
             '<span class="info-post-date">' + formatDate(post.createdAt) + '</span>' +
@@ -668,7 +670,7 @@ function showMessage(message, type) {
     el.textContent = message;
     container.appendChild(el);
 
-    setTimeout(function() {
+    setTimeout(function () {
         if (el.parentNode) el.parentNode.removeChild(el);
     }, 3000);
 }
@@ -682,40 +684,11 @@ function changePage(page) {
     loadPosts(page, currentBoardTab === 'all' ? null : currentBoardTab);
 }
 
-// 전역 함수 내보내기
+// ================================
+// 전역 함수 내보내기 (수정: 중복 제거 후 1회만)
+// ================================
 window.showSection = showSection;
 window.showSubsection = showSubsection;
 window.changePage = changePage;
 window.loadPostDetail = loadPostDetail;
-
-function updateMobileMenu(sectionId) {
-    var mobileMenu = document.querySelector('.mobile-fixed-menu');
-    if (!mobileMenu) return;
-
-    mobileMenu.querySelectorAll('.menu-item').forEach(function(item) {
-        item.classList.remove('active');
-        if (item.getAttribute('data-section') === sectionId) {
-            item.classList.add('active');
-        }
-    });
-}
-
-window.updateMobileMenu = updateMobileMenu;
-
-// ================================
-// 모바일 하단 메뉴 활성 탭 업데이트
-// ================================
-
-function updateMobileMenu(sectionId) {
-    var mobileMenu = document.querySelector('.mobile-fixed-menu');
-    if (!mobileMenu) return;
-
-    mobileMenu.querySelectorAll('.menu-item').forEach(function(item) {
-        item.classList.remove('active');
-        if (item.getAttribute('data-section') === sectionId) {
-            item.classList.add('active');
-        }
-    });
-}
-
 window.updateMobileMenu = updateMobileMenu;

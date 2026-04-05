@@ -1301,27 +1301,26 @@
     <span>분석</span>
   </a>
 </nav>
-  <script src="script.js"></script>
-  <script>
+
+<!-- 텍스트 복사 방지 (관리자 페이지 제외) -->
+<script>
 (function() {
   // 관리자 페이지면 적용 안 함
   if (document.body.classList.contains('admin-page')) return;
 
-  // 우클릭 차단
+  // 우클릭 차단 (연락처 영역 예외)
   document.addEventListener('contextmenu', function(e) {
-    // 연락처 영역은 허용
     if (e.target.closest('.contact-details, .footer-info, .allow-copy')) return;
     e.preventDefault();
   });
 
-  // 텍스트 선택 차단
+  // 텍스트 선택 차단 (연락처 영역 예외)
   document.addEventListener('selectstart', function(e) {
-    // 연락처 영역은 허용
     if (e.target.closest('.contact-details, .footer-info, .allow-copy')) return;
     e.preventDefault();
   });
 
-  // Ctrl+C / Ctrl+A 차단
+  // Ctrl+C / Ctrl+A 차단 (연락처 영역 예외)
   document.addEventListener('keydown', function(e) {
     if (e.target.closest('.contact-details, .footer-info, .allow-copy')) return;
     if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'a' || e.key === 'C' || e.key === 'A')) {
@@ -1330,6 +1329,8 @@
   });
 })();
 </script>
+
+  <script src="script.js"></script>
 </body>
 
 </html>

@@ -1284,10 +1284,6 @@
 <!-- 모바일 하단 고정 메뉴 -->
 <!-- ================================ -->
 <nav class="mobile-fixed-menu" aria-label="모바일 메뉴">
-  <a href="#home" class="menu-item active" data-section="home">
-    <i class="bi bi-house-door"></i>
-    <span>홈</span>
-  </a>
   <a href="#about" class="menu-item" data-section="about">
     <i class="bi bi-info-circle"></i>
     <span>소개</span>
@@ -1304,12 +1300,36 @@
     <i class="bi bi-file-earmark-text"></i>
     <span>분석</span>
   </a>
-  <a href="#board" class="menu-item" data-section="board">
-    <i class="bi bi-chat-square-text"></i>
-    <span>게시판</span>
-  </a>
 </nav>
   <script src="script.js"></script>
+  <script>
+(function() {
+  // 관리자 페이지면 적용 안 함
+  if (document.body.classList.contains('admin-page')) return;
+
+  // 우클릭 차단
+  document.addEventListener('contextmenu', function(e) {
+    // 연락처 영역은 허용
+    if (e.target.closest('.contact-details, .footer-info, .allow-copy')) return;
+    e.preventDefault();
+  });
+
+  // 텍스트 선택 차단
+  document.addEventListener('selectstart', function(e) {
+    // 연락처 영역은 허용
+    if (e.target.closest('.contact-details, .footer-info, .allow-copy')) return;
+    e.preventDefault();
+  });
+
+  // Ctrl+C / Ctrl+A 차단
+  document.addEventListener('keydown', function(e) {
+    if (e.target.closest('.contact-details, .footer-info, .allow-copy')) return;
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'a' || e.key === 'C' || e.key === 'A')) {
+      e.preventDefault();
+    }
+  });
+})();
+</script>
 </body>
 
 </html>

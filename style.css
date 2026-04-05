@@ -2951,22 +2951,25 @@ section[id] {
     margin: 0;
   }
 
-  /* 모바일 플로팅 버튼 위치 보정 */
-  @media (max-width: 768px) {
-    .floating-buttons {
-      bottom: 16px;
-      right: 16px;
-    }
+ /* 모바일 플로팅 버튼 위치 보정 — 하단 메뉴바 위로 */
+ @media (max-width: 768px) {
+   .floating-buttons {
+     bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+     right: 16px;
+     z-index: 1050;
+     /* 하단 메뉴(1100)보다 낮게 */
+   }
 
-    .floating-btn {
-      width: 50px;
-      height: 50px;
-    }
+   .floating-btn {
+     width: 48px;
+     height: 48px;
+   }
 
-    .btn-kakao img {
-      width: 28px;
-      height: 28px;
-    }
+   .btn-kakao img {
+     width: 26px;
+     height: 26px;
+   }
+ }
 
     .btn-phone svg {
       width: 22px;
@@ -3166,6 +3169,8 @@ section[id] {
     padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   }
 
+  /* 플로팅 버튼 하단 메뉴 위로 통합 보정 */
+  .floating-buttons,
   .floating-kakao,
   .kakao-chat-btn,
   .floating-phone,
@@ -3175,67 +3180,82 @@ section[id] {
   [class*="floating"][class*="call"],
   .quick-call-btn,
   #kakao-talk-channel-chat-button {
-    bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   #footer {
     padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   }
 
-  /* 소메뉴 탭: 가로 스크롤 -> 자동 줄바꿈 */
-  .sub-nav-list {
-    flex-wrap: wrap !important;
-    /* 한 줄에 안 들어가면 자동 줄바꿈 */
-    overflow-x: visible !important;
-    /* 가로 스크롤 제거 */
-    justify-content: center;
-    gap: 0.3rem;
-    /* 탭 간격 축소 */
-    padding: 0.4rem;
-    /* 내부 여백 축소 */
-  }
+    /* 소메뉴 탭: 가로 스크롤 -> 자동 줄바꿈 */
+    .sub-nav-list {
+      flex-wrap: wrap !important;
+      overflow-x: visible !important;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 0.3rem 0.2rem;
+      margin: 0;
+    }
 
-  /* 소메뉴 탭 개별 항목 크기 축소 */
-  .sub-nav-link {
-    font-size: var(--mobile-font-size-sm) !important;
-    /* 12.8px */
-    padding: 0.4rem 0.6rem !important;
-    /* 패딩 축소 */
-    white-space: nowrap;
-  }
+    /* 소메뉴 탭 개별 항목 크기 축소 */
+    .sub-nav-link {
+      font-size: 0.75rem !important;
+      /* 12px */
+      padding: 0.35rem 0.5rem !important;
+      white-space: nowrap;
+      min-width: auto;
+    }
 
-  .sub-nav-link:hover,
-  .sub-nav-link.active {
-    padding: 0.4rem 0.6rem !important;
-    /* active 상태도 동일 패딩 */
-  }
+    .sub-nav-link:hover,
+    .sub-nav-link.active {
+      padding: 0.35rem 0.5rem !important;
+    }
 
-  /* 섹션 헤더 위 여백 축소 (탭 위 흰 박스 여백) */
-  .section-header {
-    margin-bottom: 1.5rem;
-    /* 4rem -> 1.5rem */
-    padding-top: 0.5rem;
-  }
+    /* 섹션 헤더 위 여백 축소 (탭 위 흰 박스 여백) */
+    .section-header {
+      margin-bottom: 0.8rem;
+      padding-top: 0.3rem;
+    }
 
-  .section-header h2 {
-    font-size: var(--mobile-font-size-2xl);
-    /* 제목 크기 축소 */
-    margin-bottom: 0.5rem;
-  }
+    .section-header h2 {
+      font-size: var(--mobile-font-size-2xl);
+      margin-bottom: 0.3rem;
+    }
 
-  .section-subtitle {
-    font-size: var(--mobile-font-size-base);
-  }
+    .section-subtitle {
+      font-size: var(--mobile-font-size-base);
+      margin-bottom: 0.2rem;
+    }
 
-  /* 서브 네비게이션 영역 마진 축소 */
-  .sub-navigation {
-    margin-bottom: 1.5rem;
-    /* 3rem -> 1.5rem */
-  }
+    /* 서브 네비게이션 영역 마진 축소 */
+    .sub-navigation {
+      margin-bottom: 0.8rem;
+      margin-top: 0;
+      padding: 0;
+    }
 }
 
 @media (min-width: 769px) {
   .mobile-fixed-menu {
     display: none !important;
   }
+}
+/* ================================
+   텍스트 복사 방지 (관리자 페이지 제외)
+   ================================ */
+body:not(.admin-page) {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 연락처 영역 복사 허용 */
+.contact-details,
+.footer-info,
+.allow-copy {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }

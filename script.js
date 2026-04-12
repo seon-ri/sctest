@@ -293,7 +293,7 @@ function handleQuickMenuClick(quickMenuItem) {
         case 0: showSection('about', 'contact'); break;
         case 1: showSection('education-counseling', 'process'); break;
         case 2: showSection('evaluation', 'recidivism'); break;
-        case 3: alert('수료증은 교육 완료 후 발급됩니다'); break;
+        case 3: showSection('analysis', 'statement'); break;
     }
 }
 

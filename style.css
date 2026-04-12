@@ -647,19 +647,18 @@ body {
 .worry-box {
   position: absolute;
   top: 0rem;
-  padding-bottom: 1rem;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem 1rem 1.5rem;
   bottom: 0rem;
   right: 80px;
-  width: 420px;
-  max-width: 35%;
+  width: 460px;
+  max-width: 38%;
   border: none;
   background: #f8fafc;
   border-radius: 0px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   z-index: 2;
   color: #222;
-  font-size: 1.08rem;
+  font-size: 1.06rem;
   display: block;
   margin-top: 0rem;
   margin-bottom: 0rem;
@@ -672,7 +671,7 @@ body {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
   align-items: center;
-  text-align: left;
+  text-align: center;
   justify-content: center;
   color: #1a3e72;
   gap: 10px;

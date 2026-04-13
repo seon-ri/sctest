@@ -160,7 +160,8 @@
           <div class="worry-subtitle">
             양형 · 법심리 전문기관
           </div>
-			<div class="worry-intro" style="background: #1a3555; color: white; padding: 0.8rem 1rem; margin-bottom: 1rem; border-radius: 4px; font-size: 0.95rem; line-height: 1.5;">
+			<div class="worry-intro" style="background: #1a3555; color: white; padding: 0.8rem 1rem; margin-bottom: 1rem; border-radius: 4px; font-size: 0.95rem; line-height: 1.5; display: flex;
+                                 align-items: flex-start; gap: 0.5rem;">
   <i class="bi bi-check-circle-fill" style="margin-right: 0.4rem;"></i>
   양형자료분석, 진술분석, 재범위험성 평가, 종합심리평가, 심리교육 등 형사사건 관련 심리 분석을 수행합니다.
 </div>
@@ -168,12 +169,12 @@
             <li>양형자료 분석이나 전문가 의견이 필요할 때</li>
             <li>진술의 신빙성에 대한 검토가 필요할 때</li>
             <li>재범위험성 평가나 종합심리평가가 필요할 때</li>
-            <li>수사·재판 과정에서 심리교육이 필요할 때</li>
-            <li>성폭력·음주·폭력 등 행동 개선을 위한 교육이 필요할 때</li>
+            <li>성폭력 교육, 음주운전 교육이 필요할 때</li>
+            <li>재범방지 교육, 분노조절 교육, 준법 교육이 필요할 때</li>
             <li>형사사건 관련 심리상담이 필요할 때</li>
           </ul>
           <div class="worry-ask">
-            <a href="tel:0507-1463-8122" class="consultation-btn">
+            <a href="tel:02-533-8114" class="consultation-btn">
               <i class="bi bi-telephone-fill"></i> 상담 문의하기
             </a>
             <!--  <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
@@ -266,9 +267,10 @@
            margin-bottom: 2.5rem;
            padding-bottom: 2rem;
            border-bottom: 2px solid #e0e0e0;
-           font-weight: 600;">
-  양형, 전문가의 근거있는 <br>
-  심리 분석과 의견
+           font-weight: 600;
+ 		   display: flex; align-items: flex-start; gap: 0.6rem;">
+  <i class="bi bi-play-circle-fill" style="flex-shrink: 0; margin-top: 0.2rem;"></i>
+  <span>양형, 전문가의 근거있는<br>심리 분석과 의견</span>
 </h2>
             <p>더세온연구소는 형사사건을 중심으로 다양한 사건과 상황에서 심리분석, 평가, 교육, 상담을 수행하는 양형 · 법심리 전문기관입니다.</p>
 			<p>범죄심리학 박사이자 임상심리전문가인 정혜정 소장은 경찰청 범죄분석요원(7년), 법무부 교정본부(11년), 서울중앙지방법원 양형조사관(3년)으로 근무하며 다양한 사건을 직접 다뤄온 20여 년의 실무 경험을 갖고 있습니다.</p>
@@ -460,8 +462,8 @@
             <!-- 연락처 정보 -->
             <div class="contact-details">
               <p><strong>예약 및 문의</strong>:
-                <a href="tel:0507-1463-8122" style="color:#1a3555; text-decoration:none;">
-                  0507-1463-8122</a>
+                <a href="tel:02-533-8114" style="color:#1a3555; text-decoration:none;">
+                  02-533-8114</a>
               </p>
               <br>
               <p><strong>운영시간</strong>: 평일 9:00 ~ 18:00/ 필요시 야간·주말 운영</p>
@@ -488,11 +490,12 @@
             <h3>오시는 길</h3>
             <!-- 본원 -->
             <div class="directions-block">
-              <h4>본원 (서울)</h4>
-              <p>: 서울시 서초구 사임당로 39 한성빌딩 3층</p>
-<!--       <p style="font-size:0.9rem; color:#666;">지하철 3호선 남부터미널역 5번 출구 도보 5분</p> -->
+              <h4>주소</h4>
+              <p>: 서울시 서초구 서초중앙로 166, 서원빌딩 305호</p>
+				<p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">서울중앙지방법원 동문 맞은편</p>
+               
               <!-- 카카오맵/네이버맵 iframe 삽입 가능 영역 -->
-              <!-- 카카오맵 - 지도퍼가기 -->
+              <!-- 카카오맵 - 지도퍼가기
               <div class="map-container" style="margin:1rem 0; border-radius:8px;">
                 <div id="daumRoughmapContainer1773490509230" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%;"></div>
               </div>
@@ -537,14 +540,29 @@
               <h4>지점 (대전)</h4>
               <p>대전시 동구 삼성동 301-6</p>
             </div>  -->
-
-            <!-- 교통편 안내  
+			  
+<!-- 구글맵 -->
+  <div class="map-container" style="margin: 1rem 0; border-radius: 8px; overflow: hidden;">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.4806232966807!2d127.01077837632664!3d37.49658097205672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca168cd6a9681%3A0x826fd8813cd44e16!2z7ISc7Jq47Yq567OE7IucIOyEnOy0iOq1rCDshJzstIjspJHslZnroZwgMTY2!5e0!3m2!1sko!2skr!4v1776040891609!5m2!1sko!2skr" 
+      width="100%" 
+      height="400" 
+      style="border: 0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+			
+            <!-- 교통편 안내   -->
             <div class="directions-block" style="margin-top:2rem; padding-top:2rem; border-top:1px solid #e0e0e0;">
               <h4>교통편 안내</h4>
-              <p>지하철: 2호선 서초역 6번 출구 도보 5분 </p>
-              <p>버스: ○○번, ○○번 (법조단지 정류장 하차)</p>
-              <p>주차: 건물 내 주차 가능 여부</p>
-            </div> -->
+            <p><strong>지하철</strong> &nbsp; 2·3호선 교대역 6번 출구에서 257m (도보 4분)</p>
+       	 	<p><strong>버스</strong> &nbsp; 법조단지 정류장 (건물 바로 앞)<br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;간선 0411, 3420 / 마을 서초02, 서초10</p>
+      <p><strong>주차</strong> &nbsp; 건물 내 방문객 주차 가능 (무료)</p>
+            </div>
 
           </div>
         </div>
@@ -764,18 +782,18 @@
                   • 기본: 사전 상담 → 교육 → 수료확인서<br>
                   • 확장: 사전 상담 → 사전 평가 → 교육 → 교육 후 점검 → 수료확인서 + 전문가 의견서<br>
                 </p>
-		<p style="font-size: 0.92rem; 
+		     </div>
+           </div>
+		<p style="font-size: 0.95rem; 
           color: #5a6a7a; 
           text-align: center; 
           padding: 1rem 1.5rem; 
           margin-top: 2rem; 
           border-top: 1px solid #e0e0e0;"> 
   심층적인 심리 회복이 필요한 경우 개별 상담으로 연계할 수 있습니다.</p>
-              </div>
-            </div>
-
           </div>
         </div>
+		  
         <!-- 2.교육 과정 -->
         <div class="sub-content" id="education-counseling-programs">
           <div class="content-card double-border">
@@ -961,7 +979,7 @@
                 </div>
   
             <div class="education-notice">
-<p style="font-size: 0.92rem; 
+<p style="font-size: 0.95rem; 
           color: #5a6a7a; 
           text-align: center; 
           padding: 1rem 1.5rem; 
@@ -1096,14 +1114,14 @@
               <li>•2차 피해 예방 및 일상 회복을 위한 심리적 지원 방향 제시 </li>
             </ul>
 <br>
-		<p style="font-size: 0.92rem; 
+		<p style="font-size: 0.95rem; 
           color: #5a6a7a; 
           text-align: center; 
           padding: 1rem 1.5rem; 
           margin-top: 2rem; 
           border-top: 1px solid #e0e0e0;">
   <i class="bi bi-heart-fill" style="color: #c97d7d; margin-right: 0.4rem;"></i>
-  더세온연구소는 피해자의 심리적 안전을 우선으로 하며, 2차 피해를 최소화할 수 있도록 면담을 진행합니다.
+  더세온연구소는 피해자의 심리적 안전을 우선으로 하며, 2차 피해를 최소화하는 면담을 진행합니다.
 </p>
           </div>
         </div>
@@ -1387,8 +1405,8 @@
       <div class="footer-info">
         <p class="footer-name">더세온연구소</p>
         <p>대표: 정혜정 | 사업자등록번호: 229-28-02073</p>
-        <p>서울시 서초구 사임당로 39 한성빌딩 3층</p>
-        <p>전화: <a href="tel:0507-1463-8122">0507-1463-8122</a> | 이메일: seonresearch@gmail.com</p>
+        <p>서울시 서초구 서초중앙로 166, 305호 </p>
+        <p>전화: <a href="tel:02-533-8114">02-533-8114</a> | 이메일: seonresearch@gmail.com</p>
       </div>
       <div class="footer-links">
         <a href="/privacy.html" target="_blank">개인정보처리방침</a>
@@ -1406,7 +1424,7 @@
       </svg>
     </a>
     <!-- ▲ 카카오톡 채널 URL을 위 href에 입력하세요 ▲ -->
-    <a href="tel:0507-1463-8122" class="floating-btn phone-btn" title="전화 상담">
+    <a href="tel:02-533-8114" class="floating-btn phone-btn" title="전화 상담">
       <i class="bi bi-telephone-fill"></i>
     </a>
   </div>

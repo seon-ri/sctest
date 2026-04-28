@@ -2137,17 +2137,30 @@ footer {
 }
 
 .expert-card-intro .expert-role {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: #555;
   margin: 0 0 0.5rem;
 }
 
 .expert-card-intro .expert-credentials {
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   color: #888;
   margin: 0;
 }
 
+.expert-card-intro p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #444;
+  margin: 0 0 0.4rem 0;
+}
+
+.expert-card-intro h5 {
+  color: #1a3e72;
+  margin-bottom: 0.8rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
 .expert-card-body {
   padding: 1.5rem 2rem 2rem;
 }
@@ -2159,7 +2172,7 @@ footer {
 }
 
 .expert-info-block h5 {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #1a3e72;
   margin: 0 0 0.8rem;
@@ -2168,8 +2181,8 @@ footer {
 }
 
 .expert-info-block p {
-  font-size: 0.95rem;
-  line-height: 1.9;
+  font-size: 1.05rem;
+  line-height: 2;
   color: #444;
   margin: 0 0 0.6rem;
 }
@@ -3067,7 +3080,7 @@ section[id] {
 }
 
 .expert-card-full {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto 2rem;
   padding: 2rem;
   background: #fff;

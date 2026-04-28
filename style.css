@@ -2244,13 +2244,13 @@ footer {
 }
 
 .expert-card-info .expert-position {
-  font-size: 0.82rem;
+  font-size: 1.05rem;
   color: #666;
   margin: 0 0 0.2rem;
 }
 
 .expert-card-info .expert-specialty {
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: #1a3e72;
   font-style: italic;
   margin: 0;
@@ -3080,7 +3080,7 @@ section[id] {
 }
 
 .expert-card-full {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto 2rem;
   padding: 2rem;
   background: #fff;

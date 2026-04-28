@@ -2130,7 +2130,7 @@ footer {
 }
 
 .expert-card-intro .expert-name {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #1a3e72;
   margin: 0 0 0.3rem;
@@ -3091,7 +3091,7 @@ section[id] {
 .expert-card-full,
 .section-divider,
 .expert-cards-grid {
-  max-width: 800px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }

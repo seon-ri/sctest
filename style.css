@@ -646,10 +646,10 @@ body {
 
 .worry-box {
   position: absolute;
-  top: 0rem;
+  top: 2rem;
   padding: 2rem 1.5rem 1rem 1.5rem;
-  bottom: 0rem;
   right: 80px;
+  height: auto; 
   width: 460px;
   max-width: 38%;
   border: none;
@@ -2103,8 +2103,8 @@ footer {
 
 .expert-photo {
   flex-shrink: 0;
-  width: 140px;
-  height: 180px;
+  width: 200px;
+  height: 260px;
 }
 
 .expert-photo img {
@@ -2130,7 +2130,7 @@ footer {
 }
 
 .expert-card-intro .expert-name {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #1a3e72;
   margin: 0 0 0.3rem;
@@ -2159,19 +2159,19 @@ footer {
 }
 
 .expert-info-block h5 {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #1a3e72;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.8rem;
   padding-bottom: 0.3rem;
   border-bottom: 2px solid #d1e5f8;
 }
 
 .expert-info-block p {
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.9;
   color: #444;
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.6rem;
 }
 
 .expert-cards-grid {
@@ -2295,8 +2295,8 @@ footer {
   }
 
   .expert-photo {
-    width: 120px;
-    height: 150px;
+    width: 200px;
+    height: 260px;
   }
 
   .expert-info-grid {

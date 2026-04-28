@@ -646,8 +646,8 @@ body {
 
 .worry-box {
   position: absolute;
-  top: 2rem;
-  padding: 2rem 1.5rem 1rem 1.5rem;
+  top: 0rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
   right: 80px;
   height: auto; 
   width: 460px;

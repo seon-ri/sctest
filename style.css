@@ -2095,7 +2095,7 @@ footer {
 
 .expert-card-header {
   display: flex;
-  gap: 2rem;
+  gap: 7rem;
   align-items: center;
   padding: 2rem;
   background: linear-gradient(135deg, #f0f4f8, #e8edf2);
@@ -2103,8 +2103,9 @@ footer {
 
 .expert-photo {
   flex-shrink: 0;
-  width: 200px;
-  height: 260px;
+  width: 330px;
+  height: 380px;
+  padding-left: 2rem;
 }
 
 .expert-photo img {

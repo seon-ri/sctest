@@ -503,7 +503,24 @@
               <h4>주소</h4>
               <p> 서울시 서초구 서초중앙로 166, 서원빌딩 305호</p>
 				<p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">서울중앙지방법원 동문 맞은편</p>
-               
+   <!-- 카카오맵-->
+				<div style="margin: 2rem 0;">
+<!-- 1. 약도 노드 -->
+<div id="daumRoughmapContainer1777445103720" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+<!-- 2. 설치 스크립트 -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+<!-- 3. 실행 스크립트 -->
+<script charset="UTF-8">
+	new daum.roughmap.Lander({
+		"timestamp" : "1777445103720",
+		"key" : "mwb3kyjj4nd",
+		"mapWidth" : "640",
+		"mapHeight" : "360"
+	}).render();
+</script>
+		    </div>		
               <!-- 카카오맵/네이버맵 iframe 삽입 가능 영역 -->
               <!-- 카카오맵 - 지도퍼가기
               <div class="map-container" style="margin:1rem 0; border-radius:8px;">
@@ -551,7 +568,7 @@
               <p>대전시 동구 삼성동 301-6</p>
             </div>  -->
 			  
-<!-- 구글맵 -->
+<!-- 구글맵
   <div class="map-container" style="margin: 1rem 0; border-radius: 8px; overflow: hidden;">
     <iframe 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.4806232966807!2d127.01077837632664!3d37.49658097205672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca168cd6a9681%3A0x826fd8813cd44e16!2z7ISc7Jq47Yq567OE7IucIOyEnOy0iOq1rCDshJzstIjspJHslZnroZwgMTY2!5e0!3m2!1sko!2skr!4v1776040891609!5m2!1sko!2skr" 
@@ -563,7 +580,7 @@
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
-</div>
+</div>  -->
 			
             <!-- 교통편 안내   -->
             <div class="directions-block" style="margin-top:2rem; padding-top:2rem; border-top:1px solid #e0e0e0;">
@@ -1434,7 +1451,7 @@
   <!-- ===== 플로팅 버튼 (3-1 카카오톡 + 3-2 전화) ===== -->
   <div class="floating-buttons">
     <!-- ▼ 카카오톡 채널 URL을 아래 href에 입력하세요 (예: https://pf.kakao.com/xxxxx) ▼ -->
-    <a href="https://pf.kakao.com/여기에채널URL입력" class="floating-btn kakao-btn" target="_blank" rel="noopener" title="카카오톡 상담">
+    <a href="https://pf.kakao.com/_EgwTX" class="floating-btn kakao-btn" target="_blank" rel="noopener" title="카카오톡 상담">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#3C1E1E">
         <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.66 6.6l-.9 3.3c-.08.3.25.55.52.39l3.8-2.52c.62.09 1.26.13 1.92.13 5.52 0 10-3.58 10-7.9S17.52 3 12 3z" />
       </svg>

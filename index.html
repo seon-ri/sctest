@@ -504,11 +504,9 @@
               <p> 서울시 서초구 서초중앙로 166, 서원빌딩 305호</p>
 				<p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">서울중앙지방법원 동문 맞은편</p>
    <!-- 카카오맵-->
-				<div style="margin: 2rem 0;">
-<!-- 1. 약도 노드 -->
-<div id="daumRoughmapContainer1777445103720" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-
-		    </div>		
+		<div style="margin: 2rem 0;">
+  <div id="daumRoughmapContainer1777445103720" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+</div>	
               <!-- 카카오맵/네이버맵 iframe 삽입 가능 영역 -->
               <!-- 카카오맵 - 지도퍼가기
               <div class="map-container" style="margin:1rem 0; border-radius:8px;">
@@ -1505,18 +1503,56 @@
 })();
 </script>
 
-<!-- 2. 설치 스크립트 -->
+<!-- 카카오맵 스크립트 -->
 <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-
-<!-- 3. 실행 스크립트 -->
 <script charset="UTF-8">
-	new daum.roughmap.Lander({
-		"timestamp" : "1777445103720",
-		"key" : "mwb3kyjj4nd",
-		"mapWidth" : "640",
-		"mapHeight" : "360"
-	}).render();
+  // SPA 대응: 탭이 보일 때 렌더링
+  var mapRendered = false;
+  
+  function renderKakaoMap() {
+    if (mapRendered) return;
+    mapRendered = true;
+    
+    new daum.roughmap.Lander({
+      "timestamp": "1777445103720",
+      "key": "mwb3kyjj4nd",
+      "mapWidth": "640",
+      "mapHeight": "360"
+    }).render();
+  }
+  
+  // 방법1: 오시는 길 탭이 보이면 렌더링
+  var locationSection = document.getElementById('about-location');
+  if (locationSection) {
+    var observer = new MutationObserver(function() {
+      if (locationSection.style.display !== 'none' && locationSection.classList.contains('active')) {
+        setTimeout(renderKakaoMap, 300);
+      }
+    });
+    observer.observe(locationSection, { 
+      attributes: true, 
+      attributeFilter: ['class', 'style'] 
+    });
+  }
+  
+  // 방법2: URL 해시로 직접 접근 시
+  window.addEventListener('hashchange', function() {
+    if (location.hash.includes('location')) {
+      setTimeout(renderKakaoMap, 300);
+    }
+  });
+  
+  // 방법3: 페이지 로드 시 오시는 길이 이미 보이는 경우
+  window.addEventListener('load', function() {
+    if (locationSection && locationSection.classList.contains('active')) {
+      setTimeout(renderKakaoMap, 300);
+    }
+  });
 </script>
+
+<script src="script.js"></script>
+</body>
+</html>
   <script src="script.js"></script>
 </body>
 

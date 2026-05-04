@@ -1504,51 +1504,94 @@
 })();
 </script>
 
-<!-- 카카오맵 스크립트 -->
-<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-<script charset="UTF-8">
-  // SPA 대응: 탭이 보일 때 렌더링
-  var mapRendered = false;
+<!-- ⭐ 여기에 새 코드 붙이기-카카오맵 ⭐ -->
+<script>
+(function() {
+  // 카카오맵 SDK 로드
+  function loadKakaoMapScript(callback) {
+    var script = document.createElement('script');
+    script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
+    script.charset = 'UTF-8';
+    script.onload = callback;
+    script.onerror = function() {
+      console.error('카카오맵 스크립트 로드 실패');
+    };
+    document.head.appendChild(script);
+  }
   
+  // 지도 렌더링
+  var mapRendered = false;
   function renderKakaoMap() {
     if (mapRendered) return;
+    
+    var container = document.getElementById('daumRoughmapContainer1777445103720');
+    if (!container) {
+      console.error('지도 컨테이너를 찾을 수 없습니다');
+      return;
+    }
+    
+    // 컨테이너가 보이는지 확인
+    if (container.offsetWidth === 0 || container.offsetHeight === 0) {
+      console.log('컨테이너가 아직 보이지 않음. 재시도...');
+      setTimeout(renderKakaoMap, 300);
+      return;
+    }
+    
     mapRendered = true;
     
-    new daum.roughmap.Lander({
-      "timestamp": "1777445103720",
-      "key": "mwb3kyjj4nd",
-      "mapWidth": "640",
-      "mapHeight": "360"
-    }).render();
+    try {
+      new daum.roughmap.Lander({
+        "timestamp": "1777445103720",
+        "key": "mwb3kyjj4nd",
+        "mapWidth": "640",
+        "mapHeight": "360"
+      }).render();
+      console.log('✅ 카카오맵 렌더링 성공!');
+    } catch (e) {
+      console.error('❌ 카카오맵 렌더링 실패:', e);
+      mapRendered = false;
+    }
   }
   
-  // 방법1: 오시는 길 탭이 보이면 렌더링
-  var locationSection = document.getElementById('about-location');
-  if (locationSection) {
-    var observer = new MutationObserver(function() {
-      if (locationSection.style.display !== 'none' && locationSection.classList.contains('active')) {
-        setTimeout(renderKakaoMap, 300);
+  // 스크립트 로드 후 이벤트 리스너 등록
+  loadKakaoMapScript(function() {
+    console.log('카카오맵 SDK 로드 완료');
+    
+    // 탭 클릭 감지
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href="#about-location"]');
+      if (link) {
+        console.log('오시는 길 탭 클릭됨');
+        setTimeout(renderKakaoMap, 500);
       }
     });
-    observer.observe(locationSection, { 
-      attributes: true, 
-      attributeFilter: ['class', 'style'] 
+    
+    // 페이지 로드 시 이미 해당 섹션이 활성화되어 있으면
+    window.addEventListener('load', function() {
+      var section = document.getElementById('about-location');
+      if (section && section.classList.contains('active')) {
+        setTimeout(renderKakaoMap, 500);
+      }
     });
-  }
-  
-  // 방법2: URL 해시로 직접 접근 시
-  window.addEventListener('hashchange', function() {
-    if (location.hash.includes('location')) {
-      setTimeout(renderKakaoMap, 300);
+    
+    // MutationObserver 백업
+    var locationSection = document.getElementById('about-location');
+    if (locationSection) {
+      var observer = new MutationObserver(function() {
+        var isVisible = locationSection.classList.contains('active') && 
+                       locationSection.style.display !== 'none';
+        if (isVisible && !mapRendered) {
+          console.log('섹션 활성화 감지');
+          setTimeout(renderKakaoMap, 300);
+        }
+      });
+      observer.observe(locationSection, {
+        attributes: true,
+        attributeFilter: ['class', 'style']
+      });
     }
   });
-  
-  // 방법3: 페이지 로드 시 오시는 길이 이미 보이는 경우
-  window.addEventListener('load', function() {
-    if (locationSection && locationSection.classList.contains('active')) {
-      setTimeout(renderKakaoMap, 300);
-    }
-  });
+})();
 </script>
 
 <script src="script.js"></script>

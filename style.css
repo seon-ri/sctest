@@ -3024,6 +3024,14 @@ section[id] {
 /* ================================
    카카오맵 반응형
    ================================ */
+.map-container {
+  width: 100%;
+  max-width: 640px;
+  height: 360px;
+  margin: 2rem auto;
+  overflow: hidden;
+  position: relative;
+}
 .root_daum_roughmap {
   width: 100% !important;
 }

@@ -504,8 +504,8 @@
               <p> 서울시 서초구 서초중앙로 166, 서원빌딩 305호</p>
 				<p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">서울중앙지방법원 동문 맞은편</p>
    <!-- 카카오맵-->
-			<div class="map-container" style="margin:1rem 0; border-radius:8px;">
-  <div id="daumRoughmapContainer1777445103720" class="root_daum_roughmap root_daum_roughmap_landing" style="width:640px !important; height: 360px !important; min-height: 360px !important; display: block !important;"></div>
+			<div class="map-container">
+  <div id="daumRoughmapContainer1777445103720" class="root_daum_roughmap root_daum_roughmap_landing"></div>
 </div>	
 				
               <!-- 카카오맵/네이버맵 iframe 삽입 가능 영역 -->
@@ -1507,37 +1507,21 @@
 <!-- ⭐ 여기에 새 코드 붙이기-카카오맵 ⭐ -->
 <script>
 (function() {
-  // 카카오맵 SDK 로드
   function loadKakaoMapScript(callback) {
     var script = document.createElement('script');
     script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
     script.charset = 'UTF-8';
     script.onload = callback;
-    script.onerror = function() {
-      console.error('카카오맵 스크립트 로드 실패');
-    };
     document.head.appendChild(script);
   }
   
-  // 지도 렌더링
   var mapRendered = false;
+  
   function renderKakaoMap() {
     if (mapRendered) return;
-    
-    var container = document.getElementById('daumRoughmapContainer1777445103720');
-    if (!container) {
-      console.error('지도 컨테이너를 찾을 수 없습니다');
-      return;
-    }
-    
-    // 컨테이너가 보이는지 확인
-    if (container.offsetWidth === 0 || container.offsetHeight === 0) {
-      console.log('컨테이너가 아직 보이지 않음. 재시도...');
-      setTimeout(renderKakaoMap, 300);
-      return;
-    }
-    
     mapRendered = true;
+    
+    console.log('🗺️ 카카오맵 렌더링 시작');
     
     try {
       new daum.roughmap.Lander({
@@ -1546,50 +1530,31 @@
         "mapWidth": "640",
         "mapHeight": "360"
       }).render();
-      console.log('✅ 카카오맵 렌더링 성공!');
+      console.log('✅ 렌더링 성공!');
     } catch (e) {
-      console.error('❌ 카카오맵 렌더링 실패:', e);
+      console.error('❌ 렌더링 실패:', e);
       mapRendered = false;
     }
   }
   
-  // 스크립트 로드 후 이벤트 리스너 등록
   loadKakaoMapScript(function() {
-    console.log('카카오맵 SDK 로드 완료');
+    console.log('✅ SDK 로드 완료');
     
     // 탭 클릭 감지
     document.addEventListener('click', function(e) {
-      var link = e.target.closest('a[href="#about-location"]');
-      if (link) {
-        console.log('오시는 길 탭 클릭됨');
-        setTimeout(renderKakaoMap, 500);
+      if (e.target.closest('a[href="#about-location"]')) {
+        console.log('👆 오시는 길 클릭');
+        setTimeout(renderKakaoMap, 800);
       }
     });
     
-    // 페이지 로드 시 이미 해당 섹션이 활성화되어 있으면
-    window.addEventListener('load', function() {
+    // 페이지 로드 시
+    setTimeout(function() {
       var section = document.getElementById('about-location');
       if (section && section.classList.contains('active')) {
-        setTimeout(renderKakaoMap, 500);
+        renderKakaoMap();
       }
-    });
-    
-    // MutationObserver 백업
-    var locationSection = document.getElementById('about-location');
-    if (locationSection) {
-      var observer = new MutationObserver(function() {
-        var isVisible = locationSection.classList.contains('active') && 
-                       locationSection.style.display !== 'none';
-        if (isVisible && !mapRendered) {
-          console.log('섹션 활성화 감지');
-          setTimeout(renderKakaoMap, 300);
-        }
-      });
-      observer.observe(locationSection, {
-        attributes: true,
-        attributeFilter: ['class', 'style']
-      });
-    }
+    }, 1000);
   });
 })();
 </script>

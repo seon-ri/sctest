@@ -3068,6 +3068,28 @@ section[id] {
   background: #132840;
 }
 
+@media (max-width: 768px) {
+  .map-container {
+    height: 300px;
+    margin: 1.2rem auto 0.8rem;
+  }
+
+  .root_daum_roughmap .wrap_map {
+    height: 300px !important;
+  }
+
+  .map-button-wrap {
+    text-align: center;
+    margin: 0.8rem 0 1.8rem;
+  }
+
+  .map-button {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+}
 /* ================================
    레이아웃 보정 (섹션·푸터·구성원·카카오맵)
    ================================ */

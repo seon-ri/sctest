@@ -494,96 +494,42 @@
         </div>
 
 
-        <!-- 오시는 길 (4-5) -->
-        <div class="sub-content" id="about-directions">
-          <div class="content-card double-border">
-            <h3>오시는 길</h3>
-             <h4>주소</h4>
-              <p> 서울시 서초구 서초중앙로 166, 서원빌딩 305호</p>
-				<p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">서울중앙지방법원 동문 맞은편</p>
-   <!-- 카카오맵-->
-			<div class="map-container">
-  <iframe 
-    src="https://kko.to/Peigbb67zS" 
-    width="100%" 
-    height="400" 
-    frameborder="0" 
-    style="border: 0; border-radius: 8px;">
-  </iframe>
-</div>
-		
-              <!-- 카카오맵/네이버맵 iframe 삽입 가능 영역 -->
-              <!-- 카카오맵 - 지도퍼가기
-              <div class="map-container" style="margin:1rem 0; border-radius:8px;">
-                <div id="daumRoughmapContainer1773490509230" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%;"></div>
-              </div>
+ <!-- 오시는 길 (4-5) -->
+<div class="sub-content" id="about-directions">
+  <div class="content-card double-border">
+    <h3>오시는 길</h3>
 
-              <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-              <script charset="UTF-8">
-                // 탭이 보이는 시점에 지도 렌더링 (SPA display:none 문제 해결)
-                var mapRendered = false;
-                function renderKakaoMap() {
-                  if (mapRendered) return;
-                  mapRendered = true;
-                  new daum.roughmap.Lander({
-                    "timestamp": "1773490509230",
-                    "key": "jaqrmwewoc8",
-                    // "mapWidth": "640",
-                    "mapHeight": "360"
-                  }).render();
-                }
+    <h4>주소</h4>
+    <p>서울시 서초구 서초중앙로 166, 서원빌딩 305호</p>
+    <p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">
+      서울중앙지방법원 동문 맞은편
+    </p>
 
-                // 방법1: MutationObserver로 탭이 보일 때 자동 감지
-                var directionsTab = document.getElementById('about-directions');
-                if (directionsTab) {
-                  var observer = new MutationObserver(function () {
-                    if (directionsTab.style.display !== 'none' && directionsTab.classList.contains('active')) {
-                      setTimeout(renderKakaoMap, 300);
-                    }
-                  });
-                  observer.observe(directionsTab, { attributes: true, attributeFilter: ['class', 'style'] });
-                }
+    <!-- 카카오맵 -->
+    <div class="map-container">
+      <div id="daumRoughmapContainer1778027856647" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+    </div>
 
-                // 방법2: 혹시 직접 접근(URL 해시)으로 열릴 경우 대비
-                window.addEventListener('hashchange', function () {
-                  if (location.hash.includes('directions')) {
-                    setTimeout(renderKakaoMap, 300);
-                  }
-                });
-              </script>
-            </div>
+    <div class="map-button-wrap">
+      <a 
+        href="https://map.kakao.com/link/search/서울시 서초구 서초중앙로 166 서원빌딩 305호"
+        target="_blank"
+        rel="noopener"
+        class="map-button">
+        오시는 길 바로보기
+      </a>
+    </div>
 
-            <!-- 지점
-            <div class="directions-block" style="margin-top:2rem; padding-top:2rem; border-top:1px solid #e0e0e0;">
-              <h4>지점 (대전)</h4>
-              <p>대전시 동구 삼성동 301-6</p>
-            </div>  -->
-			  
-<!-- 구글맵
-  <div class="map-container" style="margin: 1rem 0; border-radius: 8px; overflow: hidden;">
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.4806232966807!2d127.01077837632664!3d37.49658097205672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca168cd6a9681%3A0x826fd8813cd44e16!2z7ISc7Jq47Yq567OE7IucIOyEnOy0iOq1rCDshJzstIjspJHslZnroZwgMTY2!5e0!3m2!1sko!2skr!4v1776040891609!5m2!1sko!2skr" 
-      width="100%" 
-      height="400" 
-      style="border: 0;" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <!-- 교통편 안내 -->
+    <h4>교통편 안내</h4>
+    <p><strong>지하철</strong> &nbsp; 2·3호선 교대역 6번 출구에서 257m (도보 4분)</p>
+    <p>
+      <strong>버스</strong> &nbsp; 법조단지 정류장 (건물 바로 앞)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;간선 0411, 3420 / 마을 서초02, 서초10
+    </p>
+    <p><strong>주차</strong> &nbsp; 건물 내 방문객 주차 가능 (무료)</p>
   </div>
-</div>  -->
-			
-            <!-- 교통편 안내   -->
-                  <h4>교통편 안내</h4>
-            <p><strong>지하철</strong> &nbsp; 2·3호선 교대역 6번 출구에서 257m (도보 4분)</p>
-       	 	<p><strong>버스</strong> &nbsp; 법조단지 정류장 (건물 바로 앞)<br>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;간선 0411, 3420 / 마을 서초02, 서초10</p>
-      <p><strong>주차</strong> &nbsp; 건물 내 방문객 주차 가능 (무료)</p>
-       
-
-          </div>
-        </div>
- 
+</div>
         <!-- 자주 묻는 질문 FAQ (4-5 / 4-7) -->
         <!-- ============================================================ -->
         <!-- [고객용 안내] FAQ 항목을 추가하려면 아래 faq-item 블록을 복사하세요 -->
@@ -1507,60 +1453,67 @@
 })();
 </script>
 
-<!-- ⭐ 여기에 새 코드 붙이기-카카오맵 ⭐ 
-<script>
-(function() {
-  function loadKakaoMapScript(callback) {
-    var script = document.createElement('script');
-    script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
-    script.charset = 'UTF-8';
-    script.onload = callback;
-    document.head.appendChild(script);
-  }
-  
-  var mapRendered = false;
-  
+<!-- 카카오맵 지도 퍼가기 스크립트 -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+<script charset="UTF-8">
+  var kakaoMapRendered = false;
+
   function renderKakaoMap() {
-    if (mapRendered) return;
-    mapRendered = true;
-    
-    console.log('🗺️ 카카오맵 렌더링 시작');
-    
-    try {
-      new daum.roughmap.Lander({
-        "timestamp": "1777445103720",
-        "key": "mwb3kyjj4nd",
-        "mapWidth": "640",
-        "mapHeight": "360"
-      }).render();
-      console.log('✅ 렌더링 성공!');
-    } catch (e) {
-      console.error('❌ 렌더링 실패:', e);
-      mapRendered = false;
-    }
+    if (kakaoMapRendered) return;
+
+    var mapNode = document.getElementById('daumRoughmapContainer1778027856647');
+    var directionsTab = document.getElementById('about-directions');
+
+    if (!mapNode || !directionsTab) return;
+    if (typeof daum === 'undefined' || !daum.roughmap) return;
+
+    kakaoMapRendered = true;
+
+    new daum.roughmap.Lander({
+      "timestamp": "1778027856647",
+      "key": "nat5mbeccgt",
+      "mapHeight": "360"
+    }).render();
   }
-  
-  loadKakaoMapScript(function() {
-    console.log('✅ SDK 로드 완료');
-    
-    // 탭 클릭 감지
-    document.addEventListener('click', function(e) {
-      if (e.target.closest('a[href="#about-location"]')) {
-        console.log('👆 오시는 길 클릭');
-        setTimeout(renderKakaoMap, 800);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var directionsTab = document.getElementById('about-directions');
+
+    if (!directionsTab) return;
+
+    var observer = new MutationObserver(function () {
+      if (
+        directionsTab.classList.contains('active') ||
+        directionsTab.style.display !== 'none'
+      ) {
+        setTimeout(renderKakaoMap, 300);
       }
     });
-    
-    // 페이지 로드 시
-    setTimeout(function() {
-      var section = document.getElementById('about-location');
-      if (section && section.classList.contains('active')) {
+
+    observer.observe(directionsTab, {
+      attributes: true,
+      attributeFilter: ['class', 'style']
+    });
+
+    // 처음부터 오시는 길 탭이 열려 있는 경우 대비
+    setTimeout(function () {
+      if (
+        directionsTab.classList.contains('active') ||
+        directionsTab.style.display !== 'none'
+      ) {
         renderKakaoMap();
       }
-    }, 1000);
+    }, 500);
+
+    // 혹시 URL 해시로 직접 접근하는 경우 대비
+    window.addEventListener('hashchange', function () {
+      if (window.location.hash.includes('directions')) {
+        setTimeout(renderKakaoMap, 300);
+      }
+    });
   });
-})();
-</script> -->
+</script>
 
   <script src="script.js"></script>
 </body>

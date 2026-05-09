@@ -348,7 +348,9 @@ body {
 /* ================================
    메인 콘텐츠 영역
    ================================ */
-
+#inmate {
+  word-break: keep-all;
+}
 #main-content {
   flex: 1 0 auto;
 }
@@ -476,6 +478,7 @@ body {
 
 .contact-notice {
   margin-bottom: 1rem;
+  padding: 0.85rem 1rem;   /* ← 추가 */
 }
 
 /* ================================
@@ -1516,7 +1519,8 @@ body {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;       /* ← 변경: margin-bottom 2rem → margin: 0 auto 2rem */
+  max-width: 1000px;          /* ← 추가 */
 }
 
 .board-table {
@@ -1560,20 +1564,12 @@ body {
   width: 120px;
 }
 
-/*.col-date {
+.col-date {
   width: 140px;
   min-width: 140px;
   white-space: nowrap;
-} */
+} 
 
-.col-date {
-  display: none;
-}
-
-.col-views {
-  width: 80px;
-  text-align: center;
-}
 
 .post-title {
   color: var(--text-primary);
@@ -1828,7 +1824,9 @@ body {
   color: var(--secondary-color);
   font-family: 'bootstrap-icons';
 }
-
+.card-quote br {
+  display: none;
+}
 
 /* ================================
    모바일 추가 수정
@@ -1838,10 +1836,6 @@ body {
   .board-table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-  }
-
-  .board-table {
-    min-width: 580px;
   }
 
   .col-date {
@@ -1856,14 +1850,47 @@ body {
     min-width: 40px;
   }
 
-  .col-views {
-    width: 40px;
-    min-width: 40px;
-  }
-
   .col-category {
     width: 60px;
     min-width: 60px;
+  }
+
+/* 게시판 - 모바일 폭 강제 + 줄바꿈 */
+ /* 게시판 컨테이너 - 폭 강제 */
+  .board-table-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* 게시판 - 칼럼 폭 명시 + 줄바꿈 */
+  .board-table {
+    max-width: 100%;
+    table-layout: fixed;
+    word-break: break-all;
+  }
+
+  /* 모바일에서 분류/조회 칼럼 숨김 */
+  .board-table th.col-category,
+  .board-table td.col-category {
+    display: none;
+  }
+
+  /* 남은 3개 칼럼 폭 명시 (번호 15% / 제목 60% / 작성일 25%) */
+  .board-table th.col-number,
+  .board-table td.col-number {
+    width: 20%;
+    text-align: center;
+  }
+
+  .board-table th.col-title,
+  .board-table td.col-title {
+    width: 60%;
+  }
+
+  .board-table th.col-date,
+  .board-table td.col-date {
+    width: 20%;
+    text-align: center;
   }
 
   /* 프로세스 스텝 모바일 */
@@ -1881,6 +1908,38 @@ body {
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
+  }
+/* 구성원 페이지 - 모바일 폭 확보 */
+  .expert-card-full {
+    padding: 0;
+  }
+
+  .expert-card-header {
+    padding: 1rem;
+  }
+
+  .expert-card-body {
+    padding: 1rem 0.75rem;
+  }
+  /* 자격·경력 목록의 inline padding 8 */
+  #about-members .expert-card-intro p[style*="padding-left"],
+  #about-members .expert-info-block p[style*="padding-left"] {
+    padding-left: 0.5rem !important;
+  }
+
+  /* 사진 컨테이너 좌측 padding 제거 */
+  #about-members .expert-photo {
+    padding-left: 0;
+  }
+
+    /* expert-card-body 좌우 padding 축소 */
+  #about-members .expert-card-body {
+    padding: 1rem;
+  }
+.result-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
   }
 
   /* Footer 모바일 */
@@ -2138,8 +2197,8 @@ footer {
 }
 
 .expert-card-intro .expert-role {
-  font-size: 1.2rem;
-  color: #555;
+  font-size: 1rem;
+    color: #555;
   margin: 0 0 0.5rem;
 }
 
@@ -2309,9 +2368,10 @@ footer {
   }
 
   .expert-photo {
-    width: 200px;
-    height: 260px;
-  }
+  width: 200px;
+  max-width: 100%;        /* ← 추가 */
+  height: auto;           /* ← 변경: 260px → auto */
+}
 
   .expert-info-grid {
     grid-template-columns: 1fr;
@@ -2320,6 +2380,8 @@ footer {
   .expert-cards-grid {
     grid-template-columns: 1fr;
   }
+
+  
 }
 
 .footer-bar {
@@ -2756,8 +2818,7 @@ section[id] {
   }
 
   .col-category,
-  .col-author,
-  .col-date {
+  .col-author {
     display: none;
   }
 
@@ -3325,4 +3386,772 @@ body:not(.admin-page) {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+}
+
+/* ===== 수용자 프로그램 ===== */
+
+/* ② 이런 분들을 위한 프로그램입니다 - 카드 그리드 */
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.target-card {
+  background: #FAFAFA;
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+   border-left: 3px solid var(--primary-color);  /* ← 변경 */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.target-card:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(26, 53, 85, 0.08);
+  transform: translateY(-2px);
+}
+
+.target-num {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);  /* ← 변경 */
+  letter-spacing: 0.02em;
+  min-width: 1.8rem;
+}
+
+.target-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #333;
+  flex: 1;
+}
+
+.target-note {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  .target-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .target-card {
+    padding: 1rem 1.1rem;
+  }
+}
+/* ③④ 공통 - 카드 인트로 문구 */
+.content-card .card-intro {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+/* ===== 수용자 프로그램 ===== */
+
+/* 카드 공통 - 간격 좁히기 + 좌측 보더 제거 */
+#inmate .content-card {
+  margin: 1.5rem auto;
+  border-left: none;
+}
+
+/* h3 위계 정리 - 자동 아이콘 제거 + 짧은 네이비 강조 라인 */
+#inmate .content-card h3 {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0 0.4rem 0;
+  margin-bottom: 1.1rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  z-index: 1;
+}
+
+#inmate .content-card h3::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background: rgba(58, 93, 136, 0.18);
+  border-radius: 50%;
+  z-index: -1;
+  font-family: inherit;
+  margin: 0;
+  color: transparent;
+}
+
+ 
+/* ③④ 공통 - 인용구 박스 */
+.card-quote {
+  margin: 1.5rem 0 2rem 0;
+  padding: 0.85rem 1.25rem;
+  background: #FAFAFA;
+  border-left: 4px solid var(--primary-color);
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: #2F2F2F;
+  font-style: normal;
+}
+
+/* ② 이런 분들을 위한 프로그램입니다 - 카드 그리드 */
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.target-card {
+  background: #FAFAFA;
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  border-left: 3px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.target-num {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+  min-width: 1.8rem;
+}
+
+.target-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #333;
+  flex: 1;
+}
+
+.target-note {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+/* ③ 프로그램이 필요한 이유 - 2단 그리드 */
+.reason-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.reason-box {
+  background: #FAFAFA;
+  border-radius: 8px;
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+
+.reason-box h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--secondary-color);          /* ← 변경: primary → secondary */
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #e5e8ed;
+}
+
+.reason-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reason-box ul li {
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.reason-box ul li::before {
+  content: "•";
+  position: absolute;
+  left: 1.2rem;
+  top: 0;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* ④ 진행 절차 - STEP 카드 */
+.process-step {
+  padding: 1.25rem 0;
+  border-bottom: 1px dashed #e5e8ed;
+}
+
+.process-step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.process-step:first-of-type {
+  padding-top: 0.5rem;
+}
+
+.process-step h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--secondary-color);          /* ← 변경: primary → secondary */
+  margin: 0 0 0.85rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.step-tag {
+  display: inline-block;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.process-step ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.process-step ul li {
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: #333;
+}
+
+.process-step ul li::before {
+  content: "•";
+  position: absolute;
+  left: 1.2rem;
+  color: var(--primary-color);
+}
+
+.step-note {
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: #FAFAFA;
+  border-left: 3px solid var(--primary-color);
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.55;
+}
+
+.step-period {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 1.25rem 0 0 0.25rem;
+}
+
+/* ⑤ 결과물 안내 - 2단 그리드 */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.result-box {
+  background: #FAFAFA;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #e5e8ed;
+}
+
+.result-header h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.result-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.tag-basic {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.tag-option {
+  background: #fff;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.result-desc {
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: #333;
+  margin: 0 0 0.85rem 0;
+}
+
+.result-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+}
+
+.result-box ul li {
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.result-box ul li::before {
+  content: "•";
+  position: absolute;
+  left: 1.2rem;
+  top: 0;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.result-note {
+  background: #fff;
+  border-left: 3px solid var(--primary-color);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+}
+
+.result-note strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--primary-color);
+  margin-bottom: 0.3rem;
+}
+
+.result-note p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #333;
+}
+
+.result-note-sub {
+  font-size: 0.82rem;
+  color: #666;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+/* ⑥ 의뢰 방법 - 채널 그리드 */
+.contact-subtitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin: 1.5rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e8ed;
+}
+
+.contact-subtitle:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  max-width: 30rem;    
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  background: #FAFAFA;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  gap: 1rem;
+}
+
+.contact-label {
+  flex-shrink: 0;
+  min-width: 6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.contact-value {
+  font-size: 0.95rem;
+  color: #2F2F2F;
+  font-weight: 500;          /* ← 추가 */
+  letter-spacing: 0.01em;    /* ← 추가 */
+}
+
+.contact-link {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.contact-link:hover {
+  color: var(--primary-color);
+}
+
+.contact-intro {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #2F2F2F;
+  margin: 0 0 1rem 0;
+}
+
+/* 우편 발송 박스 */
+.mail-box {
+  background: #FAFAFA;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.mail-block {
+  margin-bottom: 1rem;
+}
+
+.mail-block:last-child {
+  margin-bottom: 0;
+}
+
+.mail-block strong {
+  display: block;
+  font-size: 0.93rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.mail-block p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: #333;
+}
+
+.mail-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mail-block ul li {
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.mail-block ul li::before {
+  content: "•";
+  position: absolute;
+  left: 1.2rem;
+  top: 0;
+  color: var(--primary-color);
+}
+
+.mail-note {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0.25rem;
+}
+
+/* ⑦ FAQ 아코디언 (inmate 전용) */
+.inmate-faq-list {
+  margin-top: 1rem;
+}
+
+.inmate-faq-item {
+  border-bottom: 1px solid #e5e8ed;
+}
+
+.inmate-faq-item:first-child {
+  border-top: 1px solid #e5e8ed;
+}
+
+.inmate-faq-q-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  user-select: none;
+}
+
+.inmate-faq-q-btn:hover {
+  background: #FAFAFA;
+}
+
+.inmate-faq-q-btn * {
+  pointer-events: none;
+}
+
+.inmate-faq-num {
+  flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+}
+
+.inmate-faq-text {
+  flex: 1;
+  font-size: 0.97rem;
+  font-weight: 500;
+  color: #2F2F2F;
+  line-height: 1.55;
+}
+
+.inmate-faq-icon {
+  flex-shrink: 0;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--secondary-color);
+  transition: transform 0.25s ease;
+  line-height: 1;
+}
+
+.inmate-faq-item.open .inmate-faq-icon {
+  transform: rotate(45deg);
+}
+
+.inmate-faq-answer {
+  display: none;
+  padding: 0.5rem 0.5rem 1.4rem 2.5rem;
+  background: #FAFAFA;
+  margin: 0 -0.5rem;
+}
+
+.inmate-faq-item.open .inmate-faq-answer {
+  display: block;
+}
+
+.inmate-faq-answer p {
+  margin: 0 0 0.6rem 0;
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: #333;
+}
+
+.inmate-faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* ⑧ CTA */
+.cta-section {
+  max-width: 1100px;
+  margin: 2.5rem auto 1.5rem;
+  padding: 2.5rem 2rem;
+  background: #F5F7FA;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.cta-headline {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 0.85rem 0;
+  line-height: 1.5;
+}
+
+.cta-sub {
+  font-size: 0.97rem;
+  color: #444;
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+}
+
+.cta-sub strong {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.cta-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-width: 14rem;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta-btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.cta-btn-primary:hover {
+  background: #E8EDF5;
+  color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 62, 114, 0.2);
+}
+.cta-btn-secondary {
+  background: #E8EDF5;
+  color: var(--primary-color);
+}
+
+.cta-btn-secondary:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 62, 114, 0.2);
+}
+
+.cta-btn-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.cta-btn-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.cta-footer {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid #d8dde4;
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  .target-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .target-card {
+    padding: 1rem 1.1rem;
+  }
+  .reason-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .reason-box {
+    padding: 1.25rem 1.1rem 1rem;
+  }
+  .step-tag {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.5rem;
+  }
+  .process-step h4 {
+    font-size: 1rem;
+  }
+  /* ⑤ ⑥ 모바일 */
+  .result-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .result-box {
+    padding: 1.25rem;
+  }
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .contact-label {
+    min-width: 0;
+  }
+  .mail-box {
+    padding: 1rem 1.25rem;
+  }
+  /* ⑦ 모바일 (변경) */
+  .inmate-faq-q-btn {
+    padding: 1rem 0.25rem;
+    gap: 0.5rem;
+  }
+  .inmate-faq-text {
+    font-size: 0.93rem;
+  }
+  .inmate-faq-answer {
+    padding: 0.5rem 0.25rem 1.2rem 2rem;
+  }
+  .cta-section {
+    padding: 2rem 1.25rem;
+  }
+  .cta-headline {
+    font-size: 1.1rem;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .cta-btn {
+    min-width: 0;
+    width: 100%;
+  }
 }

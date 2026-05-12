@@ -29,7 +29,7 @@
   --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
   --transition: all 0.3s ease-in-out;
-  --header-height: 80px;
+  --header-height: 65px;
 
   /* 타이포그래피 - PC */
   --font-size-xs: 0.75rem;
@@ -388,6 +388,12 @@ body {
   margin-bottom: 4rem;
 }
 
+/* 추가 — 모바일에서 위쪽 마진 축소 */
+@media screen and (max-width: 768px) {
+  .section-header {
+    margin-top: 1rem;
+  }
+}
 .section-header h2 {
   font-size: var(--font-size-3xl);
   font-weight: 700;
@@ -2241,7 +2247,12 @@ footer {
   padding-bottom: 0.3rem;
   border-bottom: 2px solid #d1e5f8;
 }
-
+.expert-info-block > h5 {
+  margin-top: 1.5rem;
+}
+.expert-info-block > h5:first-child {
+  margin-top: 0;
+}
 .expert-info-block p {
   font-size: 1.05rem;
   line-height: 2;
@@ -2318,6 +2329,93 @@ footer {
   margin: 0;
 }
 
+/* ================================
+   주요 방송 출연 카드
+   ================================ */
+
+.broadcast-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem auto 0;
+  padding: 0;
+  max-width: 1100px;
+}
+
+.broadcast-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.broadcast-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.broadcast-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.broadcast-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.broadcast-info {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.broadcast-channel {
+  font-size: 0.85rem;
+  color: #1a3e72;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+
+.broadcast-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
+}
+
+.broadcast-meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.broadcast-upcoming {
+  margin: 1.5rem 1rem 1rem 1rem;   /* ← margin-top 만 있던 거를 이렇게 변경 */
+  padding: 0.8rem 1rem;
+  background: #f5f9fd;
+  border-left: 3px solid #1a3e72;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #1a3e72;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  }
+
+.broadcast-upcoming i {
+  font-size: 1rem;
+}
+
+ .broadcast-divider {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
 .section-divider {
   margin: 2.5rem 0 1.5rem;
   padding-bottom: 0.5rem;
@@ -2340,6 +2438,12 @@ footer {
   margin-bottom: 2rem;
   text-align: center;
 }
+.education-table th,
+  .education-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
 
 /* ================================
    모바일 대응 추가
@@ -2363,10 +2467,54 @@ footer {
     font-size: 0.82rem;
   }
 
+.broadcast-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+.package-header {
+    padding: 0.85rem;
+  }
+  .package-header h5 {
+    font-size: 1rem;
+  }
+  .package-content {
+    padding: 0.75rem 1rem;
+  }
+  .package-content li {
+    padding: 0.4rem 0;
+    font-size: 0.92rem;
+  }
+  .package-container {
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+/* 구성원 모바일: 타이틀만 가운데, 본문은 왼쪽 */
+  .expert-card-intro,
+  .expert-info-block {
+    text-align: left;
+    width: 100%;
+  }
+
+  .expert-card-intro .expert-name,
+  .expert-card-intro .expert-role,
+  .expert-card-intro h5,
+  .expert-info-block h5 {
+    text-align: center;
+  }
+
+  /* '학력', '자격', '현직', '전직' 라벨도 가운데 */
+  .expert-card-intro p strong,
+  .expert-info-block p strong {
+    display: block;
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
   .expert-card-header {
     flex-direction: column;
     text-align: center;
     padding: 1.5rem;
+    gap: 1.5rem;
   }
 
   .expert-photo {
@@ -2383,7 +2531,6 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  
 }
 
 .footer-bar {
@@ -2399,6 +2546,30 @@ footer {
   padding: 1.5rem 0 1.2rem 0;
   text-align: center;
   border: none;
+}
+.counseling-section > p,
+.service-overview > p,
+#about-directions p:has(> strong) {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.counseling-section > p > strong,
+.service-overview > p > strong {
+  flex-shrink: 0;
+  min-width: 6em;
+}
+
+#about-directions p > strong {
+  flex-shrink: 0;
+  min-width: 3em;
+}
+
+.assessment-tools li {
+  padding-left: 1rem;
+  text-indent: -1rem;
 }
 
 .footer-bar-inner {
@@ -2603,17 +2774,21 @@ section[id] {
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 70px;
+    --header-height: 50px;
   }
 
-  body {
-    padding-top: calc(38px + 70px);
+   body {
+    padding-top: calc(38px + var(--header-height));  /* 변수로 통일 */
   }
 
   .header-container {
     padding: 0 1rem;
   }
-
+.logo-img {
+    height: 38px;
+    width: 38px;
+    border-width: 1.5px;
+  }
   .home-notice-desc {
     font-size: .85rem;
   }
@@ -3525,7 +3700,9 @@ body:not(.admin-page) {
   gap: 1rem;
   margin: 1.5rem 0 1rem;
 }
-
+.target-grid .education-notice {
+  grid-column: 1 / -1;
+}
 .target-card {
   background: #FAFAFA;
   border-radius: 8px;
@@ -4165,4 +4342,184 @@ body:not(.admin-page) {
     min-width: 0;
     width: 100%;
   }
+}
+
+/* ================================
+   방송 출연 알림 배너 (뉴스바)
+   ================================ */
+.broadcast-banner {
+  background: #FFFFFF;
+  color: #243447;
+  position: fixed;
+  top: calc(38px + var(--header-height));
+  left: 0;
+  right: 0;
+  z-index: 999;
+  border-top: none;
+  border-bottom: 1px solid #E5E9EE;
+}
+
+.broadcast-banner-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.55rem 3rem 0.55rem 1.5rem;
+  color: #243447;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* 호버 시 강조 */
+.broadcast-banner {
+  transition: background 0.25s ease;
+}
+
+.broadcast-banner-link {
+  transition: color 0.25s ease;
+}
+
+.broadcast-banner:hover {
+  background: linear-gradient(135deg, #1a3555 0%, #2c5282 100%);
+  border-top-color: #1a3555;
+  border-bottom-color: #1a3555;
+}
+
+.broadcast-banner:hover .broadcast-banner-link,
+.broadcast-banner:hover .broadcast-banner-label,
+.broadcast-banner:hover .broadcast-banner-headline,
+.broadcast-banner:hover .broadcast-banner-sub,
+.broadcast-banner:hover .broadcast-banner-cta {
+  color: white;
+}
+
+.broadcast-banner:hover .broadcast-banner-link {
+  background: transparent;
+}
+
+.broadcast-banner:hover .broadcast-banner-cta {
+  text-decoration: underline;
+}
+
+.broadcast-banner:hover .broadcast-banner-close {
+  color: white;
+  opacity: 0.8;
+}
+
+.broadcast-banner-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.85rem;
+}
+
+.broadcast-banner-label {
+  color: #1A3555;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.broadcast-banner-headline {
+  color: #243447;
+}
+
+.broadcast-banner-sub {
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.broadcast-banner-cta {
+  color: #1A3555;
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.broadcast-banner-link:hover .broadcast-banner-cta {
+  text-decoration: underline;
+}
+
+.broadcast-banner-close {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #475569;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.2rem 0.6rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.broadcast-banner-close:hover {
+  opacity: 1;
+}
+
+/* 표시/숨김 유틸 */
+.broadcast-banner .desktop-only { display: inline; }
+.broadcast-banner .mobile-only { display: none; }
+
+@media (max-width: 768px) {
+  .broadcast-banner-link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+  .broadcast-banner-row {
+    display: block;
+  }
+  .broadcast-banner-label {
+    margin-right: 0.35rem;
+  }
+  .broadcast-banner-cta {
+    margin-top: 0.15rem;
+    font-size: 0.85rem;
+  }
+  .broadcast-banner .desktop-only { display: none; }
+  .broadcast-banner .mobile-only { display: inline; }
+  .broadcast-banner .broadcast-banner-sub.mobile-only { display: block; }
+}
+/* ================================
+   공통 불릿 리스트 (hanging indent)
+   .bullet-list 클래스 OR content-section 안의 클래스 없는 ul에 자동 적용
+   ================================ */
+.bullet-list,
+.content-section ul:not([class]) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bullet-list li,
+.content-section ul:not([class]) li {
+  position: relative;
+  padding-left: 1.5rem;     /* 들여쓰기 약간 키움 */
+  margin-bottom: 0.4rem;
+  line-height: 1.7;
+}
+
+.bullet-list li::before,
+.content-section ul:not([class]) li::before {
+  content: "•";
+  position: absolute;
+  left: 0.4rem;             /* 우측으로 약간 이동 */
+  top: 0;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* 패키지 리스트는 자체 디자인 — 글로벌 불릿 제외 */
+.package-content ul li {
+  padding-left: 0;
+}
+.package-content ul li::before {
+  display: none;
 }

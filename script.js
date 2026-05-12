@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadHomepagePosts();
     setupEventListeners();
     setupHistoryManagement();
+    initBroadcastBanner();   // ← 이 줄 추가
 });
 
 // ================================
@@ -691,3 +692,84 @@ window.showSubsection = showSubsection;
 window.changePage = changePage;
 window.loadPostDetail = loadPostDetail;
 window.updateMobileMenu = updateMobileMenu;
+
+
+// ================================
+// 방송 출연 배너 처리 (동적 padding 포함)
+// ================================
+function initBroadcastBanner() {
+    var banner = document.getElementById('broadcast-banner');
+    if (!banner) return;
+
+    // 만료일 체크
+    var expires = banner.getAttribute('data-expires');
+    if (expires) {
+        var today = new Date();
+        var expireDate = new Date(expires);
+        if (today >= expireDate) {
+            banner.style.display = 'none';
+            return;
+        }
+    }
+
+    // 이 세션에서 닫은 적 있으면 숨김
+    if (sessionStorage.getItem('broadcastBannerClosed') === 'true') {
+        banner.style.display = 'none';
+        return;
+    }
+
+    // 원래 body padding-top 값을 한 번만 저장 (누적 방지)
+    // 인라인 padding 일단 비워서 CSS 원래 값을 정확히 측정
+    document.body.style.paddingTop = '';
+    var bodyOriginalPadding = parseInt(window.getComputedStyle(document.body).paddingTop, 10);
+
+    // padding 조정 함수
+    function applyBannerPadding() {
+        if (banner.style.display === 'none') {
+            document.body.style.paddingTop = '';
+            return;
+        }
+        var bannerHeight = banner.offsetHeight;
+        // 항상 원래 padding 기준에서 계산 → 누적 방지
+        document.body.style.paddingTop = (bodyOriginalPadding + bannerHeight) + 'px';
+    }
+
+    // 페이지 맨 위로 강제 이동 (해시로 인한 자동 스크롤 방지)
+    function scrollToTopIfHome() {
+        var hash = window.location.hash;
+        if (hash === '' || hash === '#' || hash === '#home') {
+            window.scrollTo(0, 0);
+        }
+    }
+
+    // 초기 적용
+    applyBannerPadding();
+    setTimeout(scrollToTopIfHome, 50);
+
+    // 이미지·폰트 다 로드된 후 한 번 더 재계산
+    window.addEventListener('load', function () {
+        applyBannerPadding();
+        scrollToTopIfHome();
+    });
+
+    // 창 크기 변경 시 재계산
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            applyBannerPadding();
+        }, 150);
+    });
+
+    // 닫기 버튼
+    var closeBtn = banner.querySelector('.broadcast-banner-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            banner.style.display = 'none';
+            sessionStorage.setItem('broadcastBannerClosed', 'true');
+            document.body.style.paddingTop = '';
+        });
+    }
+}
